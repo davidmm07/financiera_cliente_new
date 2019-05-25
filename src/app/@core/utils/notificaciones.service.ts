@@ -1,10 +1,11 @@
+
+import {map, multicast} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs/Rx';
+import { Subject ,  from } from 'rxjs';
 import { WebsocketService } from './websocket.service';
 import { GENERAL } from './../../app-config';
 import { ImplicitAutenticationService } from './implicit_autentication.service';
 import { ConfiguracionService } from './../data/configuracion.service';
-import { from } from 'rxjs';
 
 const CHAT_URL = GENERAL.ENTORNO.NOTIFICACION_SERVICE;
 
@@ -19,7 +20,7 @@ export class NotificacionesService {
 
     private arrayMessagesSubject = new Subject();
     arrayMessages$ = this.arrayMessagesSubject.asObservable();
-    private _messages = this.arrayMessages$.multicast(this.arrayMessagesSubject);
+    private _messages = this.arrayMessages$.pipe(multicast(this.arrayMessagesSubject));
     public getMessages() {
         return this._messages;
     }
@@ -32,10 +33,10 @@ export class NotificacionesService {
         if (authService.live()) {
             this.payload = authService.getPayload();
             this.messages = <Subject<any>>wsService
-                .connect(CHAT_URL + `?id=${this.payload.sub}&profiles=admin`)
-                .map((response: any) => {
+                .connect(CHAT_URL + `?id=${this.payload.sub}&profiles=admin`).pipe(
+                map((response: any) => {
                     return JSON.parse(response.data)
-                });
+                }));
             this.queryNotification('admin');
             this.messages.subscribe(response => {
                 const message = {

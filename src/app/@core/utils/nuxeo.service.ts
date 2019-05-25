@@ -1,10 +1,9 @@
 import * as Nuxeo from 'nuxeo';
 import { Injectable } from '@angular/core';
 import { GENERAL } from './../../app-config';
-import { Observable } from 'rxjs/Observable';
+import { Observable ,  Subject } from 'rxjs';
 import { Documento } from './../data/models/documento'
 import { TipoDocumento } from './../data/models/tipo_documento'
-import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class NuxeoService {

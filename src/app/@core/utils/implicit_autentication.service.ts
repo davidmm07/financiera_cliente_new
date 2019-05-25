@@ -1,6 +1,7 @@
+
+import {interval as observableInterval,  Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs/Rx';
 import { GENERAL } from './../../app-config';
 import { Md5 } from 'ts-md5/dist/md5';
 
@@ -111,7 +112,7 @@ export class ImplicitAutenticationService {
     }
 
     timer() {
-        Observable.interval(5000).subscribe(() => {
+        observableInterval(5000).subscribe(() => {
             if (window.localStorage.getItem('expires_at') !== null) {
                 if (this.expired()) {
                     window.localStorage.clear();
