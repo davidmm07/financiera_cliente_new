@@ -25,9 +25,9 @@ WORKDIR /app
 #npm install --save @nebular/auth@latest @nebular/security@latest @nebular/theme@latest
 #npm install --save @ng-bootstrap/ng-bootstrap@latest
 #npm install --save nebular-icons@latest @ngrx/store@latest @swimlane/ngx-charts@latest @nebular/bootstrap@latest
-#npm install --save angular2-toaster@latest jquery@1.9.1 popper.js@1.14.7 ng2-completer@latest ng2-ckeditor@latest ng2-smart-table@latest ng2-smart-table@latest
+#npm install --save angular2-toaster@latest jquery@latest popper.js@1.14.7 ng2-completer@latest ng2-ckeditor@latest ng2-smart-table@latest ng2-smart-table@latest
 #npm install --save ngx-echarts@latest
 #npm install --save @ngx-translate/core@latest  @ngx-translate/http-loader@latest
-#npm install --save-dev codelyzer@latest tslint-language-service@latest 
+#npm install --save-dev codelyzer@latest tslint-language-service@latest
 #Remover dependencias no necesarias:
 #npm uninstall --save ngx-qrcode2
