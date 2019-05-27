@@ -6,7 +6,7 @@ RUN npm install -g @angular/cli
 USER $USER
 WORKDIR /app
 #correr dentro del shell del contenedor:
-# rxjs-5-to-6-migrate -p src/tsconfig.app.json && npm uninstall
+# rxjs-5-to-6-migrate -p src/tsconfig.app.json
 # during the update
 #npm uninstall --save-dev angular-cli
 #npm install --save-dev @angular/cli@latest
@@ -27,6 +27,7 @@ WORKDIR /app
 #npm install --save nebular-icons@latest @ngrx/store@latest @swimlane/ngx-charts@latest @nebular/bootstrap@latest
 #npm install --save angular2-toaster@latest jquery@1.9.1 popper.js@1.14.7 ng2-completer@latest ng2-ckeditor@latest ng2-smart-table@latest ng2-smart-table@latest
 #npm install --save ngx-echarts@latest
+#npm install --save @ngx-translate/core@latest  @ngx-translate/http-loader@latest
 #npm install --save-dev codelyzer@latest tslint-language-service@latest 
 #Remover dependencias no necesarias:
-#npm uninstall --save @agm/core ngx-qrcode2
+#npm uninstall --save ngx-qrcode2

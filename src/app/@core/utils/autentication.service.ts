@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, interval } from 'rxjs';
 import { Config } from './../../app-config';
 import { Md5 } from 'ts-md5/dist/md5';
 
@@ -183,7 +183,7 @@ export class AutenticationService {
     }
 
     timer() {
-        Observable.interval(5000).subscribe(x => {
+        interval(5000).subscribe(x => {
             if (window.sessionStorage.getItem('expires_at') !== null) {
                 if (this.expired()) {
                     this.refresh();
