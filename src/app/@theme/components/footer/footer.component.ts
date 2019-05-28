@@ -180,6 +180,6 @@ export class FooterComponent {
         class: 'youtube',
       }],
     }
-    this.copyright = '© Copyright 2019. | Sitio creado y administrado por Planestic-UD | Vicerrectoría Académica';
+    this.copyright = '© Copyright 2019. | Todos los Derechos Reservados';
   }
 }
