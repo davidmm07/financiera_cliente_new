@@ -11,6 +11,7 @@ import { OrganizacionService } from '../@core/data/organizacion.service';
 import { IdiomaService } from '../@core/data/idioma.service';
 import { NuxeoService } from '../@core/utils/nuxeo.service';
 import { MenuService } from '../@core/data/menu.service';
+import { RubrosModule } from './rubros/rubros.module';
 
 const PAGES_COMPONENTS = [
   PagesComponent,
@@ -22,6 +23,7 @@ const PAGES_COMPONENTS = [
     ThemeModule,
     DashboardModule,
     SharedModule,
+    RubrosModule,
   ],
   declarations: [
     ...PAGES_COMPONENTS,

@@ -21,6 +21,7 @@ export const MENU_ITEMS: MenuItem[] = [
       },
     ],
   },
+  
 ];
 
 export const MENU_PUBLICO: MenuItem[] = [
@@ -37,6 +38,20 @@ export const MENU_PUBLICO: MenuItem[] = [
     url: 'https://www.udistrital.edu.co/directorio',
     home: false,
     key: 'directorio',
+  },
+  {
+    title: 'rubros',
+    icon: 'nb-home',
+    link: '/pages/rubros',
+    home: false,
+    key: 'rubros',
+    children: [
+      {
+        title: 'arbol-rubros',
+        link: '/pages/rubros/arbol-rubros',
+        home: false,
+        key: 'arbol-rubros',
+      },]
   },
   {
     title: 'atencion_usuario',

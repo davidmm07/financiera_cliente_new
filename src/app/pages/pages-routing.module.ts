@@ -20,6 +20,10 @@ const routes: Routes = [{
       loadChildren: './notificacion/notificacion.module#NotificacionModule',
     },
     {
+      path: 'rubros',
+      loadChildren: './rubros/rubros.module#RubrosModule',
+    },
+    {
       path: '',
       redirectTo: 'dashboard',
       pathMatch: 'full',
