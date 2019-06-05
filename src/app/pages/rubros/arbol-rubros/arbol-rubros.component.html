@@ -1,25 +1,4 @@
-<!-- <nb-card class="col-md-12 col-lg-12 col-xxxl-12" >
-    <div class="row">
-        <div class="col">
-          <h1>Consulta de Rubros</h1>
-        </div>
-      </div>
-      
-      <div class="row">
-          <nb-card>
-        <div class="col-md-6">
-      <h2>Árbol de Rubros</h2>
-        </div>
-        </nb-card>
-        <nb-card>
-        <div class="col-md-6">
-        <h2>Detalle Rubro {{rubro|json}}</h2>
-        </div>
-    
-    </nb-card>
-    
-    </div>
-</nb-card> -->
+
 <div class="row-md-12 col-lg-12 col-xxxl-12">
    <nb-card>
      <nb-card-header>
@@ -46,6 +25,9 @@
           <nb-card-header>
              <h1>Informacion Rubro</h1>
           </nb-card-header>
+          <nb-card-body>
+              <dynamic-form #dynamicFormName='dynamicForm' [config]='dynamicFormConfig' (submit)='submit($event)'></dynamic-form>
+          </nb-card-body>
         </nb-card>
 
     </div>

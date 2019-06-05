@@ -4,6 +4,7 @@ import { ThemeModule } from '../../@theme/theme.module';
 
 import { RubrosRoutingModule, routedComponents } from './rubros-routing.module';
 import { ArbolRubrosComponent } from './arbol-rubros/arbol-rubros.component';
+import { DynamicFormModule } from 'ngx-dynamic-form';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import { ArbolRubrosComponent } from './arbol-rubros/arbol-rubros.component';
   imports: [
     ThemeModule,
     CommonModule,
-    RubrosRoutingModule
+    RubrosRoutingModule,
+    DynamicFormModule
   ]
 })
 export class RubrosModule { }
