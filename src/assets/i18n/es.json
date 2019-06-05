@@ -11,7 +11,7 @@
   "MENU": {
     "dashboard": "Inicio",
     "rubros": {
-      "rubros":"Rubros",
+      "rubros":"RUBROS",
       "arbol-rubros": "Árbol de Rubros"
     } ,
     "directorio": "Directorio institucional",
