@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { RubroService } from '../../../@core/data/rubro.service';
+import { Rubro } from '../../../@core/data/models/rubro';
 
 @Component({
   selector: 'arbol-rubros',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ArbolRubrosComponent implements OnInit {
 
-  constructor() { }
+  rubro:Rubro;
 
-  ngOnInit() {
+  constructor(private rubroService: RubroService) { 
+
   }
 
+  ngOnInit() {
+    this.rubro = {} as Rubro;
+    this.getPaises();
+  }
+
+  getPaises(){
+    this.rubro = this.rubroService.get("rubro")
+  }
 }
