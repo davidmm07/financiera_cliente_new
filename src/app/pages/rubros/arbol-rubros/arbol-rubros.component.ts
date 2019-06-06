@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RubroService } from '../../../@core/data/rubro.service';
 import { Rubro } from '../../../@core/data/models/rubro';
 import { Validators } from '@angular/forms';
+import { FORM_INFO_RUBRO } from './form_info_rubro';
 
 @Component({
   selector: 'arbol-rubros',
@@ -10,81 +11,50 @@ import { Validators } from '@angular/forms';
 })
 export class ArbolRubrosComponent implements OnInit {
 
-  rubro:Rubro;
-
+  info_rubro:Rubro;
+  formInfoRubro: any;
   constructor(private rubroService: RubroService) { 
-
+    this.formInfoRubro=FORM_INFO_RUBRO;
+    this.construirForm();
   }
 
   ngOnInit() {
-    this.rubro = {} as Rubro;
+    this.info_rubro = {} as Rubro;
     this.getRubros();
   }
 
   getRubros(){
-    this.rubro = this.rubroService.get("rubro")
+    this.info_rubro = this.rubroService.get("rubro")
+  }
+  construirForm() {
+    // this.formInfoRubro.titulo = this.translate.instant('GLOBAL.propuesta_grado');
+    this.formInfoRubro.btn = 'guardar';
+    for (let i = 0; i < this.formInfoRubro.campos.length; i++) {
+      this.formInfoRubro.campos[i].label =  this.formInfoRubro.campos[i].label_i18n;
+      this.formInfoRubro.campos[i].placeholder = this.formInfoRubro.campos[i].label_i18n;
+    }
   }
 
-  //configuracion para formulario de informacion de rubros
-  dynamicFormConfig = [
-    {
-      type: 'input',
-      divClass: 'col-lg-6',
-      label: 'Código ',
-      labelClass: 'label label-danger',
-      class: 'form-control',
-      name: 'Codigo',
-      inputType: 'text',
-      placeholder: '0-0-0-0',
-      validation: [Validators.required]
-    },
-    {
-      type: 'input',
-      divClass: 'col-lg-6',
-      label: 'Unidad Ejecutora ',
-      labelClass: 'label label-danger',
-      class: 'form-control',
-      name: 'unidadEjecutora',
-      inputType: 'text',
-      placeholder: 'Upload Anything',
-      validation: [Validators.required]
-    },
-    {
-      type: 'input',
-      divClass: 'col-lg-6',
-      label: 'Entidad',
-      labelClass: 'label label-danger',
-      class: 'form-control',
-      name: 'entidad',
-      inputType: 'text',
-      placeholder: 'Upload Anything',
-      validation: [Validators.required]
-    },
-    
-    {
-      type: 'button',
-      divClass: 'col-sm-4',
-      label: 'submit',
-      labelClass: 'pad-20',
-      text: 'Submit',
-      inputType: 'submit',
-      class: 'btn btn-dcb-info',
-      name: 'submit',
-    },
-    {
-      type: 'button',
-      divClass: 'col-sm-4',
-      label: 'Editar',
-      labelClass: 'pad-20',
-      text: 'Editar',
-      inputType: 'submit',
-      class: 'btn btn-dcb-info',
-      name: 'submit',
-    }
-  ];
 
-  submit(model: any) {
-    console.log(model);
+  validarForm(event) {
+    // const propuesta = {
+    //   Nombre: event.data.PropuestaGrado.Nombre,
+    //   Resumen: event.data.PropuestaGrado.Resumen,
+    //   GrupoInvestigacion: event.data.PropuestaGrado.GrupoInvestigacion,
+    //   LineaInvestigacion: event.data.PropuestaGrado.LineaInvestigacion,
+    //   FormatoProyecto: event.data.PropuestaGrado.FormatoProyecto.file,
+    //   Admision: {
+    //     Id: this.admision_id,
+    //   },
+    //   TipoProyecto: event.data.PropuestaGrado.TipoProyecto,
+    // }
+    // if (event.valid) {
+    //   if (this.info_propuesta_grado === undefined) {
+    //     this.createPropuestaGrado(propuesta);
+    //   } else {
+    //     this.updatePropuestaGrado(propuesta);
+    //   }
+    // }
   }
 
 }
