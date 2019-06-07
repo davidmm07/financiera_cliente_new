@@ -28,7 +28,8 @@ export class ArbolRubrosComponent implements OnInit {
   }
   construirForm() {
     // this.formInfoRubro.titulo = this.translate.instant('GLOBAL.propuesta_grado');
-    this.formInfoRubro.btn = 'guardar';
+    this.formInfoRubro.btn[0] = 'guardar';
+    this.formInfoRubro.btn[1] = 'jkjkl';
     for (let i = 0; i < this.formInfoRubro.campos.length; i++) {
       this.formInfoRubro.campos[i].label =  this.formInfoRubro.campos[i].label_i18n;
       this.formInfoRubro.campos[i].placeholder = this.formInfoRubro.campos[i].label_i18n;

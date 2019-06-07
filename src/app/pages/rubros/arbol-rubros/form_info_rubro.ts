@@ -1,7 +1,7 @@
 export let FORM_INFO_RUBRO = {
     
-    tipo_formulario: 'mini',
-    btn: 'Guardar',
+    tipo_formulario: 'grid',
+    btn: ['Guardar','Peguelo'],
     alertas: true,
     modelo: 'infoRubro',
     campos: [
