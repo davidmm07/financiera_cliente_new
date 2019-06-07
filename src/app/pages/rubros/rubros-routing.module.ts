@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from '../../@core/_guards/auth.guard';
-import { ArbolRubrosComponent } from './arbol-rubros/arbol-rubros.component';
+import { ConsultaRubrosComponent } from './consulta-rubros/consulta-rubros.component';
+
 
 const routes: Routes = [{
-    path: 'arbol-rubros',
-    component: ArbolRubrosComponent,
+    path: 'consulta-rubros',
+    component: ConsultaRubrosComponent,
 }];
 
 
@@ -20,6 +21,6 @@ const routes: Routes = [{
 export class RubrosRoutingModule { }
 
 export const routedComponents = [
-  ArbolRubrosComponent,
+  ConsultaRubrosComponent,
 ];
 

@@ -12,7 +12,7 @@
     "dashboard": "Inicio",
     "rubros": {
       "rubros":"RUBROS",
-      "arbol-rubros": "Árbol de Rubros"
+      "consulta-rubros": "Consulta de Rubros"
     } ,
     "directorio": "Directorio institucional",
     "atencion_usuario": {

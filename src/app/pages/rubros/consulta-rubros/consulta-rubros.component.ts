@@ -5,11 +5,11 @@ import { Validators } from '@angular/forms';
 import { FORM_INFO_RUBRO } from './form_info_rubro';
 
 @Component({
-  selector: 'arbol-rubros',
-  templateUrl: './arbol-rubros.component.html',
-  styleUrls: ['./arbol-rubros.component.scss']
+  selector: 'consulta-rubros',
+  templateUrl: './consulta-rubros.component.html',
+  styleUrls: ['./consulta-rubros.component.scss']
 })
-export class ArbolRubrosComponent implements OnInit {
+export class ConsultaRubrosComponent implements OnInit {
 
   info_rubro:Rubro;
   formInfoRubro: any;

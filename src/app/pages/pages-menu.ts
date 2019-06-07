@@ -47,10 +47,10 @@ export const MENU_PUBLICO: MenuItem[] = [
     key: 'rubros',
     children: [
       {
-        title: 'arbol-rubros',
-        link: '/pages/rubros/arbol-rubros',
+        title: 'consulta-rubros',
+        link: '/pages/rubros/consulta-rubros',
         home: false,
-        key: 'arbol-rubros',
+        key: 'consulta-rubros',
       },]
   },
   {
