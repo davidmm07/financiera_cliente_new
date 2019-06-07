@@ -1,13 +1,13 @@
 export let FORM_INFO_RUBRO = {
     
-    tipo_formulario: 'grid',
-    btn: ['Guardar','Peguelo'],
+    tipo_formulario: 'mini',
+   
     alertas: true,
     modelo: 'infoRubro',
     campos: [
         {
             etiqueta: 'input',
-            claseGrid: 'col-lg-6 col-md-6 col-sm-12 col-xs-12',
+            claseGrid: 'col-lg-12 col-md-12 col-sm-12 col-xs-12',
             nombre: 'Codigo',
             label_i18n: 'Codigo',
             placeholder_i18n: 'Codigo',
@@ -16,7 +16,7 @@ export let FORM_INFO_RUBRO = {
         },
         {
             etiqueta: 'select',
-            claseGrid: 'col-lg-6 col-md-6 col-sm-12 col-xs-12',
+            claseGrid: 'col-lg-12 col-md-12 col-sm-12 col-xs-12',
             nombre: 'UnidadEjecutora',
             label_i18n: 'Unidad Ejecutora',
             placeholder_i18n: 'Unidad Ejecutora',
@@ -27,7 +27,7 @@ export let FORM_INFO_RUBRO = {
         },
         {
             etiqueta: 'select',
-            claseGrid: 'col-lg-6 col-md-6 col-sm-12 col-xs-12',
+            claseGrid: 'col-lg-12 col-md-12 col-sm-12 col-xs-12',
             nombre: 'Entidad',
             label_i18n: 'Entidad',
             placeholder_i18n: 'Entidad',
