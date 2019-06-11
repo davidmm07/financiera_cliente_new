@@ -11,7 +11,7 @@ import { FORM_INFO_RUBRO } from './form_info_rubro';
   styleUrls: ['./consulta-rubros.component.scss']
 })
 export class ConsultaRubrosComponent implements OnInit {
-  rubroSeleccionado : string;
+  rubroSeleccionado : any;
   info_rubro:Rubro;
   insertarRubro = false;
   formInfoRubro: any;
@@ -42,29 +42,11 @@ export class ConsultaRubrosComponent implements OnInit {
   receiveMessage($event) {
     console.log($event);
     this.rubroSeleccionado = $event
-    console.log(this.rubroSeleccionado+"Hola perros");
+
+    console.log(this.rubroSeleccionado);
   }
 
 
   validarForm(event) {
-    // const propuesta = {
-    //   Nombre: event.data.PropuestaGrado.Nombre,
-    //   Resumen: event.data.PropuestaGrado.Resumen,
-    //   GrupoInvestigacion: event.data.PropuestaGrado.GrupoInvestigacion,
-    //   LineaInvestigacion: event.data.PropuestaGrado.LineaInvestigacion,
-    //   FormatoProyecto: event.data.PropuestaGrado.FormatoProyecto.file,
-    //   Admision: {
-    //     Id: this.admision_id,
-    //   },
-    //   TipoProyecto: event.data.PropuestaGrado.TipoProyecto,
-    // }
-    // if (event.valid) {
-    //   if (this.info_propuesta_grado === undefined) {
-    //     this.createPropuestaGrado(propuesta);
-    //   } else {
-    //     this.updatePropuestaGrado(propuesta);
-    //   }
-    // }
   }
-
 }

@@ -23,7 +23,7 @@ interface FSEntry {
   styleUrls: ['./arbol-rubros.component.scss']
 })
 export class ArbolRubrosComponent{
-  @Output() rubroSeleccionado = new EventEmitter<string>();
+  @Output() rubroSeleccionado = new EventEmitter();
   customColumn = 'CodigoRubro';
   defaultColumns = [ 'NombreRubro'];
   allColumns = [ this.customColumn, ...this.defaultColumns ];
@@ -50,20 +50,21 @@ export class ArbolRubrosComponent{
 
   onSelect(selectedItem: any) {
     console.log("Selected item Id: ", selectedItem.data); // You get the Id of the selected item here
-    this.rubroSeleccionado.emit(JSON.stringify(selectedItem.data));
+    this.rubroSeleccionado.emit(selectedItem.data);
+
    }
 
   private data: TreeNode<FSEntry>[] = [
     {
       data: { CodigoRubro: 'Projects', NombreRubro: '1.8 MB'},
       children: [
-        { data: { CodigoRubro: 'Camila', NombreRubro: '1.8 MB' } },
-        { data: { CodigoRubro: 'Perro', NombreRubro: '1.8 MB' } },
+        { data: { CodigoRubro: 'Rubro1', NombreRubro: '1.8 MB' } },
+        { data: { CodigoRubro: 'Rubro2', NombreRubro: '1.8 MB' } },
         {
           data: { CodigoRubro: 'Projects', NombreRubro: '1.8 MB' },
           children: [
             { data: { CodigoRubro: 'Projects', NombreRubro: '1.8 MB' } },
-            { data: { CodigoRubro: 'Carlos', NombreRubro: '1.8 MB' } },
+            { data: { CodigoRubro: 'Rubro3', NombreRubro: '1.8 MB' } },
             { data: { CodigoRubro: 'Projects', NombreRubro: '1.8 MB' } },
           ],
         },
