@@ -15,7 +15,9 @@
         </th>
         <td nbTreeGridCell *nbTreeGridCellDef="let row">
           <nb-fs-icon [kind]="row.data.kind" [expanded]="row.expanded"></nb-fs-icon>
-          {{row.data[customColumn]}}
+          <span [ngClass]="{'nb-chevron-down': row.expanded, 'nb-chevron-right': !row.expanded}"
+          aria-hidden="true">
+    </span>{{row.data[customColumn]}}
         </td>
       </ng-container>
 

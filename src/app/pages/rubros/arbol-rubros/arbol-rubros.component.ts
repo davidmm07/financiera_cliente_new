@@ -8,8 +8,8 @@ interface TreeNode<T> {
 }
 
 interface FSEntry {
-  Codigo : string;
-  Nombre : string;
+  NombreRubro : string;
+  CodigoRubro : string;
   /* name: string;
   size: string;
   kind: string;
@@ -24,8 +24,8 @@ interface FSEntry {
 })
 export class ArbolRubrosComponent{
 
-  customColumn = 'Nombre';
-  defaultColumns = [ 'Codigo'];
+  customColumn = 'CodigoRubro';
+  defaultColumns = [ 'NombreRubro'];
   allColumns = [ this.customColumn, ...this.defaultColumns ];
   dataSource: NbTreeGridDataSource<FSEntry>;
 
@@ -50,44 +50,44 @@ export class ArbolRubrosComponent{
 
   private data: TreeNode<FSEntry>[] = [
     {
-      data: { Nombre: 'Projects', Codigo: '1.8 MB'},
+      data: { CodigoRubro: 'Projects', NombreRubro: '1.8 MB'},
       children: [
-        { data: { Nombre: 'Projects', Codigo: '1.8 MB' } },
-        { data: { Nombre: 'Projects', Codigo: '1.8 MB' } },
+        { data: { CodigoRubro: 'Projects', NombreRubro: '1.8 MB' } },
+        { data: { CodigoRubro: 'Projects', NombreRubro: '1.8 MB' } },
         {
-          data: { Nombre: 'Projects', Codigo: '1.8 MB' },
+          data: { CodigoRubro: 'Projects', NombreRubro: '1.8 MB' },
           children: [
-            { data: { Nombre: 'Projects', Codigo: '1.8 MB' } },
-            { data: { Nombre: 'Projects', Codigo: '1.8 MB' } },
-            { data: { Nombre: 'Projects', Codigo: '1.8 MB' } },
+            { data: { CodigoRubro: 'Projects', NombreRubro: '1.8 MB' } },
+            { data: { CodigoRubro: 'Projects', NombreRubro: '1.8 MB' } },
+            { data: { CodigoRubro: 'Projects', NombreRubro: '1.8 MB' } },
           ],
         },
-        { data: { Nombre: 'Projects', Codigo: '1.8 MB' } },
+        { data: { CodigoRubro: 'Projects', NombreRubro: '1.8 MB' } },
       ],
     },
     {
-      data: { Nombre: 'Projects', Codigo: '1.8 MB' },
+      data: { CodigoRubro: 'Projects', NombreRubro: '1.8 MB' },
       children: [
         {
-          data: { Nombre: 'Projects', Codigo: '1.8 MB' },
+          data: { CodigoRubro: 'Projects', NombreRubro: '1.8 MB' },
           children: [
-            { data: { Nombre: 'Projects', Codigo: '1.8 MB' } },
+            { data: { CodigoRubro: 'Projects', NombreRubro: '1.8 MB' } },
           ],
         },
         {
-          data: { Nombre: 'Projects', Codigo: '1.8 MB' },
+          data: { CodigoRubro: 'Projects', NombreRubro: '1.8 MB' },
           children: [
-            { data: { Nombre: 'Projects', Codigo: '1.8 MB' } },
-            { data: { Nombre: 'Projects', Codigo: '1.8 MB' } },
+            { data: { CodigoRubro: 'Projects', NombreRubro: '1.8 MB' } },
+            { data: { CodigoRubro: 'Projects', NombreRubro: '1.8 MB' } },
           ],
         },
       ],
     },
     {
-      data: { Nombre: 'Projects', Codigo: '1.8 MB'},
+      data: { CodigoRubro: 'Projects', NombreRubro: '1.8 MB'},
       children: [
-        { data: { Nombre: 'Projects', Codigo: '1.8 MB' } },
-        { data: { Nombre: 'Projects', Codigo: '1.8 MB' } },
+        { data: { CodigoRubro: 'Projects', NombreRubro: '1.8 MB' } },
+        { data: { CodigoRubro: 'Projects', NombreRubro: '1.8 MB' } },
       ],
     },
   ];
@@ -105,7 +105,6 @@ export class ArbolRubrosComponent{
     <nb-tree-grid-row-toggle [expanded]="expanded" *ngIf="isDir(); else fileIcon">
     </nb-tree-grid-row-toggle>
     <ng-template #fileIcon>
-    
     </ng-template>
   `,
 })
