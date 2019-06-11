@@ -21,15 +21,15 @@
                <h1>Arbol Rubros</h1>
             </nb-card-header>
             <nb-card-body>
-               <arbol-rubros></arbol-rubros>
+               <arbol-rubros (messageEvent)="receiveMessage($event)"></arbol-rubros>
             </nb-card-body>
           </nb-card>
   
     </div>
-    <div class="col-md-6 col-lg-6 col-xxxl-6">
-        <nb-card>
+    <div  class="col-md-6 col-lg-6 col-xxxl-6">
+        <nb-card *ngIf="insertarRubro">
             <nb-card-header>
-               <h1>Informacion Rubro</h1>
+               <h1>Registrar Rubro</h1>
             </nb-card-header>
             <nb-card-body>
                 <!-- ngx dinamic form es una version adaptada del formulario dinamico de ng2, que se usa en campus -->
@@ -40,8 +40,18 @@
             </nb-card-body>
           </nb-card>
   
-
+          <nb-card *ngIf="!insertarRubro">
+            <nb-card-header>
+               <h1>Informacion Rubro</h1>
+            </nb-card-header>
+            <nb-card-body>
+               
+               {{ rubroSeleccionado | json}}
+            </nb-card-body>
+          </nb-card>
       </div>
+
+      
   <div>
      
   </div>

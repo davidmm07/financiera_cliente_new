@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { NbSortDirection, NbTreeGridDataSource, NbTreeGridDataSourceBuilder, NbSortRequest } from '@nebular/theme';
+import { select } from '@ngrx/store';
 
 interface TreeNode<T> {
   data: T;
@@ -16,14 +17,13 @@ interface FSEntry {
   items?: number; */
 }
 
-
 @Component({
   selector: 'arbol-rubros',
   templateUrl: './arbol-rubros.component.html',
   styleUrls: ['./arbol-rubros.component.scss']
 })
 export class ArbolRubrosComponent{
-
+  @Output() rubroSeleccionado = new EventEmitter<string>();
   customColumn = 'CodigoRubro';
   defaultColumns = [ 'NombreRubro'];
   allColumns = [ this.customColumn, ...this.defaultColumns ];
@@ -48,17 +48,22 @@ export class ArbolRubrosComponent{
     return NbSortDirection.NONE;
   }
 
+  onSelect(selectedItem: any) {
+    console.log("Selected item Id: ", selectedItem.data); // You get the Id of the selected item here
+    this.rubroSeleccionado.emit(JSON.stringify(selectedItem.data));
+   }
+
   private data: TreeNode<FSEntry>[] = [
     {
       data: { CodigoRubro: 'Projects', NombreRubro: '1.8 MB'},
       children: [
-        { data: { CodigoRubro: 'Projects', NombreRubro: '1.8 MB' } },
-        { data: { CodigoRubro: 'Projects', NombreRubro: '1.8 MB' } },
+        { data: { CodigoRubro: 'Camila', NombreRubro: '1.8 MB' } },
+        { data: { CodigoRubro: 'Perro', NombreRubro: '1.8 MB' } },
         {
           data: { CodigoRubro: 'Projects', NombreRubro: '1.8 MB' },
           children: [
             { data: { CodigoRubro: 'Projects', NombreRubro: '1.8 MB' } },
-            { data: { CodigoRubro: 'Projects', NombreRubro: '1.8 MB' } },
+            { data: { CodigoRubro: 'Carlos', NombreRubro: '1.8 MB' } },
             { data: { CodigoRubro: 'Projects', NombreRubro: '1.8 MB' } },
           ],
         },
@@ -98,6 +103,7 @@ export class ArbolRubrosComponent{
     return minWithForMultipleColumns + (nextColumnStep * index);
   }
 }
+
 
 @Component({
   selector: 'nb-fs-icon',
