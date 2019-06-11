@@ -19,8 +19,8 @@ export class ConsultaRubrosComponent implements OnInit {
     this.formInfoRubro=FORM_INFO_RUBRO;
     this.construirForm();
     this.rubroSeleccionado = {
-      CodigoRubro: '',
-      NombreRubro: '',
+      Codigo: '',
+      Nombre: '',
       };
   }
 
@@ -33,9 +33,7 @@ export class ConsultaRubrosComponent implements OnInit {
   getRubros(){
     this.info_rubro = this.rubroService.get("rubro")
   }
-  construirForm() {
-    // this.formInfoRubro.titulo = this.translate.instant('GLOBAL.propuesta_grado');
-   
+  construirForm() { 
     for (let i = 0; i < this.formInfoRubro.campos.length; i++) {
       this.formInfoRubro.campos[i].label =  this.formInfoRubro.campos[i].label_i18n;
       this.formInfoRubro.campos[i].placeholder = this.formInfoRubro.campos[i].label_i18n;
@@ -51,24 +49,7 @@ export class ConsultaRubrosComponent implements OnInit {
 
 
   validarForm(event) {
-    // const propuesta = {
-    //   Nombre: event.data.PropuestaGrado.Nombre,
-    //   Resumen: event.data.PropuestaGrado.Resumen,
-    //   GrupoInvestigacion: event.data.PropuestaGrado.GrupoInvestigacion,
-    //   LineaInvestigacion: event.data.PropuestaGrado.LineaInvestigacion,
-    //   FormatoProyecto: event.data.PropuestaGrado.FormatoProyecto.file,
-    //   Admision: {
-    //     Id: this.admision_id,
-    //   },
-    //   TipoProyecto: event.data.PropuestaGrado.TipoProyecto,
-    // }
-    // if (event.valid) {
-    //   if (this.info_propuesta_grado === undefined) {
-    //     this.createPropuestaGrado(propuesta);
-    //   } else {
-    //     this.updatePropuestaGrado(propuesta);
-    //   }
-    // }
+   
   }
 
 }

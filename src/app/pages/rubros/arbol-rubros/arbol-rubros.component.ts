@@ -9,12 +9,8 @@ interface TreeNode<T> {
 }
 
 interface FSEntry {
-  NombreRubro : string;
-  CodigoRubro : string;
-  /* name: string;
-  size: string;
-  kind: string;
-  items?: number; */
+  Nombre : string;
+  Codigo : string;
 }
 
 @Component({
@@ -24,8 +20,8 @@ interface FSEntry {
 })
 export class ArbolRubrosComponent{
   @Output() rubroSeleccionado = new EventEmitter();
-  customColumn = 'CodigoRubro';
-  defaultColumns = [ 'NombreRubro'];
+  customColumn = 'Codigo';
+  defaultColumns = [ 'Nombre'];
   allColumns = [ this.customColumn, ...this.defaultColumns ];
   dataSource: NbTreeGridDataSource<FSEntry>;
 
@@ -49,51 +45,51 @@ export class ArbolRubrosComponent{
   }
 
   onSelect(selectedItem: any) {
-    console.log("Selected item Id: ", selectedItem.data); // You get the Id of the selected item here
+    console.log("Rubro Seleccionado es: ", selectedItem.data); 
     this.rubroSeleccionado.emit(selectedItem.data);
 
    }
 
   private data: TreeNode<FSEntry>[] = [
     {
-      data: { CodigoRubro: 'Projects', NombreRubro: '1.8 MB'},
+      data: { Codigo: '1', Nombre: 'Rubro Padre'},
       children: [
-        { data: { CodigoRubro: 'Rubro1', NombreRubro: '1.8 MB' } },
-        { data: { CodigoRubro: 'Rubro2', NombreRubro: '1.8 MB' } },
+        { data: { Codigo: '1-1', Nombre: 'Rubro Hijo 1' } },
+        { data: { Codigo: '1-2', Nombre: 'Rubro Hijo 2' } },
         {
-          data: { CodigoRubro: 'Projects', NombreRubro: '1.8 MB' },
+          data: { Codigo: '1-3', Nombre: 'Rubro Hijo 3' },
           children: [
-            { data: { CodigoRubro: 'Projects', NombreRubro: '1.8 MB' } },
-            { data: { CodigoRubro: 'Rubro3', NombreRubro: '1.8 MB' } },
-            { data: { CodigoRubro: 'Projects', NombreRubro: '1.8 MB' } },
+            { data: { Codigo: '1-3-1', Nombre: 'Rubro Hijo 31' } },
+            { data: { Codigo: '1-3-2', Nombre: 'Rubro Hijo 32' } },
+            { data: { Codigo: '1-3-3', Nombre: 'Rubro Hijo 33' } },
           ],
         },
-        { data: { CodigoRubro: 'Projects', NombreRubro: '1.8 MB' } },
+        { data: { Codigo: 'Projects', Nombre: '1.8 MB' } },
       ],
     },
     {
-      data: { CodigoRubro: 'Projects', NombreRubro: '1.8 MB' },
+      data: { Codigo: 'Projects', Nombre: '1.8 MB' },
       children: [
         {
-          data: { CodigoRubro: 'Projects', NombreRubro: '1.8 MB' },
+          data: { Codigo: 'Projects', Nombre: '1.8 MB' },
           children: [
-            { data: { CodigoRubro: 'Projects', NombreRubro: '1.8 MB' } },
+            { data: { Codigo: 'Projects', Nombre: '1.8 MB' } },
           ],
         },
         {
-          data: { CodigoRubro: 'Projects', NombreRubro: '1.8 MB' },
+          data: { Codigo: 'Projects', Nombre: '1.8 MB' },
           children: [
-            { data: { CodigoRubro: 'Projects', NombreRubro: '1.8 MB' } },
-            { data: { CodigoRubro: 'Projects', NombreRubro: '1.8 MB' } },
+            { data: { Codigo: 'Projects', Nombre: '1.8 MB' } },
+            { data: { Codigo: 'Projects', Nombre: '1.8 MB' } },
           ],
         },
       ],
     },
     {
-      data: { CodigoRubro: 'Projects', NombreRubro: '1.8 MB'},
+      data: { Codigo: 'Projects', Nombre: '1.8 MB'},
       children: [
-        { data: { CodigoRubro: 'Projects', NombreRubro: '1.8 MB' } },
-        { data: { CodigoRubro: 'Projects', NombreRubro: '1.8 MB' } },
+        { data: { Codigo: 'Projects', Nombre: '1.8 MB' } },
+        { data: { Codigo: 'Projects', Nombre: '1.8 MB' } },
       ],
     },
   ];
