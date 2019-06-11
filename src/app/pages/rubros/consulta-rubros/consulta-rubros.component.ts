@@ -18,7 +18,10 @@ export class ConsultaRubrosComponent implements OnInit {
   constructor(private rubroService: RubroService) { 
     this.formInfoRubro=FORM_INFO_RUBRO;
     this.construirForm();
-   
+    this.rubroSeleccionado = {
+      CodigoRubro: '',
+      NombreRubro: '',
+      };
   }
 
   ngOnInit() {
@@ -41,12 +44,31 @@ export class ConsultaRubrosComponent implements OnInit {
 
   receiveMessage($event) {
     console.log($event);
-    this.rubroSeleccionado = $event
+    this.rubroSeleccionado = <Rubro>$event
 
     console.log(this.rubroSeleccionado);
   }
 
 
   validarForm(event) {
+    // const propuesta = {
+    //   Nombre: event.data.PropuestaGrado.Nombre,
+    //   Resumen: event.data.PropuestaGrado.Resumen,
+    //   GrupoInvestigacion: event.data.PropuestaGrado.GrupoInvestigacion,
+    //   LineaInvestigacion: event.data.PropuestaGrado.LineaInvestigacion,
+    //   FormatoProyecto: event.data.PropuestaGrado.FormatoProyecto.file,
+    //   Admision: {
+    //     Id: this.admision_id,
+    //   },
+    //   TipoProyecto: event.data.PropuestaGrado.TipoProyecto,
+    // }
+    // if (event.valid) {
+    //   if (this.info_propuesta_grado === undefined) {
+    //     this.createPropuestaGrado(propuesta);
+    //   } else {
+    //     this.updatePropuestaGrado(propuesta);
+    //   }
+    // }
   }
+
 }
