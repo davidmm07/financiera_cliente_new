@@ -24,6 +24,10 @@ const routes: Routes = [{
       loadChildren: './rubros/rubros.module#RubrosModule',
     },
     {
+      path: 'apropiaciones',
+      loadChildren: './apropiaciones/apropiaciones.module#ApropiacionesModule',
+    },
+    {
       path: '',
       redirectTo: 'dashboard',
       pathMatch: 'full',

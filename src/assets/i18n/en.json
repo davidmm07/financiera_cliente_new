@@ -11,8 +11,15 @@
   "MENU": {
     "dashboard": "Dashboard",
     "directorio": "Institutional directory",
-    "rubros": "Rubros",
-    "consulta-rubros": "Consulta de Rubros", 
+    "rubros": {
+      "rubros":"RUBROS",
+      "consulta-rubros": "Consulta de Rubros"
+    } ,
+    "apropiaciones": {
+      "apropiaciones":"APROPIACIONES",
+      "consulta-apropiaciones-iniciales": "Consulta de Apropiaciones I.",
+      "registro-apropiaciones-iniciales": "Registro de Apropiaciones I."
+    } ,
     "atencion_usuario": {
       "atencion_usuario": "Customer service",
       "defensor_ciudadano": "Citizen defender",

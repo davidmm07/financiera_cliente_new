@@ -46,4 +46,18 @@ export const MENU_PUBLICO: MenuItem[] = [
         key: 'consulta-rubros',
       },]
   },
+  {
+    title: 'apropiaciones',
+    icon: 'nb-home',
+    link: '/pages/apropiaciones',
+    home: false,
+    key: 'apropiaciones',
+    children: [
+      {
+        title: 'consulta-apropiaciones-iniciales',
+        link: '/pages/apropiaciones/consulta-apropiaciones-iniciales',
+        home: false,
+        key: 'consulta-apropiaciones-iniciales',
+      },]
+  },
 ];
