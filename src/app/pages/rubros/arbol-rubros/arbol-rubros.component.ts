@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { NbSortDirection, NbTreeGridDataSource, NbTreeGridDataSourceBuilder, NbSortRequest } from '@nebular/theme';
-import { select } from '@ngrx/store';
-
+import { RubroHelper } from '../../../helpers/rubros/rubroHelper';
 interface TreeNode<T> {
   data: T;
   children?: TreeNode<T>[];
@@ -24,12 +23,13 @@ export class ArbolRubrosComponent{
   defaultColumns = [ 'Nombre'];
   allColumns = [ this.customColumn, ...this.defaultColumns ];
   dataSource: NbTreeGridDataSource<FSEntry>;
-
+  rbHelper: RubroHelper;
   sortColumn: string;
   sortDirection: NbSortDirection = NbSortDirection.NONE;
   
   constructor(private dataSourceBuilder: NbTreeGridDataSourceBuilder<FSEntry>) { 
     this.dataSource = this.dataSourceBuilder.create(this.data);
+    this.rbHelper = new RubroHelper();
   }
 
   updateSort(sortRequest: NbSortRequest): void {
@@ -44,10 +44,16 @@ export class ArbolRubrosComponent{
     return NbSortDirection.NONE;
   }
 
-  onSelect(selectedItem: any) {
+  async onSelect(selectedItem: any) {
     console.log("Rubro Seleccionado es: ", selectedItem.data); 
     this.rubroSeleccionado.emit(selectedItem.data);
-
+    // try {
+      const test = await this.rbHelper.getArbol(1);
+      console.log('test', test);
+    // } catch (error) {
+    //   console.log('error', error);
+      
+    // }
    }
 
   private data: TreeNode<FSEntry>[] = [
