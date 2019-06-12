@@ -34,7 +34,7 @@ export const MENU_PUBLICO: MenuItem[] = [
   },
   {
     title: 'rubros',
-    icon: 'nb-home',
+    icon: 'nb-star',
     link: '/pages/rubros',
     home: false,
     key: 'rubros',
@@ -48,7 +48,7 @@ export const MENU_PUBLICO: MenuItem[] = [
   },
   {
     title: 'apropiaciones',
-    icon: 'nb-home',
+    icon: 'nb-snowy-circled',
     link: '/pages/apropiaciones',
     home: false,
     key: 'apropiaciones',

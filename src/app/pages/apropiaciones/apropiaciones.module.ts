@@ -1,13 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ThemeModule } from '../../@theme/theme.module';
 import { ApropiacionesRoutingModule, routedComponents } from './apropiaciones-routing.module';
 
-// routedComponents of Module Apropiaciones
+
 @NgModule({
   declarations: [...routedComponents,],
   imports: [
+    ThemeModule,
     CommonModule,
     ApropiacionesRoutingModule
   ]
 })
-export class ApropiacionesModule { }
+export class ApropiacionesModule { 
+  validado = false;
+}

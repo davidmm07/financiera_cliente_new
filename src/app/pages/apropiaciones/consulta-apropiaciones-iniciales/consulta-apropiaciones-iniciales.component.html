@@ -1,3 +1,110 @@
-<p>
-  consulta-apropiaciones-iniciales works!
-</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <nb-card>
+        <nb-card-header>
+          <h1>Consulta de Apropiaciones Iniciales</h1>
+        </nb-card-header>
+        <nb-card-body>
+          <div class="row">
+            <div class="col-md-4 col-lg-4 col-xxxl-4">
+              <nb-card>
+                <nb-card-header>
+                  Arbol de Apropiaciones Iniciales
+                </nb-card-header>
+                <nb-card-body>
+                  <!--  <arbol-rubros
+                        (rubroSeleccionado)="receiveMessage($event)"
+                      ></arbol-rubros> -->
+                </nb-card-body>
+              </nb-card>
+            </div>
+            <div class="col-md-4 col-lg-4 col-xxxl-4">
+              <nb-card>
+                <nb-card-header>Detalle de la Apropiación Inicial </nb-card-header>
+                <nb-card-body>
+                  <form>
+                    <div class="row">
+                      <table class="table infoAprop">
+                        <thead>
+                          <tr>
+                            <th scope="col">Apropiación I.</th>
+                            <th scope="col">Total Comprometido</th>
+                            <th scope="col">Saldo</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>$100</td>
+                            <td>$200</td>
+                            <td>$300</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                        <button type="submit" class="btn btn-info btn-block">
+                          Consultar Rubro 
+                        </button>
+                      </div>
+                      <div class="col">
+                        <button type="submit" class="btn btn-info btn-block">
+                          Asignar Apropiación Inicial
+                        </button>
+                      </div>
+                    </div>
+                    
+                  </form>
+                </nb-card-body>
+              </nb-card>
+            </div>
+            <div class="col-md-4 col-lg-4 col-xxxl-4">
+              <nb-card>
+                <nb-card-header>Comprobación de Apropiación Inicial</nb-card-header>
+                <nb-card-body>
+                  <form>
+                    <div class="row">
+                      <div class="col">
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th scope="col">Rubro</th>
+                              <th scope="col">Apropiacion Inicial</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>2 INGRESOS</td>
+                              <td>$100</td>
+                            </tr>
+                            <tr>
+                              <td>3 INGRESOS</td>
+                              <td>$100</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <div class="row" *ngIf=!validado>
+                      <div class="col">
+                        <!-- <span>Los valores de comprobación son diferentes</span> -->
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                        <button type="submit" class="btn btn-info btn-block">
+                          Aprobar Apropiación Inicial 
+                        </button>
+                      </div>
+                      </div>
+                  </form>
+                </nb-card-body>
+              </nb-card>
+            </div>
+          </div>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </div>
+</div>
