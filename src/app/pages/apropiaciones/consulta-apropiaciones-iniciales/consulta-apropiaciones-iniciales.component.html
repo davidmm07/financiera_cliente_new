@@ -13,6 +13,15 @@
                   Arbol de Apropiaciones Iniciales
                 </nb-card-header>
                 <nb-card-body>
+                    <div class="dropdown btn-group" ngbDropdown>
+                        <button type="button" class="btn btn-primary">Seleccione Opción</button>
+                        <button type="button" class="btn btn-primary" ngbDropdownToggle></button>
+                        <ul class="dropdown-menu" ngbDropdownMenu>
+                          <li class="dropdown-item">Icon Button</li>
+                          <li class="dropdown-item">Hero Button</li>
+                          <li class="dropdown-item">Default</li>
+                        </ul>
+                      </div>
                   <!--  <arbol-rubros
                         (rubroSeleccionado)="receiveMessage($event)"
                       ></arbol-rubros> -->

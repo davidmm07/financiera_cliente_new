@@ -1,0 +1,20 @@
+@import "../../../@theme/styles/themes";
+
+@include nb-install-component() {
+  nb-select {
+    display: block;
+    width: 15rem;
+    margin-bottom: 3%;
+  }
+
+  nb-card-body {
+    overflow: visible;
+  }
+
+  .select-group {
+    nb-select {
+      margin-right: 0.75rem;
+      margin-bottom: 1rem;
+    }
+  }
+}

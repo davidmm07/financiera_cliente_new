@@ -3,9 +3,27 @@
     <div class="col-md-12">
       <nb-card>
         <nb-card-header>
-          <h1>Consulta de Rubros</h1>
+          <h1>Gestión de Rubros</h1>
         </nb-card-header>
         <nb-card-body>
+            <div class="row selectVigencia">
+              <div class="col">
+                  <nb-select placeholder="Gestion de " status="success" hero fullWidth="true">
+                      <nb-option value="1">Option 1</nb-option>
+                      <nb-option value="2">Option 2</nb-option>
+                      <nb-option value="3">Option 3</nb-option>
+                      <nb-option value="4">Option 4</nb-option>
+                    </nb-select>
+              </div>
+              <div class="col">
+                  <nb-select placeholder="Vigencia" status="success" hero >
+                      <nb-option value="1">2016</nb-option>
+                      <nb-option value="2">2017</nb-option>
+                      <nb-option value="3">2018</nb-option>
+                      <nb-option value="4">2019</nb-option>
+                    </nb-select>
+              </div>
+              </div>
            <div class="row">
             <div class="col-md-6 col-lg-6 col-xxxl-6">
                   <nb-card>
@@ -92,10 +110,15 @@
                             </button>
                           </div>
                           <div class="col">
-                            <button type="submit" class="btn btn-danger btn-block">
+                            <button type="submit" class="btn btn-success btn-block">
                               Editar
                             </button>
                           </div>
+                          <div class="col">
+                              <button type="submit" class="btn btn-success btn-block">
+                                Asignar Apropiación
+                              </button>
+                            </div>
                         </div>
                       </form>
                     </nb-card-body>

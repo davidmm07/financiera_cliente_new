@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ThemeModule } from '../../@theme/theme.module';
 import { RubrosRoutingModule, routedComponents } from './rubros-routing.module';
-import { NbTreeGridModule } from '@nebular/theme';
+import { NbTreeGridModule, NbSelectModule } from '@nebular/theme';
 
 
 @NgModule({
@@ -14,6 +14,7 @@ import { NbTreeGridModule } from '@nebular/theme';
     CommonModule,
     RubrosRoutingModule,
     NbTreeGridModule,
+    NbSelectModule,
   ]
 })
 export class RubrosModule { }
