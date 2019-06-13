@@ -5,9 +5,12 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { ThemeModule } from '../@theme/theme.module';
 import { SharedModule } from '../shared/shared.module';
 import { ConfiguracionService } from '../@core/data/configuracion.service';
-
 import { MenuService } from '../@core/data/menu.service';
 import { RubrosModule } from './rubros/rubros.module';
+import { ApropiacionesModule } from './apropiaciones/apropiaciones.module';
+import { PlanCuentasModule } from './plan-cuentas/plan-cuentas.module';
+
+
 
 const PAGES_COMPONENTS = [
   PagesComponent,
@@ -20,6 +23,8 @@ const PAGES_COMPONENTS = [
     DashboardModule,
     SharedModule,
     RubrosModule,
+    ApropiacionesModule,
+    PlanCuentasModule,
   ],
   declarations: [
     ...PAGES_COMPONENTS,

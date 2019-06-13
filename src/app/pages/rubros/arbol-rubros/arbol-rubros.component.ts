@@ -8,7 +8,7 @@ interface TreeNode<T> {
   expanded?: boolean;
 }
 
-interface FSEntry {
+interface EstructuraArbolRubros {
   Nombre : string;
   Codigo : string;
 }
@@ -23,12 +23,12 @@ export class ArbolRubrosComponent{
   customColumn = 'Codigo';
   defaultColumns = [ 'Nombre'];
   allColumns = [ this.customColumn, ...this.defaultColumns ];
-  dataSource: NbTreeGridDataSource<FSEntry>;
+  dataSource: NbTreeGridDataSource<EstructuraArbolRubros>;
 
   sortColumn: string;
   sortDirection: NbSortDirection = NbSortDirection.NONE;
   
-  constructor(private dataSourceBuilder: NbTreeGridDataSourceBuilder<FSEntry>) { 
+  constructor(private dataSourceBuilder: NbTreeGridDataSourceBuilder<EstructuraArbolRubros>) { 
     this.dataSource = this.dataSourceBuilder.create(this.data);
   }
 
@@ -50,7 +50,7 @@ export class ArbolRubrosComponent{
 
    }
 
-  private data: TreeNode<FSEntry>[] = [
+  private data: TreeNode<EstructuraArbolRubros>[] = [
     {
       data: { Codigo: '1', Nombre: 'Rubro Padre'},
       children: [

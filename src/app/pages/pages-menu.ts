@@ -60,4 +60,37 @@ export const MENU_PUBLICO: MenuItem[] = [
         key: 'consulta-apropiaciones-iniciales',
       },]
   },
+  {
+    title: 'plan-cuentas',
+    icon: 'nb-snowy-circled',
+    link: '/pages/plan-cuentas',
+    home: false,
+    key: 'plan-cuentas',
+    children: [
+      {
+        title: 'arbol',
+        link: '/pages/plan-cuentas/arbol',
+        home: false,
+        key: 'arbol',
+      },
+      {
+        title: 'consulta',
+        link: '/pages/plan-cuentas/consulta',
+        home: false,
+        key: 'consulta',
+      },
+      {
+        title: 'registro',
+        link: '/pages/plan-cuentas/registro',
+        home: false,
+        key: 'registro',
+      },
+      {
+        title: 'comprobacion-apropiacion-inicial',
+        link: '/pages/plan-cuentas/comprobacion-apropiacion-inicial',
+        home: false,
+        key: 'comprobacion-apropiacion-inicial',
+      },
+    ]
+  },
 ];

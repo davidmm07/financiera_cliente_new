@@ -24,6 +24,10 @@ const routes: Routes = [{
       loadChildren: './apropiaciones/apropiaciones.module#ApropiacionesModule',
     },
     {
+      path: 'plan-cuentas',
+      loadChildren: './plan-cuentas/plan-cuentas.module#PlanCuentasModule',
+    },
+    {
       path: '',
       redirectTo: 'dashboard',
       pathMatch: 'full',
