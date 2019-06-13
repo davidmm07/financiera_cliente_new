@@ -146,7 +146,18 @@
                           </div>
                           <div class="row">
                             <div class="col">
-                              <button type="submit" class="btn btn-info btn-block">
+                                <ng-template #form>
+                                    <div class="p-4">
+                                      <form>
+                                        <div class="form-group">
+                                          <input type="number" class="form-control" placeholder=" $ Valor Apropiacion Inicial">
+                                        </div>
+                                        <button type="submit" class="btn btn-primary w-100">Aceptar</button>
+                                      </form>
+                                    </div>
+                                  </ng-template>
+
+                              <button type="submit" class="btn btn-info btn-block" [nbPopover]="form">
                                 Asignar Apropiación Inicial
                               </button>
                             </div>
