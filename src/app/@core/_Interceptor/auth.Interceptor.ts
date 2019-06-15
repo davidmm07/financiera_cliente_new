@@ -3,12 +3,15 @@ import {HttpInterceptor, HttpRequest, HttpHandler, HttpErrorResponse} from '@ang
 import { Router } from '@angular/router';
 
 import {  tap } from 'rxjs/operators';
+import { MatSnackBar } from '@angular/material';
+import { NbToastrService } from '@nebular/theme';
+import { popUpManager } from '../../managers/popUpManager'
 
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor(private router: Router) {}
+  constructor(private router: Router,  private pUpManager: popUpManager) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     // Get the auth token from the service.
@@ -28,14 +31,30 @@ export class AuthInterceptor implements HttpInterceptor {
           if (event instanceof HttpErrorResponse) {
             // cache.put(req, event); // Update the cache.
             this.router.navigate(['/']);
+            this.pUpManager.showToast('danger', 'Error en la Petición');
           }
         },
         (error: any) => {
             console.info(error);
+            this.pUpManager.showToast('danger', 'Error En El Servidor');
         },
       ));
     } else {
-      return next.handle(req);
+      return next.handle(req).pipe(
+        tap(event => {
+          // There may be other events besides the response.
+          if (event instanceof HttpErrorResponse) {
+            // cache.put(req, event); // Update the cache.
+            // this.snackBar.open('test', undefined, { duration: 5000 });
+            this.pUpManager.showToast('danger', 'Error en la Petición');
+          }
+        },
+        (error: any) => {
+            console.info(error);
+            // this.snackBar.open('Error en el Servidor', undefined, { duration: 5000 });
+            this.pUpManager.showToast('danger', 'Error En El Servidor');
+        },
+      ));
     }
   }
 }

@@ -41,7 +41,7 @@ export const Config = {
       REFRESH_TOKEN: 'https://autenticacion.portaloas.udistrital.edu.co/oauth2/token',
       CLIENT_SECRET: '2crHq2IRkFHEVTBfpznLhKHyKVIa',
     },
-    PLAN_CUENTAS_MID_SERVICE: 'http://localhost:3000/v1/',
+    PLAN_CUENTAS_MID_SERVICE: 'http://localhost:8084/',
     /**
     TOKEN: {
       AUTORIZATION_URL: 'https://autenticacion.portaloas.udistrital.edu.co/oauth2/authorize',
