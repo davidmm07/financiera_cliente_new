@@ -86,6 +86,12 @@ export const MENU_PUBLICO: MenuItem[] = [
         key: 'registro',
       },
       {
+        title: 'gestion-plan-cuentas',
+        link: '/pages/plan-cuentas/gestion-plan-cuentas',
+        home: false,
+        key: 'gestion-plan-cuentas',
+      },
+      {
         title: 'comprobacion-apropiacion-inicial',
         link: '/pages/plan-cuentas/comprobacion-apropiacion-inicial',
         home: false,

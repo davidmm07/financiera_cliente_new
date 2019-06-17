@@ -4,6 +4,9 @@ import { ArbolComponent } from './arbol/arbol.component';
 import { ConsultaComponent } from './consulta/consulta.component';
 import { RegistroComponent } from './registro/registro.component';
 import { ComprobacionApropiacionInicialComponent } from './comprobacion-apropiacion-inicial/comprobacion-apropiacion-inicial.component';
+import { GestionPlanCuentasComponent } from './gestion-plan-cuentas/gestion-plan-cuentas.component';
+import { RubrosComponent } from './rubros/rubros.component';
+import { ApropiacionesComponent } from './apropiaciones/apropiaciones.component';
 
 
 const routes: Routes = [{
@@ -22,6 +25,18 @@ const routes: Routes = [{
   path: 'comprobacion-apropiacion-inicial',
   component: ComprobacionApropiacionInicialComponent,
 },
+{
+  path: 'gestion-plan-cuentas',
+  component: GestionPlanCuentasComponent,
+},
+{
+  path: 'rubros',
+  component: RubrosComponent,
+},
+{
+  path: 'apropiaciones',
+  component: ApropiacionesComponent,
+},
 ];
 
 @NgModule({
@@ -34,5 +49,8 @@ export const routedComponents = [
   ArbolComponent,
   ConsultaComponent,
   RegistroComponent,
+  GestionPlanCuentasComponent,
+  RubrosComponent,
+  ApropiacionesComponent,
   ComprobacionApropiacionInicialComponent
 ];

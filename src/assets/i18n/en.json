@@ -25,7 +25,8 @@
       "arbol": "Arbol",
       "consulta": "Consulta",
       "registro": "Registro",
-      "comprobacion-apropiacion-inicial": "Comprobacion AI"
+      "comprobacion-apropiacion-inicial": "Comprobacion AI",
+      "gestion-plan-cuentas" : "Gestión Plan de Cuentas"
     } ,
     "atencion_usuario": {
       "atencion_usuario": "Customer service",
