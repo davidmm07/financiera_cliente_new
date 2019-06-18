@@ -10,23 +10,6 @@
   },
   "MENU": {
     "dashboard": "Inicio",
-    "rubros": {
-      "rubros":"RUBROS",
-      "consulta-rubros": "Consulta de Rubros"
-    } ,
-    "apropiaciones": {
-      "apropiaciones":"APROPIACIONES",
-      "consulta-apropiaciones-iniciales": "Consulta de Apropiaciones I.",
-      "registro-apropiaciones-iniciales": "Registro de Apropiaciones I."
-    } ,
-    "plan-cuentas": {
-      "plan-cuentas":"Plan de Cuentas",
-      "arbol": "Arbol",
-      "consulta": "Consulta",
-      "registro": "Registro",
-      "comprobacion-apropiacion-inicial": "Comprobacion AI",
-      "gestion-plan-cuentas" : "Gestión Plan de Cuentas"
-    } ,
     "directorio": "Directorio institucional",
     "atencion_usuario": {
       "atencion_usuario": "Atención al ciudadano",
