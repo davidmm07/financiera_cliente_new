@@ -5,14 +5,7 @@
         <nb-card-body>
           <div class="row">
             <div class="col-md-6 col-lg-6 col-xxxl-6">
-              <nb-card>
-                <nb-card-header>
-                  Arbol Rubros
-                </nb-card-header>
-                <nb-card-body>
                   <arbol (rubroSeleccionado)="receiveMessage($event)"> </arbol>
-                </nb-card-body>
-              </nb-card>
             </div>
             <div class="col-md-6 col-lg-6 col-xxxl-6">
               <nb-card *ngIf="insertarRubro">
@@ -37,11 +30,11 @@
                   <form>
                     <div class="form-group">
                       <label>Nombre Rubro</label>
-                      <input type="text" class="form-control"  [value]="rubroSeleccionado.Nombre" readonly />
+                      <input type="text" class="form-control"  [value]="rubroSeleccionado.Nombre" disabled />
                     </div>
                     <div class="form-group">
                       <label>Codigo Rubro</label>
-                      <input type="text" class="form-control"  [value]="rubroSeleccionado.Codigo" readonly />
+                      <input type="text" class="form-control"  [value]="rubroSeleccionado.Codigo" disabled />
                     </div>
 
                     <div class="form-group">
@@ -50,7 +43,7 @@
                         type="text"
                         class="form-control"
                         placeholder="Unidad Ejecutora"
-                        readonly
+                        disabled
                       />
                     </div>
                     <div class="form-group">
@@ -59,7 +52,7 @@
                         type="text"
                         class="form-control"
                         placeholder="Entidad"
-                        readonly
+                        disabled
                       />
                     </div>
                     <div class="form-group">
@@ -67,7 +60,7 @@
                       <textarea
                         class="form-control"
                         placeholder="Descripción"
-                        readonly
+                        disabled
                       ></textarea>
                     </div>
                     <div class="row">
@@ -79,11 +72,6 @@
                       <div class="col">
                         <button type="submit" class="btn btn-success btn-block">
                           Editar
-                        </button>
-                      </div>
-                      <div class="col">
-                        <button type="submit" class="btn btn-success btn-block">
-                          Asignar Apropiación
                         </button>
                       </div>
                     </div>
