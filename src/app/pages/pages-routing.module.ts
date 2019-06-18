@@ -16,14 +16,6 @@ const routes: Routes = [{
       loadChildren: './notificacion/notificacion.module#NotificacionModule',
     },
     {
-      path: 'rubros',
-      loadChildren: './rubros/rubros.module#RubrosModule',
-    },
-    {
-      path: 'apropiaciones',
-      loadChildren: './apropiaciones/apropiaciones.module#ApropiacionesModule',
-    },
-    {
       path: 'plan-cuentas',
       loadChildren: './plan-cuentas/plan-cuentas.module#PlanCuentasModule',
     },

@@ -13,7 +13,8 @@ const rubro: Rubro  = {
   Codigo : "3-120-100",
   Descripcion : "Este es un rubro que deberia mostrarse",
   UnidadEjecutora: 1,
-  Nombre : "Rubro Kronos"
+  Nombre : "Rubro Kronos",
+  RubroPadre : ""
 }
 
 @Injectable({

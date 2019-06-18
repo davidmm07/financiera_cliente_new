@@ -17,10 +17,11 @@
                   <ngx-dinamicform
                     [normalform]="formInfoRubro"
                     [modeloData]="info_rubro"
-                    (result)="validarForm($event)"
-                    [clean]="clean"
                   >
                   </ngx-dinamicform>
+                  <button type="submit" class="btn btn-success btn-block" (click)="registrarRubro()">
+                      Añadir Nodo
+                    </button>
                 </nb-card-body>
               </nb-card>
 
@@ -65,7 +66,7 @@
                     </div>
                     <div class="row">
                       <div class="col">
-                        <button type="submit" class="btn btn-success btn-block">
+                        <button type="submit" class="btn btn-success btn-block" (click)="registrarRubro()">
                           Añadir Nodo
                         </button>
                       </div>

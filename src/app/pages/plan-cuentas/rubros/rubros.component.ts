@@ -14,7 +14,7 @@ import { FORM_INFO_RUBRO } from './form_info_rubro';
 export class RubrosComponent implements OnInit {
   rubroSeleccionado : any;
   info_rubro:Rubro;
-  insertarRubro = true;
+  insertarRubro = false;
   formInfoRubro: any;
   constructor(private rubroService: RubroService) { 
     this.formInfoRubro=FORM_INFO_RUBRO;
@@ -23,6 +23,7 @@ export class RubrosComponent implements OnInit {
       Codigo: '',
       Nombre: '',
       };
+    this.loadLists();
   }
 
   ngOnInit() {
@@ -31,8 +32,19 @@ export class RubrosComponent implements OnInit {
 
   }
 
+  getIndexForm(nombre: String): number {
+    for (let index = 0; index < this.formInfoRubro.campos.length; index++) {
+      const element = this.formInfoRubro.campos[index];
+      if (element.nombre === nombre) {
+        return index
+      }
+    }
+    return 0;
+  }
+
   getRubros(){
-    this.info_rubro = this.rubroService.get("rubro")
+    this.info_rubro = this.rubroService.get("rubro");
+    this.info_rubro.RubroPadre = this.rubroSeleccionado;
   }
   construirForm() { 
    for (let i = 0; i < this.formInfoRubro.campos.length; i++) {
@@ -48,8 +60,25 @@ export class RubrosComponent implements OnInit {
   }
 
 
-  validarForm(event) {
+ /*  validarForm(event) {
    
+  } */
+
+  public loadLists() {
+        this.formInfoRubro.campos[this.getIndexForm('UnidadEjecutora')].opciones = [
+          {Valor: 1},
+          {Valor: 2},
+          {Valor: 3}
+      ];
+        this.formInfoRubro.campos[this.getIndexForm('Entidad')].opciones = [
+          {Valor: 1},
+          {Valor: 2},
+          {Valor: 3}
+      ];  
   }
 
+  registrarRubro(){
+    this.insertarRubro = !this.insertarRubro;
+    console.log("Huawei",this.rubroSeleccionado)
+  }
 }  

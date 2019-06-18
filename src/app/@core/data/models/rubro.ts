@@ -5,5 +5,6 @@ export class Rubro {
     Descripcion: string;
     UnidadEjecutora: number;
     Nombre: string;
+    RubroPadre : string;
   }
   
