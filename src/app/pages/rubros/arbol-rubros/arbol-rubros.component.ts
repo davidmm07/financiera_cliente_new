@@ -111,6 +111,7 @@ export class ArbolRubrosComponent{
     </ng-template>
   `,
 })
+
 export class FsIconComponent {
   @Input() kind: string;
   @Input() expanded: boolean;

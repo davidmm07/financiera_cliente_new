@@ -68,22 +68,16 @@ export const MENU_PUBLICO: MenuItem[] = [
     key: 'plan-cuentas',
     children: [
       {
-        title: 'arbol',
-        link: '/pages/plan-cuentas/arbol',
+        title: 'RUB',
+        link: '/pages/plan-cuentas/rubros',
         home: false,
         key: 'arbol',
       },
       {
-        title: 'consulta',
-        link: '/pages/plan-cuentas/consulta',
+        title: 'APR',
+        link: '/pages/plan-cuentas/apropiaciones',
         home: false,
         key: 'consulta',
-      },
-      {
-        title: 'registro',
-        link: '/pages/plan-cuentas/registro',
-        home: false,
-        key: 'registro',
       },
       {
         title: 'gestion-plan-cuentas',
@@ -91,12 +85,7 @@ export const MENU_PUBLICO: MenuItem[] = [
         home: false,
         key: 'gestion-plan-cuentas',
       },
-      {
-        title: 'comprobacion-apropiacion-inicial',
-        link: '/pages/plan-cuentas/comprobacion-apropiacion-inicial',
-        home: false,
-        key: 'comprobacion-apropiacion-inicial',
-      },
+
     ]
   },
 ];
