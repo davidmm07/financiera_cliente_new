@@ -33,17 +33,19 @@ export const MENU_PUBLICO: MenuItem[] = [
     key: 'dashboard',
   },
   {
-    title: 'rubros',
-    icon: 'nb-home',
-    link: '/pages/rubros',
+    title: 'plan-cuentas',
+    icon: 'nb-snowy-circled',
+    link: '/pages/plan-cuentas',
     home: false,
-    key: 'rubros',
+    key: 'plan-cuentas',
     children: [
       {
-        title: 'consulta-rubros',
-        link: '/pages/rubros/consulta-rubros',
+        title: 'gestion-plan-cuentas',
+        link: '/pages/plan-cuentas/gestion-plan-cuentas',
         home: false,
-        key: 'consulta-rubros',
-      },]
+        key: 'gestion-plan-cuentas',
+      },
+
+    ]
   },
 ];
