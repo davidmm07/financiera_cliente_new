@@ -11,6 +11,23 @@
   "MENU": {
     "dashboard": "Dashboard",
     "directorio": "Institutional directory",
+    "rubros": {
+      "rubros":"RUBROS",
+      "consulta-rubros": "Consulta de Rubros"
+    } ,
+    "apropiaciones": {
+      "apropiaciones":"APROPIACIONES",
+      "consulta-apropiaciones-iniciales": "Consulta de Apropiaciones I.",
+      "registro-apropiaciones-iniciales": "Registro de Apropiaciones I."
+    } ,
+    "plan-cuentas": {
+      "plan-cuentas":"Plan de Cuentas",
+      "arbol": "Arbol",
+      "consulta": "Consulta",
+      "registro": "Registro",
+      "comprobacion-apropiacion-inicial": "Comprobacion AI",
+      "gestion-plan-cuentas" : "Gestión Plan de Cuentas"
+    } ,
     "atencion_usuario": {
       "atencion_usuario": "Customer service",
       "defensor_ciudadano": "Citizen defender",
