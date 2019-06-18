@@ -24,15 +24,6 @@ export class HttpErrorManager {
         `body was: ${error.error}`);
     }
     // return an observable with a user-facing error message
-  
-
-    
-      
- 
-
-        
-      
-
     return throwError({
       status: error.status,
       message: 'Something bad happened; please try again later.',

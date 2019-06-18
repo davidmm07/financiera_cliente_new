@@ -1,25 +1,26 @@
 import { RequestManager } from '../../managers/requestManager';
 import { Injectable } from '@angular/core';
+import { map } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root',
-  })
+})
 export class RubroHelper {
 
-    constructor(private rqManager: RequestManager){
-        rqManager.setPath('PLAN_CUENTAS_MID_SERVICE');
-    }
+    constructor(private rqManager: RequestManager) { }
 
     /**
      * getArbol
      */
-    public getArbol(unidadEjecutora: number, branch?: string) {
+    public getArbol(branch?: string) {
+        this.rqManager.setPath('PLAN_CUENTAS_MID_SERVICE');
         // Set the optional branch for the API request.
+        const unidadEjecutora = 1;
         const params = {
-            rama: branch
+            rama: branch,
         };
         // call request manager for the tree's data.
-        return this.rqManager.get('v1/rubro/ArbolRubros/' + unidadEjecutora.toString(), params);
+        return this.rqManager.get(`v1/rubro/ArbolRubros/${unidadEjecutora.toString()}`, params);
 
     }
 
@@ -27,7 +28,7 @@ export class RubroHelper {
      * rubroRegister
      */
     public rubroRegister(rubroData) {
-       
+        this.rqManager.setPath('PLAN_CUENTAS_MID_SERVICE');
         return this.rqManager.post(`v1/rubro/RegistrarRubro`, rubroData);
 
     }
@@ -36,8 +37,17 @@ export class RubroHelper {
      * rubroRegister
      */
     public rubroDelete(id: number) {
-       
+        this.rqManager.setPath('PLAN_CUENTAS_MID_SERVICE');
         return this.rqManager.delete(`v1/rubro/EliminarRubro`, id);
+
+    }
+
+    /**
+     * rubroUpdate
+     */
+    public rubroUpdate(rubroData) {
+        this.rqManager.setPath('PLAN_CUENTAS_MID_SERVICE');
+        return this.rqManager.put(`v1/rubro/`, rubroData);
 
     }
 }
