@@ -243,6 +243,8 @@
     "carga_datos": "Recargue la página o cierre y abra de nuevo la ventana para poder cargar exitosamente sus datos"
   },
   "GLOBAL": {
+    "operacion_exitosa": "Operación Exitosa",
+    "info": "Info",
     "aceptar": "Aceptar",
     "cancelar": "Cancelar",
     "salir": "Salir",
@@ -540,5 +542,9 @@
     "placeholder_formato_proyecto": "Ej: Formato de la propuesta",
     "resumen": "Resumen",
     "placeholder_resumen": "Ej: Resumen"
+  },
+  "RUBRO": {
+    "rubro_registrado_success": "Rubro Registrado Correctamente",
+    "rubro_registrado_error": "No Se Pudo Registrar El Rubro"
   }
 }

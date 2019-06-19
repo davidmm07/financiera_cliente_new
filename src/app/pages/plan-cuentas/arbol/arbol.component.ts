@@ -1,7 +1,8 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { NbSortDirection, NbTreeGridDataSource, NbTreeGridDataSourceBuilder, NbSortRequest } from '@nebular/theme';
-import { select } from '@ngrx/store';
-
+import { RubroHelper } from '../../../helpers/rubros/rubroHelper';
+import { NbCollectionViewer } from '@nebular/theme/components/cdk/collections';
+import { CollectionViewer } from '@angular/cdk/collections';
 interface TreeNode<T> {
   data: T;
   children?: TreeNode<T>[];
@@ -30,6 +31,7 @@ export class ArbolComponent {
   
   constructor(private dataSourceBuilder: NbTreeGridDataSourceBuilder<EstructuraArbolRubros>) { 
     this.dataSource = this.dataSourceBuilder.create(this.data);
+
   }
 
   updateSort(sortRequest: NbSortRequest): void {
@@ -44,12 +46,15 @@ export class ArbolComponent {
     return NbSortDirection.NONE;
   }
 
-  onSelect(selectedItem: any) {
-    console.log("Rubro Seleccionado es: ", selectedItem.data); 
+  async onSelect(selectedItem: any) {
+
+    let fork: TreeNode<EstructuraArbolRubros>[] = [{ data: { Codigo: '1-1', Nombre: 'Rubro Hijo 1' }, children: [] }];
+    selectedItem.children = fork;
+    console.log("Rubro Seleccionado es: ", selectedItem.data);
+    console.info(`data`, selectedItem)
     this.rubroSeleccionado.emit(selectedItem.data);
 
-   }
-
+  }
   private data: TreeNode<EstructuraArbolRubros>[] = [
     {
       data: { Codigo: '1', Nombre: 'Rubro Padre'},
@@ -93,6 +98,7 @@ export class ArbolComponent {
       ],
     },
   ];
+
 
   getShowOn(index: number) {
     const minWithForMultipleColumns = 400;
