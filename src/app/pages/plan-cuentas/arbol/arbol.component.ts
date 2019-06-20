@@ -12,6 +12,7 @@ interface TreeNode<T> {
 interface EstructuraArbolRubros {
   Nombre : string;
   Codigo : string;
+  Descripcion: string;
 }
 
 @Component({
@@ -29,9 +30,14 @@ export class ArbolComponent {
   sortColumn: string;
   sortDirection: NbSortDirection = NbSortDirection.NONE;
   
-  constructor(private dataSourceBuilder: NbTreeGridDataSourceBuilder<EstructuraArbolRubros>) { 
-    this.dataSource = this.dataSourceBuilder.create(this.data);
-
+  constructor(
+    private dataSourceBuilder: NbTreeGridDataSourceBuilder<EstructuraArbolRubros>,
+    private rbHelper: RubroHelper
+    ) { 
+     this.rbHelper.getArbol().subscribe((res) => {
+     this.data = res;
+     this.dataSource = this.dataSourceBuilder.create(this.data);
+    });
   }
 
   updateSort(sortRequest: NbSortRequest): void {
@@ -47,57 +53,9 @@ export class ArbolComponent {
   }
 
   async onSelect(selectedItem: any) {
-
-    let fork: TreeNode<EstructuraArbolRubros>[] = [{ data: { Codigo: '1-1', Nombre: 'Rubro Hijo 1' }, children: [] }];
-    selectedItem.children = fork;
-    console.log("Rubro Seleccionado es: ", selectedItem.data);
-    console.info(`data`, selectedItem)
     this.rubroSeleccionado.emit(selectedItem.data);
-
   }
-  private data: TreeNode<EstructuraArbolRubros>[] = [
-    {
-      data: { Codigo: '1', Nombre: 'Rubro Padre'},
-      children: [
-        { data: { Codigo: '1-1', Nombre: 'Rubro Hijo 1' } },
-        { data: { Codigo: '1-2', Nombre: 'Rubro Hijo 2' } },
-        {
-          data: { Codigo: '1-3', Nombre: 'Rubro Hijo 3' },
-          children: [
-            { data: { Codigo: '1-3-1', Nombre: 'Rubro Hijo 31' } },
-            { data: { Codigo: '1-3-2', Nombre: 'Rubro Hijo 32' } },
-            { data: { Codigo: '1-3-3', Nombre: 'Rubro Hijo 33' } },
-          ],
-        },
-        { data: { Codigo: 'Projects', Nombre: '1.8 MB' } },
-      ],
-    },
-    {
-      data: { Codigo: 'Projects', Nombre: '1.8 MB' },
-      children: [
-        {
-          data: { Codigo: 'Projects', Nombre: '1.8 MB' },
-          children: [
-            { data: { Codigo: 'Projects', Nombre: '1.8 MB' } },
-          ],
-        },
-        {
-          data: { Codigo: 'Projects', Nombre: '1.8 MB' },
-          children: [
-            { data: { Codigo: 'Projects', Nombre: '1.8 MB' } },
-            { data: { Codigo: 'Projects', Nombre: '1.8 MB' } },
-          ],
-        },
-      ],
-    },
-    {
-      data: { Codigo: 'Projects', Nombre: '1.8 MB'},
-      children: [
-        { data: { Codigo: 'Projects', Nombre: '1.8 MB' } },
-        { data: { Codigo: 'Projects', Nombre: '1.8 MB' } },
-      ],
-    },
-  ];
+  private data: TreeNode<EstructuraArbolRubros>[];
 
 
   getShowOn(index: number) {

@@ -13,7 +13,8 @@ export class RubroHelper {
      * getArbol
      */
     public getArbol(branch?: string) {
-        this.rqManager.setPath('PLAN_CUENTAS_MID_SERVICE');
+        // this.rqManager.setPath('PLAN_CUENTAS_MID_SERVICE');
+        this.rqManager.setPath('DUMMY_SERVICE');
         // Set the optional branch for the API request.
         const unidadEjecutora = 1;
         const params = {

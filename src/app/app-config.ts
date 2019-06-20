@@ -30,7 +30,7 @@ export const Config = {
     TOKEN: {
       AUTORIZATION_URL: 'https://autenticacion.portaloas.udistrital.edu.co/oauth2/authorize',
       URL_USER_INFO: 'https://autenticacion.portaloas.udistrital.edu.co/oauth2/userinfo',
-      CLIENTE_ID: '1aTCvNz4kxA7_p8Z8E1NPtCxtx8a',
+      CLIENTE_ID: 'pszmROXqfec4pTShgF_fn2DAAX0a',
       REDIRECT_URL: 'http://localhost:9000/',
       RESPONSE_TYPE: 'id_token token',
       SCOPE: 'openid email',
@@ -42,6 +42,7 @@ export const Config = {
       CLIENT_SECRET: '2crHq2IRkFHEVTBfpznLhKHyKVIa',
     },
     PLAN_CUENTAS_MID_SERVICE: 'http://localhost:8084/',
+    DUMMY_SERVICE: 'http://localhost:8001/',
     /**
     TOKEN: {
       AUTORIZATION_URL: 'https://autenticacion.portaloas.udistrital.edu.co/oauth2/authorize',
@@ -81,7 +82,7 @@ export const Config = {
     WSO2_SERVICE: 'http://jbpm.udistritaloas.edu.co:8280/services',
     TOKEN: {
       AUTORIZATION_URL: 'https://autenticacion.udistrital.edu.co/oauth2/authorize',
-      CLIENTE_ID: 'AcLs_Mb7b3iEntpgIJ5xIxWkRLga',
+      CLIENTE_ID: 'RK_DeZGAH6_F3JlPd5N1soJ7bYUa',
       RESPONSE_TYPE: 'id_token token',
       SCOPE: 'openid email role documento',
       REDIRECT_URL: 'https://cliente.campusvirtual.udistrital.edu.co/',
@@ -112,7 +113,7 @@ export const Config = {
     CONF_MENU_SERVICE: 'https://autenticacion.portaloas.udistrital.edu.co/api/configuracion_crud_api/v1/menu_opcion_padre/ArbolMenus/',
     TOKEN: {
       AUTORIZATION_URL: 'https://autenticacion.portaloas.udistrital.edu.co/oauth2/authorize',
-      CLIENTE_ID: '7AxAGQAvdCo_PfdFKOVCI9zeuqga',
+      CLIENTE_ID: 'RK_DeZGAH6_F3JlPd5N1soJ7bYUa',
       RESPONSE_TYPE: 'id_token token',
       SCOPE: 'openid email role documento',
       REDIRECT_URL: 'https://campusvirtualudpreprod.portaloas.udistrital.edu.co/',

@@ -3,7 +3,7 @@ export let FORM_INFO_RUBRO = {
     tipo_formulario: 'mini',
    
     alertas: true,
-    modelo: 'infoRubro',
+    modelo: 'RubroHijo',
     campos: [
         {
             etiqueta: 'input',
@@ -11,7 +11,7 @@ export let FORM_INFO_RUBRO = {
             nombre: 'Rubro Padre',
             label_i18n: 'Rubro Padre',
             placeholder_i18n: 'Rubro Padre',
-            requerido: true,
+            requerido: false,
             tipo: 'text',
         },
         {
@@ -20,6 +20,15 @@ export let FORM_INFO_RUBRO = {
             nombre: 'Codigo',
             label_i18n: 'Codigo',
             placeholder_i18n: 'Codigo',
+            requerido: true,
+            tipo: 'text',
+        },
+        {
+            etiqueta: 'input',
+            claseGrid: 'col-lg-12 col-md-12 col-sm-12 col-xs-12',
+            nombre: 'Nombre',
+            label_i18n: 'Nombre',
+            placeholder_i18n: 'Nombre del Rubro',
             requerido: true,
             tipo: 'text',
         },
@@ -41,11 +50,11 @@ export let FORM_INFO_RUBRO = {
         {
             etiqueta: 'select',
             claseGrid: 'col-lg-12 col-md-12 col-sm-12 col-xs-12',
-            nombre: 'Entidad',
-            label_i18n: 'Entidad',
-            placeholder_i18n: 'Entidad',
+            nombre: 'Organizacion',
+            label_i18n: 'Organizacion',
+            placeholder_i18n: 'Organizacion',
             requerido: true,
-            tipo: 'Entidad',
+            tipo: 'Organizacion',
             key: 'Valor',
             opciones: [
                 {Valor: 1},
