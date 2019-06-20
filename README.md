@@ -24,15 +24,17 @@ Como componentes básicos cuenta con:
 
 <summary><h2> :pick: Dependencias Utilizadas</h2></summary>
 
-    Dependencias incluidas:
-
   - **Nebular:** (https://github.com/akveo/nebular)
   - **Angular 6**
   - **Bootstrap 4** 
 
   ### API MID
+  - Plan Cuentas MID . [Repositorio](https://github.com/udistrital/plan_cuentas_mid/)
   
   ### API CRUD
+  
+   - Plan Cuentas CRUD . [Repositorio](https://github.com/udistrital/plan_cuentas_crud)
+   - Plan Cuentas MONGO CRUD . [Repositorio](https://github.com/udistrital/plan_cuentas_mongo_crud)
  
   ### Herramientas usadas
   - **ngx-admin:** este [template](https://github.com/akveo/ngx-admin) es el que utiliza ngxGenerator, esta basado en Angular 7+, Bootstrap 4 y Nebular.
