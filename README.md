@@ -8,7 +8,7 @@ Como componentes básicos cuenta con:
 
 <summary><h2> :writing_hand: Mockups</h2></summary>
   Los siguientes mockups grafican la estructura general de la aplicación, como sus principales vistas.
-  Vista General: 
+  Para visualizar los mockups acceder a este enlace [Link Mockups](https://www.draw.io/?lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1&page-id=8ORgLYlYZUCQ9LNISv3A#G1nBwIdN-Iue5I164bOOjwuNPBYWJMcBPB)
 
 <summary><h2> 🛠️ Configuracion del proyecto</h2></summary>
 
