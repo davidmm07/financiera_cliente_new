@@ -3,6 +3,7 @@ import { NbSortDirection, NbTreeGridDataSource, NbTreeGridDataSourceBuilder, NbS
 import { RubroHelper } from '../../../helpers/rubros/rubroHelper';
 import { NbCollectionViewer } from '@nebular/theme/components/cdk/collections';
 import { CollectionViewer } from '@angular/cdk/collections';
+import { Observable } from 'rxjs';
 interface TreeNode<T> {
   data: T;
   children?: TreeNode<T>[];
@@ -10,8 +11,8 @@ interface TreeNode<T> {
 }
 
 interface EstructuraArbolRubros {
-  Nombre : string;
-  Codigo : string;
+  Nombre: string;
+  Codigo: string;
   Descripcion: string;
 }
 
@@ -22,22 +23,44 @@ interface EstructuraArbolRubros {
 })
 export class ArbolComponent {
   @Output() rubroSeleccionado = new EventEmitter();
+  @Input() updateSignal: Observable<string[]>;
+  update: any;
   customColumn = 'Codigo';
-  defaultColumns = [ 'Nombre'];
-  allColumns = [ this.customColumn, ...this.defaultColumns ];
+  defaultColumns = ['Nombre'];
+  allColumns = [this.customColumn, ...this.defaultColumns];
   dataSource: NbTreeGridDataSource<EstructuraArbolRubros>;
 
   sortColumn: string;
   sortDirection: NbSortDirection = NbSortDirection.NONE;
-  
+
   constructor(
     private dataSourceBuilder: NbTreeGridDataSourceBuilder<EstructuraArbolRubros>,
-    private rbHelper: RubroHelper
-    ) { 
-     this.rbHelper.getArbol().subscribe((res) => {
-     this.data = res;
-     this.dataSource = this.dataSourceBuilder.create(this.data);
+    private rbHelper: RubroHelper,
+  ) {
+    this.loadTree();
+  }
+
+  ngOnChanges(changes) {
+    if (changes['updateSignal'] && this.updateSignal) {
+      this.updateSignal.subscribe(() => {
+        this.loadTree();
+      }
+      );
+    }
+  }
+
+  loadTree() {
+
+    this.rbHelper.getFullArbol().subscribe((res) => {
+      this.data = res;
+      this.dataSource = this.dataSourceBuilder.create(this.data);
     });
+
+  }
+
+  updateTreeSignal($event) {
+    console.info('updated', $event)
+    this.loadTree();
   }
 
   updateSort(sortRequest: NbSortRequest): void {

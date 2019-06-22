@@ -546,6 +546,7 @@
   },
   "RUBRO": {
     "rubro_registrado_success": "Rubro Registrado Correctamente",
-    "rubro_registrado_error": "No Se Pudo Registrar El Rubro"
+    "rubro_registrado_error": "No Se Pudo Registrar El Rubro",
+    "registrar_rubro": "Registrar Rubro"
   }
 }

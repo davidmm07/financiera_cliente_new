@@ -151,7 +151,12 @@ export class DinamicformComponent implements OnInit, OnChanges {
     if (c.requerido && ((c.valor === '' && c.etiqueta !== 'file') || c.valor === null || c.valor === undefined ||
       (JSON.stringify(c.valor) === '{}' && c.etiqueta !== 'file') || JSON.stringify(c.valor) === '[]')
       || ((c.etiqueta === 'file' && c.valor.name === undefined) && (c.etiqueta === 'file' && c.urlTemp === undefined))) {
-      c.alerta = '** Debe llenar este campo';
+      if(c.prefix){
+        c.alerta = '** Este patrón no es aceptado'
+      }else{
+        c.alerta = '** Debe llenar este campo';
+
+      }
       c.clase = 'form-control form-control-danger';
       return false;
     }

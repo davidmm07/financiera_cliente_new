@@ -43,12 +43,14 @@ export class RequestManager {
    * @param params (an Key, Value object with que query params for the request)
    * @returns Observable<any>
    */
-  get(endpoint, params) {
+  get(endpoint, params?) {
     const queryParams = new HttpParams();
-    for (const [key, value] of Object.entries(params)) {
-      queryParams.append(key, value + '');
-    }
+    if (params) {
+      for (const [key, value] of Object.entries(params)) {
+        queryParams.append(key, value + '');
+      }
 
+    }
     this.httpOptions.params = queryParams;
     return this.http.get<any>(`${this.path}${endpoint}`, this.httpOptions).pipe(
       map(
@@ -68,13 +70,6 @@ export class RequestManager {
    */
   post(endpoint, element) {
     return this.http.post<any>(`${this.path}${endpoint}`, element, this.httpOptions).pipe(
-      map(
-        (res) => {
-          const response = res['Body'];
-          response.Type = res['Type']
-          return res['Body'];
-        },
-      ),
       catchError(this.errManager.handleError),
     );
   }
@@ -87,11 +82,6 @@ export class RequestManager {
    */
   put(endpoint, element) {
     return this.http.put<any>(`${this.path}${endpoint}/${element.Id}`, element, this.httpOptions).pipe(
-      map(
-        (res) => {
-          return res['Body'];
-        },
-      ),
       catchError(this.errManager.handleError),
     );
   }
@@ -104,11 +94,6 @@ export class RequestManager {
    */
   delete(endpoint, id) {
     return this.http.delete<any>(`${this.path}${endpoint}/${id}`, this.httpOptions).pipe(
-      map(
-        (res) => {
-          return res['Body'];
-        },
-      ),
       catchError(this.errManager.handleError),
     );
   }

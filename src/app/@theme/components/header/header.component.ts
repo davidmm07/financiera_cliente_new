@@ -32,6 +32,7 @@ export class HeaderComponent implements OnInit {
     private router: Router,
     public translate: TranslateService) {
     this.translate = translate;
+    this.translate.currentLang = 'es'
     this.itemClick = this.menuService.onItemClick()
       .subscribe((event) => {
         this.onContecxtItemSelection(event.item.title);

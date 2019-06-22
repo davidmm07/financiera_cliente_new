@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { RubroService } from '../../../@core/data/rubro.service';
 import { Rubro } from '../../../@core/data/models/rubro';
 import { Validators } from '@angular/forms';
@@ -6,6 +6,7 @@ import { FORM_INFO_RUBRO } from './form_info_rubro';
 import { RubroHelper } from '../../../helpers/rubros/rubroHelper';
 import { PopUpManager } from '../../../managers/popUpManager';
 import { TranslateService } from '@ngx-translate/core';
+import { FormManager } from '../../../managers/formManager';
 
 
 
@@ -18,10 +19,11 @@ export class RubrosComponent implements OnInit {
   rubroSeleccionado: any;
   info_rubro: Rubro;
   insertarRubro = false;
+  clean = false;
   formInfoRubro: any;
+  @Output() eventChange = new EventEmitter();
   constructor(
     private translate: TranslateService,
-    private rubroService: RubroService,
     private rbHelper: RubroHelper,
     private popManager: PopUpManager,
   ) {
@@ -29,31 +31,15 @@ export class RubrosComponent implements OnInit {
     this.construirForm();
     this.rubroSeleccionado = {
     };
-    this.loadLists();
   }
 
   ngOnInit() {
     this.info_rubro = {} as Rubro;
-    this.getRubros();
-
   }
 
-  getIndexForm(nombre: String): number {
-    for (let index = 0; index < this.formInfoRubro.campos.length; index++) {
-      const element = this.formInfoRubro.campos[index];
-      if (element.nombre === nombre) {
-        return index
-      }
-    }
-    return 0;
-  }
 
-  getRubros() {
-    //this.info_rubro = this.rubroService.get("rubro");
-    //this.info_rubro.RubroPadre = this.rubroSeleccionado;
-  }
+
   construirForm() {
-    this.formInfoRubro.titulo = this.translate.instant('GLOBAL.articulo');
     this.formInfoRubro.btn = this.translate.instant('GLOBAL.guardar');
     for (let i = 0; i < this.formInfoRubro.campos.length; i++) {
       this.formInfoRubro.campos[i].label = this.formInfoRubro.campos[i].label_i18n;
@@ -63,21 +49,32 @@ export class RubrosComponent implements OnInit {
 
   receiveMessage($event) {
     this.rubroSeleccionado = <Rubro>$event
-  }
+    this.rubroSeleccionado.Id = parseInt(this.rubroSeleccionado.Id, 0);
+    this.rubroSeleccionado.UnidadEjecutora = parseInt(this.rubroSeleccionado.UnidadEjecutora, 0);
 
-  public loadLists() {
-    this.formInfoRubro.campos[this.getIndexForm('UnidadEjecutora')].opciones = [
-      { Valor: 1 } // Cargar desde el token o la directiva que se indique.
-    ];
-    this.formInfoRubro.campos[this.getIndexForm('Entidad')].opciones = [
-      { Valor: 1 },
-      { Valor: 2 },
-      { Valor: 3 },
-    ];
+    const data = {
+      RubroPadre: this.rubroSeleccionado.Codigo,
+    }
+
+    this.info_rubro = <Rubro>data;
+    this.formInfoRubro.campos[FormManager.getIndexForm(this.formInfoRubro, 'Codigo')].prefix.value = this.rubroSeleccionado.Codigo + '-';
+
   }
 
   aniadirNodo() {
     this.insertarRubro = !this.insertarRubro;
+    const data = {
+      RubroPadre: this.rubroSeleccionado.Codigo || '',
+    }
+    this.info_rubro = <Rubro>data;
+  }
+
+  cleanForm() {
+    this.clean = !this.clean;
+    this.rubroSeleccionado = {};
+    this.info_rubro = null;
+    this.formInfoRubro.campos[FormManager.getIndexForm(this.formInfoRubro, 'Codigo')].prefix.value = '';
+
   }
 
 
@@ -85,14 +82,31 @@ export class RubrosComponent implements OnInit {
   validarForm(event) {
     if (event.valid) {
       event.data.RubroPadre = typeof this.rubroSeleccionado.Codigo === 'undefined' ? undefined : this.rubroSeleccionado;
-      event.data.RubroHijo.UnidadEjecutora = event.data.RubroHijo.UnidadEjecutora.Valor;
-      event.data.RubroHijo.Organizacion = event.data.RubroHijo.Organizacion.Valor;
+
+      event.data.RubroHijo.Codigo = typeof this.rubroSeleccionado.Codigo === 'undefined' ?
+        event.data.RubroHijo.Codigo + '' :
+        this.rubroSeleccionado.Codigo + '-' + event.data.RubroHijo.Codigo;
+
       this.rbHelper.rubroRegister(event.data).subscribe((res) => {
-        this.popManager.showSuccessAlert('Se registro el Rubro correctamente!');
-        this.aniadirNodo();
+        if (res) {
+          this.popManager.showSuccessAlert('Se registro el Rubro correctamente!');
+          this.cleanForm()
+          this.eventChange.emit(true);
+        }
       });
     } else {
       this.popManager.showErrorAlert('Datos Incompletos');
     }
   }
-}
+
+  deleteRubro() {
+    const id = this.rubroSeleccionado.Id;
+    this.rbHelper.rubroDelete(id).subscribe((res) => {
+      if (res) {
+        this.popManager.showSuccessAlert('Se Eliminó el Rubro correctamente!');
+        this.cleanForm()
+        this.eventChange.emit(true);
+      }
+    });
+  }
+};

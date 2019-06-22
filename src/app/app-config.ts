@@ -42,6 +42,7 @@ export const Config = {
       CLIENT_SECRET: '2crHq2IRkFHEVTBfpznLhKHyKVIa',
     },
     PLAN_CUENTAS_MID_SERVICE: 'http://localhost:8084/',
+    PLAN_CUENTAS_MONGO_SERVICE: 'http://localhost:8082/',
     DUMMY_SERVICE: 'http://localhost:8001/',
     /**
     TOKEN: {
