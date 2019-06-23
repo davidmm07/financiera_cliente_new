@@ -36,6 +36,19 @@ export class AuthInterceptor implements HttpInterceptor {
             // cache.put(req, event); // Update the cache.
             this.router.navigate(['/']);
             this.pUpManager.showErrorToast(this.translate.instant(`ERROR.${event['status']}`))
+          } else {
+            if (event['body']) {
+
+              if (event['body'] !== null) {
+
+                if (event['body']['Body'] !== undefined && event['body']['Body'] === null) {
+                  this.pUpManager.showInfoToast('No se encontraron Datos');
+                }
+
+              } else {
+                this.pUpManager.showInfoToast('No se encontraron Datos');
+              }
+            }
           }
         },
           (error: any) => {
@@ -52,8 +65,18 @@ export class AuthInterceptor implements HttpInterceptor {
             // this.snackBar.open('test', undefined, { duration: 5000 });
             this.pUpManager.showErrorToast(this.translate.instant(`ERROR.${event['status']}`))
           } else {
-            if (event['status'] === 201) {
-              this.pUpManager.showToast('info', 'No se encontraron Datos');
+
+            if (event['body']) {
+
+              if (event['body'] !== null) {
+
+                if (event['body']['Body'] !== undefined && event['body']['Body'] === null) {
+                  this.pUpManager.showInfoToast('No se encontraron Datos');
+                }
+
+              } else {
+                this.pUpManager.showInfoToast('No se encontraron Datos');
+              }
             }
           }
         },
