@@ -12,12 +12,12 @@ const routes: Routes = [{
       component: DashboardComponent,
     },
     {
-      path: 'inscripcion',
-      loadChildren: './inscripcion/inscripcion.module#InscripcionModule',
-    },
-    {
       path: 'notificacion',
       loadChildren: './notificacion/notificacion.module#NotificacionModule',
+    },
+    {
+      path: 'plan-cuentas',
+      loadChildren: './plan-cuentas/plan-cuentas.module#PlanCuentasModule',
     },
     {
       path: '',

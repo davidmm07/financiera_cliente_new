@@ -10,6 +10,23 @@
   },
   "MENU": {
     "dashboard": "Inicio",
+    "rubros": {
+      "rubros":"RUBROS",
+      "consulta-rubros": "Consulta de Rubros"
+    } ,
+    "apropiaciones": {
+      "apropiaciones":"APROPIACIONES",
+      "consulta-apropiaciones-iniciales": "Consulta de Apropiaciones I.",
+      "registro-apropiaciones-iniciales": "Registro de Apropiaciones I."
+    } ,
+    "plan-cuentas": {
+      "plan-cuentas":"Plan de Cuentas",
+      "arbol": "Arbol",
+      "consulta": "Consulta",
+      "registro": "Registro",
+      "comprobacion-apropiacion-inicial": "Comprobacion AI",
+      "gestion-plan-cuentas" : "Gestión Plan de Cuentas"
+    } ,
     "directorio": "Directorio institucional",
     "atencion_usuario": {
       "atencion_usuario": "Atención al ciudadano",
@@ -219,6 +236,7 @@
     "408": "Ha excedido el límite de tiempo en retornar resuesta",
     "409": "La solicitud no pudo ser procesada debido a un conflicto con el estado actual del recurso",
     "500": "Error interno en el servidor",
+    "0": "Error interno en el servidor",
     "maximo_descuentos": "Ha superado el límite de descuentos permitidos",
     "repetir_descuentos": "Intenta ingresar un descuento ya seleccionado",
     "maximo_documentos": "Ha superado el límite de documentos permitidos",
@@ -226,6 +244,8 @@
     "carga_datos": "Recargue la página o cierre y abra de nuevo la ventana para poder cargar exitosamente sus datos"
   },
   "GLOBAL": {
+    "operacion_exitosa": "Operación Exitosa",
+    "info": "Info",
     "aceptar": "Aceptar",
     "cancelar": "Cancelar",
     "salir": "Salir",
@@ -523,5 +543,10 @@
     "placeholder_formato_proyecto": "Ej: Formato de la propuesta",
     "resumen": "Resumen",
     "placeholder_resumen": "Ej: Resumen"
+  },
+  "RUBRO": {
+    "rubro_registrado_success": "Rubro Registrado Correctamente",
+    "rubro_registrado_error": "No Se Pudo Registrar El Rubro",
+    "registrar_rubro": "Registrar Rubro"
   }
 }
