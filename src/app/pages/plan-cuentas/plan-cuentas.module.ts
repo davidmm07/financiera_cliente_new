@@ -5,7 +5,8 @@ import { PlanCuentasRoutingModule, routedComponents } from './plan-cuentas-routi
 import { GestionPlanCuentasComponent } from './gestion-plan-cuentas/gestion-plan-cuentas.component';
 import { NbTreeGridModule, NbSelectModule } from '@nebular/theme';
 import { ArbolComponent } from './arbol/arbol.component';
-
+import { RegistroComponent } from './registro/registro.component';
+import { ConsultaComponent } from './consulta/consulta.component';
 
 
 
@@ -19,6 +20,8 @@ import { ArbolComponent } from './arbol/arbol.component';
     PlanCuentasRoutingModule,
     NbTreeGridModule,
     NbSelectModule,
+    ConsultaComponent,
+    RegistroComponent,
   ],
   exports: [
     ArbolComponent
