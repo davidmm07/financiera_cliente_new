@@ -20,10 +20,10 @@ import { ConsultaComponent } from './consulta/consulta.component';
     PlanCuentasRoutingModule,
     NbTreeGridModule,
     NbSelectModule,
-    ConsultaComponent,
-    RegistroComponent,
   ],
   exports: [
+    RegistroComponent,
+    ConsultaComponent,
     ArbolComponent
   ]
 })
