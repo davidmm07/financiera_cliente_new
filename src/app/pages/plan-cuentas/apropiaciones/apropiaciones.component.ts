@@ -8,6 +8,7 @@ import { Rubro } from '../../../@core/data/models/rubro';
 })
 export class ApropiacionesComponent implements OnInit {
   rubroSeleccionado : any;
+  validado=false;
   constructor() {
     this.rubroSeleccionado = {
       Codigo: '',
