@@ -2,7 +2,7 @@
  En este repositorio se define la tecnología que se renderizara del lado del cliente para el subsistema de Presupuesto del Sistema Financiero KRONOS.
 Como componentes básicos cuenta con:
  * **Plantilla ngxAdmin** ~ [link_documentación](https://github.com/akveo/ngx-admin)
- * **Angular 6.0**
+ * **Angular 7.0**
  * **Bootstrap 4**
  * **Nebular**
 
@@ -26,7 +26,7 @@ Como componentes básicos cuenta con:
 <summary><h2> :pick: Dependencias Utilizadas</h2></summary>
 
   - **Nebular:** (https://github.com/akveo/nebular)
-  - **Angular 6**
+  - **Angular 7**
   - **Bootstrap 4** 
 
   ### API MID
