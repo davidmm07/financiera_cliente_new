@@ -28,13 +28,11 @@ NUXEO: {
       PATH: 'https://documental.udistrital.edu.co/nuxeo/',
     },
     },
-  },
   PROD: {
     NUXEO: {
       PATH: 'https://documental.udistrital.edu.co/nuxeo/',
     },
     },
-  },
 };
 
 export const GENERAL = {
