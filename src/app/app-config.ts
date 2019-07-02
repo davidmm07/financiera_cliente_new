@@ -2,7 +2,7 @@ import { environment } from '../environments/environment';
 
 export const Config = {
   LOCAL: {
-NUXEO: {	       
+    NUXEO: {	       
         PATH: 'https://documental.udistrital.edu.co/nuxeo/',
     },
     WSO2_SERVICE: 'https://autenticacion.udistrital.edu.co/apioas',
@@ -27,12 +27,10 @@ NUXEO: {
     NUXEO: {
       PATH: 'https://documental.udistrital.edu.co/nuxeo/',
     },
-    },
   },
   PROD: {
     NUXEO: {
       PATH: 'https://documental.udistrital.edu.co/nuxeo/',
-    },
     },
   },
 };

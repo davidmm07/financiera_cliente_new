@@ -5,6 +5,8 @@ import { ComprobacionApropiacionInicialComponent } from './comprobacion-apropiac
 import { GestionPlanCuentasComponent } from './gestion-plan-cuentas/gestion-plan-cuentas.component';
 import { RubrosComponent } from './rubros/rubros.component';
 import { ApropiacionesComponent } from './apropiaciones/apropiaciones.component';
+import { ConsultaComponent } from './consulta/consulta.component';
+import { RegistroComponent } from './registro/registro.component';
 
 
 const routes: Routes = [{
@@ -41,4 +43,6 @@ export const routedComponents = [
   ApropiacionesComponent,
   ComprobacionApropiacionInicialComponent,
   FsIconAComponent,
+  ConsultaComponent,
+  RegistroComponent
 ];
