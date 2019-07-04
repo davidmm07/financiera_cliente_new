@@ -7,6 +7,7 @@ import { RubrosComponent } from './rubros/rubros.component';
 import { ApropiacionesComponent } from './apropiaciones/apropiaciones.component';
 import { ConsultaComponent } from './consulta/consulta.component';
 import { RegistroComponent } from './registro/registro.component';
+import { FuentesComponent } from './fuentes/fuentes.component';
 
 
 const routes: Routes = [{
@@ -24,6 +25,10 @@ const routes: Routes = [{
 {
   path: 'apropiaciones',
   component: ApropiacionesComponent,
+},
+{
+  path: 'fuentes',
+  component: FuentesComponent,
 },{
   path: 'nb-fs-icon',
   component: FsIconAComponent,
@@ -41,6 +46,7 @@ export const routedComponents = [
   GestionPlanCuentasComponent,
   RubrosComponent,
   ApropiacionesComponent,
+  FuentesComponent,
   ComprobacionApropiacionInicialComponent,
   FsIconAComponent,
   ConsultaComponent,

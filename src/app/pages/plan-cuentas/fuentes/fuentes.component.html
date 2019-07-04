@@ -1,0 +1,47 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-6 col-lg-6 col-xxxl-6">
+          <div class="row">
+            <arbol (rubroSeleccionado)="receiveMessage($event)"></arbol>
+
+            
+            <nb-card>
+              <nb-card-header>Información Rubro</nb-card-header>
+              <nb-card-body>
+                <p>Aqui información del rubro seleccionado xd</p>
+              </nb-card-body>
+            </nb-card>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-6 col-xxxl-6">
+            <div class="row">
+                <nb-card *ngIf="insertarRubro">
+                    <nb-card-header>
+                      Crear Fuente de Financiamiento
+                    </nb-card-header>
+                    <nb-card-body>
+                      <ngx-dinamicform [normalform]="formInfoRubro" [modeloData]="info_rubro" (result)="validarForm($event)"
+                        [clean]="clean">
+                      </ngx-dinamicform>
+                      <div class="row">
+                        <div class="col">
+                          <button type="submit" class="btn btn-success btn-block" (click)="aniadirNodo()">
+                            Cancelar
+                          </button>
+                        </div>
+                        <div class="col">
+                          <button type="submit" class="btn btn-success btn-block" (click)="cleanForm()">
+                            limpiar
+                          </button>
+                        </div>
+                      </div>
+                    </nb-card-body>
+                  </nb-card>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -9,12 +9,14 @@
                 <arbol (rubroSeleccionado)="receiveMessage($event)"></arbol>
               </div>
 
-              <!-- <div class="container-fluid"> -->
                 <nb-card>
                   <nb-card-header
                     >Comprobación de Apropiación Inicial</nb-card-header
                   >
                   <nb-card-body>
+                      <nb-alert status="info" closable (close)="onClose()" *ngIf="apropiacionAprobada">
+                          Comprobación Exitosa!!
+                        </nb-alert>
                     <form>
                       <div class="row">
                         <div class="col">
@@ -45,7 +47,7 @@
                       </div>
                       <div class="row">
                         <div class="col">
-                          <button type="submit" class="btn btn-info btn-block">
+                          <button type="submit" class="btn btn-success btn-block" (click)="aprobarApropiacion()">
                             Aprobar Apropiación Inicial
                           </button>
                         </div>
@@ -149,7 +151,7 @@
                                 </div>
                                 <button
                                   type="submit"
-                                  class="btn btn-primary w-100"
+                                  class="btn btn-success w-100"
                                 >
                                   Aceptar
                                 </button>
@@ -159,9 +161,8 @@
 
                           <button
                             type="submit"
-                            class="btn btn-info btn-block"
-                            [nbPopover]="form"
-                          >
+                            class="btn btn-success btn-block"
+                            [nbPopover]="form">
                             Asignar Apropiación Inicial
                           </button>
                         </div>
@@ -177,3 +178,5 @@
     </div>
   </div>
 </div>
+
+

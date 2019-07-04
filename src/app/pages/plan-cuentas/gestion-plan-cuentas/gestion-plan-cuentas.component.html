@@ -2,7 +2,7 @@
 
       <h1>Gestión de {{selectedOption.option}}</h1>
 
-      <div class="row">
+      <div class="row sectionMenu" >
         <div class="col-md-6 col-lg-6 col-xxxl-6">
           <nb-select placeholder="VIGENCIA" outline status="success">
             <nb-option value="1">2016</nb-option>
@@ -17,8 +17,7 @@
             placeholder="Gestionar"
             outline
             status="success"
-            [(ngModel)]="selectedOption"
-          >
+            [(ngModel)]="selectedOption">
             <nb-option
               *ngFor="let optionPC of op_plan_cuentas"
               [value]="optionPC"
@@ -30,11 +29,11 @@
       </div>
       <div class="row">
         <div class="col-md-12 col-lg-12 col-xxxl-12">
-            <nb-card>
+            <nb-card *ngIf="selectedOption.option != null">
                 <nb-card-body>
                   <rubros *ngIf="selectedOption.option === 'Rubros'"> </rubros>
                   <apropiaciones *ngIf="selectedOption.option === 'Apropiaciones'"> </apropiaciones>
-
+                  <fuentes *ngIf="selectedOption.option === 'Fuentes de Financiamiento'"></fuentes>
                 </nb-card-body>
               </nb-card>
         </div>
