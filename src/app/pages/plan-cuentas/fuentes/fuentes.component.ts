@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FORM_INFO_RUBRO } from './form_info_rubro';
 import { TranslateService } from '@ngx-translate/core';
+import { Rubro } from '../../../@core/data/models/rubro';
 
 @Component({
   selector: 'fuentes',
@@ -9,6 +10,8 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class FuentesComponent implements OnInit {
   formInfoRubro: any;
+  info_rubro: Rubro;
+  clean = false;
   constructor(private translate: TranslateService,) { 
     this.formInfoRubro = FORM_INFO_RUBRO;
     this.construirForm();
