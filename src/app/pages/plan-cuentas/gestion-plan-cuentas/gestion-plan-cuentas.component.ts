@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 
 @Component({
   selector: 'gestion-plan-cuentas',
@@ -12,11 +13,17 @@ export class GestionPlanCuentasComponent implements OnInit {
     { option: 'Apropiaciones' },
     { option: 'Fuentes de Financiamiento' }];
 
-  constructor() {
+  constructor(private translate: TranslateService,) {
     this.selectedOption = '';
+    this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+    });
    }
 
   ngOnInit() {
+  }
+
+  useLanguage(language: string) {
+    this.translate.use(language);
   }
 
   onSelect(selectedItem: any) {
