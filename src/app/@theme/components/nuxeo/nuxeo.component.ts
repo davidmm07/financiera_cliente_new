@@ -1,6 +1,6 @@
 import * as Nuxeo from 'nuxeo';
 import { Component, Input, OnChanges, Output, EventEmitter } from '@angular/core';
-import { GENERAL } from './../../../app-config'
+import { environment } from '../../../../environments/environment';
 import { DocumentoService } from '../../../@core/data/documento.service';
 
 
@@ -106,7 +106,7 @@ export class NuxeoComponent implements OnChanges {
 
     ngOnChanges(changes) {
         this.nuxeo = new Nuxeo({
-            baseURL: GENERAL.ENTORNO.NUXEO.PATH,
+            baseURL: environment.NUXEO.PATH,
             auth: {
                 method: 'basic',
                 username: 'Administrator',

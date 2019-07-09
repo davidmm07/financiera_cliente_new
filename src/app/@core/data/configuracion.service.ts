@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { GENERAL } from '../../app-config';
+import { environment } from './../../../environments/environment'
 
-const path = GENERAL.ENTORNO.CONFIGURACION_SERVICE;
+const path = environment.CONFIGURACION_SERVICE;
 
 const httpOptions = {
   headers: new HttpHeaders({

@@ -3,11 +3,11 @@ import {map, multicast} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Subject ,  from } from 'rxjs';
 import { WebsocketService } from './websocket.service';
-import { GENERAL } from './../../app-config';
+import { environment } from '../../../environments/environment';
 import { ImplicitAutenticationService } from './implicit_autentication.service';
 import { ConfiguracionService } from './../data/configuracion.service';
 
-const CHAT_URL = GENERAL.ENTORNO.NOTIFICACION_SERVICE;
+const CHAT_URL = environment.NOTIFICACION_SERVICE;
 
 @Injectable()
 export class NotificacionesService {
