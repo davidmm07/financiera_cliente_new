@@ -50,7 +50,7 @@ export let FORM_INFO_RUBRO = {
         },
         {
             etiqueta: 'input',
-            claseGrid: 'col-lg-12 col-md-12 col-sm-12 col-xs-12',
+            claseGrid: 'col-lg-4 col-md-4 col-sm-4 col-xs-4',
             nombre: 'NumeroDoc',
             label_i18n: 'Número Documento',
             placeholder_i18n: '',
@@ -62,7 +62,7 @@ export let FORM_INFO_RUBRO = {
         },
         {
             etiqueta: 'select',
-            claseGrid: 'col-lg-12 col-md-12 col-sm-12 col-xs-12',
+            claseGrid: 'col-lg-4 col-md-4 col-sm-4 col-xs-4',
             nombre: 'TipoDocumento',
             label_i18n: 'Tipo Documento',
             placeholder_i18n: 'Tipo Documento',
@@ -77,7 +77,7 @@ export let FORM_INFO_RUBRO = {
         },        
         {
             etiqueta: 'mat-date',
-            claseGrid: 'col-lg-12 col-md-12 col-sm-12 col-xs-12',
+            claseGrid: 'col-lg-4 col-md-4 col-sm-4 col-xs-4',
             nombre: 'FechaDocumento',
             label_i18n: 'Fecha Documento',
             placeholder_i18n: 'Fecha Documento',
