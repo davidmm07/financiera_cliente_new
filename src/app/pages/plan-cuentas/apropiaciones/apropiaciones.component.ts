@@ -8,6 +8,7 @@ import { Rubro } from '../../../@core/data/models/rubro';
 })
 export class ApropiacionesComponent implements OnInit {
   rubroSeleccionado : any;
+  apropiacionAprobada : boolean;
   validado=false;
   constructor() {
     this.rubroSeleccionado = {
@@ -24,5 +25,14 @@ export class ApropiacionesComponent implements OnInit {
     this.rubroSeleccionado = <Rubro>$event
 
     console.log(this.rubroSeleccionado);
+  }
+
+  aprobarApropiacion(){
+    this.apropiacionAprobada = true;
+  }
+
+
+  onClose(){
+    this.apropiacionAprobada = false;
   }
 }
