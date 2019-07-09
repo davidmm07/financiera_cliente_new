@@ -66,7 +66,10 @@
     "entidad": "Entidad",
     "descripcion": "Descripción",
     "asignar-apropiacion-incial": "Aprobar apropiacion inicial",
-    "vigencia": "VIGENCIA HIJUEPUTA",
+    "vigencia": "VIGENCIA",
+    "buscar": "Buscar",
+    "registrar-rubro": "Registrar rubro",
+    "add-nodo": "Añadir nodo",
 
     "operacion_exitosa": "Operación Exitosa",
     "info": "Info",
