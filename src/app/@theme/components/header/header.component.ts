@@ -59,6 +59,7 @@ export class HeaderComponent implements OnInit {
   }
   ngOnInit() {
     this.autenticacion.init();
+    this.autenticacion.getAuthorizationUrl(true);
   }
   liveToken() {
     if (this.autenticacion.live()) {
@@ -73,13 +74,8 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  login() {
-    window.location.replace(this.autenticacion.getAuthorizationUrl());
-  }
-
   logout() {
-    console.info(this.autenticacion.logout());
-    // window.location.replace(this.autenticacion.logout());
+    this.autenticacion.logout();
   }
 
   toggleSidebar(): boolean {
