@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { GENERAL } from './../../app-config';
+import { environment } from '../../../environments/environment';
 import { HttpErrorResponse } from '@angular/common/http';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -11,7 +11,7 @@ const httpOptions = {
     }),
 }
 
-const path = GENERAL.ENTORNO.DOCUMENTO_SERVICE;
+const path = environment;
 
 @Injectable()
 export class DocumentoService {

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { GENERAL } from '../../app-config';
+import { environment } from '../../../environments/environment';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 
@@ -10,7 +10,7 @@ const httpOptions = {
   }),
 }
 
-const path = GENERAL.ENTORNO.CONF_MENU_SERVICE;
+const path = environment.CONF_MENU_SERVICE;
 
 @Injectable()
 export class MenuService {

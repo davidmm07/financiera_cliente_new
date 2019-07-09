@@ -10,7 +10,7 @@
             <div class="col-md-6 col-lg-6 col-xxxl-6">
               <nb-card *ngIf="insertarRubro">
                 <nb-card-header>
-                  <h1>Registrar Rubro</h1>
+                  <h1>{{'GLOBAL.registrar-rubro' | translate }}</h1>
                 </nb-card-header>
                 <nb-card-body>
                   <ngx-dinamicform [normalform]="formInfoRubro" [modeloData]="info_rubro" (result)="validarForm($event)"
@@ -19,12 +19,12 @@
                   <div class="row">
                     <div class="col">
                       <button type="submit" class="btn btn-success btn-block" (click)="aniadirNodo()">
-                        Cancelar
+                        {{'GLOBAL.cancelar' | translate }}
                       </button>
                     </div>
                     <div class="col">
                       <button type="submit" class="btn btn-success btn-block" (click)="cleanForm()">
-                        limpiar
+                        {{'GLOBAL.limpiar' | translate }}
                       </button>
                     </div>
                   </div>
@@ -32,32 +32,32 @@
               </nb-card>
 
               <nb-card *ngIf="!insertarRubro">
-                <nb-card-header>Detalle del Rubro</nb-card-header>
+                <nb-card-header>{{'GLOBAL.detalle-rubro' | translate }}</nb-card-header>
                 <nb-card-body>
                   <form>
                     <div class="form-group">
-                      <label>Nombre Rubro</label>
+                      <label>{{'GLOBAL.nombre-rubro' | translate }}</label>
                       <input type="text" class="form-control" [value]="rubroSeleccionado.Nombre || ''" disabled />
                     </div>
                     <div class="form-group">
-                      <label>Codigo Rubro</label>
+                      <label>{{'GLOBAL.codigo-rubro' | translate }}</label>
                       <input type="text" class="form-control" [value]="rubroSeleccionado.Codigo || ''" disabled />
                     </div>
 
                     <div class="form-group">
-                      <label>Descripción</label>
+                      <label>{{'GLOBAL.descripcion' | translate }}</label>
                       <textarea class="form-control" placeholder="Descripción" [value]="rubroSeleccionado.Descripcion || ''"
                         disabled></textarea>
                     </div>
                     <div class="row">
                       <div class="col">
                         <button type="submit" class="btn btn-success btn-block" (click)="aniadirNodo()">
-                          Añadir Nodo
+                          {{'GLOBAL.add-nodo' | translate }}
                         </button>
                       </div>
                       <div class="col">
                         <button *ngIf="rubroSeleccionado.Codigo" type="submit" class="btn btn-danger btn-block" (click)="deleteRubro()">
-                          Eliminar
+                          {{'GLOBAL.eliminar' | translate }}
                         </button>
                       </div>
                     </div>
