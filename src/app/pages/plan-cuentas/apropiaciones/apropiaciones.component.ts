@@ -11,6 +11,8 @@ import { PopUpManager } from "../../../managers/popUpManager";
 export class ApropiacionesComponent implements OnInit {
   rubroSeleccionado: any;
   apropiacionAprobada: boolean;
+  vigenciaSeleccionada: any;
+  valorApropiacion: any;
   validado = false;
   constructor(
     private apHelper: ApropiacionHelper,
@@ -20,14 +22,24 @@ export class ApropiacionesComponent implements OnInit {
       Codigo: "",
       Nombre: ""
     };
+
+    this.vigenciaSeleccionada = 0;
   }
 
   ngOnInit() {}
 
   receiveMessage($event) {
-    this.rubroSeleccionado = <Rubro>$event
+    this.rubroSeleccionado = <Rubro>$event;
     this.rubroSeleccionado.Id = parseInt(this.rubroSeleccionado.Id, 0);
-    this.rubroSeleccionado.UnidadEjecutora = parseInt(this.rubroSeleccionado.UnidadEjecutora, 0);
+    this.rubroSeleccionado.UnidadEjecutora = parseInt(
+      this.rubroSeleccionado.UnidadEjecutora,
+      0
+    );
+  }
+
+  receiveApropiationValue($event) {
+    this.valorApropiacion = "hhh";
+    console.log("Camila la mejor" + this.valorApropiacion)
   }
 
   aprobarApropiacion() {
@@ -40,20 +52,25 @@ export class ApropiacionesComponent implements OnInit {
 
   registrarApropiacionARubro(event) {
     if (event.valid) {
-      event.data.RubroSel = typeof this.rubroSeleccionado.Codigo === 'undefined' ? undefined : this.rubroSeleccionado;
-      event.data.RubroHijo.Codigo = typeof this.rubroSeleccionado.Codigo === 'undefined' ?
-        event.data.RubroHijo.Codigo + '' :
+      event.data.RubroSel =
+        typeof this.rubroSeleccionado.Codigo === "undefined"
+          ? undefined
+          : this.rubroSeleccionado;
+      event.data.Vigencia = this.vigenciaSeleccionada;
+      event.data.Valor = this.valorApropiacion;
+      event.data.IdEstadoApropiacion = 1;
 
-
-    this.apHelper.apropiacionRegister(event.data).subscribe(res => {
-      if (res) {
-        this.popManager.showSuccessAlert("Se registro el Rubro correctamente!");
-        //this.cleanForm()
-        //this.eventChange.emit(true);
-      } else {
-        this.popManager.showErrorAlert("Datos Erroneos");
-      }
-    });
+      this.apHelper.apropiacionRegister(event.data).subscribe(res => {
+        if (res) {
+          this.popManager.showSuccessAlert(
+            "Se registro la preasignación de apropiación correctamente!"
+          );
+          //this.cleanForm()
+          //this.eventChange.emit(true);
+        } else {
+          this.popManager.showErrorAlert("Datos Erroneos");
+        }
+      });
+    }
   }
-}
 }
