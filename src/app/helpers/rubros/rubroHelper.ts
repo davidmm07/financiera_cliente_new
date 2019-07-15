@@ -27,7 +27,7 @@ export class RubroHelper {
             rama: branch,
         };
         // call request manager for the tree's data.
-        return this.rqManager.get(`v1/rubro/ArbolRubros/${unidadEjecutora.toString()}`, params);
+        return this.rqManager.get(`rubro/ArbolRubros/${unidadEjecutora.toString()}`, params);
 
     }
 
@@ -42,7 +42,7 @@ export class RubroHelper {
         // Set the optional branch for the API request.
         const unidadEjecutora = 1;
         // call request manager for the tree's data.
-        return this.rqManager.get(`v1/arbol_rubro/FullArbolRubro/${unidadEjecutora.toString()}`);
+        return this.rqManager.get(`arbol_rubro/FullArbolRubro/${unidadEjecutora.toString()}`);
 
     }
 
@@ -58,7 +58,7 @@ export class RubroHelper {
         this.rqManager.setPath('PLAN_CUENTAS_MID_SERVICE');
         rubroData.UnidadEjecutora = 1; // Tomar la unidad ejecutora del token cuando este definido.
         rubroData.Organizacion = 1;
-        return this.rqManager.post(`v1/rubro/RegistrarRubro`, rubroData).pipe(
+        return this.rqManager.post(`rubro/RegistrarRubro`, rubroData).pipe(
             map(
                 (res) => {
                     if (res['Type'] === 'error') {
@@ -82,7 +82,7 @@ export class RubroHelper {
      */
     public rubroDelete(id: number) {
         this.rqManager.setPath('PLAN_CUENTAS_MID_SERVICE');
-        return this.rqManager.delete(`v1/rubro/EliminarRubro`, id).pipe(
+        return this.rqManager.delete(`rubro/EliminarRubro`, id).pipe(
             map(
                 (res) => {
                     if (res['Type'] === 'error') {
