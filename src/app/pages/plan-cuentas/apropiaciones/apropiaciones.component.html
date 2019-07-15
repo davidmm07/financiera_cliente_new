@@ -108,15 +108,52 @@
                     >{{ "GLOBAL.detalle-apropiacion-inicial" | translate }}
                   </nb-card-header>
                   <nb-card-body>
-                    <form>
-                      <div class="row">
-                          <div class="form-group">
-                              <label for="inputFirstName">First Name</label>
-                              <input type="text" class="form-control" id="inputFirstName" placeholder="First Name">
-                            </div>
+                    <div class="row formPreasignacion">
+                      <div class="form-group row">
+                        <label for="inputEmail1" class="col-sm-6 col-form-label"
+                          >Valor Apropiación Inicial</label
+                        >
+                        <div class="col-sm-6">
+                          <input
+                            type="number"
+                            min="1"
+                            step="any"
+                            class="form-control"
+                            id="inputApropiacionI"
+                            placeholder="$"
+                          />
+                        </div>
+                        <button
+                          type="submit"
+                          class="btn btn-info btn-block col-sm-6"
+                          [nbPopover]="form"
+                        >
+                          {{
+                            "GLOBAL.pre-asignar-apropiacion-inicial" | translate
+                          }}
+                        </button>
+                        <div class="col-sm-6">
+                          <button
+                            type="submit"
+                            class="btn btn-info btn-block"
+                            [nbPopover]="form"
+                          >
+                            {{
+                              "GLOBAL.aprobar-apropiacion-inicial" | translate
+                            }}
+                          </button>
+                        </div>
                       </div>
-                      <div class="row">
-                        <table class="table">
+                    </div>
+                    <form>
+                      <div class="row botonesApI">
+                        <div class="col"></div>
+
+                        <div class="col"></div>
+                      </div>
+
+                      <div class="row detalleApI">
+                        <table class="table tablaApropiacion">
                           <thead>
                             <tr>
                               <th scope="col">
@@ -130,11 +167,11 @@
                           <tbody>
                             <tr>
                               <td>2 INGRESOS</td>
-                              <td>$100</td>
+                              <td>$1'000,000.0</td>
                             </tr>
                             <tr>
                               <td>3 INGRESOS</td>
-                              <td>$100</td>
+                              <td>$1'000,000.0</td>
                             </tr>
                           </tbody>
                         </table>
@@ -163,16 +200,6 @@
                               </form>
                             </div>
                           </ng-template>
-
-                          <button
-                            type="submit"
-                            class="btn btn-info btn-block"
-                            [nbPopover]="form"
-                          >
-                            {{
-                              "GLOBAL.asignar-apropiacion-inicial" | translate
-                            }}
-                          </button>
                         </div>
                       </div>
                     </form>
