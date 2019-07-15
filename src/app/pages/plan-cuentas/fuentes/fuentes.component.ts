@@ -20,6 +20,19 @@ export class FuentesComponent implements OnInit {
   ngOnInit() {
   }
 
+  receiveMessage($event){
+
+  }
+  validarForm($event){
+
+  }
+  aniadirNodo(){
+
+  }
+  cleanForm(){
+    
+  }
+
   construirForm() {
     this.formInfoRubro.btn = this.translate.instant('GLOBAL.guardar');
     for (let i = 0; i < this.formInfoRubro.campos.length; i++) {
