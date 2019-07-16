@@ -14,6 +14,7 @@ export class NotificacionesService {
     public messagesSubject: Subject<any>;
     listMessage: any;
     payload: any;
+    token: any;
 
     private noNotifySubject = new Subject();
     noNotify$ = this.noNotifySubject.asObservable();
@@ -30,9 +31,10 @@ export class NotificacionesService {
         private autenticacion: ImplicitAutenticationService,
     ) {
         this.listMessage = [];
+        this.token = (JSON.parse(atob(localStorage.getItem("id_token").split(".")[1])).role).map((data: any) => (data.replace("/", "_")));
         this.connect();
         if (this.autenticacion.live()) {
-            this.queryNotification('ADMIN_PRESUPUESTO');
+            this.queryNotification(this.token);
         }
 
 
@@ -41,7 +43,7 @@ export class NotificacionesService {
     connect(){
         if (this.autenticacion.live()) {
             this.payload = this.autenticacion.getPayload();
-            this.messagesSubject = webSocket(`${CHAT_URL}?id=${this.payload.sub}&profiles=ADMIN_PRESUPUESTO`);
+            this.messagesSubject = webSocket(`${CHAT_URL}?id=${this.payload.sub}&profiles=${this.token}`);
             this.messagesSubject
                 .pipe(
                     map((msn) => {
