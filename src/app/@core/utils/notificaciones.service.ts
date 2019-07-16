@@ -2,7 +2,7 @@
 import {map, multicast} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Subject ,  from } from 'rxjs';
-import { WebsocketService } from './websocket.service';
+import { webSocket } from 'rxjs/webSocket';
 import { environment } from '../../../environments/environment';
 import { ImplicitAutenticationService } from './implicit_autentication.service';
 import { ConfiguracionService } from './../data/configuracion.service';
@@ -11,9 +11,10 @@ const CHAT_URL = environment.NOTIFICACION_SERVICE;
 
 @Injectable()
 export class NotificacionesService {
-    public messages: Subject<any>;
+    public messagesSubject: Subject<any>;
     listMessage: any;
     payload: any;
+    token: any;
 
     private noNotifySubject = new Subject();
     noNotify$ = this.noNotifySubject.asObservable();
@@ -25,32 +26,46 @@ export class NotificacionesService {
         return this._messages;
     }
 
-    constructor(wsService: WebsocketService,
+    constructor(
         private confService: ConfiguracionService,
-        authService: ImplicitAutenticationService,
+        private autenticacion: ImplicitAutenticationService,
     ) {
         this.listMessage = [];
-        if (authService.live()) {
-            this.payload = authService.getPayload();
-            this.messages = <Subject<any>>wsService
-                .connect(CHAT_URL + `?id=${this.payload.sub}&profiles=admin`).pipe(
-                map((response: any) => {
-                    return JSON.parse(response.data)
-                }));
-            this.queryNotification('admin');
-            this.messages.subscribe(response => {
-                const message = {
-                    Type: response.Type,
-                    Content: response.Content,
-                    User: response.User,
-                    FechaCreacion: new Date(response.Timestamp),
-                };
-                console.info(message);
-                this.addMessage(message);
-            });
+        this.token = (JSON.parse(atob(localStorage.getItem("id_token").split(".")[1])).role).map((data: any) => (data.replace("/", "_")));
+        this.connect();
+        if (this.autenticacion.live()) {
+            this.queryNotification(this.token);
         }
 
 
+
+    }
+    connect(){
+        if (this.autenticacion.live()) {
+            this.payload = this.autenticacion.getPayload();
+            this.messagesSubject = webSocket(`${CHAT_URL}?id=${this.payload.sub}&profiles=${this.token}`);
+            this.messagesSubject
+                .pipe(
+                    map((msn) => {
+                        this.listMessage = [...[msn], ...this.listMessage];
+                        this.noNotifySubject.next(this.listMessage.length);
+                        this.arrayMessagesSubject.next(this.listMessage);
+                        return msn
+                    }),
+                )
+                .subscribe(
+                    (msg: any) => console.info('Nueva notificación', msg),
+                    err => {
+                        console.info(err);
+                        this.connect();
+                    },
+                    () => console.info('complete'),
+                );
+        }
+    }
+
+    close() {
+        this.messagesSubject.unsubscribe();
     }
 
     addMessage(message) {
@@ -60,43 +75,23 @@ export class NotificacionesService {
         this.arrayMessagesSubject.next(this.listMessage);
     }
     queryNotification(profile) {
-        this.confService.get('notificacion?query=Usuario:' + this.payload.sub + '&sortby=FechaCreacion&order=asc&limit=-1')
+        this.confService.get('notificacion_estado_usuario?query=Usuario:' + this.payload.sub + ',Activo:true&sortby=id&order=asc&limit=-1')
             .subscribe((resp: any) => {
                 if (resp !== null) {
                     from(resp)
                         .subscribe((notify: any) => {
                             const message = {
-                                Type: notify.NotificacionConfiguracion.Tipo.Id,
-                                Content: JSON.parse(notify.CuerpoNotificacion),
-                                User: notify.NotificacionConfiguracion.Aplicacion.Nombre,
-                                FechaCreacion: new Date(notify.FechaCreacion),
-
+                                Type: notify.Notificacion.NotificacionConfiguracion.Tipo.Id,
+                                Content: JSON.parse(notify.Notificacion.CuerpoNotificacion),
+                                User: notify.Notificacion.NotificacionConfiguracion.Aplicacion.Nombre,
+                                FechaCreacion: new Date(notify.Notificacion.FechaCreacion),
+                                FechaEdicion: new Date(notify.Fecha),
+                                Estado: notify.NotificacionEstado.CodigoAbreviacion,
                             };
                             this.addMessage(message);
                         });
                 }
-            });
-        this.confService.get('notificacion_configuracion_perfil?query=Perfil.Nombre:' + profile + '&limit=-1')
-            .subscribe(response => {
-                from(response)
-                    .subscribe((res: any) => {
-                        this.confService.get('notificacion?query=NotificacionConfiguracion.Id:' +
-                            res.NotificacionConfiguracion.Id + ',Usuario:' + '&sortby=FechaCreacion&order=asc&limit=-1')
-                            .subscribe((resp: any) => {
-                                if (resp !== null) {
-                                    from(resp)
-                                        .subscribe((notify: any) => {
-                                            const message = {
-                                                Type: notify.NotificacionConfiguracion.Tipo.Id,
-                                                Content: JSON.parse(notify.CuerpoNotificacion),
-                                                User: notify.NotificacionConfiguracion.Aplicacion.Nombre,
-                                                FechaCreacion: new Date(notify.FechaCreacion),
-                                            };
-                                            this.addMessage(message);
-                                        });
-                                }
-                            });
-                    });
-            });
+
+            });    
     }
 }
