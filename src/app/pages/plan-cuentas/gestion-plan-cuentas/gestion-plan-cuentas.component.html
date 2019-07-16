@@ -32,7 +32,7 @@
             <nb-card *ngIf="selectedOption.option != null">
                 <nb-card-body>
                   <rubros *ngIf="selectedOption.option === 'Rubros'"> </rubros>
-                  <apropiaciones *ngIf="selectedOption.option === 'Apropiaciones'"> </apropiaciones>
+                  <apropiaciones [optionMessage]="selectedItem" *ngIf="selectedOption.option === 'Apropiaciones'" > </apropiaciones>
                   <fuentes *ngIf="selectedOption.option === 'Fuentes de Financiamiento'"></fuentes>
                 </nb-card-body>
               </nb-card>

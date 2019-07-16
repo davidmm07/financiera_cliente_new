@@ -4,6 +4,7 @@ import { RubroHelper } from '../../../helpers/rubros/rubroHelper';
 import { NbCollectionViewer } from '@nebular/theme/components/cdk/collections';
 import { CollectionViewer } from '@angular/cdk/collections';
 import { Observable } from 'rxjs';
+import { ApropiacionHelper } from '../../../helpers/apropiaciones/apropiacionHelper';
 interface TreeNode<T> {
   data: T;
   children?: TreeNode<T>[];
@@ -16,6 +17,13 @@ interface EstructuraArbolRubros {
   Descripcion: string;
 }
 
+interface EstructuraArbolRubrosApropiaciones {
+  Nombre: string;
+  Codigo: string;
+  Descripcion: string;
+  Apropiacion : number;
+}
+
 @Component({
   selector: 'arbol',
   templateUrl: './arbol.component.html',
@@ -24,20 +32,26 @@ interface EstructuraArbolRubros {
 export class ArbolComponent {
   @Output() rubroSeleccionado = new EventEmitter();
   @Input() updateSignal: Observable<string[]>;
+  @Input() optionMessage: string;
+
   update: any;
   customColumn = 'Codigo';
   defaultColumns = ['Nombre'];
   allColumns = [this.customColumn, ...this.defaultColumns];
-  dataSource: NbTreeGridDataSource<EstructuraArbolRubros>;
+  dataSource: NbTreeGridDataSource<EstructuraArbolRubros>; //LALALAALAL
+  dataSource2 : NbTreeGridDataSource<EstructuraArbolRubrosApropiaciones>;
 
   sortColumn: string;
   sortDirection: NbSortDirection = NbSortDirection.NONE;
 
   constructor(
-    private dataSourceBuilder: NbTreeGridDataSourceBuilder<EstructuraArbolRubros>,
+    private dataSourceBuilder: NbTreeGridDataSourceBuilder<EstructuraArbolRubros>, // ÑAÑAÑAÑÑA
+    private dataSourceBuilder2 : NbTreeGridDataSourceBuilder<EstructuraArbolRubrosApropiaciones>,
     private rbHelper: RubroHelper,
+    private apHelper : ApropiacionHelper,
   ) {
     this.loadTree();
+    console.log("faf"+ this.optionMessage)
   }
 
   ngOnChanges(changes) {
@@ -50,10 +64,17 @@ export class ArbolComponent {
   }
 
   loadTree() {
+   //if(this.optionMessage === 'Rubros'){
     this.rbHelper.getFullArbol().subscribe((res) => {
       this.data = res;
       this.dataSource = this.dataSourceBuilder.create(this.data);
     });
+  /* } else if (this.optionMessage === 'Apropiaciones'){
+    this.apHelper.getFullArbol().subscribe((res) => {
+      this.data = res;
+      this.dataSource2 = this.dataSourceBuilder2.create(this.data);
+    });
+  } */
 
   }
 
