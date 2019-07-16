@@ -10,6 +10,7 @@ import { Rubro } from '../../../@core/data/models/rubro';
 })
 export class FuentesComponent implements OnInit {
   formInfoRubro: any;
+  rubroSeleccionado: any;
   info_rubro: Rubro;
   clean = false;
   constructor(private translate: TranslateService,) { 
@@ -21,7 +22,7 @@ export class FuentesComponent implements OnInit {
   }
 
   receiveMessage($event){
-
+    console.log(this.rubroSeleccionado);
   }
   validarForm($event){
 
