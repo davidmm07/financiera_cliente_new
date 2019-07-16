@@ -27,8 +27,7 @@
       "registro": "Registro",
       "comprobacion-apropiacion-inicial": "Comprobacion AI",
       "gestion-plan-cuentas" : "Gestión Plan de Cuentas"
-    } 
-    ,
+    },
     "auth": {
       "auth": "Autenticación",
       "login": "Iniciar sesión",
@@ -71,7 +70,6 @@
     "buscar": "Buscar",
     "registrar-rubro": "Registrar rubro",
     "add-nodo": "Añadir nodo",
-
     "operacion_exitosa": "Operación Exitosa",
     "info": "Info",
     "aceptar": "Aceptar",
@@ -109,5 +107,8 @@
     "rubro_registrado_success": "Rubro Registrado Correctamente",
     "rubro_registrado_error": "No Se Pudo Registrar El Rubro",
     "registrar_rubro": "Registrar Rubro"
+  },
+  "FUENTE_FINANCIAMIENTO": {
+    "asignar_fuente": "Asignar Fuente de Financiamiento"
   }
 }
