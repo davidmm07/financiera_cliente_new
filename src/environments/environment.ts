@@ -12,6 +12,7 @@ export const environment = {
     PLAN_CUENTAS_CRUD_SERVICE:'http://localhost:8080/v1/',
     PLAN_CUENTAS_MID_SERVICE:'https://localhost:8084/v1/',
     PLAN_CUENTAS_MONGO_SERVICE:'http://localhost:8082/v1/',
+    OIKOS_SERVICE: 'http://10.20.0.254/oikos_api/v1/',
     CONFIGURACION_SERVICE: 'http://10.20.0.254/configuracion_api/v1/',
     NOTIFICACION_SERVICE: 'ws://10.20.0.254/notificacionws/ws/join',
     CONF_MENU_SERVICE: 'http://10.20.0.254/configuracion_api/v1/menu_opcion_padre/ArbolMenus/',

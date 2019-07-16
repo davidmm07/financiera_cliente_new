@@ -2,41 +2,81 @@
   <div class="row">
     <div class="col-md-12">
       <div class="row">
+
+        <!-- arbol -->
         <div class="col-md-6 col-lg-6 col-xxxl-6">
           <div class="row">
-            <arbol (rubroSeleccionado)="receiveMessage($event)"></arbol>            
-          </div>
-          <div class="row">
-            
+            <arbol (rubroSeleccionado)="receiveMessage($event)"></arbol>
           </div>
         </div>
-        <div class="col-md-6 col-lg-6 col-xxxl-6">
+
+        <!-- fuente -->
+        <div class="col-md-6">
+           <!-- info fuente -->
+        <div>
             <div class="row">
-                <nb-card >
-                    <nb-card-header>
-                      {{'FUENTE_FINANCIAMIENTO.asignar_fuente' | translate }}
-                    </nb-card-header>
-                    <nb-card-body>
-                      <ngx-dinamicform [normalform]="formInfoRubro" [modeloData]="info_rubro" (result)="validarForm($event)"
-                        [clean]="clean">
-                      </ngx-dinamicform>
-                      <div class="row">
-                        <div class="col">
-                          <button type="submit" class="btn btn-success btn-block" (click)="aniadirNodo()">
-                            Cancelar
-                          </button>
-                        </div>
-                        <div class="col">
-                          <button type="submit" class="btn btn-success btn-block" (click)="cleanForm()">
-                            limpiar
-                          </button>
-                        </div>
-                      </div>
-                    </nb-card-body>
-                  </nb-card>
-              </div>
+              <nb-card class="col-md-12">
+                <nb-card-header>
+                  {{'FUENTE_FINANCIAMIENTO.asignar_fuente' | translate }}
+                </nb-card-header>
+                <nb-card-body>
+                  <!-- <ngx-dinamicform [normalform]="formInfoRubro" [modeloData]="info_rubro" (result)="validarForm($event)"
+                          [clean]="clean">
+                        </ngx-dinamicform> -->
+                  <div>
+                    <div>
+                      <label>Valor Fuente</label>
+                      <label>Valor Fuente</label>
+                    </div>
+                    <div>
+                      <label>Codigo Fuente</label>
+                      <label>Codigo Fuente</label>
+                    </div>
+                    <div>
+                      <label>Nombre Fuente</label>
+                      <label>Nombre Fuente</label>
+                    </div>
+                    <div>
+                      <label>Descripcion Fuente</label>
+  
+                      <label>Descripcion Fuente</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <button type="submit" class="btn btn-success btn-block" (click)="aniadirNodo()">
+                        Cancelar
+                      </button>
+                    </div>
+                    <div class="col">
+                      <button type="submit" class="btn btn-success btn-block" (click)="cleanForm()">
+                        limpiar
+                      </button>
+                    </div>
+                  </div>
+                </nb-card-body>
+              </nb-card>
+            </div>
+          </div>
+        
+          <!-- dependencias -->
+        <div class="col-md-12" *ngFor="let rubro of rubrosAsignados">
+          <div>
+            <h5>{{'GLOBAL.rubro' | translate}}: {{rubro.Codigo | json}}</h5>
+          </div>
+          <div *ngFor="let dependencia of rubro.Dependencias">
+            <label for="" class="col-md-4">{{'GLOBAL.dependencia' | translate}}</label>
+            <label for="" class="col-md-4">{{'GLOBAL.valor' | translate}}</label>
+            <label for="" class="col-md-4">
+                <span class=".glyphicon .glyphicon-remove"></span>
+            </label>
+          </div>
         </div>
       </div>
+
+       
+
     </div>
   </div>
+</div>
 </div>

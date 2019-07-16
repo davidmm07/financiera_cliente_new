@@ -2,17 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { FORM_INFO_RUBRO } from './form_info_rubro';
 import { TranslateService } from '@ngx-translate/core';
 import { Rubro } from '../../../@core/data/models/rubro';
+import { PipeTransform, Pipe } from '@angular/core';
 
 @Component({
   selector: 'fuentes',
   templateUrl: './fuentes.component.html',
   styleUrls: ['./fuentes.component.scss']
 })
+
 export class FuentesComponent implements OnInit {
   formInfoRubro: any;
   rubroSeleccionado: any;
   info_rubro: Rubro;
   clean = false;
+  rubrosAsignados :any =[];
+
   constructor(private translate: TranslateService,) { 
     this.formInfoRubro = FORM_INFO_RUBRO;
     this.construirForm();
@@ -22,8 +26,12 @@ export class FuentesComponent implements OnInit {
   }
 
   receiveMessage($event){
-    console.log(this.rubroSeleccionado);
+    if ( this.rubrosAsignados.filter((data)=>(data.Codigo === $event.Codigo)).length === 0 ) {
+      this.rubrosAsignados = [...this.rubrosAsignados, $event];
+    }
   }
+
+
   validarForm($event){
 
   }
