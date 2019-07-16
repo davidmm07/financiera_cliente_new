@@ -50,7 +50,6 @@ export class ArbolComponent {
   }
 
   loadTree() {
-
     this.rbHelper.getFullArbol().subscribe((res) => {
       this.data = res;
       this.dataSource = this.dataSourceBuilder.create(this.data);

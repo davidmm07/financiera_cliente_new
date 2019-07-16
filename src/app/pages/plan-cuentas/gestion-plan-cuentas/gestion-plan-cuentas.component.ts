@@ -27,6 +27,6 @@ export class GestionPlanCuentasComponent implements OnInit {
   }
 
   onSelect(selectedItem: any) {
-    console.log("Opcion Seleccionado es: ", selectedItem , this.selectedOption); 
+    console.log("Opcion Seleccionada es: ", selectedItem); 
    }
 }
