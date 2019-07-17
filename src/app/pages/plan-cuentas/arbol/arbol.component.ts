@@ -37,8 +37,8 @@ interface EstructuraArbolRubrosApropiaciones {
 export class ArbolComponent {
   @Output() rubroSeleccionado = new EventEmitter();
   @Input() updateSignal: Observable<string[]>;
-  @Input() optionMessage: string;
-  
+  @Input() optionSelect: string;
+
 
   update: any;
   customColumn = "Codigo";
@@ -69,19 +69,19 @@ export class ArbolComponent {
   }
 
   loadTree() {
-    /*if(this.optionMessage === 'Rubros'){
-  this.rbHelper.getFullArbol().subscribe((res) => {
-      this.data = res;
-      this.dataSource = this.dataSourceBuilder.create(this.data);
-    });
-  /* } else if (this.optionMessage === 'Apropiaciones'){
+    /* if (this.optionSelect === 'Rubros') {
+      this.rbHelper.getFullArbol().subscribe((res) => {
+        this.data = res;
+        this.dataSource = this.dataSourceBuilder.create(this.data);
+      });
+    } else if (this.optionSelect === 'Apropiaciones') { 
+ */
+      this.apHelper.getFullArbol().subscribe(res => {
+        this.data = res;
+        this.dataSource2 = this.dataSourceBuilder2.create(this.data);
+      });
+/*    } */
 
-  } */
-    this.apHelper.getFullArbol().subscribe(res => {
-      this.data = res;
-      console.log(this.data);
-      this.dataSource2 = this.dataSourceBuilder2.create(this.data);
-    });
   }
 
   updateTreeSignal($event) {

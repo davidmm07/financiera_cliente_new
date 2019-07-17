@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Rubro } from '../../../@core/data/models/rubro';
 import { FORM_INFO_RUBRO } from './form_info_rubro';
 import { RubroHelper } from '../../../helpers/rubros/rubroHelper';
@@ -19,6 +19,7 @@ export class RubrosComponent implements OnInit {
   insertarRubro = false;
   clean = false;
   formInfoRubro: any;
+  @Input() optionPlanCuentas: string;
   @Output() eventChange = new EventEmitter();
   constructor(
     private translate: TranslateService,

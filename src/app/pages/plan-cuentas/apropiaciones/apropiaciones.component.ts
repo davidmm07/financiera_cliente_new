@@ -12,6 +12,7 @@ import { Apropiacion } from '../../../@core/data/models/apropiacion';
 export class ApropiacionesComponent implements OnInit {
 
   @Input() vigenciaSeleccionada;
+  @Input() optionPlanCuentas: any;
   rubroSeleccionado: any;
   apropiacion: Apropiacion;
   apropiacionAprobada: boolean;

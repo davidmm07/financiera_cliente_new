@@ -5,7 +5,7 @@
         <nb-card-body> -->
       <div class="row">
         <div class="col-md-6 col-lg-6 col-xxxl-6">
-          <arbol (rubroSeleccionado)="receiveMessage($event)" [updateSignal]="eventChange"> </arbol>
+          <arbol (rubroSeleccionado)="receiveMessage($event)" [updateSignal]="eventChange" [optionSelect] = "optionPlanCuentas"> </arbol>
         </div>
         <div class="col-md-6 col-lg-6 col-xxxl-6">
           <nb-card *ngIf="insertarRubro">

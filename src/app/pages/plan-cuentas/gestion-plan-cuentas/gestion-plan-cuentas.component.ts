@@ -49,6 +49,11 @@ export class GestionPlanCuentasComponent implements OnInit {
   onSelect(selectedItem: any) {
     console.log("Opcion Seleccionada es: ", selectedItem);
   }
+
+  onChangeTab($event){
+    console.log($event.tabTitle);
+    this.selectedOption=$event.tabTitle;
+  }
 }
 
 // definicion de tabs
