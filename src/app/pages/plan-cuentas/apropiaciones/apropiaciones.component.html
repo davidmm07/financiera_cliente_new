@@ -56,7 +56,7 @@
                         <label for="inputEmail1" class="col-sm-6 col-form-label">Valor Apropiación Inicial</label>
                         <div class="col-sm-6">
                           <input type="number" min="1" step="any" class="form-control" id="inputApropiacionI"
-                            placeholder="$" />
+                            placeholder="$" [value]="rubroSeleccionado.ApropiacionInicial" />
                         </div>
 
                         <div class="col-sm-6 spacingValorAp">
@@ -114,7 +114,7 @@
                               <form>
                                 <div class="form-group">
                                   <input type="number" class="form-control"
-                                    placeholder=" $ Valor Apropiacion Inicial" />
+                                    placeholder=" $ Valor Apropiacion Inicial"  />
                                 </div>
                                 <button type="submit" class="btn btn-success w-100" (valorApropiacion)="
                                     receiveApropiationValue($event)

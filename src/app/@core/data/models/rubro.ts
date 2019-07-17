@@ -6,5 +6,6 @@ export class Rubro {
     UnidadEjecutora: number;
     Nombre: string;
     RubroPadre : string;
+    ApropiacionInicial : number;
   }
   
