@@ -26,7 +26,8 @@ export class ApropiacionesComponent implements OnInit {
   ) {
     this.rubroSeleccionado = {
       Codigo: "",
-      Nombre: ""
+      Nombre: "",
+      ApropiacionInicial :0,
     };
 
     this.vigenciaSeleccionada = 0;
@@ -39,16 +40,15 @@ export class ApropiacionesComponent implements OnInit {
   receiveMessage($event) {
     this.rubroSeleccionado = <Rubro>$event;
     this.rubroSeleccionado.Id = parseInt(this.rubroSeleccionado.Id, 0);
+    this.rubroSeleccionado.Nombre = " ";
     this.rubroSeleccionado.UnidadEjecutora = parseInt(
       this.rubroSeleccionado.UnidadEjecutora,
       0
     );
+    this.rubroSeleccionado.ApropiacionInicial = parseInt(this.rubroSeleccionado.ApropiacionInicial,0);
+
   }
 
-  receiveApropiationValue($event) {
-    this.valorApropiacion = "";
-    console.log(this.valorApropiacion)
-  }
 
   aprobarApropiacion() {
     this.apropiacionAprobada = true;
