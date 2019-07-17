@@ -7,11 +7,34 @@ import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
   styleUrls: ['./gestion-plan-cuentas.component.scss']
 })
 export class GestionPlanCuentasComponent implements OnInit {
+
+  tabs: any[] = [
+    {
+      title: 'Rubros',
+      route: '/pages/plan-cuentas/rubros',
+    },
+    {
+      title: 'Apropiaciones',
+      route: '/pages/plan-cuentas/apropiaciones',
+    },
+    {
+      title: 'fuentes',
+      route: '/pages/plan-cuentas/fuentes',
+    },
+  ];
+
+  
   selectedOption : any;
+  VigenciaActual: any;
   op_plan_cuentas: any[] = [
     { option: 'Rubros' },
     { option: 'Apropiaciones' },
     { option: 'Fuentes de Financiamiento' }];
+  vigencias :any[] = [
+    {vigencia: 2019},
+    {vigencia: 2017},
+    {vigencia: 2016}
+  ]
 
   constructor(private translate: TranslateService,) {
     this.selectedOption = '';
@@ -30,3 +53,6 @@ export class GestionPlanCuentasComponent implements OnInit {
     console.log("Opcion Seleccionada es: ", selectedItem); 
    }
 }
+
+// definicion de tabs
+
