@@ -109,5 +109,12 @@
     "rubro_registrado_success": "Rubro Registrado Correctamente",
     "rubro_registrado_error": "No Se Pudo Registrar El Rubro",
     "registrar_rubro": "Registrar Rubro"
+  },
+  "APROPIACION": {
+    "comprobacion": "Comprobación de la apropiacion inicial",
+    "ingresos": " 2 INGRESOS",
+    "egresos": "3 EGRESOS",
+    "comprobacion-igualdad": "La apropiacion inicial esta balanceada",
+    "comprobacion-diferencia": "Existe una diferencia entre ingresos y egresos de: "
   }
 }

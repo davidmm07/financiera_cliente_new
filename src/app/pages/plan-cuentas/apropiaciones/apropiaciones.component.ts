@@ -18,6 +18,8 @@ export class ApropiacionesComponent implements OnInit {
   valorApropiacion: any;
   validado = false;
   clean = false;
+  valoringresos=666666666666;
+  valoregresos=666666666666;
   constructor(
     private apHelper: ApropiacionHelper,
     private popManager: PopUpManager

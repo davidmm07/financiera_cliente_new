@@ -83,30 +83,8 @@
                         <div class="col"></div>
                       </div>
 
-                      <div class="row detalleApI">
-                        <table class="table tablaApropiacion">
-                          <thead>
-                            <tr>
-                              <th scope="col">
-                                {{ "GLOBAL.rubro" | translate }}
-                              </th>
-                              <th scope="col">
-                                {{ "GLOBAL.apropiacion-inicial" | translate }}
-                              </th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td>2 INGRESOS</td>
-                              <td>$1'000,000.0</td>
-                            </tr>
-                            <tr>
-                              <td>3 INGRESOS</td>
-                              <td>$1'000,000.0</td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
+                      
+
                       <div class="row">
                         <div class="col">
                           <ng-template #form>
@@ -129,6 +107,7 @@
                     </form>
                   </nb-card-body>
                 </nb-card>
+                <comprobacion-apropiacion-inicial [valoringresos]="valoringresos" [valoregresos]=valoregresos></comprobacion-apropiacion-inicial>
               </div>
             </div>
           </div>

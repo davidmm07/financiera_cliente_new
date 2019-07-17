@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'comprobacion-apropiacion-inicial',
@@ -7,9 +7,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ComprobacionApropiacionInicialComponent implements OnInit {
 
-  constructor() { }
+  ingresos : number;
+  egresos : number;
+  comprobacion: boolean; 
+
+  //entradas y salidas
+  @Input() valoringresos: number;
+  @Input() valoregresos: number;
+
+  constructor() { 
+
+  }
+
+  
 
   ngOnInit() {
+    this.ingresos=this.valoringresos;
+    this.egresos=this.valoregresos;
+    this.comprobacion=(this.ingresos===this.egresos);
+
   }
 
 }

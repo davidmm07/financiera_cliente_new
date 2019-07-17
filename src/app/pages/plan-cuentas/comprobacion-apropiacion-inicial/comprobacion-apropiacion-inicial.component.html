@@ -1,3 +1,37 @@
-<p>
-  comprobacion-apropiacion-inicial works!
-</p>
+<nb-card>
+<nb-card-header>
+<h4>{{ "APROPIACION.comprobacion" | translate }}</h4>
+</nb-card-header>
+<nb-card-body>
+<div class="row detalleApI">
+    <table class="table tablaApropiacion">
+      <thead>
+        <tr>
+          <th scope="col">
+            {{ "GLOBAL.rubro" | translate }}
+          </th>
+          <th scope="col">
+            {{ "GLOBAL.apropiacion-inicial" | translate }}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><p class="rubro">{{ "APROPIACION.ingresos" | translate }}</p></td>
+          <td><p class="ingresos">{{valoringresos | currency : COP}}</p></td>
+        </tr>
+        <tr>
+          <td><p class="rubro">{{ "APROPIACION.egresos" | translate }}</p></td>
+          <td><p class=egresos>{{valoregresos | currency : COP}}</p></td>
+        </tr>
+      </tbody>
+      <tr *ngIf="comprobacion">
+          <td colspan="2"><p class="correcto">{{ "APROPIACION.comprobacion-igualdad" | translate }}</p></td>
+      </tr>
+      <tr *ngIf="!comprobacion">
+          <td colspan="2"><p class="error">{{ "APROPIACION.comprobacion-diferencia" | translate }}{{ingresos-egresos | currency : COP}}</p></td>
+      </tr>
+    </table>
+  </div>
+</nb-card-body>
+</nb-card>
