@@ -9,39 +9,7 @@
                 <arbol (rubroSeleccionado)="receiveMessage($event)"></arbol>
               </div>
 
-              <nb-card>
-                <nb-card-header>{{
-                  "GLOBAL.titulo-apropiacion-inicial" | translate
-                }}</nb-card-header>
-                <nb-card-body>
-                  <nb-alert
-                    status="info"
-                    closable
-                    (close)="onClose()"
-                    *ngIf="apropiacionAprobada"
-                  >
-                    Comprobación Exitosa!!
-                  </nb-alert>
-                  <form>
-                    <div class="row">
-                      <div class="col"></div>
-                    </div>
-                    <div class="row" *ngIf="!validado">
-                      <div class="col">
-                        <!-- <span>Los valores de comprobación son diferentes</span> -->
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col">
-                        <button type="submit" class="btn btn-info btn-block">
-                          {{ "GLOBAL.aprobar-apropiacion-inicial" | translate }}
-                        </button>
-                      </div>
-                    </div>
-                  </form>
-                </nb-card-body>
-              </nb-card>
-              <!-- </div> -->
+
             </div>
             <div class="col-md-6 col-lg-6 col-xxxl-6">
               <div class="container-fluid">
@@ -53,50 +21,26 @@
                     <form>
                       <div class="form-group">
                         <label>{{ "GLOBAL.nombre-rubro" | translate }}</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          [value]="rubroSeleccionado.Nombre"
-                          readonly
-                        />
+                        <input type="text" class="form-control" [value]="rubroSeleccionado.Nombre" readonly />
                       </div>
                       <div class="form-group">
                         <label>{{ "GLOBAL.codigo-rubro" | translate }}</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          [value]="rubroSeleccionado.Codigo"
-                          readonly
-                        />
+                        <input type="text" class="form-control" [value]="rubroSeleccionado.Codigo" readonly />
                       </div>
 
                       <div class="form-group">
                         <label>{{
                           "GLOBAL.unidad-ejecutora" | translate
                         }}</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="Unidad Ejecutora"
-                          readonly
-                        />
+                        <input type="text" class="form-control" placeholder="Unidad Ejecutora" readonly />
                       </div>
                       <div class="form-group">
                         <label>{{ "GLOBAL.entidad" | translate }}</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="Entidad"
-                          readonly
-                        />
+                        <input type="text" class="form-control" placeholder="Entidad" readonly />
                       </div>
                       <div class="form-group">
                         <label>{{ "GLOBAL.descripcion" | translate }}</label>
-                        <textarea
-                          class="form-control"
-                          placeholder="Descripción"
-                          readonly
-                        ></textarea>
+                        <textarea class="form-control" placeholder="Descripción" readonly></textarea>
                       </div>
                     </form>
                   </nb-card-body>
@@ -104,40 +48,27 @@
               </div>
               <div class="container-fluid">
                 <nb-card>
-                  <nb-card-header
-                    >{{ "GLOBAL.detalle-apropiacion-inicial" | translate }}
+                  <nb-card-header>{{ "GLOBAL.detalle-apropiacion-inicial" | translate }}
                   </nb-card-header>
                   <nb-card-body>
                     <div class="row formPreasignacion">
                       <div class="form-group row">
-                        <label for="inputEmail1" class="col-sm-6 col-form-label"
-                          >Valor Apropiación Inicial</label
-                        >
+                        <label for="inputEmail1" class="col-sm-6 col-form-label">Valor Apropiación Inicial</label>
                         <div class="col-sm-6">
-                          <input
-                            type="number"
-                            min="1"
-                            step="any"
-                            class="form-control"
-                            id="inputApropiacionI"
-                            placeholder="$"
-                          />
+                          <input type="number" min="1" step="any" class="form-control" id="inputApropiacionI"
+                            placeholder="$" [value]="rubroSeleccionado.ApropiacionInicial" />
                         </div>
-                        <button
-                          type="submit"
-                          class="btn btn-info btn-block col-sm-6"
-                          [nbPopover]="form"
-                        >
-                          {{
-                            "GLOBAL.pre-asignar-apropiacion-inicial" | translate
-                          }}
-                        </button>
-                        <div class="col-sm-6">
-                          <button
-                            type="submit"
-                            class="btn btn-info btn-block"
-                            [nbPopover]="form"
-                          >
+
+                        <div class="col-sm-6 spacingValorAp">
+                          <button type="submit" class="btn btn-info btn-block" [nbPopover]="form">
+                            {{
+                              "GLOBAL.pre-asignar-apropiacion-inicial" | translate
+                            }}
+                          </button>
+                        </div>
+                        
+                        <div class="col-sm-6 spacingValorAp">
+                          <button type="submit" class="btn btn-info btn-block " [nbPopover]="form">
                             {{
                               "GLOBAL.aprobar-apropiacion-inicial" | translate
                             }}
@@ -182,19 +113,12 @@
                             <div class="p-4">
                               <form>
                                 <div class="form-group">
-                                  <input
-                                    type="number"
-                                    class="form-control"
-                                    placeholder=" $ Valor Apropiacion Inicial"
-                                  />
+                                  <input type="number" class="form-control"
+                                    placeholder=" $ Valor Apropiacion Inicial"  />
                                 </div>
-                                <button
-                                  type="submit"
-                                  class="btn btn-success w-100"
-                                  (valorApropiacion)="
+                                <button type="submit" class="btn btn-success w-100" (valorApropiacion)="
                                     receiveApropiationValue($event)
-                                  "
-                                >
+                                  ">
                                   Aceptar
                                 </button>
                               </form>

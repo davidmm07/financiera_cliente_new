@@ -38,4 +38,14 @@ export class ApropiacionHelper {
         );
 
     }
+
+    public getFullArbol() {
+        this.rqManager.setPath('PLAN_CUENTAS_MONGO_SERVICE');
+        // Set the optional branch for the API request.
+        const unidadEjecutora = 1;
+        // call request manager for the tree's data.
+        return this.rqManager.get(`arbol_rubro_apropiaciones/FullArbolRubroApropiaciones/${unidadEjecutora.toString()}`);
+
+    }
+
 }
