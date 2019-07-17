@@ -8,8 +8,6 @@
               <div class="row">
                 <arbol (rubroSeleccionado)="receiveMessage($event)"></arbol>
               </div>
-
-
             </div>
             <div class="col-md-6 col-lg-6 col-xxxl-6">
               <div class="container-fluid">
@@ -32,7 +30,7 @@
                         <label>{{
                           "GLOBAL.unidad-ejecutora" | translate
                         }}</label>
-                        <input type="text" class="form-control" placeholder="Unidad Ejecutora" readonly />
+                        <input type="text" class="form-control" placeholder="Centro Gestor" readonly />
                       </div>
                       <div class="form-group">
                         <label>{{ "GLOBAL.entidad" | translate }}</label>
@@ -55,20 +53,24 @@
                       <div class="form-group row">
                         <label for="inputEmail1" class="col-sm-6 col-form-label">Valor Apropiación Inicial</label>
                         <div class="col-sm-6">
-                          <input type="number" min="1" step="any" class="form-control" id="inputApropiacionI"
-                            placeholder="$" [value]="rubroSeleccionado.ApropiacionInicial" />
+                          <input type="text" min="1" step="any" class="form-control" id="inputApropiacionI"
+                            placeholder="$" value="{{
+                              rubroSeleccionado.ApropiacionInicial
+                                | currency: COP
+                            }}" [(ngModel)]="apropiacion.Valor" />
                         </div>
 
                         <div class="col-sm-6 spacingValorAp">
-                          <button type="submit" class="btn btn-info btn-block" [nbPopover]="form">
+                          <button type="submit" class="btn btn-info btn-block" (click)="preAsignarApropiacion(event)">
                             {{
-                              "GLOBAL.pre-asignar-apropiacion-inicial" | translate
+                              "GLOBAL.pre-asignar-apropiacion-inicial"
+                                | translate
                             }}
                           </button>
                         </div>
-                        
+
                         <div class="col-sm-6 spacingValorAp">
-                          <button type="submit" class="btn btn-info btn-block " [nbPopover]="form">
+                          <button type="submit" class="btn btn-info btn-block ">
                             {{
                               "GLOBAL.aprobar-apropiacion-inicial" | translate
                             }}
@@ -82,32 +84,11 @@
 
                         <div class="col"></div>
                       </div>
-
-                      
-
-                      <div class="row">
-                        <div class="col">
-                          <ng-template #form>
-                            <div class="p-4">
-                              <form>
-                                <div class="form-group">
-                                  <input type="number" class="form-control"
-                                    placeholder=" $ Valor Apropiacion Inicial"  />
-                                </div>
-                                <button type="submit" class="btn btn-success w-100" (valorApropiacion)="
-                                    receiveApropiationValue($event)
-                                  ">
-                                  Aceptar
-                                </button>
-                              </form>
-                            </div>
-                          </ng-template>
-                        </div>
-                      </div>
                     </form>
                   </nb-card-body>
                 </nb-card>
-                <comprobacion-apropiacion-inicial [valoringresos]="valoringresos" [valoregresos]=valoregresos></comprobacion-apropiacion-inicial>
+                <comprobacion-apropiacion-inicial [valoringresos]="valoringresos" [valoregresos]="valoregresos">
+                </comprobacion-apropiacion-inicial>
               </div>
             </div>
           </div>

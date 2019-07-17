@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { Rubro } from "../../../@core/data/models/rubro";
 import { ApropiacionHelper } from "../../../helpers/apropiaciones/apropiacionHelper";
 import { PopUpManager } from "../../../managers/popUpManager";
@@ -10,31 +10,39 @@ import { Apropiacion } from '../../../@core/data/models/apropiacion';
   styleUrls: ["./apropiaciones.component.scss"]
 })
 export class ApropiacionesComponent implements OnInit {
+
+  @Input() vigenciaSeleccionada;
   rubroSeleccionado: any;
-  arbolRubro : any;
-  info_apropiacion: Apropiacion; 
+  apropiacion: Apropiacion;
   apropiacionAprobada: boolean;
-  vigenciaSeleccionada: any;
-  valorApropiacion: any;
-  validado = false;
+  valorApropiacion
   clean = false;
-  valoringresos=666666666666;
-  valoregresos=666666666666;
+  valoringresos = 666666666666;
+  valoregresos = 666666666666;
+
   constructor(
     private apHelper: ApropiacionHelper,
     private popManager: PopUpManager
   ) {
     this.rubroSeleccionado = {
+      Id: 0,
       Codigo: "",
       Nombre: "",
-      ApropiacionInicial :0,
+      ApropiacionInicial: 0,
     };
 
-    this.vigenciaSeleccionada = 0;
+    this.apropiacion = {
+      Id: 0,
+      Vigencia: 0,
+      Valor: 0,
+      IdEstadoApropiacion: 0,
+      IdRubro: 0,
+    };
   }
 
+
   ngOnInit() {
-    this.info_apropiacion = {} as Apropiacion;
+    this.apropiacion = {} as Apropiacion;
   }
 
   receiveMessage($event) {
@@ -45,7 +53,7 @@ export class ApropiacionesComponent implements OnInit {
       this.rubroSeleccionado.UnidadEjecutora,
       0
     );
-    this.rubroSeleccionado.ApropiacionInicial = parseInt(this.rubroSeleccionado.ApropiacionInicial,0);
+    this.rubroSeleccionado.ApropiacionInicial = parseInt(this.rubroSeleccionado.ApropiacionInicial, 0);
 
   }
 
@@ -54,52 +62,22 @@ export class ApropiacionesComponent implements OnInit {
     this.apropiacionAprobada = true;
   }
 
-  onClose() {
-    this.apropiacionAprobada = false;
-  }
-
-  registrarApropiacionARubro(event) {
-    if (event.valid) {
-      event.data.RubroSel =
-        typeof this.rubroSeleccionado.Codigo === "undefined"
-          ? undefined
-          : this.rubroSeleccionado;
-      event.data.Vigencia = this.vigenciaSeleccionada;
-      event.data.Valor = this.valorApropiacion;
-      event.data.IdEstadoApropiacion = 1;
-
-      this.apHelper.apropiacionRegister(event.data).subscribe(res => {
-        if (res) {
-          this.popManager.showSuccessAlert(
-            "Se registro la preasignación de apropiación correctamente!"
-          );
-          //this.cleanForm()
-          //this.eventChange.emit(true);
-        } else {
-          this.popManager.showErrorAlert("Datos Erroneos");
-        }
-      });
-    }
-  }
-
 
   cleanForm() {
-  /*   this.clean = !this.clean;
+    this.clean = !this.clean;
     this.rubroSeleccionado = {};
-    this.info_rubro = null;
-    this.formInfoRubro.campos[FormManager.getIndexForm(this.formInfoRubro, 'Codigo')].prefix.value = ''; */
+    this.apropiacion = null;
 
   }
 
 
 
-  validarForm(event) {
+  preAsignarApropiacion(event) {
     if (event.valid) {
-      event.data.RubroPadre = typeof this.rubroSeleccionado.Codigo === 'undefined' ? undefined : this.rubroSeleccionado;
-
-      event.data.RubroHijo.Codigo = typeof this.rubroSeleccionado.Codigo === 'undefined' ?
-        event.data.RubroHijo.Codigo + '' :
-        this.rubroSeleccionado.Codigo + '-' + event.data.RubroHijo.Codigo;
+      event.data.IdRubro = typeof this.rubroSeleccionado.Id === 'undefined' ? undefined : this.rubroSeleccionado.Id;
+      event.data.Vigencia = typeof this.apropiacion.Vigencia === 'undefined' ? undefined : this.vigenciaSeleccionada.vigencia;
+      event.data.Valor = typeof this.apropiacion.Valor === 'undefined' ? undefined : this.apropiacion.Valor;
+      event.data.IdEstadoApropiacion = 1; //Estado pendiente
 
       this.apHelper.apropiacionRegister(event.data).subscribe((res) => {
         if (res) {
@@ -109,7 +87,7 @@ export class ApropiacionesComponent implements OnInit {
         }
       });
     } else {
-      this.popManager.showErrorAlert('Datos Incompletos');
+      this.popManager.showErrorAlert('No se pudo registrar la preasignación de apropiación');
     }
   }
 }
