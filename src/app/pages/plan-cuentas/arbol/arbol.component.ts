@@ -38,6 +38,7 @@ export class ArbolComponent {
   @Output() rubroSeleccionado = new EventEmitter();
   @Input() updateSignal: Observable<string[]>;
   @Input() optionMessage: string;
+  
 
   update: any;
   customColumn = "Codigo";
@@ -56,6 +57,7 @@ export class ArbolComponent {
     private apHelper: ApropiacionHelper
   ) {
     this.loadTree();
+
   }
 
   ngOnChanges(changes) {
