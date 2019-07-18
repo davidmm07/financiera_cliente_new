@@ -1,7 +1,7 @@
 export let FORM_INFO_RUBRO = {
-    
+
     tipo_formulario: 'mini',
-   
+
     alertas: true,
     modelo: 'RubroHijo',
     campos: [
@@ -15,7 +15,7 @@ export let FORM_INFO_RUBRO = {
             tipo: 'number',
             prefix: {
                 value: '',
-            }
+            },
         },
         {
             etiqueta: 'input',
@@ -28,7 +28,7 @@ export let FORM_INFO_RUBRO = {
             tipo: 'number',
             prefix: {
                 value: '',
-            }
+            },
         },
         {
             etiqueta: 'input',
@@ -58,7 +58,7 @@ export let FORM_INFO_RUBRO = {
             tipo: 'number',
             prefix: {
                 value: '',
-            }
+            },
         },
         {
             etiqueta: 'select',
@@ -70,11 +70,11 @@ export let FORM_INFO_RUBRO = {
             tipo: 'TipoDocumento',
             key: 'Valor',
             opciones: [
-                {Valor: "ACTA"},
-                {Valor: "RESOLUCION"},
-                {Valor: "CONTRATO"}
+                {Valor: 'ACTA'},
+                {Valor: 'RESOLUCION'},
+                {Valor: 'CONTRATO'},
             ],
-        },        
+        },
         {
             etiqueta: 'mat-date',
             claseGrid: 'col-lg-4 col-md-4 col-sm-4 col-xs-4',
@@ -82,6 +82,6 @@ export let FORM_INFO_RUBRO = {
             label_i18n: 'Fecha Documento',
             placeholder_i18n: 'Fecha Documento',
             requerido: true,
-        },        
+        },
     ],
 }

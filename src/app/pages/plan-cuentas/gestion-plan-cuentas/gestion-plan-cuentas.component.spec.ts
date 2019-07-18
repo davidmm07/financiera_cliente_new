@@ -8,7 +8,7 @@ describe('GestionPlanCuentasComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GestionPlanCuentasComponent ]
+      declarations: [ GestionPlanCuentasComponent ],
     })
     .compileComponents();
   }));

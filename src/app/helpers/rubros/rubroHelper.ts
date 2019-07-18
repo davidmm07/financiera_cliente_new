@@ -11,7 +11,6 @@ export class RubroHelper {
     constructor(private rqManager: RequestManager,
                 private pUpManager: PopUpManager ) { }
 
-    
     /**
      * Gets arbol
      *  returns one tree level at once.
@@ -46,7 +45,7 @@ export class RubroHelper {
 
     }
 
-    
+
     /**
      * Rubros register
      * If the response has errors in the OAS API it should show a popup message with an error.
@@ -72,7 +71,7 @@ export class RubroHelper {
 
     }
 
- 
+
     /**
      * Rubros delete
      * If the response has errors in the OAS API it should show a popup message with an error.
@@ -96,7 +95,7 @@ export class RubroHelper {
 
     }
 
-   
+
     /**
      * Rubros update
      * If the response has errors in the OAS API it should show a popup message with an error.

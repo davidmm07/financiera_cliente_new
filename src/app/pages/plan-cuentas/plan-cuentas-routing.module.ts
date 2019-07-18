@@ -29,7 +29,8 @@ const routes: Routes = [{
 {
   path: 'fuentes',
   component: FuentesComponent,
-},{
+},
+{
   path: 'nb-fs-icon',
   component: FsIconAComponent,
 },
@@ -37,7 +38,7 @@ const routes: Routes = [{
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class PlanCuentasRoutingModule { }
 
@@ -50,5 +51,5 @@ export const routedComponents = [
   ComprobacionApropiacionInicialComponent,
   FsIconAComponent,
   ConsultaComponent,
-  RegistroComponent
+  RegistroComponent,
 ];

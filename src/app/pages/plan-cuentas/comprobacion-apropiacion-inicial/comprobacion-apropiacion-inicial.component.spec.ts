@@ -8,7 +8,7 @@ describe('ComprobacionApropiacionInicialComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ComprobacionApropiacionInicialComponent ]
+      declarations: [ ComprobacionApropiacionInicialComponent ],
     })
     .compileComponents();
   }));

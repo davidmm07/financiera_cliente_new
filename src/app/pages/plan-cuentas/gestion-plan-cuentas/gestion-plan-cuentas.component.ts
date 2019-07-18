@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 
 @Component({
-  selector: 'gestion-plan-cuentas',
+  selector: 'ngx-gestion-plan-cuentas',
   templateUrl: './gestion-plan-cuentas.component.html',
-  styleUrls: ['./gestion-plan-cuentas.component.scss']
+  styleUrls: ['./gestion-plan-cuentas.component.scss'],
 })
 export class GestionPlanCuentasComponent implements OnInit {
 
@@ -23,20 +23,20 @@ export class GestionPlanCuentasComponent implements OnInit {
     },
   ];
 
-  
-  selectedOption : any;
+
+  selectedOption: any;
   VigenciaActual: any;
   op_plan_cuentas: any[] = [
     { option: 'Rubros' },
     { option: 'Apropiaciones' },
     { option: 'Fuentes de Financiamiento' }];
-  vigencias :any[] = [
+  vigencias: any[] = [
     {vigencia: 2019},
     {vigencia: 2017},
-    {vigencia: 2016}
+    {vigencia: 2016},
   ]
 
-  constructor(private translate: TranslateService,) {
+  constructor(private translate: TranslateService) {
     this.selectedOption = '';
     this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
     });
@@ -50,7 +50,7 @@ export class GestionPlanCuentasComponent implements OnInit {
   }
 
   onSelect(selectedItem: any) {
-    console.log("Opcion Seleccionada es: ", selectedItem); 
+    // console.log('Opcion Seleccionada es: ', selectedItem);
    }
 }
 

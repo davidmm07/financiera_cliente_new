@@ -31,7 +31,7 @@ export class NotificacionesService {
         private autenticacion: ImplicitAutenticationService,
     ) {
         this.listMessage = [];
-        this.token = (JSON.parse(atob(localStorage.getItem("id_token").split(".")[1])).role).map((data: any) => (data.replace("/", "_")));
+        this.token = (JSON.parse(atob(localStorage.getItem('id_token').split('.')[1])).role).map((data: any) => (data.replace('/', '_')));
         this.connect();
         if (this.autenticacion.live()) {
             this.queryNotification(this.token);
@@ -40,7 +40,7 @@ export class NotificacionesService {
 
 
     }
-    connect(){
+    connect() {
         if (this.autenticacion.live()) {
             this.payload = this.autenticacion.getPayload();
             this.messagesSubject = webSocket(`${CHAT_URL}?id=${this.payload.sub}&profiles=${this.token}`);
@@ -91,7 +91,6 @@ export class NotificacionesService {
                             this.addMessage(message);
                         });
                 }
-
-            });    
-    }
+            });
+        }
 }

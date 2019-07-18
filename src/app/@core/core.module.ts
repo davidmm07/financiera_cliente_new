@@ -10,7 +10,6 @@ import { AnalyticsService } from './utils/analytics.service';
 import { NotificacionesService } from './utils/notificaciones.service';
 import { WebsocketService } from './utils/websocket.service';
 import { AuthGuard } from './_guards/auth.guard';
-import { StoreModule } from '@ngrx/store';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
