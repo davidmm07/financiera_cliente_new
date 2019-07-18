@@ -21,6 +21,6 @@ export class DependenciaHelper {
             limit: 0
         };
         // call request manager for the tree's data.
-        return this.rqManager.get(`dependencia`, params);
+        return this.rqManager.get('dependencia', params);
     }
 }

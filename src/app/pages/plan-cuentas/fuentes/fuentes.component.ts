@@ -21,7 +21,7 @@ export class FuentesComponent implements OnInit {
   constructor(private translate: TranslateService, private dependenciaHelper: DependenciaHelper) { 
     this.formInfoRubro = FORM_INFO_RUBRO;
     this.construirForm();
-    this.dependenciaHelper.get().subscribe((res) => {
+    this.dependenciaHelper.get().subscribe((res: any) => {
       console.log(res);
     });
   }
