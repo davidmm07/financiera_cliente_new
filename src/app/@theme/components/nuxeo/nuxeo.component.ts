@@ -12,8 +12,8 @@ export class NuxeoComponent implements OnChanges {
     nuxeo: any;
     @Input('files') files: any;
     @Input('uid') uid: any;
-    @Output('saveApi') saveApi: EventEmitter<any> = new EventEmitter();
-    @Output('urlFile') urlFile: EventEmitter<any> = new EventEmitter();
+    @Output() saveApi: EventEmitter<any> = new EventEmitter();
+    @Output() urlFile: EventEmitter<any> = new EventEmitter();
 
     constructor(private documentoService: DocumentoService) {
     }

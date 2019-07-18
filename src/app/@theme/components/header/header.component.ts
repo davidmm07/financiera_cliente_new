@@ -59,7 +59,6 @@ export class HeaderComponent implements OnInit {
   }
   ngOnInit() {
     this.autenticacion.init();
-    //this.autenticacion.getAuthorizationUrl(true);
   }
   liveToken() {
     if (this.autenticacion.live()) {

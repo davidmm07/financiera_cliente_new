@@ -1,18 +1,18 @@
-import { Component, OnInit } from "@angular/core";
-import { Rubro } from "../../../@core/data/models/rubro";
-import { ApropiacionHelper } from "../../../helpers/apropiaciones/apropiacionHelper";
-import { PopUpManager } from "../../../managers/popUpManager";
+import { Component, OnInit } from '@angular/core';
+import { Rubro } from '../../../@core/data/models/rubro';
+import { ApropiacionHelper } from '../../../helpers/apropiaciones/apropiacionHelper';
+import { PopUpManager } from '../../../managers/popUpManager';
 import { Apropiacion } from '../../../@core/data/models/apropiacion';
 
 @Component({
-  selector: "apropiaciones",
-  templateUrl: "./apropiaciones.component.html",
-  styleUrls: ["./apropiaciones.component.scss"]
+  selector: 'ngx-apropiaciones',
+  templateUrl: './apropiaciones.component.html',
+  styleUrls: ['./apropiaciones.component.scss'],
 })
 export class ApropiacionesComponent implements OnInit {
   rubroSeleccionado: any;
-  arbolRubro : any;
-  info_apropiacion: Apropiacion; 
+  arbolRubro: any;
+  info_apropiacion: Apropiacion;
   apropiacionAprobada: boolean;
   vigenciaSeleccionada: any;
   valorApropiacion: any;
@@ -20,12 +20,12 @@ export class ApropiacionesComponent implements OnInit {
   clean = false;
   constructor(
     private apHelper: ApropiacionHelper,
-    private popManager: PopUpManager
+    private popManager: PopUpManager,
   ) {
     this.rubroSeleccionado = {
-      Codigo: "",
-      Nombre: "",
-      ApropiacionInicial :0,
+      Codigo: '',
+      Nombre: '',
+      ApropiacionInicial: 0,
     };
 
     this.vigenciaSeleccionada = 0;
@@ -38,12 +38,12 @@ export class ApropiacionesComponent implements OnInit {
   receiveMessage($event) {
     this.rubroSeleccionado = <Rubro>$event;
     this.rubroSeleccionado.Id = parseInt(this.rubroSeleccionado.Id, 0);
-    this.rubroSeleccionado.Nombre = " ";
+    this.rubroSeleccionado.Nombre = ' ';
     this.rubroSeleccionado.UnidadEjecutora = parseInt(
       this.rubroSeleccionado.UnidadEjecutora,
-      0
+      0,
     );
-    this.rubroSeleccionado.ApropiacionInicial = parseInt(this.rubroSeleccionado.ApropiacionInicial,0);
+    this.rubroSeleccionado.ApropiacionInicial = parseInt(this.rubroSeleccionado.ApropiacionInicial, 0);
 
   }
 
@@ -59,7 +59,7 @@ export class ApropiacionesComponent implements OnInit {
   registrarApropiacionARubro(event) {
     if (event.valid) {
       event.data.RubroSel =
-        typeof this.rubroSeleccionado.Codigo === "undefined"
+        typeof this.rubroSeleccionado.Codigo === 'undefined'
           ? undefined
           : this.rubroSeleccionado;
       event.data.Vigencia = this.vigenciaSeleccionada;
@@ -69,12 +69,12 @@ export class ApropiacionesComponent implements OnInit {
       this.apHelper.apropiacionRegister(event.data).subscribe(res => {
         if (res) {
           this.popManager.showSuccessAlert(
-            "Se registro la preasignación de apropiación correctamente!"
+            'Se registro la preasignación de apropiación correctamente!',
           );
-          //this.cleanForm()
-          //this.eventChange.emit(true);
+          // this.cleanForm()
+          // this.eventChange.emit(true);
         } else {
-          this.popManager.showErrorAlert("Datos Erroneos");
+          this.popManager.showErrorAlert('Datos Erroneos');
         }
       });
     }
@@ -103,7 +103,7 @@ export class ApropiacionesComponent implements OnInit {
         if (res) {
           this.popManager.showSuccessAlert('Se registro la preasignación de apropiación correctamente!');
           this.cleanForm()
-          //this.eventChange.emit(true);
+          // this.eventChange.emit(true);
         }
       });
     } else {

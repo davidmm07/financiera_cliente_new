@@ -22,10 +22,9 @@ import { FuentesComponent } from './fuentes/fuentes.component';
     NbSelectModule,
     NbAlertModule,
     NbTabsetModule,
-   
   ],
   exports: [
 
-  ]
+  ],
 })
 export class PlanCuentasModule { }

@@ -3,8 +3,6 @@ import { HttpInterceptor, HttpRequest, HttpHandler, HttpErrorResponse } from '@a
 import { Router } from '@angular/router';
 
 import { tap } from 'rxjs/operators';
-import { MatSnackBar } from '@angular/material';
-import { NbToastrService } from '@nebular/theme';
 import { PopUpManager } from '../../managers/popUpManager'
 import { TranslateService } from '@ngx-translate/core';
 

@@ -32,4 +32,3 @@ const PAGES_COMPONENTS = [
 })
 export class PagesModule {
 }
- 
