@@ -12,8 +12,8 @@
 
         <!-- fuente -->
         <div class="col-md-6">
-           <!-- info fuente -->
-        <div>
+          <!-- info fuente -->
+          <div>
             <div class="row">
               <nb-card class="col-md-12">
                 <nb-card-header>
@@ -38,19 +38,19 @@
                     </div>
                     <div>
                       <label>Descripcion Fuente</label>
-  
+
                       <label>Descripcion Fuente</label>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col">
                       <button type="submit" class="btn btn-success btn-block" (click)="aniadirNodo()">
-                        Cancelar
+                        {{'GLOBAL.cancelar' | translate}}
                       </button>
                     </div>
                     <div class="col">
                       <button type="submit" class="btn btn-success btn-block" (click)="cleanForm()">
-                        limpiar
+                        {{'GLOBAL.limpiar' | translate}}
                       </button>
                     </div>
                   </div>
@@ -58,25 +58,35 @@
               </nb-card>
             </div>
           </div>
-        
+
           <!-- dependencias -->
-        <div class="col-md-12" *ngFor="let rubro of rubrosAsignados">
-          <div>
-            <h5>{{'GLOBAL.rubro' | translate}}: {{rubro.Codigo | json}}</h5>
-          </div>
-          <div *ngFor="let dependencia of rubro.Dependencias">
-            <label for="" class="col-md-4">{{'GLOBAL.dependencia' | translate}}</label>
-            <label for="" class="col-md-4">{{'GLOBAL.valor' | translate}}</label>
-            <label for="" class="col-md-4">
+          <div class="col-md-12" *ngFor="let rubro of rubrosAsignados">
+            <div>
+              <h5>{{'GLOBAL.rubro' | translate}}: {{rubro.Codigo}} {{rubro.Nombre}}</h5>
+            </div>
+            <div class="row">
+              <label for="" class="col-md-4">{{'GLOBAL.dependencia' | translate}}</label>
+              <label for="valor" class="col-md-4">{{'GLOBAL.valor' | translate}}</label>
+              <label for="" class="col-md-4">
                 <span class=".glyphicon .glyphicon-remove"></span>
-            </label>
+              </label>
+            </div>
+            <div class="row">
+              <select class="form-control col-md-4">
+                <option *ngFor="let dependencia of rubro.dependencias">{{dependencia.nombre}}</option>
+              </select>
+              <input type="number" name="valor" id="" class="form-control col-md-4 offset-1" placeholder="valor">
+            </div>
+            <div class="row offset-3" style="padding-top: 2%;">
+              <button class="btn btn-outline-primary">{{'FUENTE_FINANCIAMIENTO.add-dependencia' | translate}}</button>
+              <button class="btn btn-outline-danger offset-1">{{'FUENTE_FINANCIAMIENTO.remove-rubro' | translate}}</button>
+            </div>
           </div>
+
+          <button class="btn btn-success">{{'GLOBAL.guardar' | translate}}</button>
         </div>
+
       </div>
-
-       
-
     </div>
   </div>
-</div>
 </div>

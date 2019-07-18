@@ -111,6 +111,8 @@
     "registrar_rubro": "Registrar Rubro"
   },
   "FUENTE_FINANCIAMIENTO": {
-    "asignar_fuente": "Asignar Fuente de Financiamiento"
+    "asignar_fuente": "Asignar Fuente de Financiamiento",
+    "add-dependencia": "Añadir dependencia",
+    "remove-rubro": "Quitar rubro"
   }
 }

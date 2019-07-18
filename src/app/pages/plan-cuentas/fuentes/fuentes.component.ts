@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FORM_INFO_RUBRO } from './form_info_rubro';
 import { TranslateService } from '@ngx-translate/core';
 import { Rubro } from '../../../@core/data/models/rubro';
+import { DependenciaHelper } from '../../../helpers/oikos/dependenciaHelper';
 import { PipeTransform, Pipe } from '@angular/core';
 
 @Component({
@@ -17,24 +18,31 @@ export class FuentesComponent implements OnInit {
   clean = false;
   rubrosAsignados :any =[];
 
-  constructor(private translate: TranslateService,) { 
+  constructor(private translate: TranslateService, private dependenciaHelper: DependenciaHelper) { 
     this.formInfoRubro = FORM_INFO_RUBRO;
     this.construirForm();
+    this.dependenciaHelper.get().subscribe((res) => {
+      console.log(res);
+    });
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   receiveMessage($event){
+
     if ( this.rubrosAsignados.filter((data)=>(data.Codigo === $event.Codigo)).length === 0 ) {
+      $event["dependencias"] = [
+        {"nombre": "Prueba"},
+        {"nombre": "Prueba2"},
+        {"nombre": "Prueba3"},
+        {"nombre": "Prueba4"}];
+      console.log($event)
       this.rubrosAsignados = [...this.rubrosAsignados, $event];
     }
   }
 
 
-  validarForm($event){
-
-  }
+  validarForm($event){}
   aniadirNodo(){
 
   }
