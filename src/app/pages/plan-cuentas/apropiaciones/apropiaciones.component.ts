@@ -20,7 +20,7 @@ export class ApropiacionesComponent implements OnInit {
   clean = false;
   valoringresos = 666666666666;
   valoregresos = 666666666666;
-  opcion : string;
+  opcion: string;
 
   constructor(
     private apHelper: ApropiacionHelper,
@@ -50,7 +50,7 @@ export class ApropiacionesComponent implements OnInit {
   }
 
   receiveMessage($event) {
-    console.log('Camila',this.optionPlanCuentas);
+    console.info( 'Camila' , this.optionPlanCuentas);
     this.rubroSeleccionado = <Rubro>$event;
     this.rubroSeleccionado.Id = parseInt(this.rubroSeleccionado.Id, 0);
     this.rubroSeleccionado.Nombre = ' ';
@@ -82,7 +82,7 @@ export class ApropiacionesComponent implements OnInit {
       event.data.IdRubro = typeof this.rubroSeleccionado.Id === 'undefined' ? undefined : this.rubroSeleccionado.Id;
       event.data.Vigencia = typeof this.apropiacion.Vigencia === 'undefined' ? undefined : this.vigenciaSeleccionada.vigencia;
       event.data.Valor = typeof this.apropiacion.Valor === 'undefined' ? undefined : this.apropiacion.Valor;
-      event.data.IdEstadoApropiacion = 1; //Estado pendiente
+      event.data.IdEstadoApropiacion = 1; // Estado pendiente
 
       this.apHelper.apropiacionRegister(event.data).subscribe((res) => {
         if (res) {

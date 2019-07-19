@@ -1,5 +1,5 @@
-import { Component, OnInit } from "@angular/core";
-import { TranslateService, LangChangeEvent } from "@ngx-translate/core";
+import { Component, OnInit } from '@angular/core';
+import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 
 @Component({
 
@@ -10,17 +10,17 @@ import { TranslateService, LangChangeEvent } from "@ngx-translate/core";
 export class GestionPlanCuentasComponent implements OnInit {
   tabs: any[] = [
     {
-      title: "Rubros",
-      route: "/pages/plan-cuentas/rubros"
+      title: 'Rubros',
+      route: '/pages/plan-cuentas/rubros',
     },
     {
-      title: "Apropiaciones",
-      route: "/pages/plan-cuentas/apropiaciones"
+      title: 'Apropiaciones',
+      route: '/pages/plan-cuentas/apropiaciones',
     },
     {
-      title: "fuentes",
-      route: "/pages/plan-cuentas/fuentes"
-    }
+      title: 'fuentes',
+      route: '/pages/plan-cuentas/fuentes',
+    },
   ];
 
 
@@ -49,12 +49,12 @@ export class GestionPlanCuentasComponent implements OnInit {
   }
 
   onSelect(selectedItem: any) {
-    console.log("Opcion Seleccionada es: ", selectedItem);
+    console.info('Opcion Seleccionada es: ', selectedItem);
   }
 
-  onChangeTab($event){
-    console.log($event.tabTitle);
-    this.selectedOption=$event.tabTitle;
+  onChangeTab($event) {
+    console.info($event.tabTitle);
+    this.selectedOption = $event.tabTitle;
   }
 
 }
