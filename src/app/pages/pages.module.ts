@@ -10,6 +10,9 @@ import { PlanCuentasModule } from './plan-cuentas/plan-cuentas.module';
 
 
 
+
+
+
 const PAGES_COMPONENTS = [
   PagesComponent,
 ];
@@ -20,7 +23,7 @@ const PAGES_COMPONENTS = [
     ThemeModule,
     DashboardModule,
     SharedModule,
-    PlanCuentasModule,
+    PlanCuentasModule
   ],
   declarations: [
     ...PAGES_COMPONENTS,

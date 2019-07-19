@@ -5,6 +5,7 @@ import { PlanCuentasRoutingModule, routedComponents } from './plan-cuentas-routi
 import { SharedModule } from '../../shared/shared.module';
 import { NbTreeGridModule, NbSelectModule, NbAlertModule, NbTabsetModule } from '@nebular/theme';
 import { FuentesComponent } from './fuentes/fuentes.component';
+import { ModificacionFuentesComponent } from './fuentes/modificacion-fuentes/modificacion-fuentes.component';
 
 
 
