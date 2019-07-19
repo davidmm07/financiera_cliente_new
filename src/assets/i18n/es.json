@@ -128,7 +128,12 @@
     "valor": "Valor",
     "rubro_origen": "Rubro de origen",
     "rubro_destino": "Rubro de destino",
-    "rubro_dependencia": "Dependencia"
-
+    "rubro_dependencia": "Dependencia",
+    "agregar-dependencia": "Agregar Dependencia",
+    "quitar-fuente": "Quitar Fuente",
+    "registrar-modificacion" : "Registrar Modificación",
+    "adicion": "Adicíon",
+    "reduccion": "Reduccion",
+    "traslado": "Traslado"
   }
 }
