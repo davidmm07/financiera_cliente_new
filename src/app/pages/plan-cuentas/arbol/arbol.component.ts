@@ -1,13 +1,14 @@
-import { Component, OnInit, Input, EventEmitter, Output } from "@angular/core";
+import { Component, Input, EventEmitter, Output } from '@angular/core';
 import {
   NbSortDirection,
   NbTreeGridDataSource,
   NbTreeGridDataSourceBuilder,
-  NbSortRequest
-} from "@nebular/theme";
-import { RubroHelper } from "../../../helpers/rubros/rubroHelper";
-import { Observable } from "rxjs";
-import { ApropiacionHelper } from "../../../helpers/apropiaciones/apropiacionHelper";
+  NbSortRequest,
+} from '@nebular/theme';
+import { RubroHelper } from '../../../helpers/rubros/rubroHelper';
+import { Observable } from 'rxjs';
+import { ApropiacionHelper } from '../../../helpers/apropiaciones/apropiacionHelper';
+
 interface TreeNode<T> {
   data: T;
   children?: TreeNode<T>[];
@@ -28,9 +29,9 @@ interface EstructuraArbolRubrosApropiaciones {
 }
 
 @Component({
-  selector: "arbol",
-  templateUrl: "./arbol.component.html",
-  styleUrls: ["./arbol.component.scss"]
+  selector: 'ngx-arbol',
+  templateUrl: './arbol.component.html',
+  styleUrls: ['./arbol.component.scss'],
 })
 export class ArbolComponent{
   @Output() rubroSeleccionado = new EventEmitter();
@@ -39,8 +40,9 @@ export class ArbolComponent{
   opcionSeleccionada : string;
 
   update: any;
-  customColumn = "Codigo";
-  defaultColumns = ["Nombre"];
+  customColumn = 'Codigo';
+  defaultColumns = ['Nombre'];
+
   allColumns = [this.customColumn, ...this.defaultColumns];
   dataSource: NbTreeGridDataSource<EstructuraArbolRubros>;
   dataSource2: NbTreeGridDataSource<EstructuraArbolRubrosApropiaciones>;
@@ -56,13 +58,14 @@ export class ArbolComponent{
    
   ) {    
     this.opcionSeleccionada = 'Rubros';
+
     this.loadTree();
     
   }
 
 
   ngOnChanges(changes) {
-    if (changes["updateSignal"] && this.updateSignal) {
+    if (changes['updateSignal'] && this.updateSignal) {
       this.updateSignal.subscribe(() => {
         this.loadTree();
       });
@@ -98,7 +101,7 @@ export class ArbolComponent{
   }
 
   updateTreeSignal($event) {
-    console.info("updated", $event);
+    console.info('updated', $event);
     this.loadTree();
   }
 
@@ -130,7 +133,7 @@ export class ArbolComponent{
 }
 
 @Component({
-  selector: "nb-fs-icon",
+  selector: 'ngx-nb-fs-icon',
   template: `
     <nb-tree-grid-row-toggle
       [expanded]="expanded"
@@ -138,13 +141,13 @@ export class ArbolComponent{
     >
     </nb-tree-grid-row-toggle>
     <ng-template #fileIcon> </ng-template>
-  `
+  `,
 })
 export class FsIconAComponent {
   @Input() kind: string;
   @Input() expanded: boolean;
 
   isDir(): boolean {
-    return this.kind === "dir";
+    return this.kind === 'dir';
   }
 }

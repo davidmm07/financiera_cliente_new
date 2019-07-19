@@ -1,17 +1,17 @@
-import { RequestManager } from "../../managers/requestManager";
-import { Injectable } from "@angular/core";
-import { map } from "rxjs/operators";
-import { PopUpManager } from "../../managers/popUpManager";
+import { RequestManager } from '../../managers/requestManager';
+import { Injectable } from '@angular/core';
+import { map } from 'rxjs/operators';
+import { PopUpManager } from '../../managers/popUpManager';
 
 @Injectable({
-    providedIn: "root"
+  providedIn: 'root',
 })
 export class ApropiacionHelper {
 
-    constructor(
-        private rqManager: RequestManager,
-        private pUpManager: PopUpManager
-    ) { }
+  constructor(
+    private rqManager: RequestManager,
+    private pUpManager: PopUpManager,
+  ) {}
 
 
     /**

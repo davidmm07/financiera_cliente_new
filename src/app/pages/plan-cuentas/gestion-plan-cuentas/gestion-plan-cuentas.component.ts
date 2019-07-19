@@ -2,9 +2,10 @@ import { Component, OnInit } from "@angular/core";
 import { TranslateService, LangChangeEvent } from "@ngx-translate/core";
 
 @Component({
-  selector: "gestion-plan-cuentas",
-  templateUrl: "./gestion-plan-cuentas.component.html",
-  styleUrls: ["./gestion-plan-cuentas.component.scss"]
+
+  selector: 'ngx-gestion-plan-cuentas',
+  templateUrl: './gestion-plan-cuentas.component.html',
+  styleUrls: ['./gestion-plan-cuentas.component.scss'],
 })
 export class GestionPlanCuentasComponent implements OnInit {
   tabs: any[] = [
@@ -22,23 +23,24 @@ export class GestionPlanCuentasComponent implements OnInit {
     }
   ];
 
+
   selectedOption: any;
   VigenciaActual: any;
   op_plan_cuentas: any[] = [
-    { option: "Rubros" },
-    { option: "Apropiaciones" },
-    { option: "Fuentes de Financiamiento" }
-  ];
+    { option: 'Rubros' },
+    { option: 'Apropiaciones' },
+    { option: 'Fuentes de Financiamiento' }];
   vigencias: any[] = [
-    { vigencia: 2019 },
-    { vigencia: 2017 },
-    { vigencia: 2016 }
-  ];
+    {vigencia: 2019},
+    {vigencia: 2017},
+    {vigencia: 2016},
+  ]
 
   constructor(private translate: TranslateService) {
-    this.selectedOption = "";
-    this.translate.onLangChange.subscribe((event: LangChangeEvent) => {});
-  }
+    this.selectedOption = '';
+    this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+    });
+   }
 
   ngOnInit() {}
 
@@ -54,6 +56,7 @@ export class GestionPlanCuentasComponent implements OnInit {
     console.log($event.tabTitle);
     this.selectedOption=$event.tabTitle;
   }
+
 }
 
 // definicion de tabs

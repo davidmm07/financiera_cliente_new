@@ -1,13 +1,13 @@
-import { Component, OnInit, Input } from "@angular/core";
-import { Rubro } from "../../../@core/data/models/rubro";
-import { ApropiacionHelper } from "../../../helpers/apropiaciones/apropiacionHelper";
-import { PopUpManager } from "../../../managers/popUpManager";
+import { Component, OnInit, Input } from '@angular/core';
+import { Rubro } from '../../../@core/data/models/rubro';
+import { ApropiacionHelper } from '../../../helpers/apropiaciones/apropiacionHelper';
+import { PopUpManager } from '../../../managers/popUpManager';
 import { Apropiacion } from '../../../@core/data/models/apropiacion';
 
 @Component({
-  selector: "apropiaciones",
-  templateUrl: "./apropiaciones.component.html",
-  styleUrls: ["./apropiaciones.component.scss"]
+  selector: 'ngx-apropiaciones',
+  templateUrl: './apropiaciones.component.html',
+  styleUrls: ['./apropiaciones.component.scss'],
 })
 export class ApropiacionesComponent implements OnInit {
 
@@ -24,12 +24,12 @@ export class ApropiacionesComponent implements OnInit {
 
   constructor(
     private apHelper: ApropiacionHelper,
-    private popManager: PopUpManager
+    private popManager: PopUpManager,
   ) {
     this.rubroSeleccionado = {
       Id: 0,
-      Codigo: "",
-      Nombre: "",
+      Codigo: '',
+      Nombre: '',
       ApropiacionInicial: 0,
     };
 
@@ -50,13 +50,13 @@ export class ApropiacionesComponent implements OnInit {
   }
 
   receiveMessage($event) {
-    console.log("Camila",this.optionPlanCuentas);
+    console.log('Camila',this.optionPlanCuentas);
     this.rubroSeleccionado = <Rubro>$event;
     this.rubroSeleccionado.Id = parseInt(this.rubroSeleccionado.Id, 0);
-    this.rubroSeleccionado.Nombre = " ";
+    this.rubroSeleccionado.Nombre = ' ';
     this.rubroSeleccionado.UnidadEjecutora = parseInt(
       this.rubroSeleccionado.UnidadEjecutora,
-      0
+      0,
     );
     this.rubroSeleccionado.ApropiacionInicial = parseInt(this.rubroSeleccionado.ApropiacionInicial, 0);
 
@@ -88,7 +88,7 @@ export class ApropiacionesComponent implements OnInit {
         if (res) {
           this.popManager.showSuccessAlert('Se registro la preasignación de apropiación correctamente!');
           this.cleanForm()
-          //this.eventChange.emit(true);
+          // this.eventChange.emit(true);
         }
       });
     } else {

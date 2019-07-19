@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'comprobacion-apropiacion-inicial',
+  selector: 'ngx-comprobacion-apropiacion-inicial',
   templateUrl: './comprobacion-apropiacion-inicial.component.html',
-  styleUrls: ['./comprobacion-apropiacion-inicial.component.scss']
+  styleUrls: ['./comprobacion-apropiacion-inicial.component.scss'],
 })
 export class ComprobacionApropiacionInicialComponent implements OnInit {
 

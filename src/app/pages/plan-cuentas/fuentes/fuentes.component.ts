@@ -4,15 +4,15 @@ import { TranslateService } from '@ngx-translate/core';
 import { Rubro } from '../../../@core/data/models/rubro';
 
 @Component({
-  selector: 'fuentes',
+  selector: 'ngx-fuentes',
   templateUrl: './fuentes.component.html',
-  styleUrls: ['./fuentes.component.scss']
+  styleUrls: ['./fuentes.component.scss'],
 })
 export class FuentesComponent implements OnInit {
   formInfoRubro: any;
   info_rubro: Rubro;
   clean = false;
-  constructor(private translate: TranslateService,) { 
+  constructor(private translate: TranslateService) {
     this.formInfoRubro = FORM_INFO_RUBRO;
     this.construirForm();
   }
@@ -20,17 +20,16 @@ export class FuentesComponent implements OnInit {
   ngOnInit() {
   }
 
-  receiveMessage($event){
+  receiveMessage($event) {
 
   }
-  validarForm($event){
+  validarForm($event) {
 
   }
-  aniadirNodo(){
+  aniadirNodo() {
 
   }
-  cleanForm(){
-    
+  cleanForm() {
   }
 
   construirForm() {

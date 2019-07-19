@@ -37,7 +37,7 @@ export class PagesComponent implements OnInit {
 
   ngOnInit() {
     if (!this.autenticacion.live()) {
-      this.roles = (JSON.parse(atob(localStorage.getItem("id_token").split(".")[1])).role).map((data: any) => (data.replace("/", "_")));
+      this.roles = (JSON.parse(atob(localStorage.getItem('id_token').split('.')[1])).role).map((data: any) => (data.replace('/', '_')));
       this.menuws.get(this.rol + '/presupuesto_kronos').subscribe(
         data => {
           this.dataMenu = <any>data;

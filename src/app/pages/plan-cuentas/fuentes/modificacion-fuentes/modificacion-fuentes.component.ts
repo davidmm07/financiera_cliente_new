@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'modificacion-fuentes',
+  selector: 'ngx-modificacion-fuentes',
   templateUrl: './modificacion-fuentes.component.html',
   styleUrls: ['./modificacion-fuentes.component.scss']
 })

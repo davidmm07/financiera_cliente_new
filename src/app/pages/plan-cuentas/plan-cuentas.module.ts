@@ -12,8 +12,6 @@ import { ModificacionFuentesComponent } from './fuentes/modificacion-fuentes/mod
 @NgModule({
   declarations: [
     ...routedComponents,
-    FuentesComponent,
-    ModificacionFuentesComponent,
   ],
   imports: [
     ThemeModule,
@@ -24,10 +22,9 @@ import { ModificacionFuentesComponent } from './fuentes/modificacion-fuentes/mod
     NbSelectModule,
     NbAlertModule,
     NbTabsetModule,
-   
   ],
   exports: [
 
-  ]
+  ],
 })
 export class PlanCuentasModule { }

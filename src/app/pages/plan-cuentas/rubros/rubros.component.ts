@@ -1,3 +1,4 @@
+
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Rubro } from '../../../@core/data/models/rubro';
 import { FORM_INFO_RUBRO } from './form_info_rubro';
@@ -9,9 +10,9 @@ import { FormManager } from '../../../managers/formManager';
 
 
 @Component({
-  selector: 'rubros',
+  selector: 'ngx-rubros',
   templateUrl: './rubros.component.html',
-  styleUrls: ['./rubros.component.scss']
+  styleUrls: ['./rubros.component.scss'],
 })
 export class RubrosComponent implements OnInit {
   rubroSeleccionado: any;

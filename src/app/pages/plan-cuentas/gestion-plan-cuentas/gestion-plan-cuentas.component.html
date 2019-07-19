@@ -12,14 +12,14 @@
         </nb-select>
         <nb-tabset fullWidth (changeTab)="onChangeTab($event)">
           <nb-tab tabTitle="Rubros">
-            <rubros [optionPlanCuentas]="selectedOption"> </rubros>
+            <ngx-rubros [optionPlanCuentas]="selectedOption"> </ngx-rubros>
           </nb-tab>
           <nb-tab tabTitle="Apropiaciones" >
-            <apropiaciones [optionPlanCuentas]="selectedOption" [vigenciaSeleccionada]="VigenciaActual">
-            </apropiaciones>
+            <ngx-apropiaciones [optionPlanCuentas]="selectedOption" [vigenciaSeleccionada]="VigenciaActual">
+            </ngx-apropiaciones>
           </nb-tab>
           <nb-tab tabTitle="Fuentes">
-            <fuentes></fuentes>
+            <ngx-fuentes></ngx-fuentes>
           </nb-tab>
         </nb-tabset>
       </nb-card-body>
