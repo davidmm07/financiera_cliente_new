@@ -12,7 +12,7 @@ import { Apropiacion } from '../../../@core/data/models/apropiacion';
 export class ApropiacionesComponent implements OnInit {
 
   @Input() vigenciaSeleccionada;
-  @Input() optionPlanCuentas: any;
+  @Input() optionPlanCuentas: string;
   rubroSeleccionado: any;
   apropiacion: Apropiacion;
   apropiacionAprobada: boolean;
@@ -20,6 +20,7 @@ export class ApropiacionesComponent implements OnInit {
   clean = false;
   valoringresos = 666666666666;
   valoregresos = 666666666666;
+  opcion : string;
 
   constructor(
     private apHelper: ApropiacionHelper,
@@ -39,6 +40,8 @@ export class ApropiacionesComponent implements OnInit {
       IdEstadoApropiacion: 0,
       IdRubro: 0,
     };
+
+    this.opcion = this.optionPlanCuentas;
   }
 
 
@@ -47,6 +50,7 @@ export class ApropiacionesComponent implements OnInit {
   }
 
   receiveMessage($event) {
+    console.log("Camila",this.optionPlanCuentas);
     this.rubroSeleccionado = <Rubro>$event;
     this.rubroSeleccionado.Id = parseInt(this.rubroSeleccionado.Id, 0);
     this.rubroSeleccionado.Nombre = " ";

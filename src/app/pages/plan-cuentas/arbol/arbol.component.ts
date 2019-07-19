@@ -6,8 +6,6 @@ import {
   NbSortRequest
 } from "@nebular/theme";
 import { RubroHelper } from "../../../helpers/rubros/rubroHelper";
-import { NbCollectionViewer } from "@nebular/theme/components/cdk/collections";
-import { CollectionViewer } from "@angular/cdk/collections";
 import { Observable } from "rxjs";
 import { ApropiacionHelper } from "../../../helpers/apropiaciones/apropiacionHelper";
 interface TreeNode<T> {
@@ -34,15 +32,15 @@ interface EstructuraArbolRubrosApropiaciones {
   templateUrl: "./arbol.component.html",
   styleUrls: ["./arbol.component.scss"]
 })
-export class ArbolComponent {
+export class ArbolComponent{
   @Output() rubroSeleccionado = new EventEmitter();
   @Input() updateSignal: Observable<string[]>;
   @Input() optionSelect: string;
-
+  opcionSeleccionada : string;
 
   update: any;
   customColumn = "Codigo";
-  defaultColumns = ["Nombre", "ApropiacionInicial"];
+  defaultColumns = ["Nombre"];
   allColumns = [this.customColumn, ...this.defaultColumns];
   dataSource: NbTreeGridDataSource<EstructuraArbolRubros>;
   dataSource2: NbTreeGridDataSource<EstructuraArbolRubrosApropiaciones>;
@@ -55,10 +53,13 @@ export class ArbolComponent {
     private dataSourceBuilder2: NbTreeGridDataSourceBuilder<EstructuraArbolRubrosApropiaciones>,
     private rbHelper: RubroHelper,
     private apHelper: ApropiacionHelper
-  ) {
+   
+  ) {    
+    this.opcionSeleccionada = 'Rubros';
     this.loadTree();
-
+    
   }
+
 
   ngOnChanges(changes) {
     if (changes["updateSignal"] && this.updateSignal) {
@@ -68,20 +69,32 @@ export class ArbolComponent {
     }
   }
 
-  loadTree() {
-    /* if (this.optionSelect === 'Rubros') {
-      this.rbHelper.getFullArbol().subscribe((res) => {
-        this.data = res;
-        this.dataSource = this.dataSourceBuilder.create(this.data);
-      });
-    } else if (this.optionSelect === 'Apropiaciones') { 
- */
-      this.apHelper.getFullArbol().subscribe(res => {
-        this.data = res;
-        this.dataSource2 = this.dataSourceBuilder2.create(this.data);
-      });
-/*    } */
+  private data: TreeNode<EstructuraArbolRubrosApropiaciones>[] | TreeNode<EstructuraArbolRubros>[];
 
+
+  loadTreeRubros(){
+    this.rbHelper.getFullArbol().subscribe((res) => {
+      this.data = res;
+      this.dataSource = this.dataSourceBuilder.create(this.data);
+    });
+  }
+
+
+  loadTreeApropiaciones(){
+    this.defaultColumns = ["Nombre","ApropiacionInicial"]
+    this.apHelper.getFullArbol().subscribe(res => {
+      this.data = res;
+      this.dataSource2 = this.dataSourceBuilder2.create(this.data);
+    });
+  }
+
+  loadTree() {
+
+    if(this.opcionSeleccionada == 'Rubros'){
+      this.loadTreeRubros();
+    }else if(this.opcionSeleccionada == 'Apropiaciones'){
+      this.loadTreeApropiaciones();
+    }
   }
 
   updateTreeSignal($event) {
@@ -102,15 +115,18 @@ export class ArbolComponent {
   }
 
   async onSelect(selectedItem: any) {
+    //console.log(this.optionSelect);
     this.rubroSeleccionado.emit(selectedItem.data);
   }
-  private data: TreeNode<EstructuraArbolRubrosApropiaciones>[];
 
+ 
   getShowOn(index: number) {
     const minWithForMultipleColumns = 400;
     const nextColumnStep = 100;
     return minWithForMultipleColumns + nextColumnStep * index;
   }
+
+  
 }
 
 @Component({

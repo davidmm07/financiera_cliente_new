@@ -47,6 +47,7 @@ export class RubrosComponent implements OnInit {
   }
 
   receiveMessage($event) {
+    console.log("Camila",this.optionPlanCuentas);
     this.rubroSeleccionado = <Rubro>$event
     this.rubroSeleccionado.Id = parseInt(this.rubroSeleccionado.Id, 0);
     this.rubroSeleccionado.UnidadEjecutora = parseInt(this.rubroSeleccionado.UnidadEjecutora, 0);
