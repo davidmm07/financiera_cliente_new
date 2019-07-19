@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit {
 
   @Input() position = 'normal';
   itemClick: Subscription;
-
+  liveTokenValue: boolean = false;
   user: any;
   title: any;
   username = '';
@@ -59,9 +59,11 @@ export class HeaderComponent implements OnInit {
   }
   ngOnInit() {
     this.autenticacion.init();
+    //this.autenticacion.getAuthorizationUrl(true);
   }
   liveToken() {
     if (this.autenticacion.live()) {
+      this.liveTokenValue = this.autenticacion.live();
       this.username = (this.autenticacion.getPayload()).sub;
     }
     return this.autenticacion.live();
@@ -72,14 +74,11 @@ export class HeaderComponent implements OnInit {
       this.router.navigate(['/pages/notificacion/listado']);
     }
   }
-
   login() {
-    window.location.replace(this.autenticacion.getAuthorizationUrl());
-  }
-
+       window.location.replace(this.autenticacion.getAuthorizationUrl(true));
+    }
   logout() {
-    console.info(this.autenticacion.logout());
-    // window.location.replace(this.autenticacion.logout());
+    this.autenticacion.logout();
   }
 
   toggleSidebar(): boolean {

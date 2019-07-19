@@ -1,41 +1,28 @@
 <div class="container-fluid">
-
-      <h1>{{'GLOBAL.gestion-titulo' | translate }} {{selectedOption.option}}</h1>
-
-      <div class="row sectionMenu" >
-        <div class="col-md-6 col-lg-6 col-xxxl-6">
-          <nb-select placeholder="{{'GLOBAL.vigencia' | translate }}" outline status="success">
-            <nb-option value="1">2016</nb-option>
-            <nb-option value="2">2017</nb-option>
-            <nb-option value="3">2018</nb-option>
-            <nb-option value="4">2019</nb-option>
-          </nb-select>
-        </div>
-        <div class="col-md-6 col-lg-6 col-xxxl-6">
-          <nb-select
-            id="op_plan_cuentas"
-            placeholder="Gestionar"
-            outline
-            status="success"
-            [(ngModel)]="selectedOption">
-            <nb-option
-              *ngFor="let optionPC of op_plan_cuentas"
-              [value]="optionPC"
-              (click)="onSelect(optionPC.option)"
-              >{{ optionPC.option }}</nb-option
-            >
-          </nb-select>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12 col-lg-12 col-xxxl-12">
-            <nb-card *ngIf="selectedOption.option != null">
-                <nb-card-body>
-                  <rubros *ngIf="selectedOption.option === 'Rubros'"> </rubros>
-                  <apropiaciones *ngIf="selectedOption.option === 'Apropiaciones'"> </apropiaciones>
-                  <fuentes *ngIf="selectedOption.option === 'Fuentes de Financiamiento'"></fuentes>
-                </nb-card-body>
-              </nb-card>
-        </div>
-      </div>
+  <div class="row sectionMenu">
+    <nb-card>
+      <nb-card-header>
+        <h1>
+          {{ "GLOBAL.gestion-titulo" | translate }} {{ selectedOption.option }}
+        </h1>
+      </nb-card-header>
+      <nb-card-body>
+        <nb-select id="select_vigencia" placeholder="Vigencia" outline status="success" [(ngModel)]="VigenciaActual">
+          <nb-option *ngFor="let v of vigencias" [value]="v" (click)="onSelect(v.vigencia)">{{ v.vigencia }}</nb-option>
+        </nb-select>
+        <nb-tabset fullWidth (changeTab)="onChangeTab($event)">
+          <nb-tab tabTitle="Rubros">
+            <rubros [optionPlanCuentas]="selectedOption"> </rubros>
+          </nb-tab>
+          <nb-tab tabTitle="Apropiaciones" >
+            <apropiaciones [optionPlanCuentas]="selectedOption" [vigenciaSeleccionada]="VigenciaActual">
+            </apropiaciones>
+          </nb-tab>
+          <nb-tab tabTitle="Fuentes">
+            <fuentes></fuentes>
+          </nb-tab>
+        </nb-tabset>
+      </nb-card-body>
+    </nb-card>
+  </div>
 </div>

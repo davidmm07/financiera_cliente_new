@@ -58,14 +58,15 @@
     "titulo-apropiacion-inicial": "Comprobación de Apropiación Inicial",
     "rubro": "Rubro",
     "apropiacion-inicial": "Apropiacion inicial",
-    "aprobar-apropiacion-inicial": "Aprobar apropiacion inicial",
+    "aprobar-apropiacion-inicial": "Aprobar apropiación inicial",
     "detalle-rubro": "Detalle del rubro",
     "nombre-rubro": "Nombre del rubro",
     "codigo-rubro": "Código del rubro",
     "unidad-ejecutora": "Centro gestor",
     "entidad": "Entidad",
     "descripcion": "Descripción",
-    "asignar-apropiacion-incial": "Aprobar apropiacion inicial",
+    "detalle-apropiacion-inicial" : "Detalle de la Apropiación Inicial",
+    "pre-asignar-apropiacion-inicial": "Preasignar apropiación inicial",
     "vigencia": "VIGENCIA",
     "buscar": "Buscar",
     "registrar-rubro": "Registrar rubro",
@@ -108,5 +109,12 @@
     "rubro_registrado_success": "Rubro Registrado Correctamente",
     "rubro_registrado_error": "No Se Pudo Registrar El Rubro",
     "registrar_rubro": "Registrar Rubro"
+  },
+  "APROPIACION": {
+    "comprobacion": "Comprobación de la apropiacion inicial",
+    "ingresos": " 2 INGRESOS",
+    "egresos": "3 EGRESOS",
+    "comprobacion-igualdad": "La apropiacion inicial esta balanceada",
+    "comprobacion-diferencia": "Existe una diferencia entre ingresos y egresos de: "
   }
 }
