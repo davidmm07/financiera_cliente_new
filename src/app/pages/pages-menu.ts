@@ -22,7 +22,7 @@ export const MENU_ITEMS: MenuItem[] = [
         key: 'gestion-plan-cuentas',
       },
 
-    ]
+    ],
   },
 
 ];
@@ -49,7 +49,7 @@ export const MENU_PUBLICO: MenuItem[] = [
         key: 'gestion-plan-cuentas',
       },
 
-    ]
+    ],
   },
 
 ];
