@@ -23,7 +23,7 @@ const PAGES_COMPONENTS = [
     ThemeModule,
     DashboardModule,
     SharedModule,
-    PlanCuentasModule
+    PlanCuentasModule,
   ],
   declarations: [
     ...PAGES_COMPONENTS,

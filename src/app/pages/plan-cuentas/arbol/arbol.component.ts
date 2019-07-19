@@ -33,11 +33,11 @@ interface EstructuraArbolRubrosApropiaciones {
   templateUrl: './arbol.component.html',
   styleUrls: ['./arbol.component.scss'],
 })
-export class ArbolComponent{
+export class ArbolComponent {
   @Output() rubroSeleccionado = new EventEmitter();
   @Input() updateSignal: Observable<string[]>;
   @Input() optionSelect: string;
-  opcionSeleccionada : string;
+  opcionSeleccionada: string;
 
   update: any;
   customColumn = 'Codigo';
@@ -54,16 +54,10 @@ export class ArbolComponent{
     private dataSourceBuilder: NbTreeGridDataSourceBuilder<EstructuraArbolRubros>,
     private dataSourceBuilder2: NbTreeGridDataSourceBuilder<EstructuraArbolRubrosApropiaciones>,
     private rbHelper: RubroHelper,
-    private apHelper: ApropiacionHelper
-   
-  ) {    
-    this.opcionSeleccionada = 'Rubros';
-
+    private apHelper: ApropiacionHelper ) {
+    this.opcionSeleccionada = 'Rubros' ;
     this.loadTree();
-    
   }
-
-
   ngOnChanges(changes) {
     if (changes['updateSignal'] && this.updateSignal) {
       this.updateSignal.subscribe(() => {
@@ -75,7 +69,7 @@ export class ArbolComponent{
   private data: TreeNode<EstructuraArbolRubrosApropiaciones>[] | TreeNode<EstructuraArbolRubros>[];
 
 
-  loadTreeRubros(){
+  loadTreeRubros() {
     this.rbHelper.getFullArbol().subscribe((res) => {
       this.data = res;
       this.dataSource = this.dataSourceBuilder.create(this.data);
@@ -83,23 +77,23 @@ export class ArbolComponent{
   }
 
 
-  loadTreeApropiaciones(){
-    this.defaultColumns = ["Nombre","ApropiacionInicial"]
-    this.apHelper.getFullArbol().subscribe(res => {
+  loadTreeApropiaciones() {
+    this.defaultColumns = [ 'Nombre' , 'ApropiacionInicial']
+    this.apHelper.getFullArbol().subscribe( res => {
       this.data = res;
       this.dataSource2 = this.dataSourceBuilder2.create(this.data);
-    });
+    },
+    );
   }
 
   loadTree() {
 
-    if(this.opcionSeleccionada == 'Rubros'){
-      this.loadTreeRubros();
-    }else if(this.opcionSeleccionada == 'Apropiaciones'){
-      this.loadTreeApropiaciones();
+    if (this.opcionSeleccionada === 'Rubros' ) {
+        this.loadTreeRubros();
+    } else if ( this.opcionSeleccionada === 'Apropiaciones' ) {
+        this.loadTreeApropiaciones();
     }
   }
-
   updateTreeSignal($event) {
     console.info('updated', $event);
     this.loadTree();
@@ -118,20 +112,15 @@ export class ArbolComponent{
   }
 
   async onSelect(selectedItem: any) {
-    //console.log(this.optionSelect);
+    // console.log(this.optionSelect);
     this.rubroSeleccionado.emit(selectedItem.data);
   }
-
- 
   getShowOn(index: number) {
     const minWithForMultipleColumns = 400;
     const nextColumnStep = 100;
     return minWithForMultipleColumns + nextColumnStep * index;
   }
-
-  
 }
-
 @Component({
   selector: 'ngx-nb-fs-icon',
   template: `

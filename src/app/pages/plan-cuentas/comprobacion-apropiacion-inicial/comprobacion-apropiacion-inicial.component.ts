@@ -7,25 +7,18 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ComprobacionApropiacionInicialComponent implements OnInit {
 
-  ingresos : number;
-  egresos : number;
-  comprobacion: boolean; 
-
-  //entradas y salidas
+  ingresos: number;
+  egresos: number;
+  comprobacion: boolean;
+  // entradas y salidas
   @Input() valoringresos: number;
   @Input() valoregresos: number;
 
-  constructor() { 
-
+  constructor() {
   }
-
-  
-
   ngOnInit() {
-    this.ingresos=this.valoringresos;
-    this.egresos=this.valoregresos;
-    this.comprobacion=(this.ingresos===this.egresos);
-
+    this.ingresos = this.valoringresos;
+    this.egresos = this.valoregresos;
+    this.comprobacion = (this.ingresos === this.egresos);
   }
-
 }

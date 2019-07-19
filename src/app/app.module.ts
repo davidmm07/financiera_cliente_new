@@ -63,7 +63,7 @@ import { PortalModule } from '@angular/cdk/portal';
 import { ScrollDispatchModule } from '@angular/cdk/scrolling';
 import { CdkStepperModule } from '@angular/cdk/stepper';
 import { CdkTreeModule } from '@angular/cdk/tree';
-import { NbToastrModule, NbDatepickerModule } from '@nebular/theme';
+import { NbToastrModule } from '@nebular/theme';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
