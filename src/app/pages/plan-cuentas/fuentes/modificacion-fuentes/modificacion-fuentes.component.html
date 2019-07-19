@@ -3,7 +3,7 @@
     <div class="col-md-6">
       <nb-card>
         <nb-card-header class="nbheader">
-          <h3 class="nbheadertext">modificacion fuentes</h3>
+          <h3 class="nbheadertext">{{ "MODIF.modificacion_fuentes" | translate }}</h3>
         </nb-card-header>
         <nb-card-body>
             <form>
@@ -59,12 +59,60 @@
     <div class="col-md-6">
         <nb-card>
             <nb-card-header class="nbheader">
-              <h3 class="nbheadertext">modificando fuente 666</h3>
+              <h3 class="nbheadertext">{{ "MODIF.modificando_fuente" | translate }} 666</h3>
             </nb-card-header>
             <nb-card-body>
-              selects
+              <!-- formulario para registro de traslados -->
+              <form >
+              <h3>{{ "MODIF.valor" | translate }}</h3>
+              <div class="row form-group">
+
+                <div class="col-md-6"> 
+                  <label>{{ "MODIF.valor" | translate}}</label>
+                  <input nbInput type="text" class="form-control" placeholder="Inserte valor total" name="valor_total" [(ngModel)]="traslado.valor_total"/>
+                </div>
+              </div>
+              <h3>{{ "MODIF.rubro_origen" | translate }}</h3>
+              <div class="row form-group">
+              <div class="col-md-12"> 
+                  <label>{{ "MODIF.rubro_origen" | translate}}</label>
+                  <nb-select id="select_tr_rubro_origen" placeholder="Seleccione rubro origen" outline status="success" >
+                      <nb-option *ngFor="let ro of traslado.rubro_origen.rubros_disponibles" [value]="ro" >{{ ro }}</nb-option>
+                  </nb-select>
+                </div>
+              <div class="col-md-6">
+                  <label>{{ "MODIF.rubro_dependencia" | translate}}</label>
+                  <nb-select id="select_tr_dependencia" placeholder="Seleccione dependencia" outline status="success" >
+                      <nb-option *ngFor="let dep of traslado.rubro_origen.dependencias" [value]="dep" >{{ dep }}</nb-option>
+                  </nb-select>
+              </div>
+              <div class="col-md-6">
+                  <label>{{ "MODIF.valor" | translate}}</label>
+                  <input nbInput type="text" class="form-control" placeholder="Inserte el valor" name="valor_origen" [(ngModel)]="traslado.rubro_origen.valor"/>
+              </div>
+              </div>
+            
+              <h3>{{ "MODIF.rubro_destino" | translate }}</h3>
+              <div class="row form-group">
+                  <div class="col-md-12"> 
+                      <label>{{ "MODIF.rubro_destino" | translate}}</label>
+                      <nb-select id="select_tr_rubro_destino" placeholder="Seleccione rubro destino" outline status="success" >
+                          <nb-option *ngFor="let rd of traslado.rubro_destino.rubros_disponibles" [value]="rd" >{{ rd }}</nb-option>
+                      </nb-select>
+                    </div>
+                  <div class="col-md-12">
+                      <label>{{ "MODIF.rubro_dependencia" | translate}}</label>
+                      <nb-select id="select_tr_rd_dependencia" placeholder="Seleccione dependencia" outline status="success" >
+                          <nb-option *ngFor="let dep of traslado.rubro_destino.dependencias" [value]="dep" >{{ dep }}</nb-option>
+                      </nb-select>
+                  </div>
+              </div>
+            </form>
             </nb-card-body>
           </nb-card>
+            
+
+            
     </div>
   </div>
 </div>
