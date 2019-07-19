@@ -116,5 +116,10 @@
     "egresos": "3 EGRESOS",
     "comprobacion-igualdad": "La apropiacion inicial esta balanceada",
     "comprobacion-diferencia": "Existe una diferencia entre ingresos y egresos de: "
+  },
+  "MODIF":{
+    "agregar-dependencia": "Agregar Dependencia",
+    "quitar-fuente": "Quitar Fuente",
+    "registrar-modificacion" : "Registrar Modificación"
   }
 }

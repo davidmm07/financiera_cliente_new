@@ -11,7 +11,11 @@ export class ModificacionFuentesComponent implements OnInit {
   tipomodificacion= ['+', '-', 'traslado', 'suspension'];
   tipofuente= ['funcionamiento', 'inversion'];
   datepicker: any;
-
+  dependencias: any[] = [
+    {dependencia: "OAS"},
+    {dependencia: "Red UDNET"},
+    {dependencia: "RITA"},
+  ]
   constructor() { }
 
   ngOnInit() {
