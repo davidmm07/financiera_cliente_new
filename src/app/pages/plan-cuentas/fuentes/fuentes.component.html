@@ -65,9 +65,9 @@
               <h5>{{'GLOBAL.rubro' | translate}}: {{rubro.Codigo}} {{rubro.Nombre}}</h5>
             </div>
             <div *ngFor="let depedenciasAsignadas of rubro.dependencias">
-                <ngx-dinamicform [normalform]="formDependenciarubro" [modeloData]="depedenciasAsignadas" (result)="validarForm($event)" [clean]="clean">
-                  </ngx-dinamicform>
-              <!-- <div class="row">
+              <!-- <ngx-dinamicform [normalform]="formDependenciarubro" [modeloData]="depedenciasAsignadas" (result)="validarForm($event)" [clean]="clean">
+                  </ngx-dinamicform> -->
+              <div class="row form-group">
                 <label for="" class="col-md-4">{{'GLOBAL.dependencia' | translate}}</label>
                 <label for="valor" class="col-md-4 offset-1">{{'GLOBAL.valor' | translate}}</label>
                 <label for="" class="col-md-4">
@@ -75,22 +75,24 @@
                 </label>
               </div>
               <div class="row">
-                <select (change)="asignarDependencia($event, rubro)" [(ngModel)]="dependencia" class="form-control col-md-4 dropdown">
-                  <option *ngFor="let dependencia of dependencias" value="{{dependencia}}">{{dependencia.Nombre}}</option>
+                <select (change)="asignarDependencia($event, rubro)" [(ngModel)]="dependencia"
+                  class="form-control col-md-4 dropdown">
+                  <option *ngFor="let dependencia of dependencias" value="{{dependencia}}">{{dependencia.Nombre}}
+                  </option>
                 </select>
                 <input type="number" name="valor" id="" class="form-control col-md-4 offset-1">
               </div>
-              <div class="row form-group" style="padding-top: 2%;">
-                <button (click)="agregarDependencia($event, rubro)" class="btn btn-outline-primary" >{{'FUENTE_FINANCIAMIENTO.add-dependencia' | translate}}</button>
-              </div>
-              <div class="form-group">
-                  <button class="btn btn-outline-danger col-md-12">{{'FUENTE_FINANCIAMIENTO.remove-rubro' | translate}}</button>
-              </div> -->
+            </div>
+            <div class="form-group mt-2">
+              <button (click)="agregarDependencia($event, rubro)"
+                class="btn btn-outline-primary col-md-12">{{'FUENTE_FINANCIAMIENTO.add-dependencia' | translate}}</button>
+              <button
+                class="btn btn-outline-danger col-md-12 mt-1">{{'FUENTE_FINANCIAMIENTO.remove-rubro' | translate}}</button>
             </div>
           </div>
 
         </div>
-        <button class="btn btn-outline-success col-md-8 offset-1">{{'GLOBAL.guardar' | translate}}</button>
+        <button class="btn btn-outline-success col-md-8 offset-1" (click)="registrar()">{{'GLOBAL.guardar' | translate}}</button>
 
       </div>
     </div>

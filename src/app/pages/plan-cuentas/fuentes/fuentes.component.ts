@@ -8,27 +8,32 @@ import { PipeTransform, Pipe } from '@angular/core';
 export let FORM_DEPENDENCIA_RUBRO = {
   titulo: 'DependenciaRubro',
   tipo_formulario: 'mini',
-  btn: 'Añadir Dependencia',
+  btn: 'add-dependencia',
   alertas: true,
   modelo: 'DependenciaRubro',
   campos: [
     {
       etiqueta: 'select',
       claseGrid: 'col-6',
-      nombre: 'Dependencia',
-      label_i18n: 'dependencia',
-      placeholder_i18n: 'dependencia',
+      nombre: 'dependencia',
+      label: 'dependencia',
+      placeholder: 'dependencia',
       requerido: true,
       tipo: 'Dependencia',
       key: 'Nombre',
+      templateOptions: {
+        change: (field, $event) => {
+          console.log(field)
+        }
+      },
       opciones: [],
     },
     {
       etiqueta: 'input',
       claseGrid: 'col-6',
       nombre: 'Valor',
-      label_i18n: 'valor',
-      placeholder_i18n: 'valor',
+      label: 'valor',
+      placeholder: 'valor',
       requerido: true,
       tipo: 'number',
     },
@@ -70,12 +75,16 @@ export class FuentesComponent implements OnInit {
   }
 
   asignarDependencia($event, rubro: Rubro) {
-    console.log(rubro);
     console.log(this.dependencia);
     this.rubrosAsignados.filter((data) => {
-      data['dependencias'].push(this.dependencia);
+      data['dependencias'][this.dependencia] = 0;
     });
+  }
 
+  agregarDependencia($event, rubro: Rubro) {
+    this.rubrosAsignados.filter((data) => {
+      data['dependencias'].push([this.dependencias[0]]);
+    });
   }
 
   receiveMessage($event) {
@@ -86,8 +95,10 @@ export class FuentesComponent implements OnInit {
   }
 
 
-  cleanForm() {
+  cleanForm() {}
 
+  registrar() {
+    console.log(this.rubrosAsignados);
   }
 
   construirForm() {
@@ -96,6 +107,12 @@ export class FuentesComponent implements OnInit {
       this.formInfoRubro.campos[i].label = this.formInfoRubro.campos[i].label_i18n;
       this.formInfoRubro.campos[i].placeholder = this.formInfoRubro.campos[i].label_i18n;
     }
+
+    // this.formDependenciarubro.btn = this.translate.instant('FUENTE_FINANCIAMIENTO.add-dependencia');
+    // for(let i = 0; i < this.formDependenciarubro.campos.length; i++) {
+    //   this.formDependenciarubro.campos[i].label = this.translate.instant('GLOBAL.'+this.formDependenciarubro.campos[i].label);
+    //   this.formDependenciarubro.campos[i].placeholder = this.translate.instant('GLOBAL.'+ this.formDependenciarubro.campos[i].placeholder);
+    // }
   }
 
 }
