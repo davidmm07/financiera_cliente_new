@@ -1,0 +1,70 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6">
+      <nb-card>
+        <nb-card-header class="nbheader">
+          <h3 class="nbheadertext">modificacion fuentes</h3>
+        </nb-card-header>
+        <nb-card-body>
+            <form>
+                <div class="form-group">
+                  <label>{{ "MODIF.tipomod" | translate }}</label>
+                  <nb-select id="select_tipo_modificacion" placeholder="Tipo Modificacion" outline status="success" >
+                      <nb-option *ngFor="let tm of tipomodificacion" [value]="tm" >{{ tm }}</nb-option>
+                    </nb-select>
+                </div>
+                <div class="form-group">
+                  <label>{{ "MODIF.tipofuente" | translate }}</label>
+                  <nb-select id="select_tipo_fuente" placeholder="Tipo Fuente" outline status="success" >
+                      <nb-option *ngFor="let tf of tipofuente" [value]="tf" >{{ tf }}</nb-option>
+                    </nb-select>
+                </div>
+                <div class="form-group">
+                  <label>{{
+                    "GLOBAL.descripcion" | translate
+                  }}</label>
+                  <input nbInput type="text-area" class="form-control" placeholder="Inserte descripcion"/>
+                </div>
+                <div class="row form-group">
+                <div class=" col-md-6">
+                    <label>{{
+                        "MODIF.tipo_documento" | translate
+                      }}</label>
+                  <nb-select id="select_tipo_documento" placeholder="Tipo Documento" outline status="success" >
+                    <nb-option *ngFor="let td of tipodocumento" [value]="td" >{{ td }}</nb-option>
+                  </nb-select>
+                </div>
+                <div class=" col-md-6">
+                    <label>{{
+                        "MODIF.numero_documento" | translate
+                      }}</label>
+                      <input nbInput type="text" class="form-control" placeholder="Inserte numero documento"/>
+                </div>
+              </div>
+              <div class="row form-group">
+                <div class="col-md-6">
+                    <label>{{
+                        "MODIF.fecha_documento" | translate
+                      }}</label>
+                </div>
+                <div class="col-md-6">
+                    <input class="form-control" id="fechadocumento" type="date">
+                </div>
+              </div>
+               
+              </form>
+        </nb-card-body>
+      </nb-card>
+    </div>
+    <div class="col-md-6">
+        <nb-card>
+            <nb-card-header class="nbheader">
+              <h3 class="nbheadertext">modificando fuente 666</h3>
+            </nb-card-header>
+            <nb-card-body>
+              selects
+            </nb-card-body>
+          </nb-card>
+    </div>
+  </div>
+</div>
