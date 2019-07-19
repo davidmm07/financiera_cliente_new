@@ -136,8 +136,8 @@ export class ArbolComponent{
   selector: 'ngx-nb-fs-icon',
   template: `
     <nb-tree-grid-row-toggle
-      [expanded]='expanded'
-      *ngIf='isDir(); else fileIcon'
+      [expanded]="expanded"
+      *ngIf="isDir(); else fileIcon"
     >
     </nb-tree-grid-row-toggle>
     <ng-template #fileIcon> </ng-template>

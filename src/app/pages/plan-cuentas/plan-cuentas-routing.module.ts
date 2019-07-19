@@ -8,6 +8,7 @@ import { ApropiacionesComponent } from './apropiaciones/apropiaciones.component'
 import { ConsultaComponent } from './consulta/consulta.component';
 import { RegistroComponent } from './registro/registro.component';
 import { FuentesComponent } from './fuentes/fuentes.component';
+import { ModificacionFuentesComponent } from './fuentes/modificacion-fuentes/modificacion-fuentes.component';
 
 
 const routes: Routes = [{
@@ -52,4 +53,6 @@ export const routedComponents = [
   FsIconAComponent,
   ConsultaComponent,
   RegistroComponent,
+  FuentesComponent,
+  ModificacionFuentesComponent,
 ];

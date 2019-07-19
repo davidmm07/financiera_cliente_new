@@ -6,7 +6,7 @@
           <div class="row">
             <div class="col-md-6 col-lg-6 col-xxxl-6">
               <div class="row">
-                <arbol (rubroSeleccionado)="receiveMessage($event)" [optionSelect] = "optionPlanCuentas"></arbol>
+                <ngx-arbol (rubroSeleccionado)="receiveMessage($event)" [optionSelect] = "optionPlanCuentas"></ngx-arbol>
               </div>
             </div>
             <div class="col-md-6 col-lg-6 col-xxxl-6">
@@ -87,8 +87,8 @@
                     </form>
                   </nb-card-body>
                 </nb-card>
-                <comprobacion-apropiacion-inicial [valoringresos]="valoringresos" [valoregresos]="valoregresos">
-                </comprobacion-apropiacion-inicial>
+                <ngx-comprobacion-apropiacion-inicial [valoringresos]="valoringresos" [valoregresos]="valoregresos">
+                </ngx-comprobacion-apropiacion-inicial>
               </div>
             </div>
           </div>

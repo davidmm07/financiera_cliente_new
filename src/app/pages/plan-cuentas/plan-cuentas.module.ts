@@ -11,7 +11,6 @@ import { FuentesComponent } from './fuentes/fuentes.component';
 @NgModule({
   declarations: [
     ...routedComponents,
-    FuentesComponent,
   ],
   imports: [
     ThemeModule,
