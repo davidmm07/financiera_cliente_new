@@ -21,9 +21,6 @@ if (!autenticacion.getAuthorizationUrl(isButtonLogin)) {
 }else {
   autenticacion.live();
 }
-else{
-  autenticacion.live();
-}
 
 
 

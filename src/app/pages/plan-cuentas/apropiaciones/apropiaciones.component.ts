@@ -120,17 +120,6 @@ export class ApropiacionesComponent implements OnInit {
     }
   }
 
-
-  cleanForm() {
-  /*   this.clean = !this.clean;
-    this.rubroSeleccionado = {};
-    this.info_rubro = null;
-    this.formInfoRubro.campos[FormManager.getIndexForm(this.formInfoRubro, 'Codigo')].prefix.value = ''; */
-
-  }
-
-
-
   validarForm(event) {
     if (event.valid) {
       event.data.RubroPadre = typeof this.rubroSeleccionado.Codigo === 'undefined' ? undefined : this.rubroSeleccionado;

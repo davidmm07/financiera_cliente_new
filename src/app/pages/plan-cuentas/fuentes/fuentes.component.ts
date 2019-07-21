@@ -78,7 +78,7 @@ export class FuentesComponent implements OnInit {
     console.info()
     this.verificarAsignacionDependencia(rubro, this.dependencias[$event]);
   }
-  
+
   verificarAsignacionDependencia(rubro: Rubro, dependenciaAsignada: any) {
     this.rubrosAsignados.filter((data) => {
       if (data === rubro) {
@@ -95,7 +95,7 @@ export class FuentesComponent implements OnInit {
 
   agregarDependencia($event, rubro: Rubro) {
     this.rubrosAsignados.filter((data) => {
-    (data === rubro ); data['Dependencias'].push(-1)
+      (data === rubro); data['Dependencias'].push(-1)
     });
   }
 
@@ -107,23 +107,13 @@ export class FuentesComponent implements OnInit {
   }
 
 
-  cleanForm() {}
-
   registrar() {
     console.log(this.rubrosAsignados);
   }
 
-  receiveMessage($event) {
+  cleanForm() { }
 
-  }
-  validarForm($event) {
-
-  }
-  aniadirNodo() {
-
-  }
-  cleanForm() {
-  }
+  aniadirNodo() { }
 
   construirForm() {
     this.formInfoRubro.btn = this.translate.instant('GLOBAL.guardar');
