@@ -3,15 +3,14 @@ import { ThemeModule } from '../../@theme/theme.module';
 import { CommonModule } from '@angular/common';
 import { PlanCuentasRoutingModule, routedComponents } from './plan-cuentas-routing.module';
 import { SharedModule } from '../../shared/shared.module';
-import { NbTreeGridModule, NbSelectModule, NbAlertModule } from '@nebular/theme';
-import { FuentesComponent } from './fuentes/fuentes.component';
+import { NbTreeGridModule, NbSelectModule, NbAlertModule, NbTabsetModule } from '@nebular/theme';
+
 
 
 
 @NgModule({
   declarations: [
     ...routedComponents,
-    FuentesComponent,
   ],
   imports: [
     ThemeModule,
@@ -21,9 +20,10 @@ import { FuentesComponent } from './fuentes/fuentes.component';
     NbTreeGridModule,
     NbSelectModule,
     NbAlertModule,
+    NbTabsetModule,
   ],
   exports: [
 
-  ]
+  ],
 })
 export class PlanCuentasModule { }

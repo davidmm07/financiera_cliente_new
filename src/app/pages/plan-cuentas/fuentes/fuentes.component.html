@@ -1,3 +1,4 @@
+<ngx-modificacion-fuentes></ngx-modificacion-fuentes>
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-12">
@@ -6,7 +7,9 @@
         <!-- arbol -->
         <div class="col-md-6 col-lg-6 col-xxxl-6">
           <div class="row">
-            <arbol (rubroSeleccionado)="receiveMessage($event)"></arbol>
+            <ngx-arbol (rubroSeleccionado)="receiveMessage($event)"></ngx-arbol>            
+          </div>
+          <div class="row">
           </div>
         </div>
 
@@ -98,3 +101,5 @@
     </div>
   </div>
 </div>
+
+

@@ -8,6 +8,7 @@ import { ApropiacionesComponent } from './apropiaciones/apropiaciones.component'
 import { ConsultaComponent } from './consulta/consulta.component';
 import { RegistroComponent } from './registro/registro.component';
 import { FuentesComponent } from './fuentes/fuentes.component';
+import { ModificacionFuentesComponent } from './fuentes/modificacion-fuentes/modificacion-fuentes.component';
 
 
 const routes: Routes = [{
@@ -29,7 +30,8 @@ const routes: Routes = [{
 {
   path: 'fuentes',
   component: FuentesComponent,
-},{
+},
+{
   path: 'nb-fs-icon',
   component: FsIconAComponent,
 },
@@ -37,7 +39,7 @@ const routes: Routes = [{
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class PlanCuentasRoutingModule { }
 
@@ -50,5 +52,7 @@ export const routedComponents = [
   ComprobacionApropiacionInicialComponent,
   FsIconAComponent,
   ConsultaComponent,
-  RegistroComponent
+  RegistroComponent,
+  FuentesComponent,
+  ModificacionFuentesComponent,
 ];

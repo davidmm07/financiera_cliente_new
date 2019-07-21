@@ -114,5 +114,12 @@
     "asignar_fuente": "Asignar Fuente de Financiamiento",
     "add-dependencia": "Añadir dependencia",
     "remove-rubro": "Quitar rubro"
+  },
+  "APROPIACION": {
+    "comprobacion": "Comprobación de la apropiacion inicial",
+    "ingresos": " 2 INGRESOS",
+    "egresos": "3 EGRESOS",
+    "comprobacion-igualdad": "La apropiacion inicial esta balanceada",
+    "comprobacion-diferencia": "Existe una diferencia entre ingresos y egresos de: "
   }
 }

@@ -10,6 +10,9 @@ import { PlanCuentasModule } from './plan-cuentas/plan-cuentas.module';
 
 
 
+
+
+
 const PAGES_COMPONENTS = [
   PagesComponent,
 ];
@@ -32,4 +35,3 @@ const PAGES_COMPONENTS = [
 })
 export class PagesModule {
 }
- 

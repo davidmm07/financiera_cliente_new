@@ -41,9 +41,9 @@ export let FORM_DEPENDENCIA_RUBRO = {
 }
 
 @Component({
-  selector: 'fuentes',
+  selector: 'ngx-fuentes',
   templateUrl: './fuentes.component.html',
-  styleUrls: ['./fuentes.component.scss']
+  styleUrls: ['./fuentes.component.scss'],
 })
 
 export class FuentesComponent implements OnInit {
@@ -113,18 +113,24 @@ export class FuentesComponent implements OnInit {
     console.log(this.rubrosAsignados);
   }
 
+  receiveMessage($event) {
+
+  }
+  validarForm($event) {
+
+  }
+  aniadirNodo() {
+
+  }
+  cleanForm() {
+  }
+
   construirForm() {
     this.formInfoRubro.btn = this.translate.instant('GLOBAL.guardar');
     for (let i = 0; i < this.formInfoRubro.campos.length; i++) {
       this.formInfoRubro.campos[i].label = this.formInfoRubro.campos[i].label_i18n;
       this.formInfoRubro.campos[i].placeholder = this.formInfoRubro.campos[i].label_i18n;
     }
-
-    // this.formDependenciarubro.btn = this.translate.instant('FUENTE_FINANCIAMIENTO.add-dependencia');
-    // for(let i = 0; i < this.formDependenciarubro.campos.length; i++) {
-    //   this.formDependenciarubro.campos[i].label = this.translate.instant('GLOBAL.'+this.formDependenciarubro.campos[i].label);
-    //   this.formDependenciarubro.campos[i].placeholder = this.translate.instant('GLOBAL.'+ this.formDependenciarubro.campos[i].placeholder);
-    // }
   }
 
 }

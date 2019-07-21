@@ -1,7 +1,6 @@
 export let FORM_INFO_RUBRO = {
-    
+
     tipo_formulario: 'mini',
-   
     alertas: true,
     modelo: 'RubroHijo',
     campos: [
@@ -26,7 +25,7 @@ export let FORM_INFO_RUBRO = {
             tipo: 'number',
             prefix: {
                 value: '',
-            }
+            },
         },
         {
             etiqueta: 'input',
@@ -67,7 +66,6 @@ export let FORM_INFO_RUBRO = {
         //         {Valor: 3}
         //     ],
         // },
-      
         {
             etiqueta: 'textarea',
             claseGrid: 'col-lg-12 col-md-12 col-sm-12 col-xs-12',

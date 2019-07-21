@@ -13,16 +13,18 @@ import { ImplicitAutenticationService } from './app/@core/utils/implicit_autenti
 if (environment.production) {
   enableProdMode();
 }
-const autenticacion= new ImplicitAutenticationService;
+const autenticacion = new ImplicitAutenticationService;
 
-const isButtonLogin=false;
+const isButtonLogin = false;
 
-if(!autenticacion.getAuthorizationUrl(isButtonLogin)){
-  
+if (!autenticacion.getAuthorizationUrl(isButtonLogin)) {
+}else {
+  autenticacion.live();
 }
 else{
   autenticacion.live();
 }
+
 
 
 

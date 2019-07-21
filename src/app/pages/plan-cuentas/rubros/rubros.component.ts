@@ -1,7 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { RubroService } from '../../../@core/data/rubro.service';
+
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Rubro } from '../../../@core/data/models/rubro';
-import { Validators } from '@angular/forms';
 import { FORM_INFO_RUBRO } from './form_info_rubro';
 import { RubroHelper } from '../../../helpers/rubros/rubroHelper';
 import { PopUpManager } from '../../../managers/popUpManager';
@@ -11,9 +10,9 @@ import { FormManager } from '../../../managers/formManager';
 
 
 @Component({
-  selector: 'rubros',
+  selector: 'ngx-rubros',
   templateUrl: './rubros.component.html',
-  styleUrls: ['./rubros.component.scss']
+  styleUrls: ['./rubros.component.scss'],
 })
 export class RubrosComponent implements OnInit {
   rubroSeleccionado: any;
@@ -21,6 +20,7 @@ export class RubrosComponent implements OnInit {
   insertarRubro = false;
   clean = false;
   formInfoRubro: any;
+  @Input() optionPlanCuentas: string;
   @Output() eventChange = new EventEmitter();
   constructor(
     private translate: TranslateService,
@@ -48,6 +48,7 @@ export class RubrosComponent implements OnInit {
   }
 
   receiveMessage($event) {
+    console.info('Camila' , this.optionPlanCuentas);
     this.rubroSeleccionado = <Rubro>$event
     this.rubroSeleccionado.Id = parseInt(this.rubroSeleccionado.Id, 0);
     this.rubroSeleccionado.UnidadEjecutora = parseInt(this.rubroSeleccionado.UnidadEjecutora, 0);
