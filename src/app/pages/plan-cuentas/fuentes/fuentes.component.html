@@ -64,7 +64,7 @@
             <div>
               <h5>{{'GLOBAL.rubro' | translate}}: {{rubro.Codigo}} {{rubro.Nombre}}</h5>
             </div>
-            <div *ngFor="let depedenciasAsignadas of rubro.dependencias">
+            <div *ngFor="let depedenciasAsignadas of rubro.Dependencias">
               <!-- <ngx-dinamicform [normalform]="formDependenciarubro" [modeloData]="depedenciasAsignadas" (result)="validarForm($event)" [clean]="clean">
                   </ngx-dinamicform> -->
               <div class="row form-group">
@@ -75,9 +75,9 @@
                 </label>
               </div>
               <div class="row">
-                <select (change)="asignarDependencia($event, rubro)" [(ngModel)]="dependencia"
+                <select (change)="asignarDependencia($event.target.value, rubro)" [(ngModel)]="dependenciaSeleccionada"
                   class="form-control col-md-4 dropdown">
-                  <option *ngFor="let dependencia of dependencias" value="{{dependencia}}">{{dependencia.Nombre}}
+                  <option *ngFor="let dependencia of dependencias; let value = index;" [value]="value" >{{dependencia.Nombre}}
                   </option>
                 </select>
                 <input type="number" name="valor" id="" class="form-control col-md-4 offset-1">
