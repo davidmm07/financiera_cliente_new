@@ -95,4 +95,48 @@ export class ApropiacionesComponent implements OnInit {
       this.popManager.showErrorAlert('No se pudo registrar la preasignación de apropiación');
     }
   }
+
+  registrarApropiacionARubro(event) {
+    if (event.valid) {
+      event.data.RubroSel =
+        typeof this.rubroSeleccionado.Codigo === 'undefined'
+          ? undefined
+          : this.rubroSeleccionado;
+      event.data.Vigencia = this.vigenciaSeleccionada;
+      event.data.Valor = this.valorApropiacion;
+      event.data.IdEstadoApropiacion = 1;
+
+      this.apHelper.apropiacionRegister(event.data).subscribe(res => {
+        if (res) {
+          this.popManager.showSuccessAlert(
+            'Se registro la preasignación de apropiación correctamente!',
+          );
+          // this.cleanForm()
+          // this.eventChange.emit(true);
+        } else {
+          this.popManager.showErrorAlert('Datos Erroneos');
+        }
+      });
+    }
+  }
+
+  validarForm(event) {
+    if (event.valid) {
+      event.data.RubroPadre = typeof this.rubroSeleccionado.Codigo === 'undefined' ? undefined : this.rubroSeleccionado;
+
+      event.data.RubroHijo.Codigo = typeof this.rubroSeleccionado.Codigo === 'undefined' ?
+        event.data.RubroHijo.Codigo + '' :
+        this.rubroSeleccionado.Codigo + '-' + event.data.RubroHijo.Codigo;
+
+      this.apHelper.apropiacionRegister(event.data).subscribe((res) => {
+        if (res) {
+          this.popManager.showSuccessAlert('Se registro la preasignación de apropiación correctamente!');
+          this.cleanForm()
+          // this.eventChange.emit(true);
+        }
+      });
+    } else {
+      this.popManager.showErrorAlert('Datos Incompletos');
+    }
+  }
 }

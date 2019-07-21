@@ -1,4 +1,4 @@
-import { Component, Input, EventEmitter, Output } from '@angular/core';
+import { Component, Input, EventEmitter, Output, OnChanges } from '@angular/core';
 import {
   NbSortDirection,
   NbTreeGridDataSource,
@@ -33,7 +33,7 @@ interface EstructuraArbolRubrosApropiaciones {
   templateUrl: './arbol.component.html',
   styleUrls: ['./arbol.component.scss'],
 })
-export class ArbolComponent {
+export class ArbolComponent implements OnChanges {
   @Output() rubroSeleccionado = new EventEmitter();
   @Input() updateSignal: Observable<string[]>;
   @Input() optionSelect: string;
