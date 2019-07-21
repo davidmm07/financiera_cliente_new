@@ -53,9 +53,9 @@ export class RequestManager {
     return this.http.get<any>(`${this.path}${endpoint}`, this.httpOptions).pipe(
       map(
         (res) => {
-          if(res.hasOwnProperty('Body')) {
+          if (res.hasOwnProperty('Body')) {
             return res['Body'];
-          }else {
+          } else {
             return res;
           }
         },

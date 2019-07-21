@@ -99,7 +99,7 @@ export class ApropiacionesComponent implements OnInit {
   registrarApropiacionARubro(event) {
     if (event.valid) {
       event.data.RubroSel =
-        typeof this.rubroSeleccionado.Codigo === "undefined"
+        typeof this.rubroSeleccionado.Codigo === 'undefined'
           ? undefined
           : this.rubroSeleccionado;
       event.data.Vigencia = this.vigenciaSeleccionada;
@@ -109,12 +109,12 @@ export class ApropiacionesComponent implements OnInit {
       this.apHelper.apropiacionRegister(event.data).subscribe(res => {
         if (res) {
           this.popManager.showSuccessAlert(
-            "Se registro la preasignación de apropiación correctamente!"
+            'Se registro la preasignación de apropiación correctamente!',
           );
-          //this.cleanForm()
-          //this.eventChange.emit(true);
+          // this.cleanForm()
+          // this.eventChange.emit(true);
         } else {
-          this.popManager.showErrorAlert("Datos Erroneos");
+          this.popManager.showErrorAlert('Datos Erroneos');
         }
       });
     }
@@ -132,7 +132,7 @@ export class ApropiacionesComponent implements OnInit {
         if (res) {
           this.popManager.showSuccessAlert('Se registro la preasignación de apropiación correctamente!');
           this.cleanForm()
-          //this.eventChange.emit(true);
+          // this.eventChange.emit(true);
         }
       });
     } else {

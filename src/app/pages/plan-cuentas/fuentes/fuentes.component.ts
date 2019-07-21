@@ -21,11 +21,6 @@ export let FORM_DEPENDENCIA_RUBRO = {
       requerido: true,
       tipo: 'Dependencia',
       key: 'Nombre',
-      templateOptions: {
-        change: (field, $event) => {
-          console.log(field)
-        }
-      },
       opciones: [],
     },
     {
@@ -71,19 +66,16 @@ export class FuentesComponent implements OnInit {
   ngOnInit() { }
 
   validarForm(event) {
-    console.info("event", event);
+    console.info('event', event);
   }
 
   asignarDependencia($event: any, rubro: Rubro) {
-    console.info()
     this.verificarAsignacionDependencia(rubro, this.dependencias[$event]);
   }
 
   verificarAsignacionDependencia(rubro: Rubro, dependenciaAsignada: any) {
     this.rubrosAsignados.filter((data) => {
       if (data === rubro) {
-        console.log(data['Dependencias'])
-        console.log(data['Dependencias'][0])
         for (let i = 0; i < data['Dependencias'].length; i++) {
           if (data['Dependencias'][i] === -1) {
             data['Dependencias'][i] = dependenciaAsignada;
@@ -108,7 +100,7 @@ export class FuentesComponent implements OnInit {
 
 
   registrar() {
-    console.log(this.rubrosAsignados);
+    // console.log(this.rubrosAsignados);
   }
 
   cleanForm() { }
