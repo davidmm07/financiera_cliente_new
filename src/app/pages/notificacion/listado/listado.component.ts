@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Subject } from 'rxjs';
 import { NotificacionesService } from '../../../@core/utils/notificaciones.service';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ngx-listado',
@@ -17,16 +18,12 @@ export class ListadoComponent {
   searchTerm$ = new Subject<string>();
 
   notificaciones: any;
-  constructor(private notificacionesService: NotificacionesService) {
-
+  constructor(private notificacionService: NotificacionesService,    private router: Router) {
     this.notificaciones = [];
-    this.notificacionesService.getMessages()
-      .pipe(debounceTime(700),
-        distinctUntilChanged())
+    this.notificacionService.arrayMessages$
       .subscribe((notification: any) => {
         this.notificaciones = notification;
       });
-
     this.searchTerm$
       .pipe(
         debounceTime(700),
@@ -35,13 +32,18 @@ export class ListadoComponent {
       ).subscribe(response => {
         this.notificaciones = response;
       })
+    this.notificacionService.getNotificaciones();
 
   }
 
   searchEntries(term) {
     const array = []
-    array.push(this.notificacionesService.listMessage.filter(notify => notify.Content.Message.indexOf(term) !== -1));
+    array.push(this.notificacionService.listMessage.filter(notify => notify.Content.Message.indexOf(term) !== -1 || notify.User.indexOf(term) !== -1));
     return array
+  }
+
+  redirect(content: any) {
+    this.router.navigate([content.link]);
   }
 
 }
