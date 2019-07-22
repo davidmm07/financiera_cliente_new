@@ -6,15 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./modificacion-fuentes.component.scss'],
 })
 export class ModificacionFuentesComponent implements OnInit {
-
-  tipodocumento= ['CC', 'TI'];
-  tipomodificacion= ['+', '-', 'traslado', 'suspension'];
-  tipofuente= ['funcionamiento', 'inversion'];
+  tipodocumento = ['CC', 'TI'];
+  tipomodificacion = ['+', '-', 'traslado', 'suspension'];
+  tipofuente = ['funcionamiento', 'inversion'];
   datepicker: any;
   dependencias: any[] = [
-    {dependencia: "OAS"},
-    {dependencia: "Red UDNET"},
-    {dependencia: "RITA"},
+    { dependencia: 'OAS' },
+    { dependencia: 'Red UDNET' },
+    { dependencia: 'RITA' },
   ]
   constructor() { }
 

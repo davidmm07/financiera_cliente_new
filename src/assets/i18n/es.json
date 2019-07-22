@@ -120,6 +120,11 @@
   "MODIF":{
     "agregar-dependencia": "Agregar Dependencia",
     "quitar-fuente": "Quitar Fuente",
-    "registrar-modificacion" : "Registrar Modificación"
+    "registrar-modificacion" : "Registrar Modificación",
+    "adicion" : "Adición",
+    "reduccion" : "Reducción",
+    "dependencia" : "Dependencia",
+    "valor-disponible" : "Valor Disponible",
+    "valor-adicion" : "Valor adición"
   }
 }
