@@ -136,7 +136,10 @@
     "reduccion" : "Reducción",
     "dependencia" : "Dependencia",
     "valor-disponible" : "Valor Disponible",
-    "valor-adicion" : "Valor adición"
+    "valor-adicion" : "Valor adición",
+    "valor-reduccion" : "Valor reducción",
+    "quitar-dependencia" : "Quitar Dependencia",
+    "traslado" : "Traslado"
 
   }
 }

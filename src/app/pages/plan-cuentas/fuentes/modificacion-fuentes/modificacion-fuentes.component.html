@@ -9,8 +9,8 @@
           <form>
             <div class="form-group">
               <label>{{ "MODIF.tipomod" | translate }}</label>
-              <nb-select id="select_tipo_modificacion" placeholder="Tipo Modificacion" outline status="success">
-                <nb-option *ngFor="let tm of tipomodificacion" [value]="tm">{{
+              <nb-select id="select_tipo_modificacion" placeholder="Tipo Modificacion" outline status="success" >
+                <nb-option (click)="onSelect(tm)" *ngFor="let tm of tipomodificacion" [value]="tm" [(ngModel)]="tipomodificacionsel">{{
                   tm
                 }}</nb-option>
               </nb-select>
@@ -59,20 +59,20 @@
               <h3 class="nbheadertext">{{ "MODIF.modificando_fuente" | translate }} 666</h3>
             </nb-card-header>
 
-        <nb-card-body>
+        <nb-card-body *ngIf="tipomodificacionsel === 'Adición'">
 
           <div class="form-group">
             <h1 class="titleModificacion">{{ "MODIF.adicion" | translate }}</h1>
             <label>Valor de adición</label>
-            <input nbInput type="number" class="form-control" id="valorAdicion" placeholder="$0.00" />
+            <input nbInput type="number" class="form-control" id="valorAdicion" placeholder="$0.00" [(ngModel)]="adicion.rubro_afecta.Valor"/>
           </div>
           <div class="container-fluid">
             <div class="form-group">
               <h3>Fuente de financiamiento 66</h3>
-              <div class="row" id="formDependencias">
-                <div class="col-lg-6">
+              <div ngFor="let dep of dependenciasAdicion" class="row" id="formDependencias">
+                <div class="col-lg-3">
                   <div class="form-group">
-                    <label for="inputEmail">{{ "MODIF.dependencia" | translate }}</label>
+                    <label for="inputDependencia">{{ "MODIF.dependencia" | translate }}</label>
                     <nb-select placeholder="Dependencia" [(selected)]="commonSelectedItem" outline status="success">
                       <nb-option *ngFor="let v of dependencias" [value]="v" (click)="onSelect(v.dependencia)">
                         {{ v.dependencia }}</nb-option>
@@ -82,20 +82,28 @@
                 <div class="col-lg-3">
                   <div class="form-group">
                     <label for="inputWebsite">{{ "MODIF.valor-disponible" | translate }}</label>
-                    <input nbInput type="number" class="form-control" id="inputDisponible" placeholder="$0.00">
+                    <input nbInput type="number" [(ngModel)]="dep.val_disponible" class="form-control" id="inputDisponible" placeholder="$0.00">
                   </div>
                 </div>
                 <div class="col-lg-3">
                   <div class="form-group">
                     <label for="inputWebsite">{{ "MODIF.valor-adición" | translate }}</label>
-                    <input nbInput type="number" class="form-control" id="inputAdicion" placeholder="$0.00">
+                    <input nbInput type="number" [(ngModel)]="dep.val_adicion" class="form-control" id="inputAdicion" placeholder="$0.00">
+                  </div>
+                </div>
+                <div class="col-lg-3">
+                  <div class="form-group">
+                      <label>&nbsp;</label>
+                    <button type="submit" class="btn btn-danger btn-block btnQuitarDep">
+                      {{'MODIF.quitar-dependencia' | translate }}
+                    </button>
                   </div>
                 </div>
               </div>
 
               <div class="row">
                 <div class="col-md-6">
-                  <button type="submit" class="btn btn-info btn-block">
+                  <button type="submit" class="btn btn-info btn-block" (click)="aniadirDependencia()">
                     {{'MODIF.agregar-dependencia' | translate }}
                   </button>
                 </div>
@@ -118,17 +126,17 @@
           </div>
         </nb-card-body>
 
-        <nb-card-body>
+        <nb-card-body *ngIf="tipomodificacionsel === 'Reducción'">
             <div class="form-group">
               <h1 class="titleModificacion">{{ "MODIF.reduccion" | translate }}</h1>
               <label>Valor de adición</label>
-              <input nbInput type="number" class="form-control" id="valorAdicion" placeholder="$0.00" />
+              <input nbInput type="number" class="form-control" id="valorAdicion" placeholder="$0.00" [(ngModel)]="adicion.valor_adicion"/>
             </div>
             <div class="container-fluid">
               <div class="form-group">
                 <h3>Fuente de financiamiento 66</h3>
                 <div class="row" id="formDependencias">
-                  <div class="col-lg-6">
+                  <div class="col-lg-3">
                     <div class="form-group">
                       <label for="inputEmail">{{ "MODIF.dependencia" | translate }}</label>
                       <nb-select placeholder="Dependencia" [(selected)]="commonSelectedItem" outline status="success">
@@ -137,25 +145,28 @@
                       </nb-select>
                     </div>
                   </div>
-                  <div class="col-lg-2">
+                  <div class="col-lg-3">
                     <div class="form-group">
                       <label for="inputWebsite">{{ "MODIF.valor-disponible" | translate }}</label>
                       <input nbInput type="number" class="form-control" id="inputDisponible" placeholder="$0.00">
                     </div>
                   </div>
-                  <div class="col-lg-2">
+                  <div class="col-lg-3">
                     <div class="form-group">
                       <label for="inputWebsite">{{ "MODIF.valor-reduccion" | translate }}</label>
                       <input nbInput type="number" class="form-control" id="inputReduccion" placeholder="$0.00">
                     </div>
                   </div>
-                  <div class="col-lg-2">
-                      <div class="form-group">
-                          <button type="submit" class="btn btn-danger btn-block">
-                              {{'MODIF.quitar-dependencia' | translate }}
-                            </button>
-                      </div>
+
+                  <div class="col-lg-3">
+                    <div class="form-group">
+                      <label>&nbsp;</label>
+                      <button type="submit" class="btn btn-danger btn-block btnQuitarDep">
+                        {{'MODIF.quitar-dependencia' | translate }}
+                      </button>
                     </div>
+                  </div>
+
                 </div>
   
                 <div class="row">
@@ -164,11 +175,11 @@
                       {{'MODIF.agregar-dependencia' | translate }}
                     </button>
                   </div>
-                  <div class="col-md-6">
+                   <div class="col-md-6">
                     <button type="submit" class="btn btn-info btn-block">
                       {{'MODIF.quitar-fuente' | translate }}
                     </button>
-                  </div>
+                  </div> 
                 </div>
   
               </div>
@@ -183,7 +194,7 @@
             </div>
           </nb-card-body>
           <!-- formulario para registro de traslados -->
-          <nb-card-body>
+          <nb-card-body *ngIf="tipomodificacionsel === 'Traslado'">
               <h1 class="titleModificacion">{{ "MODIF.traslado" | translate }}</h1>
               <form >
               <h3>{{ "MODIF.valor" | translate }}</h3>

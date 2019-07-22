@@ -7,8 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ModificacionFuentesComponent implements OnInit {
   tipodocumento = ['CC', 'TI'];
-  tipomodificacion = ['+', '-', 'traslado', 'suspension'];
-  tipofuente = ['funcionamiento', 'inversion'];
+  tipomodificacion = ['Adición', 'Reducción', 'Traslado', 'Suspensión'];
+  tipomodificacionsel ='Adición';
+  tipofuente = ['Funcionamiento', 'Inversion'];
   datepicker: any;
   traslado = {
     valor_total: 100,
@@ -25,15 +26,43 @@ export class ModificacionFuentesComponent implements OnInit {
     },
   }
 
+  adicion = {
+    rubro_afecta : {
+      Codigo : "1",
+			Valor: 0,
+			Tipo: "A"
+    }
+  }
+
+  reduccion = {
+
+  }
   dependencias: any[] = [
     { dependencia: 'OAS' },
     { dependencia: 'Red UDNET' },
     { dependencia: 'RITA' },
 
   ]
+
+  dependenciasAdicion : any[];
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onSelect(selectedItem: any){
+    console.log(selectedItem);
+    this.tipomodificacionsel = selectedItem;
+  }
+
+  aniadirDependencias(){
+    var dep = {
+      nombre : '',
+      val_disponible : 0,
+      val_adicion: 0
+      }
+    this.dependenciasAdicion.push(dep);
   }
 
 }
