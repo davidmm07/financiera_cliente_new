@@ -8,30 +8,30 @@ import { Component, OnInit } from '@angular/core';
 export class ModificacionFuentesComponent implements OnInit {
   tipodocumento = ['CC', 'TI'];
   tipomodificacion = ['Adición', 'Reducción', 'Traslado', 'Suspensión'];
-  tipomodificacionsel ='Adición';
+  tipomodificacionsel = 'Adición';
   tipofuente = ['Funcionamiento', 'Inversion'];
   datepicker: any;
   traslado = {
     valor_total: 100,
     rubro_origen: {
-      rubros_disponibles: [ 1 , 2 , 3 , 4 , 5 ],
+      rubros_disponibles: [1, 2, 3, 4, 5],
       rubro_seleccionado: 1,
-      dependencias: ['d1', 'd2' , 'd3' , 'd4'],
+      dependencias: ['d1', 'd2', 'd3', 'd4'],
       valor: 500,
     },
     rubro_destino: {
-      rubros_disponibles: [ 1 , 2 , 3 , 4 , 5 ],
+      rubros_disponibles: [1, 2, 3, 4, 5],
       rubro_seleccionado: 1,
-      dependencias: [ 'd1' , 'd2' , 'd3' , 'd4' ],
+      dependencias: ['d1', 'd2', 'd3', 'd4'],
     },
   }
 
   adicion = {
-    rubro_afecta : {
-      Codigo : "1",
-			Valor: 0,
-			Tipo: "A"
-    }
+    rubro_afecta: {
+      Codigo: '1',
+      Valor: 0,
+      Tipo: 'A',
+    },
   }
 
   reduccion = {
@@ -44,24 +44,23 @@ export class ModificacionFuentesComponent implements OnInit {
 
   ]
 
-  dependenciasAdicion : any[];
+  dependenciasAdicion: any[];
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  onSelect(selectedItem: any){
-    console.log(selectedItem);
+  onSelect(selectedItem: any) {
     this.tipomodificacionsel = selectedItem;
   }
 
-  aniadirDependencias(){
-    var dep = {
-      nombre : '',
-      val_disponible : 0,
-      val_adicion: 0
-      }
+  aniadirDependencias() {
+    const dep = {
+      nombre: '',
+      val_disponible: 0,
+      val_adicion: 0,
+    }
     this.dependenciasAdicion.push(dep);
   }
 
