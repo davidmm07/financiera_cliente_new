@@ -3,6 +3,7 @@ import { Rubro } from '../../../@core/data/models/rubro';
 import { ApropiacionHelper } from '../../../helpers/apropiaciones/apropiacionHelper';
 import { PopUpManager } from '../../../managers/popUpManager';
 import { Apropiacion } from '../../../@core/data/models/apropiacion';
+import { ArbolApropiacion } from '../../../@core/data/models/arbol_apropiacion';
 
 @Component({
   selector: 'ngx-apropiaciones',
@@ -14,7 +15,8 @@ export class ApropiacionesComponent implements OnInit {
   @Input() vigenciaSeleccionada;
   @Input() optionPlanCuentas: string;
   rubroSeleccionado: any;
-  apropiacion: Apropiacion;
+  //apropiacion: Apropiacion;
+  apropiacion: ArbolApropiacion;
   apropiacionAprobada: boolean;
   valorApropiacion
   clean = false;
@@ -30,15 +32,17 @@ export class ApropiacionesComponent implements OnInit {
       Id: 0,
       Codigo: '',
       Nombre: '',
+      Descripcion: '',
+      Hijos: '',
+      Padre: '',
       ApropiacionInicial: 0,
     };
 
     this.apropiacion = {
-      Id: 0,
       Vigencia: 0,
-      Valor: 0,
-      IdEstadoApropiacion: 0,
-      IdRubro: 0,
+      ApropiacionInicial: 0,
+      Estado: "",
+      Rubro: null,
     };
 
     this.opcion = this.optionPlanCuentas;
@@ -46,11 +50,10 @@ export class ApropiacionesComponent implements OnInit {
 
 
   ngOnInit() {
-    this.apropiacion = {} as Apropiacion;
+    this.apropiacion = {} as ArbolApropiacion;
   }
 
   receiveMessage($event) {
-    console.info( 'Camila' , this.optionPlanCuentas);
     this.rubroSeleccionado = <Rubro>$event;
     this.rubroSeleccionado.Id = parseInt(this.rubroSeleccionado.Id, 0);
     this.rubroSeleccionado.Nombre = ' ';
@@ -75,24 +78,27 @@ export class ApropiacionesComponent implements OnInit {
 
   }
 
+  preAsignarApropiacion() {
+      const apropiacionData : ArbolApropiacion = null;
+      apropiacionData.Vigencia = typeof this.apropiacion.Vigencia === 'undefined' ? undefined : this.vigenciaSeleccionada.vigencia;
+      apropiacionData.Rubro.Id = typeof this.rubroSeleccionado.Id === 'undefined' ? undefined : this.rubroSeleccionado.Id;
+      apropiacionData.Rubro.Nombre = typeof this.rubroSeleccionado.Nombre === 'undefined' ? undefined : this.rubroSeleccionado.Nombre;
+      apropiacionData.Rubro.Descripcion = typeof this.rubroSeleccionado.Descripcion === 'undefined' ? undefined : this.rubroSeleccionado.Descripcion;
+      apropiacionData.Rubro.UnidadEjecutora = typeof this.rubroSeleccionado.UnidadEjecutora === 'undefined' ? undefined : this.rubroSeleccionado.UnidadEjecutora;
+      apropiacionData.Rubro.RubroPadre = typeof this.rubroSeleccionado.Padre === 'undefined' ? undefined : this.rubroSeleccionado.Padre;
+      apropiacionData.Rubro.Hijos = typeof this.rubroSeleccionado.Hijos === 'undefined' ? undefined : this.rubroSeleccionado.Hijos;     
+      apropiacionData.ApropiacionInicial = typeof this.apropiacion.ApropiacionInicial === 'undefined' ? undefined : this.apropiacion.ApropiacionInicial;
+      apropiacionData.Estado = "preasignado"; // Estado preasignado
 
-
-  preAsignarApropiacion(event) {
-    if (event.valid) {
-      event.data.IdRubro = typeof this.rubroSeleccionado.Id === 'undefined' ? undefined : this.rubroSeleccionado.Id;
-      event.data.Vigencia = typeof this.apropiacion.Vigencia === 'undefined' ? undefined : this.vigenciaSeleccionada.vigencia;
-      event.data.Valor = typeof this.apropiacion.Valor === 'undefined' ? undefined : this.apropiacion.Valor;
-      event.data.IdEstadoApropiacion = 1; // Estado pendiente
-
-      this.apHelper.apropiacionRegister(event.data).subscribe((res) => {
+      this.apHelper.apropiacionRegister(apropiacionData).subscribe((res) => {
         if (res) {
           this.popManager.showSuccessAlert('Se registro la preasignación de apropiación correctamente!');
           this.cleanForm()
           // this.eventChange.emit(true);
         }
       });
-    } else {
-      this.popManager.showErrorAlert('No se pudo registrar la preasignación de apropiación');
-    }
+
+      //this.popManager.showErrorAlert('No se pudo registrar la preasignación de apropiación');
+
   }
 }
