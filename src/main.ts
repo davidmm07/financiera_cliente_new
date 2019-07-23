@@ -24,5 +24,6 @@ if (!autenticacion.getAuthorizationUrl(isButtonLogin)) {
 
 
 
+
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
