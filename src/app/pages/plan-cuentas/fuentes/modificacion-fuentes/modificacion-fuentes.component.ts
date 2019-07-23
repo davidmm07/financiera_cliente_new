@@ -44,9 +44,10 @@ export class ModificacionFuentesComponent implements OnInit {
 
   ]
 
-  dependenciasAdicion: any[];
+  dependenciasAdicion: any = [];
 
   constructor() { }
+
 
   ngOnInit() {
   }
@@ -55,13 +56,22 @@ export class ModificacionFuentesComponent implements OnInit {
     this.tipomodificacionsel = selectedItem;
   }
 
-  aniadirDependencias() {
+  aniadirDependencia() {
     const dep = {
       nombre: '',
       val_disponible: 0,
       val_adicion: 0,
     }
     this.dependenciasAdicion.push(dep);
+  }
+
+  removerDependencia() {
+    const dep = {
+      nombre: '',
+      val_disponible: 0,
+      val_adicion: 0,
+    }
+    this.dependenciasAdicion.pop(dep);
   }
 
 }
