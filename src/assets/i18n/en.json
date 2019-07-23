@@ -26,7 +26,8 @@
       "consulta": "Consulta",
       "registro": "Registro",
       "comprobacion-apropiacion-inicial": "Comprobacion AI",
-      "gestion-plan-cuentas" : "Gestión Plan de Cuentas"
+      "gestion-plan-cuentas" : "Gestión Plan de Cuentas",
+      "gestion-modificaciones" : "Gestión Modificaciones"
     } ,
     "atencion_usuario": {
       "atencion_usuario": "Customer service",

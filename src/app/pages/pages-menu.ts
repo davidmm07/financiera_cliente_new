@@ -21,6 +21,12 @@ export const MENU_ITEMS: MenuItem[] = [
         home: false,
         key: 'gestion-plan-cuentas',
       },
+      {
+        title: 'gestion-modificaciones',
+        link: '/pages/plan-cuentas/gestion-modificaciones',
+        home: false,
+        key: 'gestion-modificaciones',
+      },
 
     ],
   },
@@ -47,6 +53,12 @@ export const MENU_PUBLICO: MenuItem[] = [
         link: '/pages/plan-cuentas/gestion-plan-cuentas',
         home: false,
         key: 'gestion-plan-cuentas',
+      },
+      {
+        title: 'gestion-modificaciones',
+        link: '/pages/plan-cuentas/gestion-modificaciones',
+        home: false,
+        key: 'gestion-modificaciones',
       },
 
     ],

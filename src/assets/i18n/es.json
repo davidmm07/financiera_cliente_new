@@ -121,5 +121,30 @@
     "egresos": "3 EGRESOS",
     "comprobacion-igualdad": "La apropiacion inicial esta balanceada",
     "comprobacion-diferencia": "Existe una diferencia entre ingresos y egresos de: "
+  },
+  "MODIF": {
+    "modificacion_fuentes": "Modificación fuentes de financiamiento",
+    "tipomod": "Tipo de modificacion",
+    "tipofuente": "Tipo de fuente",
+    "tipo_documento": "Tipo de documento",
+    "numero_documento": "Número de documento",
+    "fecha_documento": "Fecha de documento",
+    "modificando_fuente": "Modificando fuente de financiamiento",
+    "valor": "Valor",
+    "rubro_origen": "Rubro de origen",
+    "rubro_destino": "Rubro de destino",
+    "rubro_dependencia": "Dependencia",
+    "agregar-dependencia": "Agregar Dependencia",
+    "quitar-fuente": "Quitar Fuente",
+    "registrar-modificacion" : "Registrar Modificación",
+    "adicion" : "Adición",
+    "reduccion" : "Reducción",
+    "dependencia" : "Dependencia",
+    "valor-disponible" : "Valor Disponible",
+    "valor-adicion" : "Valor adición",
+    "valor-reduccion" : "Valor reducción",
+    "quitar-dependencia" : "Quitar Dependencia",
+    "traslado" : "Traslado"
+
   }
 }
