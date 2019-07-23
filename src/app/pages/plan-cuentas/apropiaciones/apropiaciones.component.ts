@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Rubro } from '../../../@core/data/models/rubro';
 import { ApropiacionHelper } from '../../../helpers/apropiaciones/apropiacionHelper';
 import { PopUpManager } from '../../../managers/popUpManager';
-import { Apropiacion } from '../../../@core/data/models/apropiacion';
 import { ArbolApropiacion } from '../../../@core/data/models/arbol_apropiacion';
 
 @Component({
@@ -15,7 +14,7 @@ export class ApropiacionesComponent implements OnInit {
   @Input() vigenciaSeleccionada;
   @Input() optionPlanCuentas: string;
   rubroSeleccionado: any;
-  //apropiacion: Apropiacion;
+  // apropiacion: Apropiacion;
   apropiacion: ArbolApropiacion;
   apropiacionAprobada: boolean;
   valorApropiacion
@@ -41,7 +40,7 @@ export class ApropiacionesComponent implements OnInit {
     this.apropiacion = {
       Vigencia: 0,
       ApropiacionInicial: 0,
-      Estado: "",
+      Estado: '',
       Rubro: null,
     };
 
@@ -79,26 +78,27 @@ export class ApropiacionesComponent implements OnInit {
   }
 
   preAsignarApropiacion() {
-      const apropiacionData : ArbolApropiacion = null;
-      apropiacionData.Vigencia = typeof this.apropiacion.Vigencia === 'undefined' ? undefined : this.vigenciaSeleccionada.vigencia;
-      apropiacionData.Rubro.Id = typeof this.rubroSeleccionado.Id === 'undefined' ? undefined : this.rubroSeleccionado.Id;
-      apropiacionData.Rubro.Nombre = typeof this.rubroSeleccionado.Nombre === 'undefined' ? undefined : this.rubroSeleccionado.Nombre;
-      apropiacionData.Rubro.Descripcion = typeof this.rubroSeleccionado.Descripcion === 'undefined' ? undefined : this.rubroSeleccionado.Descripcion;
-      apropiacionData.Rubro.UnidadEjecutora = typeof this.rubroSeleccionado.UnidadEjecutora === 'undefined' ? undefined : this.rubroSeleccionado.UnidadEjecutora;
-      apropiacionData.Rubro.RubroPadre = typeof this.rubroSeleccionado.Padre === 'undefined' ? undefined : this.rubroSeleccionado.Padre;
-      apropiacionData.Rubro.Hijos = typeof this.rubroSeleccionado.Hijos === 'undefined' ? undefined : this.rubroSeleccionado.Hijos;     
-      apropiacionData.ApropiacionInicial = typeof this.apropiacion.ApropiacionInicial === 'undefined' ? undefined : this.apropiacion.ApropiacionInicial;
-      apropiacionData.Estado = "preasignado"; // Estado preasignado
+    const apropiacionData: ArbolApropiacion = null;
+    apropiacionData.Vigencia = typeof this.apropiacion.Vigencia === 'undefined' ? undefined : this.vigenciaSeleccionada.vigencia;
+    apropiacionData.Rubro.Id = typeof this.rubroSeleccionado.Id === 'undefined' ? undefined : this.rubroSeleccionado.Id;
+    apropiacionData.Rubro.Nombre = typeof this.rubroSeleccionado.Nombre === 'undefined' ? undefined : this.rubroSeleccionado.Nombre;
+    apropiacionData.Rubro.Descripcion = typeof this.rubroSeleccionado.Descripcion === 'undefined' ? undefined : this.rubroSeleccionado.Descripcion;
+    apropiacionData.Rubro.UnidadEjecutora = typeof this.rubroSeleccionado.UnidadEjecutora === 'undefined'
+    ? undefined : this.rubroSeleccionado.UnidadEjecutora;
+    apropiacionData.Rubro.RubroPadre = typeof this.rubroSeleccionado.Padre === 'undefined' ? undefined : this.rubroSeleccionado.Padre;
+    apropiacionData.Rubro.Hijos = typeof this.rubroSeleccionado.Hijos === 'undefined' ? undefined : this.rubroSeleccionado.Hijos;
+    apropiacionData.ApropiacionInicial = typeof this.apropiacion.ApropiacionInicial === 'undefined' ? undefined : 1;
+    apropiacionData.Estado = 'preasignado'; // Estado preasignado
 
-      this.apHelper.apropiacionRegister(apropiacionData).subscribe((res) => {
-        if (res) {
-          this.popManager.showSuccessAlert('Se registro la preasignación de apropiación correctamente!');
-          this.cleanForm()
-          // this.eventChange.emit(true);
-        }
-      });
+    this.apHelper.apropiacionRegister(apropiacionData).subscribe((res) => {
+      if (res) {
+        this.popManager.showSuccessAlert('Se registro la preasignación de apropiación correctamente!');
+        this.cleanForm()
+        // this.eventChange.emit(true);
+      }
+    });
 
-      //this.popManager.showErrorAlert('No se pudo registrar la preasignación de apropiación');
+    // this.popManager.showErrorAlert('No se pudo registrar la preasignación de apropiación');
 
   }
 }

@@ -1,7 +1,7 @@
 import { Rubro } from './rubro';
 
 export class ArbolApropiacion {
-    Rubro : Rubro;
+    Rubro: Rubro;
     Vigencia: number;
     ApropiacionInicial: number;
     Estado: string;

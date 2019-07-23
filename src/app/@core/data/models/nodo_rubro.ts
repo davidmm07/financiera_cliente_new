@@ -1,5 +1,5 @@
 export class NodoRubro {
-    Id : string;
+    Id: string;
     Hijos: string[];
     Padre: string;
     UnidadEjecutora: string;
