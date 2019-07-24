@@ -27,29 +27,24 @@ export class ProductosRubroComponent implements OnInit {
   ngOnInit() {
   }
 
-  asignarProducto($event: any, rubro: Rubro) {
-    this.verificarAsignacionProducto(rubro, this.productos[$event]);
 
-  }
-
-  verificarAsignacionProducto($event, productoAsignado: any) {
-        for (let i = 0; i < this.rubro.Productos.length; i++) {
-          if (this.rubro.Productos[i] === -1) {
-            this.rubro.Productos[i] = productoAsignado;
-          }
-        }
+  asignarProducto(productoAsignado: any , porcentaje: number , index: number) {
+    console.info(productoAsignado)
+    console.info("perc: "+porcentaje)
+    this.rubro.Productos[index].producto = productoAsignado;
+    this.rubro.Productos[index].porcentaje = porcentaje;
       }
    
   
 
-  agregarProducto($event, producto: any) {
-    this.rubro.Productos.push(producto);
+  agregarProducto($event) {
+    this.rubro.Productos.push({ producto: this.productos[0] , porcentaje: 0 });
+
   }
 
   eliminarProducto($event, producto: any){
-    // let filtered=this.rubro.Productos.filter((p)=>{p!=producto;});
-    // this.rubro.Productos=filtered;
-    this.rubro.Productos.pop();
-    console.info($event)
+      this.rubro.Productos=this.rubro.Productos.filter((p)=>{
+      return JSON.stringify(p)!=JSON.stringify(producto);
+    })
   }
 }
