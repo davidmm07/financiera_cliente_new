@@ -58,6 +58,9 @@
     "rubro": "Rubro",
     "dependencia": "Dependencia",
     "valor": "Valor",
+    "producto": "Producto",
+    "porcentaje": "Porcentaje %",
+    "quitar_producto": "Quitar producto",
     "apropiacion-inicial": "Apropiacion inicial",
     "aprobar-apropiacion-inicial": "Aprobar apropiación inicial",
     "detalle-rubro": "Detalle del rubro",
@@ -108,7 +111,8 @@
   "RUBRO": {
     "rubro_registrado_success": "Rubro Registrado Correctamente",
     "rubro_registrado_error": "No Se Pudo Registrar El Rubro",
-    "registrar_rubro": "Registrar Rubro"
+    "registrar_rubro": "Registrar Rubro",
+    "add-producto": "Agregar producto"
   },
   "FUENTE_FINANCIAMIENTO": {
     "asignar_fuente": "Asignar Fuente de Financiamiento",

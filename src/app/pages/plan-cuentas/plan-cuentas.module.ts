@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { PlanCuentasRoutingModule, routedComponents } from './plan-cuentas-routing.module';
 import { SharedModule } from '../../shared/shared.module';
 import { NbTreeGridModule, NbSelectModule, NbAlertModule, NbTabsetModule } from '@nebular/theme';
+import { ProductosRubroComponent } from './rubros/productos-rubro/productos-rubro.component';
 
 
 
@@ -11,6 +12,7 @@ import { NbTreeGridModule, NbSelectModule, NbAlertModule, NbTabsetModule } from 
 @NgModule({
   declarations: [
     ...routedComponents,
+    ProductosRubroComponent,
   ],
   imports: [
     ThemeModule,

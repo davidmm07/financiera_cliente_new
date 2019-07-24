@@ -1,0 +1,27 @@
+<div class="col-md-12">
+  <h3>Productos</h3>
+      <!-- para cada uno de los productos asignados -->
+      <table class="table table-hover">
+          <thead class="thead-dark">
+              <th scope="col">{{'GLOBAL.producto' | translate}}</th>
+              <th scope="col">{{'GLOBAL.porcentaje' | translate}}</th>
+              <th scope="col">{{'GLOBAL.quitar_producto' | translate}}</th>
+          </thead>
+          <tbody>
+              <tr *ngFor="let p of rubro.Productos">
+                <td><select (change)="asignarProducto($event.target.value)" [(ngModel)]="p.producto.Nombre"
+                  class="form-control  dropdown">
+                  <option id="index" *ngFor="let prod of productos; let value = index;" [value]="value" >{{prod.Nombre}}
+                  </option>
+                </select></td>
+                <td><input type="number" name="porcentaje" min="1" max="100" id="porcentaje" class="form-control" [(ngModel)]="p.porcentaje"></td>
+                <td><button type="submit" class="btn btn-danger" (click)="eliminarProducto($event, p)">
+                    {{'GLOBAL.eliminar' | translate }}
+                  </button></td>
+              </tr>
+          </tbody>
+      </table>
+        <button (click)="agregarProducto($event, rubro)"
+        class="btn btn-outline-primary col-md-12">{{'RUBRO.add-producto' | translate}}</button>
+</div>
+
