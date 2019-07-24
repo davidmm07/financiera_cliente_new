@@ -2,16 +2,6 @@
   <div class="row">
     <div class="col-md-12">
       <div class="row">
-
-        <!-- arbol -->
-        <div class="col-md-6 col-lg-6 col-xxxl-6">
-          <div class="row">
-            <ngx-arbol (rubroSeleccionado)="receiveMessage($event)"></ngx-arbol>            
-          </div>
-          <div class="row">
-          </div>
-        </div>
-
         <!-- fuente -->
         <div class="col-md-6">
           <!-- info fuente -->
@@ -22,10 +12,10 @@
                   {{'FUENTE_FINANCIAMIENTO.asignar_fuente' | translate }}
                 </nb-card-header>
                 <nb-card-body>
-                  <!-- <ngx-dinamicform [normalform]="formInfoRubro" [modeloData]="info_rubro" (result)="validarForm($event)"
+                  <ngx-dinamicform [normalform]="formInfoFuente" [modeloData]="info_fuente" (result)="validarForm($event)"
                           [clean]="clean">
-                        </ngx-dinamicform> -->
-                  <div>
+                        </ngx-dinamicform>
+                  <!-- <div>
                     <div>
                       <label>Valor Fuente</label>
                       <label>Valor Fuente</label>
@@ -55,45 +45,55 @@
                         {{'GLOBAL.limpiar' | translate}}
                       </button>
                     </div>
-                  </div>
+                  </div> -->
                 </nb-card-body>
               </nb-card>
             </div>
           </div>
 
+        </div>
+        <!-- arbol -->
+        <div class="col-md-6 col-lg-6 col-xxxl-6">
+            <div class="row">
+              <ngx-arbol (rubroSeleccionado)="receiveMessage($event)"></ngx-arbol>            
+            </div>
+            <div class="row">
           <!-- dependencias -->
           <div class="col-md-12" *ngFor="let rubro of rubrosAsignados">
-            <div>
-              <h5>{{'GLOBAL.rubro' | translate}}: {{rubro.Codigo}} {{rubro.Nombre}}</h5>
-            </div>
-            <div *ngFor="let depedenciasAsignadas of rubro.Dependencias">
-              <!-- <ngx-dinamicform [normalform]="formDependenciarubro" [modeloData]="depedenciasAsignadas" (result)="validarForm($event)" [clean]="clean">
-                  </ngx-dinamicform> -->
-              <div class="row form-group">
-                <label for="" class="col-md-4">{{'GLOBAL.dependencia' | translate}}</label>
-                <label for="valor" class="col-md-4 offset-1">{{'GLOBAL.valor' | translate}}</label>
-                <label for="" class="col-md-4">
-                  <span class=".glyphicon .glyphicon-remove"></span>
-                </label>
+              <div>
+                <h5>{{'GLOBAL.rubro' | translate}}: {{rubro.Codigo}} {{rubro.Nombre}}</h5>
               </div>
-              <div class="row">
-                <select (change)="asignarDependencia($event.target.value, rubro)" [(ngModel)]="dependenciaSeleccionada"
-                  class="form-control col-md-4 dropdown">
-                  <option *ngFor="let dependencia of dependencias; let value = index;" [value]="value" >{{dependencia.Nombre}}
-                  </option>
-                </select>
-                <input type="number" name="valor" id="" class="form-control col-md-4 offset-1">
+              <div *ngFor="let depedenciasAsignadas of rubro.Dependencias">
+                <!-- <ngx-dinamicform [normalform]="formDependenciarubro" [modeloData]="depedenciasAsignadas" (result)="validarForm($event)" [clean]="clean">
+                    </ngx-dinamicform> -->
+                <div class="row form-group">
+                  <label for="" class="col-md-4">{{'GLOBAL.dependencia' | translate}}</label>
+                  <label for="valor" class="col-md-4 offset-1">{{'GLOBAL.valor' | translate}}</label>
+                  <label for="" class="col-md-4">
+                    <span class=".glyphicon .glyphicon-remove"></span>
+                  </label>
+                </div>
+                <div class="row">
+                  <select (change)="asignarDependencia($event.target.value, rubro)" [(ngModel)]="dependenciaSeleccionada"
+                    class="form-control col-md-4 dropdown">
+                    <option *ngFor="let dependencia of dependencias; let value = index;" [value]="value" >{{dependencia.Nombre}}
+                    </option>
+                  </select>
+                  <input type="number" name="valor" id="" class="form-control col-md-4 offset-1">
+                  <button (click)="quitarDependencia($event, rubro)"
+                  class="btn btn-sm btn-outline-danger col-md-2 offset-1">{{'FUENTE_FINANCIAMIENTO.remove-dependencia' | translate}}</button>
+  
+                </div>
               </div>
+              <div class="form-group mt-2">
+                <button (click)="agregarDependencia($event, rubro)"
+                  class="btn btn-outline-primary col-md-12">{{'FUENTE_FINANCIAMIENTO.add-dependencia' | translate}}</button>
+                <button
+                  class="btn btn-outline-danger col-md-12 mt-1">{{'FUENTE_FINANCIAMIENTO.remove-rubro' | translate}}</button>
+              </div>
+            </div>              
             </div>
-            <div class="form-group mt-2">
-              <button (click)="agregarDependencia($event, rubro)"
-                class="btn btn-outline-primary col-md-12">{{'FUENTE_FINANCIAMIENTO.add-dependencia' | translate}}</button>
-              <button
-                class="btn btn-outline-danger col-md-12 mt-1">{{'FUENTE_FINANCIAMIENTO.remove-rubro' | translate}}</button>
-            </div>
-          </div>
-
-        </div>
+          </div>        
         <button class="btn btn-outline-success col-md-8 offset-1" (click)="registrar()">{{'GLOBAL.guardar' | translate}}</button>
 
       </div>

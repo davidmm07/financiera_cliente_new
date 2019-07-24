@@ -1,4 +1,4 @@
-export let FORM_INFO_RUBRO = {
+export let FORM_INFO_FUENTE = {
 
     tipo_formulario: 'mini',
 
