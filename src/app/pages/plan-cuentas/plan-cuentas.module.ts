@@ -9,6 +9,7 @@ import { ProductosRubroComponent } from './rubros/productos-rubro/productos-rubr
 
 
 
+
 @NgModule({
   declarations: [
     ...routedComponents,

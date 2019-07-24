@@ -1,70 +1,404 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-6">
-      <nb-card>
-        <nb-card-header class="nbheader">
-          <h3 class="nbheadertext">modificacion fuentes</h3>
+      <nb-card accent="info">
+        <nb-card-header>
+          {{ "MODIF.modificacion_fuentes" | translate }}
         </nb-card-header>
         <nb-card-body>
-            <form>
-                <div class="form-group">
-                  <label>{{ "MODIF.tipomod" | translate }}</label>
-                  <nb-select id="select_tipo_modificacion" placeholder="Tipo Modificacion" outline status="success" >
-                      <nb-option *ngFor="let tm of tipomodificacion" [value]="tm" >{{ tm }}</nb-option>
-                    </nb-select>
-                </div>
-                <div class="form-group">
-                  <label>{{ "MODIF.tipofuente" | translate }}</label>
-                  <nb-select id="select_tipo_fuente" placeholder="Tipo Fuente" outline status="success" >
-                      <nb-option *ngFor="let tf of tipofuente" [value]="tf" >{{ tf }}</nb-option>
-                    </nb-select>
-                </div>
-                <div class="form-group">
-                  <label>{{
-                    "GLOBAL.descripcion" | translate
-                  }}</label>
-                  <input nbInput type="text-area" class="form-control" placeholder="Inserte descripcion"/>
-                </div>
-                <div class="row form-group">
-                <div class=" col-md-6">
-                    <label>{{
-                        "MODIF.tipo_documento" | translate
-                      }}</label>
-                  <nb-select id="select_tipo_documento" placeholder="Tipo Documento" outline status="success" >
-                    <nb-option *ngFor="let td of tipodocumento" [value]="td" >{{ td }}</nb-option>
-                  </nb-select>
-                </div>
-                <div class=" col-md-6">
-                    <label>{{
-                        "MODIF.numero_documento" | translate
-                      }}</label>
-                      <input nbInput type="text" class="form-control" placeholder="Inserte numero documento"/>
-                </div>
+          <form>
+            <div class="form-group">
+              <label>{{ "MODIF.tipomod" | translate }}</label>
+              <nb-select
+                id="select_tipo_modificacion"
+                placeholder="Tipo Modificacion"
+                outline
+                status="success"
+              >
+                <nb-option
+                  (click)="onSelect(tm)"
+                  *ngFor="let tm of tipomodificacion"
+                  [value]="tm"
+                  >{{ tm }}</nb-option
+                >
+              </nb-select>
+            </div>
+            <div class="form-group">
+              <label>{{ "MODIF.tipofuente" | translate }}</label>
+              <nb-select
+                id="select_tipo_fuente"
+                placeholder="Tipo Fuente"
+                outline
+                status="success"
+              >
+                <nb-option *ngFor="let tf of tipofuente" [value]="tf">{{
+                  tf
+                }}</nb-option>
+              </nb-select>
+            </div>
+            <div class="form-group">
+              <label>{{ "MODIF.descripcion" | translate }}</label>
+              <input
+                nbInput
+                type="text-area"
+                class="form-control"
+                placeholder="Inserte descripcion"
+              />
+            </div>
+            <div class="row form-group">
+              <div class=" col-md-6">
+                <label>{{ "MODIF.tipo_documento" | translate }}</label>
+                <nb-select
+                  id="select_tipo_documento"
+                  placeholder="Tipo Documento"
+                  outline
+                  status="success"
+                >
+                  <nb-option *ngFor="let td of tipodocumento" [value]="td">{{
+                    td
+                  }}</nb-option>
+                </nb-select>
               </div>
-              <div class="row form-group">
-                <div class="col-md-6">
-                    <label>{{
-                        "MODIF.fecha_documento" | translate
-                      }}</label>
-                </div>
-                <div class="col-md-6">
-                    <input class="form-control" id="fechadocumento" type="date">
-                </div>
+              <div class=" col-md-6">
+                <label>{{ "MODIF.numero_documento" | translate }}</label>
+                <input
+                  nbInput
+                  type="text"
+                  class="form-control"
+                  placeholder="Inserte numero documento"
+                />
               </div>
-               
-              </form>
+            </div>
+            <div class="row form-group">
+              <div class="col-md-6">
+                <label>{{ "MODIF.fecha_documento" | translate }}</label>
+              </div>
+              <div class="col-md-6">
+                <input class="form-control" id="fechadocumento" type="date" />
+              </div>
+            </div>
+          </form>
         </nb-card-body>
       </nb-card>
     </div>
     <div class="col-md-6">
-        <nb-card>
-            <nb-card-header class="nbheader">
-              <h3 class="nbheadertext">modificando fuente 666</h3>
-            </nb-card-header>
-            <nb-card-body>
-              selects
-            </nb-card-body>
-          </nb-card>
+      <nb-card accent="info">
+        <nb-card-header>
+          {{ tipomodificacionsel }}
+          <span>Fuente Código 122</span>
+        </nb-card-header>
+
+        <nb-card-body *ngIf="tipomodificacionsel === 'Adición'">
+          <div class="form-group">
+            <h1 class="titleModificacion"></h1>
+            <label>Valor de adición</label>
+            <input
+              nbInput
+              type="number"
+              class="form-control"
+              id="valorAdicion"
+              placeholder="$0.00"
+              [(ngModel)]="adicion.rubro_afecta.Valor"
+            />
+          </div>
+          <div class="container-fluid">
+            <div class="form-group">
+              <div
+                *ngFor="let dep of dependenciasAdicion"
+                class="row"
+                id="formDependencias"
+              >
+                <div class="col-lg-3">
+                  <div class="form-group">
+                    <label for="inputDependencia">{{
+                      "MODIF.dependencia" | translate
+                    }}</label>
+                    <nb-select
+                      placeholder="Dependencia"
+                      [(selected)]="commonSelectedItem"
+                      outline
+                      status="success"
+                    >
+                      <nb-option *ngFor="let v of dependencias" [value]="v">
+                        {{ v.dependencia }}</nb-option
+                      >
+                    </nb-select>
+                  </div>
+                </div>
+                <div class="col-lg-3">
+                  <div class="form-group">
+                    <label for="inputWebsite">{{
+                      "MODIF.valor-disponible" | translate
+                    }}</label>
+                    <input
+                      nbInput
+                      type="number"
+                      class="form-control"
+                      id="inputDisponible"
+                      placeholder="$0.00"
+                    />
+                  </div>
+                </div>
+                <div class="col-lg-3">
+                  <div class="form-group">
+                    <label for="inputWebsite">{{
+                      "MODIF.valor-adición" | translate
+                    }}</label>
+                    <input
+                      nbInput
+                      type="number"
+                      class="form-control"
+                      id="inputAdicion"
+                      placeholder="$0.00"
+                    />
+                  </div>
+                </div>
+                <div class="col-lg-3">
+                  <div class="form-group">
+                    <label>&nbsp;</label>
+                    <button
+                      type="submit"
+                      class="btn btn-danger btn-block btnQuitarDep"
+                      (click)="removerDependencia()"
+                    >
+                      {{ "MODIF.quitar-dependencia" | translate }}
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <button
+                    type="submit"
+                    class="btn btn-info btn-block"
+                    (click)="aniadirDependencia()"
+                  >
+                    {{ "MODIF.agregar-dependencia" | translate }}
+                  </button>
+                </div>
+                <div class="col-md-6">
+                  <button type="submit" class="btn btn-info btn-block">
+                    {{ "MODIF.quitar-fuente" | translate }}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="container-fluid">
+            <div class="col-lg-12">
+              <button type="submit" class="btn btn-success btn-block">
+                {{ "MODIF.registrar-modificacion" | translate }}
+              </button>
+            </div>
+          </div>
+        </nb-card-body>
+
+        <nb-card-body *ngIf="tipomodificacionsel === 'Reducción'">
+          <div class="form-group">
+            <label>Valor de adición</label>
+            <input
+              nbInput
+              type="number"
+              class="form-control"
+              id="valorAdicion"
+              placeholder="$0.00"
+              [(ngModel)]="adicion.valor_adicion"
+            />
+          </div>
+          <div class="container-fluid">
+            <div class="form-group">
+              <div class="row" id="formDependencias">
+                <div class="col-lg-3">
+                  <div class="form-group">
+                    <label for="inputEmail">{{
+                      "MODIF.dependencia" | translate
+                    }}</label>
+                    <nb-select
+                      placeholder="Dependencia"
+                      [(selected)]="commonSelectedItem"
+                      outline
+                      status="success"
+                    >
+                      <nb-option
+                        *ngFor="let v of dependencias"
+                        [value]="v"
+                        (click)="onSelect(v.dependencia)"
+                      >
+                        {{ v.dependencia }}</nb-option
+                      >
+                    </nb-select>
+                  </div>
+                </div>
+                <div class="col-lg-3">
+                  <div class="form-group">
+                    <label for="inputWebsite">{{
+                      "MODIF.valor-disponible" | translate
+                    }}</label>
+                    <input
+                      nbInput
+                      type="number"
+                      class="form-control"
+                      id="inputDisponible"
+                      placeholder="$0.00"
+                    />
+                  </div>
+                </div>
+                <div class="col-lg-3">
+                  <div class="form-group">
+                    <label for="inputWebsite">{{
+                      "MODIF.valor-reduccion" | translate
+                    }}</label>
+                    <input
+                      nbInput
+                      type="number"
+                      class="form-control"
+                      id="inputReduccion"
+                      placeholder="$0.00"
+                    />
+                  </div>
+                </div>
+
+                <div class="col-lg-3">
+                  <div class="form-group">
+                    <label>&nbsp;</label>
+                    <button
+                      type="submit"
+                      class="btn btn-danger btn-block btnQuitarDep"
+                    >
+                      {{ "MODIF.quitar-dependencia" | translate }}
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <button type="submit" class="btn btn-info btn-block">
+                    {{ "MODIF.agregar-dependencia" | translate }}
+                  </button>
+                </div>
+                <div class="col-md-6">
+                  <button type="submit" class="btn btn-info btn-block">
+                    {{ "MODIF.quitar-fuente" | translate }}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="container-fluid">
+            <div class="col-lg-12">
+              <button type="submit" class="btn btn-success btn-block">
+                {{ "MODIF.registrar-modificacion" | translate }}
+              </button>
+            </div>
+          </div>
+        </nb-card-body>
+        <!-- formulario para registro de traslados -->
+        <nb-card-body *ngIf="tipomodificacionsel === 'Traslado'">
+          <form>
+            <h3>{{ "MODIF.valor" | translate }}</h3>
+            <div class="row form-group">
+              <div class="col-md-6">
+                <label>{{ "MODIF.valor" | translate }}</label>
+                <input
+                  nbInput
+                  type="text"
+                  class="form-control"
+                  placeholder="Inserte valor total"
+                  name="valor_total"
+                  [(ngModel)]="traslado.valor_total"
+                />
+              </div>
+            </div>
+            <h3>{{ "MODIF.rubro_origen" | translate }}</h3>
+            <div class="row form-group">
+              <div class="col-md-12">
+                <label>{{ "MODIF.rubro_origen" | translate }}</label>
+                <nb-select
+                  id="select_tr_rubro_origen"
+                  placeholder="Seleccione rubro origen"
+                  outline
+                  status="success"
+                >
+                  <nb-option
+                    *ngFor="let ro of traslado.rubro_origen.rubros_disponibles"
+                    [value]="ro"
+                    >{{ ro }}</nb-option
+                  >
+                </nb-select>
+              </div>
+              <div class="col-md-6">
+                <label>{{ "MODIF.rubro_dependencia" | translate }}</label>
+                <nb-select
+                  id="select_tr_dependencia"
+                  placeholder="Seleccione dependencia"
+                  outline
+                  status="success"
+                >
+                  <nb-option
+                    *ngFor="let dep of traslado.rubro_origen.dependencias"
+                    [value]="dep"
+                    >{{ dep }}</nb-option
+                  >
+                </nb-select>
+              </div>
+              <div class="col-md-6">
+                <label>{{ "MODIF.valor" | translate }}</label>
+                <input
+                  nbInput
+                  type="text"
+                  class="form-control"
+                  placeholder="Inserte el valor"
+                  name="valor_origen"
+                  [(ngModel)]="traslado.rubro_origen.valor"
+                />
+              </div>
+            </div>
+
+            <h3>{{ "MODIF.rubro_destino" | translate }}</h3>
+            <div class="row form-group">
+              <div class="col-md-12">
+                <label>{{ "MODIF.rubro_destino" | translate }}</label>
+                <nb-select
+                  id="select_tr_rubro_destino"
+                  placeholder="Seleccione rubro destino"
+                  outline
+                  status="success"
+                >
+                  <nb-option
+                    *ngFor="let rd of traslado.rubro_destino.rubros_disponibles"
+                    [value]="rd"
+                    >{{ rd }}</nb-option
+                  >
+                </nb-select>
+              </div>
+              <div class="col-md-12">
+                <label>{{ "MODIF.rubro_dependencia" | translate }}</label>
+                <nb-select
+                  id="select_tr_rd_dependencia"
+                  placeholder="Seleccione dependencia"
+                  outline
+                  status="success"
+                >
+                  <nb-option
+                    *ngFor="let dep of traslado.rubro_destino.dependencias"
+                    [value]="dep"
+                    >{{ dep }}</nb-option
+                  >
+                </nb-select>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <button type="submit" class="btn btn-success btn-block">
+                {{ "MODIF.registrar-modificacion" | translate }}
+              </button>
+            </div>
+          </form>
+        </nb-card-body>
+      </nb-card>
     </div>
   </div>
 </div>

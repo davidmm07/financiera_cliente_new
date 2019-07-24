@@ -9,6 +9,7 @@ import { ConsultaComponent } from './consulta/consulta.component';
 import { RegistroComponent } from './registro/registro.component';
 import { FuentesComponent } from './fuentes/fuentes.component';
 import { ModificacionFuentesComponent } from './fuentes/modificacion-fuentes/modificacion-fuentes.component';
+import { GestionModificacionesComponent } from './gestion-modificaciones/gestion-modificaciones.component';
 
 
 const routes: Routes = [{
@@ -35,6 +36,14 @@ const routes: Routes = [{
   path: 'nb-fs-icon',
   component: FsIconAComponent,
 },
+{
+  path: 'modificacion-fuentes',
+  component: ModificacionFuentesComponent,
+},
+{
+  path: 'gestion-modificaciones',
+  component: GestionModificacionesComponent,
+},
 ];
 
 @NgModule({
@@ -55,4 +64,5 @@ export const routedComponents = [
   RegistroComponent,
   FuentesComponent,
   ModificacionFuentesComponent,
+  GestionModificacionesComponent,
 ];
