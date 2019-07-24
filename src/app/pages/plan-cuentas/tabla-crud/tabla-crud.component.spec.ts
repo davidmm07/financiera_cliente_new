@@ -8,7 +8,7 @@ describe('TablaCrudComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TablaCrudComponent ]
+      declarations: [ TablaCrudComponent ],
     })
     .compileComponents();
   }));
