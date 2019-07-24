@@ -27,7 +27,8 @@
       "registro": "Registro",
       "comprobacion-apropiacion-inicial": "Comprobacion AI",
       "gestion-plan-cuentas" : "Gestión Plan de Cuentas",
-      "gestion-modificaciones" : "Gestión Modificaciones"
+      "gestion-modificaciones" : "Gestión Modificaciones",
+      "tabla-crud" : "Tabla CRUD "
     } ,
     "atencion_usuario": {
       "atencion_usuario": "Customer service",

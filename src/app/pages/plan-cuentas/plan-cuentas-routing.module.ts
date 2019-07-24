@@ -10,6 +10,7 @@ import { RegistroComponent } from './registro/registro.component';
 import { FuentesComponent } from './fuentes/fuentes.component';
 import { ModificacionFuentesComponent } from './fuentes/modificacion-fuentes/modificacion-fuentes.component';
 import { GestionModificacionesComponent } from './gestion-modificaciones/gestion-modificaciones.component';
+import { TablaCrudComponent } from './tabla-crud/tabla-crud.component';
 
 
 const routes: Routes = [{
@@ -44,6 +45,11 @@ const routes: Routes = [{
   path: 'gestion-modificaciones',
   component: GestionModificacionesComponent,
 },
+{
+  path: 'tabla-crud',
+  component: TablaCrudComponent,
+},
+
 ];
 
 @NgModule({
@@ -65,4 +71,5 @@ export const routedComponents = [
   FuentesComponent,
   ModificacionFuentesComponent,
   GestionModificacionesComponent,
+  TablaCrudComponent,
 ];

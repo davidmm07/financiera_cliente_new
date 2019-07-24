@@ -27,6 +27,12 @@ export const MENU_ITEMS: MenuItem[] = [
         home: false,
         key: 'gestion-modificaciones',
       },
+      {
+        title: 'tabla-crud',
+        link: '/pages/plan-cuentas/tabla-crud',
+        home: false,
+        key: 'tabla-crud',
+      },
 
     ],
   },
@@ -60,6 +66,13 @@ export const MENU_PUBLICO: MenuItem[] = [
         home: false,
         key: 'gestion-modificaciones',
       },
+      {
+        title: 'tabla-crud',
+        link: '/pages/plan-cuentas/tabla-crud',
+        home: false,
+        key: 'tabla-crud',
+      },
+
 
     ],
   },
