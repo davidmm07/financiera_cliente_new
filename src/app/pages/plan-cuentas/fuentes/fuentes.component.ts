@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FORM_INFO_FUENTE } from './form_info_fuente';
 import { FORM_DEPENDENCIA_RUBRO } from './form_dependencia_rubro';
 import { TranslateService } from '@ngx-translate/core';
@@ -28,7 +28,7 @@ export class FuentesComponent implements OnInit {
   formDependenciarubro = FORM_DEPENDENCIA_RUBRO;
 
   constructor(
-    private renderer: Renderer2,
+    // private renderer: Renderer2,
     private translate: TranslateService, private dependenciaHelper: DependenciaHelper) {
     this.formInfoFuente = FORM_INFO_FUENTE;
     this.construirForm();
@@ -44,7 +44,6 @@ export class FuentesComponent implements OnInit {
   validarForm(event) {
     console.info('event', event);
     console.info('info', this.info_fuente);
-    
   }
 
   asignarDependencia($event: any, rubro: Rubro) {

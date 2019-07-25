@@ -3,11 +3,11 @@ import { ThemeModule } from '../../@theme/theme.module';
 import { CommonModule } from '@angular/common';
 import { PlanCuentasRoutingModule, routedComponents } from './plan-cuentas-routing.module';
 import { SharedModule } from '../../shared/shared.module';
-import { 
-  NbTreeGridModule, 
-  NbSelectModule, 
-  NbAlertModule, 
-  NbTabsetModule, 
+import {
+  NbTreeGridModule,
+  NbSelectModule,
+  NbAlertModule,
+  NbTabsetModule,
   NbStepperModule } from '@nebular/theme';
 
 
