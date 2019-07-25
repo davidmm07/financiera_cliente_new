@@ -81,6 +81,7 @@
     "cancelar": "Cancelar",
     "salir": "Salir",
     "eliminar": "Eliminar",
+    "editar": "Editar",
     "cargar": "Cargar",
     "actualizar": "Actualizar",
     "crear": "Crear",
@@ -112,7 +113,8 @@
     "rubro_registrado_success": "Rubro Registrado Correctamente",
     "rubro_registrado_error": "No Se Pudo Registrar El Rubro",
     "registrar_rubro": "Registrar Rubro",
-    "add-producto": "Agregar producto"
+    "add-producto": "Agregar producto",
+    "edit-producto": "Editar producto"
   },
   "FUENTE_FINANCIAMIENTO": {
     "asignar_fuente": "Asignar Fuente de Financiamiento",

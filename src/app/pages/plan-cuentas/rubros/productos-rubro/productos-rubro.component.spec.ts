@@ -8,7 +8,7 @@ describe('ProductosRubroComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProductosRubroComponent ]
+      declarations: [ ProductosRubroComponent ],
     })
     .compileComponents();
   }));

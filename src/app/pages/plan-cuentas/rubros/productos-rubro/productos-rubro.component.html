@@ -1,29 +1,58 @@
 <div class="col-md-12">
   <h3>Productos</h3>
-      <!-- para cada uno de los productos asignados -->
-      <table class="table table-hover">
-          <thead class="thead-dark">
-              <th scope="col">{{'GLOBAL.producto' | translate}}</th>
-              <th scope="col">{{'GLOBAL.porcentaje' | translate}}</th>
-              <th scope="col">{{'GLOBAL.quitar_producto' | translate}}</th>
-          </thead>
-          <tbody>
-              <tr *ngFor="let p of rubro.Productos;let indice=index;">
-                <td><select [(ngModel)]="p.producto"  (ngModelChange)="asignarProducto(p.producto, p.porcentaje , indice)"
-                  class="form-control  dropdown" >
-                  <option *ngFor="let prod of productos; let ip=index;" [ngValue]="productos[ip]" >{{prod.Nombre}}
-                  </option>
-                </select></td>
-                <td><input type="number" name="porcentaje" min="1" max="100" id="porcentaje" class="form-control" onkeydown="return false" [(ngModel)]="p.porcentaje" (ngModelChange)="asignarProducto(p.producto, p.porcentaje , indice)" ></td>
-                <td><button type="submit" class="btn btn-danger" (click)="eliminarProducto($event, p)">
-                    {{'GLOBAL.eliminar' | translate }}
-                  </button></td>
-              </tr>
-          </tbody>
-          <button (click)="agregarProducto($event)"
-        class="btn btn-outline-primary col-md-12">{{'RUBRO.add-producto' | translate}}</button>
-      </table>
-      <pre>{{rubro.Productos | json}}</pre>
-        
-</div>
+  <!-- para cada uno de los productos asignados -->
+  <table class="table table-hover">
+    <thead class="thead-dark">
+      <th scope="col">{{'GLOBAL.producto' | translate}}</th>
+      <th scope="col">{{'GLOBAL.porcentaje' | translate}}</th>
+      <th scope="col">{{'RUBRO.edit-producto' | translate}}</th>
+      <th scope="col">{{'GLOBAL.quitar_producto' | translate}}</th>
+    </thead>
+    <tbody>
+      <!-- lista para cada uno de los productos ya asignados para el rubro -->
+      <tr *ngFor="let p of rubro.Productos;let indice=index;">
+        <td>
+          <input type="text" class="form-control" [value]="p.producto.Nombre || ''" disabled />
+        </td>
+        <td>
+          <input type="number" name="porcentaje" min="1" max="100" id="porcentaje" class="form-control"
+            onkeydown="return false" [(ngModel)]="p.porcentaje"
+            (ngModelChange)="asignarProducto(p.producto, p.porcentaje , indice)" disabled>
+        </td>
+        <td>
+          <button type="submit" class="btn btn-success" (click)="entrandoEditar(p)">
+            {{'GLOBAL.editar' | translate }}
+          </button>
+        </td>
+        <td>
+          <button type="submit" class="btn btn-danger" (click)="eliminarProducto($event, p)">
+            {{'GLOBAL.eliminar' | translate }}
+          </button>
+        </td>
+        <!-- formulario para adicion y edicion de nueva asignacion de producto -->
+      </tr>
+      <tr>
+        <td>
+          <select [(ngModel)]="productoSeleccionado.producto" class="form-control  dropdown">
+            <option *ngFor="let prod of productos;" [ngValue]="prod">{{prod.Nombre}}
+            </option>
+          </select>
+        </td>
+        <td>
+          <input type="number" name="porcentajeAsignado" min="1" max="100" id="porcentajeAsignado" class="form-control"
+            onkeydown="return false" [(ngModel)]="productoSeleccionado.porcentaje"></td>
+        <td>
+          <button *ngIf="!entrarEditar" (click)="agregarProducto($event)"
+            class="btn btn-outline-primary col-md-12">{{'RUBRO.add-producto' | translate}}</button>
+          <button *ngIf="entrarEditar" (click)="editarProducto()"
+            class="btn btn-outline-success col-md-12">{{'RUBRO.edit-producto' | translate}}</button>
 
+        </td>
+      </tr>
+    </tbody>
+
+  </table>
+  <!-- <pre>{{rubro.Productos | json}}</pre>-----------------------------
+  <pre>{{productoSeleccionado | json}}</pre> -->
+
+</div>
