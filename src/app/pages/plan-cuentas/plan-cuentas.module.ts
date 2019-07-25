@@ -4,18 +4,14 @@ import { CommonModule } from '@angular/common';
 import { PlanCuentasRoutingModule, routedComponents } from './plan-cuentas-routing.module';
 import { SharedModule } from '../../shared/shared.module';
 import { NbTreeGridModule, NbSelectModule, NbAlertModule, NbTabsetModule } from '@nebular/theme';
-import { ProductosComponent } from './productos/productos.component';
-import { TablaCrudComponent } from './tabla-crud/tabla-crud.component';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
-
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
 
 
 @NgModule({
   declarations: [
     ...routedComponents,
-    ProductosComponent,
-    TablaCrudComponent,
   ],
   imports: [
     ThemeModule,
@@ -27,6 +23,8 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
     NbAlertModule,
     NbTabsetModule,
     Ng2SmartTableModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
   ],
   exports: [
 

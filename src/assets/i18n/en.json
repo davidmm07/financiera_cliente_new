@@ -26,10 +26,17 @@
       "consulta": "Consulta",
       "registro": "Registro",
       "comprobacion-apropiacion-inicial": "Comprobacion AI",
-      "gestion-plan-cuentas" : "Gestión Plan de Cuentas",
+      "gestion-plan-cuentas": {
+        "gestion-plan-cuentas": "Gestión Plan de Cuentas",
+        "rubros": "Rubros Presupuestales",
+        "apropiaciones": "Apropiaciones Iniciales",
+        "fuentes": "Fuentes de Financiamiento",
+        "productos": "Productos"
+      },
       "gestion-modificaciones" : "Gestión Modificaciones",
       "tabla-crud" : "Tabla CRUD "
     } ,
+    
     "atencion_usuario": {
       "atencion_usuario": "Customer service",
       "defensor_ciudadano": "Citizen defender",
