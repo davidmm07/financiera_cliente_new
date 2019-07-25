@@ -54,7 +54,7 @@ export class RubroHelper {
      * @returns  <Observable> data of the object registered at the DB. undefined if the request has errors
      */
     public rubroRegister(rubroData) {
-        this.rqManager.setPath('PLAN_CUENTAS_MID_SERVICE');
+        this.rqManager.setPath('PLAN_CUENTAS_MONGO_SERVICE');
         rubroData.UnidadEjecutora = 1; // Tomar la unidad ejecutora del token cuando este definido.
         rubroData.Organizacion = 1;
         return this.rqManager.post(`rubro/RegistrarRubro`, rubroData).pipe(
