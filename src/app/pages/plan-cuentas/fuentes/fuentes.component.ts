@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FORM_INFO_FUENTE } from './form_info_fuente';
 import { FORM_DEPENDENCIA_RUBRO } from './form_dependencia_rubro';
 import { TranslateService } from '@ngx-translate/core';
@@ -7,6 +7,7 @@ import { FuenteFinanciamiento } from '../../../@core/data/models/fuente_financia
 import { DependenciaHelper } from '../../../helpers/oikos/dependenciaHelper';
 import { PipeTransform, Pipe } from '@angular/core';
 import { NbStepperComponent } from '@nebular/theme/components/stepper/stepper.component';
+import { NbStepComponent } from '@nebular/theme/components/stepper/step.component';
 
 @Component({
   selector: 'ngx-fuentes',
@@ -17,13 +18,13 @@ import { NbStepperComponent } from '@nebular/theme/components/stepper/stepper.co
 export class FuentesComponent implements OnInit {
   formInfoFuente: any;
   rubroSeleccionado: any;
-  nbStepper: NbStepperComponent;
   info_fuente: FuenteFinanciamiento;
   clean = false;
   rubrosAsignados: any = [];
   dependencias: any = [];
   dependenciasAsociadas: any = {}
   dependenciaSeleccionada: any;
+  @ViewChild('steep') steep: NbStepperComponent;
 
   formDependenciarubro = FORM_DEPENDENCIA_RUBRO;
 
@@ -42,9 +43,12 @@ export class FuentesComponent implements OnInit {
   ngOnInit() { }
 
   validarForm(event) {
-    console.info('event', event);
-    console.info('info', this.info_fuente);
+     console.info('event', event);
+    // console.info('info', this.info_fuente);
+    debugger;
+    this.steep.next();
   }
+
 
   asignarDependencia($event: any, rubro: Rubro) {
     this.verificarAsignacionDependencia(rubro, this.dependencias[$event]);
@@ -92,7 +96,7 @@ export class FuentesComponent implements OnInit {
 
   construirForm() {
     this.formInfoFuente.btn = this.translate.instant('GLOBAL.continuar');
-    // this.renderer.setAttribute(this.formInfoFuente.btn.nativeElement,'nbStepperNext','');
+
     for (let i = 0; i < this.formInfoFuente.campos.length; i++) {
       this.formInfoFuente.campos[i].label = this.formInfoFuente.campos[i].label_i18n;
       this.formInfoFuente.campos[i].placeholder = this.formInfoFuente.campos[i].label_i18n;

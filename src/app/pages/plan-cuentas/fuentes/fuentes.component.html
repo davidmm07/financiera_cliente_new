@@ -6,16 +6,13 @@
 
         <div class="col-md-12">
           <!-- info fuente -->
-              <nb-stepper orientation="vertical">
+              <nb-stepper #steep orientation="vertical">
                   <nb-step label="{{'FUENTE_FINANCIAMIENTO.asignar_fuente' | translate }}">
 
                     <div>
                             <ngx-dinamicform [normalform]="formInfoFuente" [modeloData]="info_fuente" (result)="validarForm($event)"
                                     [clean]="clean">
                                   </ngx-dinamicform>
-                                  <div align="right" class="form-group" >
-                                      <button class="btn btn-success btn-sm" nbStepperNext (click)="validarForm($event)">{{'GLOBAL.continuar' | translate }}</button>
-                                  </div>
                     </div>
                   </nb-step>
                   <nb-step label="{{'RUBRO.asignar_rubro' | translate }}">
@@ -62,9 +59,9 @@
                         </div>
                       </div>
                       <div align="right" class="form-group">
-                          <button class="btn btn-primary btn-sm" nbStepperPrevious 
+                          <button class="btn btn-outline-primary btn-md " nbStepperPrevious 
                               >{{'GLOBAL.regresar' | translate}}</button>
-                          <button class="btn btn-success btn-sm" (click)="registrar()">{{'GLOBAL.guardar' | translate}}</button>
+                          <button class="btn btn-outline-success btn-md offset-1 " (click)="registrar()">{{'GLOBAL.guardar' | translate}}</button>
                       </div>
                   </nb-step>
                 </nb-stepper>
