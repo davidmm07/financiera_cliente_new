@@ -1,39 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { FORM_INFO_RUBRO } from './form_info_rubro';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FORM_INFO_FUENTE } from './form_info_fuente';
+import { FORM_DEPENDENCIA_RUBRO } from './form_dependencia_rubro';
 import { TranslateService } from '@ngx-translate/core';
 import { Rubro } from '../../../@core/data/models/rubro';
+import { FuenteFinanciamiento } from '../../../@core/data/models/fuente_financiamiento';
 import { DependenciaHelper } from '../../../helpers/oikos/dependenciaHelper';
 import { PipeTransform, Pipe } from '@angular/core';
-
-export let FORM_DEPENDENCIA_RUBRO = {
-  titulo: 'DependenciaRubro',
-  tipo_formulario: 'mini',
-  btn: 'add-dependencia',
-  alertas: true,
-  modelo: 'DependenciaRubro',
-  campos: [
-    {
-      etiqueta: 'select',
-      claseGrid: 'col-6',
-      nombre: 'dependencia',
-      label: 'dependencia',
-      placeholder: 'dependencia',
-      requerido: true,
-      tipo: 'Dependencia',
-      key: 'Nombre',
-      opciones: [],
-    },
-    {
-      etiqueta: 'input',
-      claseGrid: 'col-6',
-      nombre: 'Valor',
-      label: 'valor',
-      placeholder: 'valor',
-      requerido: true,
-      tipo: 'number',
-    },
-  ],
-}
+import { NbStepperComponent } from '@nebular/theme/components/stepper/stepper.component';
+import { NbStepComponent } from '@nebular/theme/components/stepper/step.component';
 
 @Component({
   selector: 'ngx-fuentes',
@@ -42,19 +16,22 @@ export let FORM_DEPENDENCIA_RUBRO = {
 })
 
 export class FuentesComponent implements OnInit {
-  formInfoRubro: any;
+  formInfoFuente: any;
   rubroSeleccionado: any;
-  info_rubro: Rubro;
+  info_fuente: FuenteFinanciamiento;
   clean = false;
   rubrosAsignados: any = [];
   dependencias: any = [];
   dependenciasAsociadas: any = {}
   dependenciaSeleccionada: any;
+  @ViewChild('steep') steep: NbStepperComponent;
 
   formDependenciarubro = FORM_DEPENDENCIA_RUBRO;
 
-  constructor(private translate: TranslateService, private dependenciaHelper: DependenciaHelper) {
-    this.formInfoRubro = FORM_INFO_RUBRO;
+  constructor(
+    // private renderer: Renderer2,
+    private translate: TranslateService, private dependenciaHelper: DependenciaHelper) {
+    this.formInfoFuente = FORM_INFO_FUENTE;
     this.construirForm();
     this.dependenciaHelper.get().subscribe((res: any) => {
       console.info(res);
@@ -66,8 +43,12 @@ export class FuentesComponent implements OnInit {
   ngOnInit() { }
 
   validarForm(event) {
-    console.info('event', event);
+     console.info('event', event);
+    // console.info('info', this.info_fuente);
+    debugger;
+    this.steep.next();
   }
+
 
   asignarDependencia($event: any, rubro: Rubro) {
     this.verificarAsignacionDependencia(rubro, this.dependencias[$event]);
@@ -91,6 +72,12 @@ export class FuentesComponent implements OnInit {
     });
   }
 
+  quitarDependencia($event, rubro: Rubro) {
+    this.rubrosAsignados.filter((data) => {
+      (data === rubro); data['Dependencias'].pop(-1)
+    });
+  }
+
   receiveMessage($event) {
     if (this.rubrosAsignados.filter((data) => (data.Codigo === $event.Codigo)).length === 0) {
       $event['Dependencias'] = [-1];
@@ -108,10 +95,11 @@ export class FuentesComponent implements OnInit {
   aniadirNodo() { }
 
   construirForm() {
-    this.formInfoRubro.btn = this.translate.instant('GLOBAL.guardar');
-    for (let i = 0; i < this.formInfoRubro.campos.length; i++) {
-      this.formInfoRubro.campos[i].label = this.formInfoRubro.campos[i].label_i18n;
-      this.formInfoRubro.campos[i].placeholder = this.formInfoRubro.campos[i].label_i18n;
+    this.formInfoFuente.btn = this.translate.instant('GLOBAL.continuar');
+
+    for (let i = 0; i < this.formInfoFuente.campos.length; i++) {
+      this.formInfoFuente.campos[i].label = this.formInfoFuente.campos[i].label_i18n;
+      this.formInfoFuente.campos[i].placeholder = this.formInfoFuente.campos[i].label_i18n;
     }
   }
 

@@ -1,9 +1,9 @@
-export let FORM_INFO_RUBRO = {
+export let FORM_INFO_FUENTE = {
 
     tipo_formulario: 'mini',
 
     alertas: true,
-    modelo: 'RubroHijo',
+    modelo: 'FuenteFinanciamiento',
     campos: [
         {
             etiqueta: 'input',

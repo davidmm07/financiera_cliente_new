@@ -86,6 +86,7 @@
     "operacion_exitosa": "Operación Exitosa",
     "info": "Info",
     "aceptar": "Aceptar",
+    "continuar": "Continuar",
     "cancelar": "Cancelar",
     "salir": "Salir",
     "eliminar": "Eliminar",
@@ -118,6 +119,7 @@
     "placeholder_resumen": "Ej: Resumen"
   },
   "RUBRO": {
+    "asignar_rubro": "Asignar Rubro",
     "rubro_registrado_success": "Rubro Registrado Correctamente",
     "rubro_registrado_error": "No Se Pudo Registrar El Rubro",
     "registrar_rubro": "Registrar Rubro",
@@ -127,6 +129,7 @@
   "FUENTE_FINANCIAMIENTO": {
     "asignar_fuente": "Asignar Fuente de Financiamiento",
     "add-dependencia": "Añadir dependencia",
+    "remove-dependencia": "Quitar dependencia",
     "remove-rubro": "Quitar rubro"
   },
   "APROPIACION": {

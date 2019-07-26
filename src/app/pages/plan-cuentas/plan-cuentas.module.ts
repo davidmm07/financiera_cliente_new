@@ -3,7 +3,12 @@ import { ThemeModule } from '../../@theme/theme.module';
 import { CommonModule } from '@angular/common';
 import { PlanCuentasRoutingModule, routedComponents } from './plan-cuentas-routing.module';
 import { SharedModule } from '../../shared/shared.module';
-import { NbTreeGridModule, NbSelectModule, NbAlertModule, NbTabsetModule } from '@nebular/theme';
+import {
+  NbTreeGridModule,
+  NbSelectModule,
+  NbAlertModule,
+  NbTabsetModule,
+  NbStepperModule } from '@nebular/theme';
 
 import { ProductosRubroComponent } from './rubros/productos-rubro/productos-rubro.component';
 
@@ -29,6 +34,7 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
     NbSelectModule,
     NbAlertModule,
     NbTabsetModule,
+    NbStepperModule,
     Ng2SmartTableModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
