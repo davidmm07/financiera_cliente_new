@@ -55,16 +55,15 @@ export class RubroHelper {
      */
     public rubroRegister(rubroData) {
         this.rqManager.setPath('PLAN_CUENTAS_MONGO_SERVICE');
-        rubroData.UnidadEjecutora = 1; // Tomar la unidad ejecutora del token cuando este definido.
-        rubroData.Organizacion = 1;
-        return this.rqManager.post(`rubro/RegistrarRubro`, rubroData).pipe(
+        rubroData.UnidadEjecutora = '1'; // Tomar la unidad ejecutora del token cuando este definido.
+        return this.rqManager.post('arbol_rubro', rubroData).pipe(
             map(
                 (res) => {
                     if (res['Type'] === 'error') {
                         this.pUpManager.showErrorAlert('No Se Pudo Registrar El rubro, Compruebe que no exista un rubro con el mismo Código.')
                         return undefined;
                     }
-                    return res['Body'];
+                    return res;
                 },
             ),
         );
@@ -80,15 +79,15 @@ export class RubroHelper {
      * @returns  <Observable> object with api response. undefined if the proccess has errors
      */
     public rubroDelete(id: number) {
-        this.rqManager.setPath('PLAN_CUENTAS_MID_SERVICE');
-        return this.rqManager.delete(`rubro/EliminarRubro`, id).pipe(
+        this.rqManager.setPath('PLAN_CUENTAS_MONGO_SERVICE');
+        return this.rqManager.delete('arbol_rubro/', id).pipe(
             map(
                 (res) => {
                     if (res['Type'] === 'error') {
                         this.pUpManager.showErrorAlert('No Se Pudo Eliminar El rubro, Compruebe que no exista un rubro con el mismo Código.')
                         return undefined;
                     }
-                    return res['Body'];
+                    return res;
                 },
             ),
         );
@@ -104,15 +103,15 @@ export class RubroHelper {
      * @returns  <Obserbable> object updated information. undefined if the proccess has errors.
      */
     public rubroUpdate(rubroData) {
-        this.rqManager.setPath('PLAN_CUENTAS_MID_SERVICE');
-        return this.rqManager.put(`v1/rubro/`, rubroData).pipe(
+        this.rqManager.setPath('PLAN_CUENTAS_MONGO_SERVICE');
+        return this.rqManager.put('arbol_rubro/', rubroData._Id).pipe(
             map(
                 (res) => {
                     if (res['Type'] === 'error') {
                         this.pUpManager.showErrorAlert('No Se Pudo Actualizar El rubro, Compruebe que no exista un rubro con el mismo Código.')
                         return undefined;
                     }
-                    return res['Body'];
+                    return res;
                 },
             ),
         );
