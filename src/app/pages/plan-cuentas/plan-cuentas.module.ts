@@ -10,6 +10,12 @@ import {
   NbTabsetModule,
   NbStepperModule } from '@nebular/theme';
 
+import { ProductosRubroComponent } from './rubros/productos-rubro/productos-rubro.component';
+
+
+
+import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
 
 
@@ -17,6 +23,7 @@ import {
 @NgModule({
   declarations: [
     ...routedComponents,
+    ProductosRubroComponent,
   ],
   imports: [
     ThemeModule,
@@ -28,6 +35,9 @@ import {
     NbAlertModule,
     NbTabsetModule,
     NbStepperModule,
+    Ng2SmartTableModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
   ],
   exports: [
 

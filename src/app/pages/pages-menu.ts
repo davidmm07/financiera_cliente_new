@@ -20,6 +20,26 @@ export const MENU_ITEMS: MenuItem[] = [
         link: '/pages/plan-cuentas/gestion-plan-cuentas',
         home: false,
         key: 'gestion-plan-cuentas',
+        children: [
+          {
+            title: 'rubros',
+            link: '/pages/plan-cuentas/rubros',
+            home: false,
+            key: 'rubros',
+          },
+          {
+            title: 'apropiaciones',
+            link: '/pages/plan-cuentas/apropiaciones',
+            home: false,
+            key: 'apropiaciones',
+          },
+          {
+            title: 'fuentes',
+            link: '/pages/plan-cuentas/fuentes',
+            home: false,
+            key: 'fuentes',
+          },
+        ],
       },
       {
         title: 'gestion-modificaciones',
@@ -27,7 +47,12 @@ export const MENU_ITEMS: MenuItem[] = [
         home: false,
         key: 'gestion-modificaciones',
       },
-
+      {
+        title: 'tabla-crud',
+        link: '/pages/plan-cuentas/tabla-crud',
+        home: false,
+        key: 'tabla-crud',
+      },
     ],
   },
 
@@ -53,6 +78,32 @@ export const MENU_PUBLICO: MenuItem[] = [
         link: '/pages/plan-cuentas/gestion-plan-cuentas',
         home: false,
         key: 'gestion-plan-cuentas',
+        children: [
+          {
+            title: 'rubros',
+            link: '/pages/plan-cuentas/rubros',
+            home: false,
+            key: 'rubros',
+          },
+          {
+            title: 'apropiaciones',
+            link: '/pages/plan-cuentas/apropiaciones',
+            home: false,
+            key: 'apropiaciones',
+          },
+          {
+            title: 'fuentes',
+            link: '/pages/plan-cuentas/fuentes',
+            home: false,
+            key: 'fuentes',
+          },
+          {
+            title: 'productos',
+            link: '/pages/plan-cuentas/productos',
+            home: false,
+            key: 'productos',
+          },
+        ],
       },
       {
         title: 'gestion-modificaciones',
@@ -60,7 +111,6 @@ export const MENU_PUBLICO: MenuItem[] = [
         home: false,
         key: 'gestion-modificaciones',
       },
-
     ],
   },
 

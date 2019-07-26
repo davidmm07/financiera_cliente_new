@@ -26,7 +26,15 @@
       "consulta": "Consulta",
       "registro": "Registro",
       "comprobacion-apropiacion-inicial": "Comprobacion AI",
-      "gestion-plan-cuentas" : "Gestión Plan de Cuentas"
+      "gestion-plan-cuentas": {
+        "gestion-plan-cuentas": "Gestión Plan de Cuentas",
+        "rubros": "Rubros Presupuestales",
+        "apropiaciones": "Apropiaciones Iniciales",
+        "fuentes": "Fuentes de Financiamiento",
+        "productos": "Productos"
+      },
+      "gestion-modificaciones" : "Gestión Modificaciones",
+      "tabla-crud" : "Tabla CRUD "
     },
     "auth": {
       "auth": "Autenticación",
@@ -58,6 +66,9 @@
     "rubro": "Rubro",
     "dependencia": "Dependencia",
     "valor": "Valor",
+    "producto": "Producto",
+    "porcentaje": "Porcentaje %",
+    "quitar_producto": "Quitar producto",
     "apropiacion-inicial": "Apropiacion inicial",
     "aprobar-apropiacion-inicial": "Aprobar apropiación inicial",
     "detalle-rubro": "Detalle del rubro",
@@ -79,6 +90,7 @@
     "cancelar": "Cancelar",
     "salir": "Salir",
     "eliminar": "Eliminar",
+    "editar": "Editar",
     "cargar": "Cargar",
     "actualizar": "Actualizar",
     "crear": "Crear",
@@ -110,7 +122,9 @@
     "asignar_rubro": "Asignar Rubro",
     "rubro_registrado_success": "Rubro Registrado Correctamente",
     "rubro_registrado_error": "No Se Pudo Registrar El Rubro",
-    "registrar_rubro": "Registrar Rubro"
+    "registrar_rubro": "Registrar Rubro",
+    "add-producto": "Agregar producto",
+    "edit-producto": "Editar producto"
   },
   "FUENTE_FINANCIAMIENTO": {
     "asignar_fuente": "Asignar Fuente de Financiamiento",
