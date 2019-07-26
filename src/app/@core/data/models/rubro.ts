@@ -7,4 +7,5 @@ export class Rubro {
     Nombre: string;
     RubroPadre: string;
     ApropiacionInicial: number;
+    Hijos: string[];
 }

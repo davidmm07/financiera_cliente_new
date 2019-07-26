@@ -10,6 +10,9 @@ import { RegistroComponent } from './registro/registro.component';
 import { FuentesComponent } from './fuentes/fuentes.component';
 import { ModificacionFuentesComponent } from './fuentes/modificacion-fuentes/modificacion-fuentes.component';
 import { GestionModificacionesComponent } from './gestion-modificaciones/gestion-modificaciones.component';
+import { ProductosComponent } from './productos/productos.component';
+import { TablaCrudComponent } from './tabla-crud/tabla-crud.component';
+import { SmartTableDatepickerComponent , SmartTableDatepickerRenderComponent } from './tabla-crud/smart-table-datepicker/smart-table-datepicker.component'
 
 
 const routes: Routes = [{
@@ -44,11 +47,20 @@ const routes: Routes = [{
   path: 'gestion-modificaciones',
   component: GestionModificacionesComponent,
 },
+{
+  path: 'productos',
+  component: ProductosComponent,
+},
+{
+  path: 'tabla-crud',
+  component: TablaCrudComponent,
+},
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
+  entryComponents: [SmartTableDatepickerComponent , SmartTableDatepickerRenderComponent],
 })
 export class PlanCuentasRoutingModule { }
 
@@ -65,4 +77,8 @@ export const routedComponents = [
   FuentesComponent,
   ModificacionFuentesComponent,
   GestionModificacionesComponent,
+  ProductosComponent,
+  TablaCrudComponent,
+  SmartTableDatepickerComponent,
+  SmartTableDatepickerRenderComponent,
 ];
