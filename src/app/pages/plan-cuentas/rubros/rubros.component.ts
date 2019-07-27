@@ -111,7 +111,7 @@ export class RubrosComponent implements OnInit {
     });
   }
 
-  cambioProductosAsignados(productosAsignados: any[]){
-    this.listaProductosAsignados=productosAsignados;
+  cambioProductosAsignados(productosAsignados: any[]) {
+    this.listaProductosAsignados = productosAsignados;
   }
 };

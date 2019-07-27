@@ -17,11 +17,11 @@ export class ProductosRubroComponent implements OnInit {
 
   entrarEditar: boolean;
   editando: boolean;
- 
+
   // comunicacion:
 
   @Input() set productosAsignados(productosAsignados: any[]){
-    this.listaProductosAsignados=productosAsignados;
+    this.listaProductosAsignados = productosAsignados;
   }
   @Output() cambioListaProductosAsignados = new EventEmitter<any[]>();
 
@@ -95,12 +95,12 @@ export class ProductosRubroComponent implements OnInit {
   }
 
   verificar100(producto?: any ): boolean {
-    if(producto) {
-      return (this.getPorcentajeAsignado()+producto.porcentaje<=100)
+    if (producto) {
+      return (this.getPorcentajeAsignado() + producto.porcentaje <= 100)
     } else {
-      return (this.getPorcentajeAsignado()<=100)
+      return (this.getPorcentajeAsignado() <= 100)
     }
-    
+
   }
 
 }

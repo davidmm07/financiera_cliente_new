@@ -5,9 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Rubro } from '../../../@core/data/models/rubro';
 import { FuenteFinanciamiento } from '../../../@core/data/models/fuente_financiamiento';
 import { DependenciaHelper } from '../../../helpers/oikos/dependenciaHelper';
-import { PipeTransform, Pipe } from '@angular/core';
 import { NbStepperComponent } from '@nebular/theme/components/stepper/stepper.component';
-import { NbStepComponent } from '@nebular/theme/components/stepper/step.component';
 
 @Component({
   selector: 'ngx-fuentes',
@@ -45,7 +43,7 @@ export class FuentesComponent implements OnInit {
   validarForm(event) {
      console.info('event', event);
     // console.info('info', this.info_fuente);
-    debugger;
+    // debugger;
     this.steep.next();
   }
 
