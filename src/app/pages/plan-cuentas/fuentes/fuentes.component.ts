@@ -100,7 +100,7 @@ export class FuentesComponent implements OnInit {
 
 
   registrar() {
-    // console.log(this.rubrosAsignados);
+
   }
 
   cleanForm() { }

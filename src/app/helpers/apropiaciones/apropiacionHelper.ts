@@ -22,17 +22,17 @@ export class ApropiacionHelper {
        * @returns  <Observable> data of the object registered at the DB. undefined if the request has errors
        */
     public apropiacionRegister(apropiacionData) {
-        this.rqManager.setPath('PLAN_CUENTAS_MID_SERVICE');
+        this.rqManager.setPath('PLAN_CUENTAS_MONGO_SERVICE');
         apropiacionData.UnidadEjecutora = 1; // Tomar la unidad ejecutora del token cuando este definido.
         apropiacionData.Organizacion = 1;
-        return this.rqManager.post(`apropiacion`, apropiacionData).pipe(
+        return this.rqManager.post(`arbol_rubro_apropiacion/`, apropiacionData).pipe(
             map(
                 (res) => {
                     if (res['Type'] === 'error') {
                         this.pUpManager.showErrorAlert('No se pudo registrar la Apropiación Inicial al rubro seleccionado.')
                         return undefined;
                     }
-                    return res['Body'];
+                    return res;
                 },
             ),
         );
@@ -43,8 +43,10 @@ export class ApropiacionHelper {
         this.rqManager.setPath('PLAN_CUENTAS_MONGO_SERVICE');
         // Set the optional branch for the API request.
         const unidadEjecutora = 1;
+        const raiz = '3-8';
+        const vigencia = 2019;
         // call request manager for the tree's data.
-        return this.rqManager.get(`arbol_rubro_apropiaciones/FullArbolRubroApropiaciones/${unidadEjecutora.toString()}`);
+        return this.rqManager.get(`arbol_rubro_apropiacion/arbol_apropiacion/${raiz}/${unidadEjecutora.toString()}/${vigencia.toString()}`);
 
     }
 

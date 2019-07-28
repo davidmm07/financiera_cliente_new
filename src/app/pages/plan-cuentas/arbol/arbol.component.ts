@@ -22,10 +22,15 @@ interface EstructuraArbolRubros {
 }
 
 interface EstructuraArbolRubrosApropiaciones {
-  Nombre: string;
   Codigo: string;
   Descripcion: string;
   ApropiacionInicial: number;
+  Hijos: string[];
+  Movimientos: string[];
+  Padre: string;
+  UnidadEjecutora: number;
+  Estado: string;
+  _Id: string;
 }
 
 @Component({
@@ -55,7 +60,7 @@ export class ArbolComponent implements OnChanges {
     private dataSourceBuilder2: NbTreeGridDataSourceBuilder<EstructuraArbolRubrosApropiaciones>,
     private rbHelper: RubroHelper,
     private apHelper: ApropiacionHelper ) {
-    this.opcionSeleccionada = 'Rubros' ;
+    this.opcionSeleccionada = 'Apropiaciones' ;
     this.loadTree();
   }
   ngOnChanges(changes) {
@@ -66,9 +71,9 @@ export class ArbolComponent implements OnChanges {
     }
   }
 
-  private data: TreeNode<EstructuraArbolRubrosApropiaciones>[] | TreeNode<EstructuraArbolRubros>[];
+  // private data: TreeNode<EstructuraArbolRubrosApropiaciones>[] | TreeNode<EstructuraArbolRubros>[];
 
-
+  private data: TreeNode<EstructuraArbolRubrosApropiaciones>[];
   loadTreeRubros() {
     this.rbHelper.getFullArbol().subscribe((res) => {
       this.data = res;
@@ -78,7 +83,9 @@ export class ArbolComponent implements OnChanges {
 
 
   loadTreeApropiaciones() {
-    this.defaultColumns = [ 'Nombre' , 'ApropiacionInicial']
+    this.customColumn = '_id';
+    this.defaultColumns = [ 'ApropiacionInicial',  'Nombre' ]
+    this.allColumns = [this.customColumn, ...this.defaultColumns];
     this.apHelper.getFullArbol().subscribe( res => {
       this.data = res;
       this.dataSource2 = this.dataSourceBuilder2.create(this.data);
@@ -112,7 +119,6 @@ export class ArbolComponent implements OnChanges {
   }
 
   async onSelect(selectedItem: any) {
-    // console.log(this.optionSelect);
     this.rubroSeleccionado.emit(selectedItem.data);
   }
   getShowOn(index: number) {
