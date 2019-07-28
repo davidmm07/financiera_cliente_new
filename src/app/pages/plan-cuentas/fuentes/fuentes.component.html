@@ -19,7 +19,7 @@
 
                     <div class="col-md-12 col-lg-12 col-xxxl-12">
                         <div class="row">
-                          <ngx-arbol (rubroSeleccionado)="receiveMessage($event)"></ngx-arbol>            
+                          <ngx-arbol (rubroSeleccionado)="receiveMessage($event)" [optionSelect]="optionView"></ngx-arbol>            
                         </div>
                         <div class="row">
                       <!-- dependencias -->
@@ -27,8 +27,8 @@
                           <div>
                             <h5>{{'GLOBAL.rubro' | translate}}: {{rubro.Codigo}} {{rubro.Nombre}}</h5>
                           </div>
-                          <div *ngFor="let depedenciasAsignadas of rubro.Dependencias">
-                            <!-- <ngx-dinamicform [normalform]="formDependenciarubro" [modeloData]="depedenciasAsignadas" (result)="validarForm($event)" [clean]="clean">
+                          <div *ngFor="let dependenciasAsignadas of rubro.Dependencias">
+                            <!-- <ngx-dinamicform [normalform]="formDependenciarubro" [modeloData]="dependenciasAsignadas" (result)="validarForm($event)" [clean]="clean">
                                 </ngx-dinamicform> -->
                             <div class="row form-group">
                               <label for="" class="col-md-4">{{'GLOBAL.dependencia' | translate}}</label>
