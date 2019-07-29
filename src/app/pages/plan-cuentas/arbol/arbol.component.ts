@@ -63,7 +63,7 @@ export class ArbolComponent implements OnChanges {
         console.info(this.opcionSeleccionada)
         this.loadTree();
       }
-    }    
+    }
     if (changes['updateSignal'] && this.updateSignal) {
       this.updateSignal.subscribe(() => {
         this.loadTree();

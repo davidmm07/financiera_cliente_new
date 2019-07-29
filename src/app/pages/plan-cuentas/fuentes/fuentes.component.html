@@ -28,8 +28,6 @@
                             <h5>{{'GLOBAL.rubro' | translate}}: {{rubro.Codigo}} {{rubro.Nombre}}</h5>
                           </div>
                           <div *ngFor="let dependenciasAsignadas of rubro.Dependencias">
-                            <!-- <ngx-dinamicform [normalform]="formDependenciarubro" [modeloData]="dependenciasAsignadas" (result)="validarForm($event)" [clean]="clean">
-                                </ngx-dinamicform> -->
                             <div class="row form-group">
                               <label for="" class="col-md-4">{{'GLOBAL.dependencia' | translate}}</label>
                               <label for="valor" class="col-md-4 offset-1">{{'GLOBAL.valor' | translate}}</label>

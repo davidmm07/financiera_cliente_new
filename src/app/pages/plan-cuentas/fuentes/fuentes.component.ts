@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FORM_INFO_FUENTE } from './form_info_fuente';
-import { FORM_DEPENDENCIA_RUBRO } from './form_dependencia_rubro';
 import { TranslateService } from '@ngx-translate/core';
 import { Rubro } from '../../../@core/data/models/rubro';
 import { FuenteFinanciamiento } from '../../../@core/data/models/fuente_financiamiento';
@@ -25,7 +24,6 @@ export class FuentesComponent implements OnInit {
   dependenciaSeleccionada: any;
   @ViewChild('steep') steep: NbStepperComponent;
 
-  formDependenciarubro = FORM_DEPENDENCIA_RUBRO;
 
   constructor(
     // private renderer: Renderer2,
@@ -35,7 +33,6 @@ export class FuentesComponent implements OnInit {
     this.construirForm();
     this.dependenciaHelper.get().subscribe((res: any) => {
       console.info(res);
-      this.formDependenciarubro.campos[0].opciones = res;
       this.dependencias = res;
     });
   }

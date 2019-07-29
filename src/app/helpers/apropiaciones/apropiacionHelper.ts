@@ -44,8 +44,9 @@ export class ApropiacionHelper {
         // Set the optional branch for the API request.
         const unidadEjecutora = 1;
         const vigencia = 2019;
+        const raiz = '3-8';
         // call request manager for the tree's data.
-        return this.rqManager.get(`arbol_rubro_apropiacion/arbol_apropiacion/3-8/${unidadEjecutora.toString()}/${vigencia}`);
+        return this.rqManager.get(`arbol_rubro_apropiacion/arbol_apropiacion/${raiz}/${unidadEjecutora.toString()}/${vigencia}`);
 
     }
 
