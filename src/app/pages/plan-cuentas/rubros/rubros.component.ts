@@ -1,5 +1,5 @@
 
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter} from '@angular/core';
 import { Rubro } from '../../../@core/data/models/rubro';
 import { FORM_INFO_RUBRO } from './form_info_rubro';
 import { RubroHelper } from '../../../helpers/rubros/rubroHelper';
