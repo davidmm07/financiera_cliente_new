@@ -55,10 +55,15 @@ export class ArbolComponent implements OnChanges {
     private dataSourceBuilder2: NbTreeGridDataSourceBuilder<EstructuraArbolRubrosApropiaciones>,
     private rbHelper: RubroHelper,
     private apHelper: ApropiacionHelper ) {
-    this.opcionSeleccionada = 'Rubros' ;
-    this.loadTree();
   }
   ngOnChanges(changes) {
+    if (changes.optionSelect !== undefined) {
+      if (changes.optionSelect.currentValue !== undefined) {
+        this.opcionSeleccionada = changes.optionSelect.currentValue;
+        console.info(this.opcionSeleccionada)
+        this.loadTree();
+      }
+    }
     if (changes['updateSignal'] && this.updateSignal) {
       this.updateSignal.subscribe(() => {
         this.loadTree();
@@ -87,7 +92,8 @@ export class ArbolComponent implements OnChanges {
   }
 
   loadTree() {
-
+    console.info(this.opcionSeleccionada);
+    console.info(this.optionSelect);
     if (this.opcionSeleccionada === 'Rubros' ) {
         this.loadTreeRubros();
     } else if ( this.opcionSeleccionada === 'Apropiaciones' ) {

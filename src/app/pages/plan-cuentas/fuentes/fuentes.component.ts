@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FORM_INFO_FUENTE } from './form_info_fuente';
-import { FORM_DEPENDENCIA_RUBRO } from './form_dependencia_rubro';
 import { TranslateService } from '@ngx-translate/core';
 import { Rubro } from '../../../@core/data/models/rubro';
 import { FuenteFinanciamiento } from '../../../@core/data/models/fuente_financiamiento';
@@ -16,6 +15,7 @@ import { NbStepperComponent } from '@nebular/theme/components/stepper/stepper.co
 export class FuentesComponent implements OnInit {
   formInfoFuente: any;
   rubroSeleccionado: any;
+  optionView: string;
   info_fuente: FuenteFinanciamiento;
   clean = false;
   rubrosAsignados: any = [];
@@ -24,16 +24,15 @@ export class FuentesComponent implements OnInit {
   dependenciaSeleccionada: any;
   @ViewChild('steep') steep: NbStepperComponent;
 
-  formDependenciarubro = FORM_DEPENDENCIA_RUBRO;
 
   constructor(
     // private renderer: Renderer2,
     private translate: TranslateService, private dependenciaHelper: DependenciaHelper) {
+    this.optionView = 'Apropiaciones';
     this.formInfoFuente = FORM_INFO_FUENTE;
     this.construirForm();
     this.dependenciaHelper.get().subscribe((res: any) => {
       console.info(res);
-      this.formDependenciarubro.campos[0].opciones = res;
       this.dependencias = res;
     });
   }
@@ -47,6 +46,11 @@ export class FuentesComponent implements OnInit {
     this.steep.next();
   }
 
+  validarFormDependencias(event) {
+    console.info('event2', event);
+   // console.info('info', this.info_fuente);
+   // debugger;
+ }
 
   asignarDependencia($event: any, rubro: Rubro) {
     this.verificarAsignacionDependencia(rubro, this.dependencias[$event]);
@@ -97,7 +101,7 @@ export class FuentesComponent implements OnInit {
 
     for (let i = 0; i < this.formInfoFuente.campos.length; i++) {
       this.formInfoFuente.campos[i].label = this.formInfoFuente.campos[i].label_i18n;
-      this.formInfoFuente.campos[i].placeholder = this.formInfoFuente.campos[i].label_i18n;
+      this.formInfoFuente.campos[i].placeholder = this.formInfoFuente.campos[i].placeholder_i18n;
     }
   }
 
