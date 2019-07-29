@@ -29,6 +29,8 @@ export class RubrosComponent implements OnInit {
     {vigencia: 2016},
   ]
 
+  listaProductosAsignados = [{ producto: { id: 1, Nombre: 'p1' }, porcentaje: 50 }, { producto: { id: 2, Nombre: 'p2' }, porcentaje: 30 }];
+
   @Input() optionPlanCuentas: string;
   @Output() eventChange = new EventEmitter();
   constructor(
@@ -129,5 +131,9 @@ export class RubrosComponent implements OnInit {
         this.eventChange.emit(true);
       }
     });
+  }
+
+  cambioProductosAsignados(productosAsignados: any[]) {
+    this.listaProductosAsignados = productosAsignados;
   }
 };

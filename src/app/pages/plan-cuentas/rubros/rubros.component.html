@@ -54,6 +54,12 @@
                     disabled></textarea>
                 </div>
                 <div class="row">
+                    <div class="col-md-12">
+                        <ngx-productos-rubro [productosAsignados]="listaProductosAsignados" (cambioListaProductosAsignados)="cambioProductosAsignados($event)"></ngx-productos-rubro>
+                        <!-- <pre>{{listaProductosAsignados | json}}</pre> -->
+                    </div>
+                </div>
+                <div class="row">
                   <div class="col">
                     <button type="submit" class="btn btn-success btn-block" (click)="aniadirNodo()">
                       {{'GLOBAL.add-nodo' | translate }}
@@ -69,6 +75,8 @@
               </form>
             </nb-card-body>
           </nb-card>
+
+          
         </div>
       </div>
     </div>

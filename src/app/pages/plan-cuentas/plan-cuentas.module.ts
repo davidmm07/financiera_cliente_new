@@ -3,15 +3,27 @@ import { ThemeModule } from '../../@theme/theme.module';
 import { CommonModule } from '@angular/common';
 import { PlanCuentasRoutingModule, routedComponents } from './plan-cuentas-routing.module';
 import { SharedModule } from '../../shared/shared.module';
-import { NbTreeGridModule, NbSelectModule, NbAlertModule, NbTabsetModule } from '@nebular/theme';
+import {
+  NbTreeGridModule,
+  NbSelectModule,
+  NbAlertModule,
+  NbTabsetModule,
+  NbStepperModule } from '@nebular/theme';
+
+import { ProductosRubroComponent } from './rubros/productos-rubro/productos-rubro.component';
+
+
+
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+
 
 
 
 @NgModule({
   declarations: [
     ...routedComponents,
+    ProductosRubroComponent,
   ],
   imports: [
     ThemeModule,
@@ -22,6 +34,7 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
     NbSelectModule,
     NbAlertModule,
     NbTabsetModule,
+    NbStepperModule,
     Ng2SmartTableModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
