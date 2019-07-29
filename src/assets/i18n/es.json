@@ -163,5 +163,9 @@
     "quitar-dependencia" : "Quitar Dependencia",
     "traslado" : "Traslado"
 
-  }
+  },
+  "_id" : "ID",
+  "Nombre" : "Nombre",
+  "ApropiacionInicial" : "Valor Apropiación I.",
+  "Codigo" : "Código"
 }

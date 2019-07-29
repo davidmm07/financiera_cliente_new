@@ -60,8 +60,6 @@ export class ArbolComponent implements OnChanges {
     private dataSourceBuilder2: NbTreeGridDataSourceBuilder<EstructuraArbolRubrosApropiaciones>,
     private rbHelper: RubroHelper,
     private apHelper: ApropiacionHelper ) {
-    this.opcionSeleccionada = 'Apropiaciones' ;
-    this.loadTree();
   }
   ngOnChanges(changes) {
     if (changes.optionSelect !== undefined) {
@@ -91,7 +89,7 @@ export class ArbolComponent implements OnChanges {
 
   loadTreeApropiaciones() {
     this.customColumn = '_id';
-    this.defaultColumns = [ 'ApropiacionInicial',  'Nombre' ]
+    this.defaultColumns = [  'Nombre', 'ApropiacionInicial' ]
     this.allColumns = [this.customColumn, ...this.defaultColumns];
     this.apHelper.getFullArbol().subscribe( res => {
       this.data = res;
@@ -129,6 +127,7 @@ export class ArbolComponent implements OnChanges {
 
   async onSelect(selectedItem: any) {
     this.rubroSeleccionado.emit(selectedItem.data);
+    console.info(selectedItem);
   }
   getShowOn(index: number) {
     const minWithForMultipleColumns = 400;

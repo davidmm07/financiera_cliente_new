@@ -12,7 +12,7 @@ import { ArbolApropiacion } from '../../../@core/data/models/arbol_apropiacion';
 export class ApropiacionesComponent implements OnInit {
 
   @Input() vigenciaSeleccionada;
-  @Input() optionPlanCuentas: string;
+  //@Input() optionPlanCuentas: string;
   rubroSeleccionado: any;
   apropiacionData: ArbolApropiacion;
   apropiacionAprobada: boolean;
@@ -23,6 +23,7 @@ export class ApropiacionesComponent implements OnInit {
   valoregresos = 666666666666;
   opcion: string;
   VigenciaActual = 0;
+  optionView : string;
 
   vigencias: any[] = [
     { vigencia: 2019 },
@@ -53,8 +54,8 @@ export class ApropiacionesComponent implements OnInit {
       Estado: '',
       Rubro: <Rubro>{},
     };
-
-    this.opcion = this.optionPlanCuentas;
+    this.optionView = 'Apropiaciones';
+    //this.opcion = this.optionPlanCuentas;
   }
 
 
