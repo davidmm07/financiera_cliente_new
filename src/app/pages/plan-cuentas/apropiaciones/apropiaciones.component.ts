@@ -22,6 +22,7 @@ export class ApropiacionesComponent implements OnInit {
   valoringresos = 666666666666;
   valoregresos = 666666666666;
   opcion: string;
+  VigenciaActual = 0;
 
   vigencias: any[] = [
     { vigencia: 2019 },
