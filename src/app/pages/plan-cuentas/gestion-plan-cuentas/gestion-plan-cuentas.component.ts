@@ -25,17 +25,16 @@ export class GestionPlanCuentasComponent implements OnInit {
 
 
   selectedOption: any;
-  VigenciaActual: any;
-  op_plan_cuentas: any[] = [
-    { option: 'Rubros' },
-    { option: 'Apropiaciones' },
-    { option: 'Fuentes de Financiamiento' }];
   vigencias: any[] = [
     {vigencia: 2019},
     {vigencia: 2017},
     {vigencia: 2016},
   ]
-
+  VigenciaActual: any;
+  op_plan_cuentas: any[] = [
+    { option: 'Rubros' },
+    { option: 'Apropiaciones' },
+    { option: 'Fuentes de Financiamiento' }];
   constructor(private translate: TranslateService) {
     this.selectedOption = '';
     this.translate.onLangChange.subscribe((event: LangChangeEvent) => {

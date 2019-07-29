@@ -6,6 +6,7 @@ import { RubroHelper } from '../../../helpers/rubros/rubroHelper';
 import { PopUpManager } from '../../../managers/popUpManager';
 import { TranslateService } from '@ngx-translate/core';
 import { FormManager } from '../../../managers/formManager';
+import { NodoRubro } from '../../../@core/data/models/nodo_rubro';
 
 
 
@@ -20,7 +21,16 @@ export class RubrosComponent implements OnInit {
   insertarRubro = false;
   clean = false;
   formInfoRubro: any;
+  rubroData: NodoRubro;
+
+  vigencias: any[] = [
+    {vigencia: 2019},
+    {vigencia: 2017},
+    {vigencia: 2016},
+  ]
+
   listaProductosAsignados = [{ producto: { id: 1, Nombre: 'p1' }, porcentaje: 50 }, { producto: { id: 2, Nombre: 'p2' }, porcentaje: 30 }];
+
   @Input() optionPlanCuentas: string;
   @Output() eventChange = new EventEmitter();
   constructor(
@@ -31,6 +41,15 @@ export class RubrosComponent implements OnInit {
     this.formInfoRubro = FORM_INFO_RUBRO;
     this.construirForm();
     this.rubroSeleccionado = {
+    };
+    this.rubroData = {
+      Vigencia: 0,
+      Nombre: '',
+      Descripcion: '',
+      _Id: '',
+      Hijos: null,
+      Padre: '',
+      UnidadEjecutora: '',
     };
   }
 
@@ -81,14 +100,14 @@ export class RubrosComponent implements OnInit {
 
 
   validarForm(event) {
-    if (event.valid) {
-      event.data.RubroPadre = typeof this.rubroSeleccionado.Codigo === 'undefined' ? undefined : this.rubroSeleccionado;
-
-      event.data.RubroHijo.Codigo = typeof this.rubroSeleccionado.Codigo === 'undefined' ?
-        event.data.RubroHijo.Codigo + '' :
-        this.rubroSeleccionado.Codigo + '-' + event.data.RubroHijo.Codigo;
-
-      this.rbHelper.rubroRegister(event.data).subscribe((res) => {
+    if (event.valid && this.rubroData.Vigencia !== 0) {
+      this.rubroData.Vigencia = typeof this.rubroData.Vigencia === 'undefined' ? undefined : this.rubroData.Vigencia;
+      this.rubroData.Nombre = typeof event.data.RubroHijo.Nombre === 'undefined' ? undefined : event.data.RubroHijo.Nombre;
+      this.rubroData.Descripcion = typeof event.data.RubroHijo.Descripcion === 'undefined' ? undefined : event.data.RubroHijo.Descripcion ;
+      this.rubroData._Id = typeof event.data.RubroHijo.Codigo === 'undefined' ? event.data.RubroHijo.Codigo + '' :
+      String(this.rubroSeleccionado.Codigo + '-' + event.data.RubroHijo.Codigo);
+      this.rubroData.Padre = typeof this.rubroSeleccionado.Codigo === 'undefined' ? undefined : String(this.rubroSeleccionado.Codigo);
+            this.rbHelper.rubroRegister(this.rubroData).subscribe((res) => {
         if (res) {
           this.popManager.showSuccessAlert('Se registro el Rubro correctamente!');
           this.cleanForm()
@@ -98,6 +117,9 @@ export class RubrosComponent implements OnInit {
     } else {
       this.popManager.showErrorAlert('Datos Incompletos');
     }
+  }
+  onSelect(selectedItem: any) {
+    this.rubroData.Vigencia = selectedItem;
   }
 
   deleteRubro() {

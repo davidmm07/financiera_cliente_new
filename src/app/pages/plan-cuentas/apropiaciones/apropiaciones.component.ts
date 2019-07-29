@@ -14,14 +14,21 @@ export class ApropiacionesComponent implements OnInit {
   @Input() vigenciaSeleccionada;
   @Input() optionPlanCuentas: string;
   rubroSeleccionado: any;
-  // apropiacion: Apropiacion;
-  apropiacion: ArbolApropiacion;
+  apropiacionData: ArbolApropiacion;
   apropiacionAprobada: boolean;
-  valorApropiacion
+  valorApropiacion: number;
+  vigenciaSel: any;
   clean = false;
   valoringresos = 666666666666;
   valoregresos = 666666666666;
   opcion: string;
+
+  vigencias: any[] = [
+    { vigencia: 2019 },
+    { vigencia: 2018 },
+    { vigencia: 2017 },
+    { vigencia: 2016 },
+  ]
 
   constructor(
     private apHelper: ApropiacionHelper,
@@ -35,13 +42,15 @@ export class ApropiacionesComponent implements OnInit {
       Hijos: '',
       Padre: '',
       ApropiacionInicial: 0,
+      UnidadEjecutora: null,
+      _id: '',
     };
 
-    this.apropiacion = {
+    this.apropiacionData = {
       Vigencia: 0,
       ApropiacionInicial: 0,
       Estado: '',
-      Rubro: null,
+      Rubro: <Rubro>{},
     };
 
     this.opcion = this.optionPlanCuentas;
@@ -49,7 +58,7 @@ export class ApropiacionesComponent implements OnInit {
 
 
   ngOnInit() {
-    this.apropiacion = {} as ArbolApropiacion;
+
   }
 
   receiveMessage($event) {
@@ -72,69 +81,36 @@ export class ApropiacionesComponent implements OnInit {
 
   cleanForm() {
     this.clean = !this.clean;
-    this.rubroSeleccionado = {};
-    this.apropiacion = null;
+    this.rubroSeleccionado = {
+      Id: 0,
+      Codigo: '',
+      Nombre: '',
+      Descripcion: '',
+      Hijos: '',
+      Padre: '',
+      ApropiacionInicial: 0,
+      UnidadEjecutora: null,
+      _id: '',
+    };
+    this.apropiacionData = <ArbolApropiacion>{};
 
   }
 
   preAsignarApropiacion() {
-    const apropiacionData: ArbolApropiacion = null;
-    apropiacionData.Vigencia = typeof this.apropiacion.Vigencia === 'undefined' ? undefined : this.vigenciaSeleccionada.vigencia;
-    apropiacionData.Rubro.Id = typeof this.rubroSeleccionado.Id === 'undefined' ? undefined : this.rubroSeleccionado.Id;
-    apropiacionData.Rubro.Nombre = typeof this.rubroSeleccionado.Nombre === 'undefined' ? undefined : this.rubroSeleccionado.Nombre;
-    apropiacionData.Rubro.Descripcion = typeof this.rubroSeleccionado.Descripcion === 'undefined' ? undefined : this.rubroSeleccionado.Descripcion;
-    apropiacionData.Rubro.UnidadEjecutora = typeof this.rubroSeleccionado.UnidadEjecutora === 'undefined'
-    ? undefined : this.rubroSeleccionado.UnidadEjecutora;
-    apropiacionData.Rubro.RubroPadre = typeof this.rubroSeleccionado.Padre === 'undefined' ? undefined : this.rubroSeleccionado.Padre;
-    apropiacionData.Rubro.Hijos = typeof this.rubroSeleccionado.Hijos === 'undefined' ? undefined : this.rubroSeleccionado.Hijos;
-    apropiacionData.ApropiacionInicial = typeof this.apropiacion.ApropiacionInicial === 'undefined' ? undefined : 1;
-    apropiacionData.Estado = 'preasignado'; // Estado preasignado
+    this.apropiacionData.Vigencia = typeof this.vigenciaSel === 'undefined' ? undefined : this.vigenciaSel;
+    this.apropiacionData.Rubro.Id = typeof this.rubroSeleccionado._id === 'undefined' ? undefined : this.rubroSeleccionado._id;
+    this.apropiacionData.Rubro.Nombre = typeof this.rubroSeleccionado.Nombre === 'undefined' ? undefined : this.rubroSeleccionado.Nombre;
+    this.apropiacionData.Rubro.Descripcion = typeof this.rubroSeleccionado.Descripcion === 'undefined' ? undefined : this.rubroSeleccionado.Descripcion;
+    this.apropiacionData.Rubro.UnidadEjecutora = typeof this.rubroSeleccionado.UnidadEjecutora === 'undefined'
+      ? undefined : this.rubroSeleccionado.UnidadEjecutora;
+    this.apropiacionData.Rubro.RubroPadre = typeof this.rubroSeleccionado.Padre === 'undefined' ? undefined : this.rubroSeleccionado.Padre;
+    this.apropiacionData.Rubro.Hijos = typeof this.rubroSeleccionado.Hijos === 'undefined' ? undefined : this.rubroSeleccionado.Hijos;
+    this.apropiacionData.ApropiacionInicial = typeof this.valorApropiacion === 'undefined' ? undefined : this.valorApropiacion;
+    this.apropiacionData.Estado = 'preasignado'; // Estado preasignado
 
-    this.apHelper.apropiacionRegister(apropiacionData).subscribe((res) => {
-      if (res) {
-        this.popManager.showSuccessAlert('Se registro la preasignación de apropiación correctamente!');
-        this.cleanForm()
-        // this.eventChange.emit(true);
-      }
-    });
 
-    // this.popManager.showErrorAlert('No se pudo registrar la preasignación de apropiación');
-
-  }
-
-  registrarApropiacionARubro(event) {
-    if (event.valid) {
-      event.data.RubroSel =
-        typeof this.rubroSeleccionado.Codigo === 'undefined'
-          ? undefined
-          : this.rubroSeleccionado;
-      event.data.Vigencia = this.vigenciaSeleccionada;
-      event.data.Valor = this.valorApropiacion;
-      event.data.IdEstadoApropiacion = 1;
-
-      this.apHelper.apropiacionRegister(event.data).subscribe(res => {
-        if (res) {
-          this.popManager.showSuccessAlert(
-            'Se registro la preasignación de apropiación correctamente!',
-          );
-          // this.cleanForm()
-          // this.eventChange.emit(true);
-        } else {
-          this.popManager.showErrorAlert('Datos Erroneos');
-        }
-      });
-    }
-  }
-
-  validarForm(event) {
-    if (event.valid) {
-      event.data.RubroPadre = typeof this.rubroSeleccionado.Codigo === 'undefined' ? undefined : this.rubroSeleccionado;
-
-      event.data.RubroHijo.Codigo = typeof this.rubroSeleccionado.Codigo === 'undefined' ?
-        event.data.RubroHijo.Codigo + '' :
-        this.rubroSeleccionado.Codigo + '-' + event.data.RubroHijo.Codigo;
-
-      this.apHelper.apropiacionRegister(event.data).subscribe((res) => {
+    if (this.vigenciaSel !== undefined) {
+      this.apHelper.apropiacionRegister(this.apropiacionData).subscribe((res) => {
         if (res) {
           this.popManager.showSuccessAlert('Se registro la preasignación de apropiación correctamente!');
           this.cleanForm()
@@ -142,7 +118,14 @@ export class ApropiacionesComponent implements OnInit {
         }
       });
     } else {
-      this.popManager.showErrorAlert('Datos Incompletos');
+      this.popManager.showErrorAlert('Seleccione una vigencia.');
     }
+
+
   }
+
+  onSelect(selectedItem: any) {
+    this.vigenciaSel = selectedItem;
+  }
+
 }
