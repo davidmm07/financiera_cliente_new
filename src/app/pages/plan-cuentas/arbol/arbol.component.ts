@@ -95,6 +95,7 @@ export class ArbolComponent implements OnChanges {
     this.allColumns = [this.customColumn, ...this.defaultColumns];
     this.apHelper.getFullArbol().subscribe( res => {
       this.data = res;
+      console.info(this.data);
       this.dataSource2 = this.dataSourceBuilder2.create(this.data);
     },
     );
