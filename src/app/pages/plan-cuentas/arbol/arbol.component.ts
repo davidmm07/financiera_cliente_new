@@ -128,8 +128,8 @@ export class ArbolComponent implements OnChanges {
   async onSelect(selectedItem: any) {
     this.rubroSeleccionado.emit(selectedItem.data);
     console.info(selectedItem);
-    console.info("Test Camila",selectedItem.data.Nombre);
   }
+
   getShowOn(index: number) {
     const minWithForMultipleColumns = 400;
     const nextColumnStep = 100;

@@ -30,15 +30,14 @@ export class PopUpManager {
         this.toast.show(message, this.translate.instant('GLOBAL.info'), { status, duration });
     }
 
-    public showAlert(status, title,text) {
+    public showAlert(status, title, text) {
         Swal({
             type: status,
             title: title,
             text: text,
             confirmButtonText: this.translate.instant('GLOBAL.aceptar'),
             showCancelButton: true,
-      
-        });
+            });
     }
 
     public showSuccessAlert(text) {

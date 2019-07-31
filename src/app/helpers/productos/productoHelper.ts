@@ -38,7 +38,7 @@ export class ProductoHelper {
      */
     public productoRegister(productoData) {
         this.rqManager.setPath('PLAN_CUENTAS_MONGO_SERVICE');
-        console.log(productoData);
+        console.info(productoData);
         return this.rqManager.post('producto', productoData).pipe(
             map(
                 (res) => {

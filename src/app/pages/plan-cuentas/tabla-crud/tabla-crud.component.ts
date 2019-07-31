@@ -99,33 +99,33 @@ export class TablaCrudComponent implements OnInit {
 
   onCreate(event): void {
     this.prHelper.productoRegister(event.data).subscribe(res => {
-      console.log(event.data + "Rest" + res);
+      console.info(event.data + 'Rest' + res);
       if (res !== null) {
-        console.log(res);
+        console.info(res);
         this.loadData();
-        this.pUpManager.showInfoToast("Producto registrado satisfactoriamente");
+        this.pUpManager.showInfoToast('Producto registrado satisfactoriamente');
       }
     });
   }
 
   onEdit(event): void {
     this.uid = event.data._id;
-    console.log(event.data._id)
+    console.info(event.data._id)
     this.prHelper.productoUpdate(event.data).subscribe(res => {
       if (res !== null) {
         this.loadData();
-        this.pUpManager.showInfoToast("Producto actualizado satisfactoriamente");
+        this.pUpManager.showInfoToast('Producto actualizado satisfactoriamente');
       }
     });
 
   }
 
   onDelete(event): void {
-    this.pUpManager.showAlert("question", "Eliminar", "¿Esta seguro de eliminar este producto?");
+    this.pUpManager.showAlert('question', 'Eliminar', '¿Esta seguro de eliminar este producto?');
     this.prHelper.productoDelete(event.data._id).subscribe(res => {
       if (res !== null) {
         this.loadData();
-        this.pUpManager.showInfoToast("Producto eliminado satisfactoriamente");
+        this.pUpManager.showInfoToast('Producto eliminado satisfactoriamente');
       }
     });
   }
