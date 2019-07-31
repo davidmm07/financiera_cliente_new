@@ -21,6 +21,7 @@ export class FuentesComponent implements OnInit {
   dependencias: any = [];
   dependenciasAsociadas: any = {};
   dependenciaSeleccionada: any = [];
+  rubrosAsociados : any = {};
   @ViewChild('steep') steep: NbStepperComponent;
 
   constructor(
@@ -28,6 +29,7 @@ export class FuentesComponent implements OnInit {
     private translate: TranslateService,
     private dependenciaHelper: DependenciaHelper,
   ) {
+    var myMap = {};
     this.optionView = 'Apropiaciones';
     this.formInfoFuente = FORM_INFO_FUENTE;
     this.construirForm();
@@ -44,14 +46,15 @@ export class FuentesComponent implements OnInit {
   ngOnInit() {}
 
   validarForm(event) {
-    console.info('event', event);
+    // console.info('event', event);
+    this.info_fuente = event.data.FuenteFinanciamiento;
     // console.info('info', this.info_fuente);
     // debugger;
     this.steep.next();
   }
 
   validarFormDependencias(event) {
-    console.info('event2', event);
+    // console.info('event2', event);
     // console.info('info', this.info_fuente);
     // debugger;
   }
@@ -76,7 +79,7 @@ export class FuentesComponent implements OnInit {
     this.rubrosAsignados.filter(data => {
       data === rubro;
       data['Dependencias'].push(-1);
-      console.info(data);
+      // console.info(data);
     });
   }
 
@@ -86,10 +89,14 @@ export class FuentesComponent implements OnInit {
       data['Dependencias'].pop(-1);
     });
   }
-  quitarRubro($event, rubro: Rubro) {
+  quitarRubro(event, rubro: Rubro) {
     this.rubrosAsignados = this.rubrosAsignados.filter(p => {
       return JSON.stringify(p) !== JSON.stringify(rubro);
     });
+    console.info(event);
+    let prop = event.Codigo;
+    this.rubrosAsociados[prop] = undefined;
+    console.info(this.rubrosAsociados);
   }
 
   receiveMessage($event) {
@@ -97,8 +104,11 @@ export class FuentesComponent implements OnInit {
       this.rubrosAsignados.filter(data => data.Codigo === $event.Codigo)
         .length === 0
     ) {
-      $event['Dependencias'] = [-1];
+      $event['Dependencias'] = [];
+      console.info($event);
       this.rubrosAsignados = [...this.rubrosAsignados, $event];
+      this.rubrosAsociados[$event.Codigo]= {};
+      console.info(this.rubrosAsociados);
     }
   }
 

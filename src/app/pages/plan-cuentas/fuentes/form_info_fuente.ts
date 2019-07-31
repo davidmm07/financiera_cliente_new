@@ -78,7 +78,7 @@ export let FORM_INFO_FUENTE = {
         {
             etiqueta: 'mat-date',
             claseGrid: 'col-lg-4 col-md-4 col-sm-4 col-xs-4',
-            nombre: 'FechaDocumento',
+            nombre: 'FechaCreacion',
             label_i18n: 'Fecha Documento',
             placeholder_i18n: 'Fecha Documento',
             requerido: true,

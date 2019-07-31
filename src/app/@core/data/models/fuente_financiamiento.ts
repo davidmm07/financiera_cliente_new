@@ -1,11 +1,13 @@
 export class FuenteFinanciamiento {
-    Id: number;
+    Vigencia:number;
     Nombre: string;
-    Codigo: number;
-    Valor: number;
-    UnidadEjecutora: number;
     Descripcion: string;
-    NumeroDocumento: number;
-    TipoDocumento: number;
-    FechaDocumento: string;
+    FechaCreacion: Date;
+    FechaModificacion: Date;
+    Activo: boolean = true;
+    TipoFuente: string;
+    ValorOriginal: number;
+    ValorAcumulado: number;
+    Codigo: string;
+    Rubros: Object;
 }
