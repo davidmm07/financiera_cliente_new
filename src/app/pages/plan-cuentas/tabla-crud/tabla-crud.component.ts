@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { SmartTableDatepickerComponent , SmartTableDatepickerRenderComponent } from './smart-table-datepicker/smart-table-datepicker.component'
+import { SmartTableDatepickerComponent, SmartTableDatepickerRenderComponent } from './smart-table-datepicker/smart-table-datepicker.component'
+import { LocalDataSource } from 'ng2-smart-table';
+import { ProductoHelper } from '../../../helpers/productos/productoHelper';
+import { PopUpManager } from '../../../managers/popUpManager';
 
 @Component({
   selector: 'ngx-tabla-crud',
@@ -9,6 +12,8 @@ import { SmartTableDatepickerComponent , SmartTableDatepickerRenderComponent } f
 export class TablaCrudComponent implements OnInit {
 
   uid: number;
+  source: LocalDataSource = new LocalDataSource();
+
 
   settings = {
     actions: {
@@ -28,18 +33,19 @@ export class TablaCrudComponent implements OnInit {
       deleteButtonContent: '<i class="nb-trash"></i>',
       confirmDelete: true,
     },
+    mode: 'external',
     position: 'left',
     columns: {
-      id: {
+      _id: {
         title: 'ID',
       },
-      nombre: {
+      Nombre: {
         title: 'Nombre',
       },
-      descripcion: {
+      Descripcion: {
         title: 'Descripción',
       },
-      fecha_creacion: {
+      FechaCreacion: {
         title: 'Fecha Creación',
         type: 'custom',
         renderComponent: SmartTableDatepickerRenderComponent,
@@ -52,44 +58,76 @@ export class TablaCrudComponent implements OnInit {
   };
 
 
-  data = [
-    {
-      id: 1,
-      nombre: 'Producto 1 Infraestructura y Edificaciones',
-      descripcion: 'Bret',
-      fecha_creacion: '2019-07-02',
-    },
-    {
-      id: 2,
-      nombre: 'Producto 2 Educación Superior y Extensión',
-      descripcion: 'Antonette',
-      fecha_creacion: '2019-07-03',
-    },
-    {
-      id: 11,
-      nombre: 'Producto 1 Investigación e Innovación',
-      descripcion: 'Nicholas.Stanton',
-      fecha_creacion: '2019-07-04',
-    },
-  ];
+  // data = [
+  //   {
+  //     id: 1,
+  //     nombre: 'Producto 1 Infraestructura y Edificaciones',
+  //     descripcion: 'Bret',
+  //     fecha_creacion: '2019-07-02',
+  //   },
+  //   {
+  //     id: 2,
+  //     nombre: 'Producto 2 Educación Superior y Extensión',
+  //     descripcion: 'Antonette',
+  //     fecha_creacion: '2019-07-03',
+  //   },
+  //   {
+  //     id: 11,
+  //     nombre: 'Producto 1 Investigación e Innovación',
+  //     descripcion: 'Nicholas.Stanton',
+  //     fecha_creacion: '2019-07-04',
+  //   },
+  // ];
 
-  constructor() {
-    this.loadProductos();
+  constructor(private prHelper: ProductoHelper, private pUpManager: PopUpManager) {
+    this.loadData();
   }
+
+
+  loadData(): void {
+    this.prHelper.getProductos().subscribe(res => {
+      if (res !== null) {
+        const data = <Array<any>>res;
+        this.source.load(data);
+      }
+    });
+  }
+
 
   ngOnInit() {
   }
 
-  loadProductos() {
+  onCreate(event): void {
+    this.prHelper.productoRegister(event.data).subscribe(res => {
+      console.log(event.data + "Rest" + res);
+      if (res !== null) {
+        console.log(res);
+        this.loadData();
+        this.pUpManager.showInfoToast("Producto registrado satisfactoriamente");
+      }
+    });
   }
 
   onEdit(event): void {
-    this.uid = event.data.Id;
-  }
+    this.uid = event.data._id;
+    console.log(event.data._id)
+    this.prHelper.productoUpdate(event.data).subscribe(res => {
+      if (res !== null) {
+        this.loadData();
+        this.pUpManager.showInfoToast("Producto actualizado satisfactoriamente");
+      }
+    });
 
-  onCreate(event): void {
   }
 
   onDelete(event): void {
+    this.pUpManager.showAlert("question", "Eliminar", "¿Esta seguro de eliminar este producto?");
+    this.prHelper.productoDelete(event.data._id).subscribe(res => {
+      if (res !== null) {
+        this.loadData();
+        this.pUpManager.showInfoToast("Producto eliminado satisfactoriamente");
+      }
+    });
   }
+
 }
