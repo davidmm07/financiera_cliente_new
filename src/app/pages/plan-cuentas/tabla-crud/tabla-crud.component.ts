@@ -99,13 +99,16 @@ export class TablaCrudComponent implements OnInit {
   }
 
   onEdit(): void {
-    console.info(this.productoData)
+    console.info(this.productoData.Id)
     this.prHelper.productoUpdate(this.productoData).subscribe(res => {
       if (res !== null) {
         this.loadData();
         this.pUpManager.showInfoToast('Producto actualizado satisfactoriamente');
       }
     });
+
+    this.entrarEditarProd = !this.entrarEditarProd;
+    this.loadData();
 
   }
 

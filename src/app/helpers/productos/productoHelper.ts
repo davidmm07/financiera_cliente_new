@@ -87,8 +87,8 @@ export class ProductoHelper {
      */
     public productoUpdate(productoData) {
         this.rqManager.setPath('PLAN_CUENTAS_MONGO_SERVICE');
-        productoData.Id = productoData._id;
-        return this.rqManager.put('producto', productoData).pipe(
+        productoData.Id = productoData.Id;
+        return this.rqManager.put('producto/', productoData , productoData.Id).pipe(
             map(
                 (res) => {
                     if (res['Type'] === 'error') {
