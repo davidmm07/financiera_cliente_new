@@ -41,7 +41,7 @@ export class RubroHelper {
         // Set the optional branch for the API request.
         const unidadEjecutora = 1;
         // call request manager for the tree's data.
-        return this.rqManager.get(`arbol_rubro/FullArbolRubro/${unidadEjecutora.toString()}`);
+        return this.rqManager.get(`arbol_rubro/arbol/${unidadEjecutora.toString()}`);
 
     }
 
@@ -103,7 +103,6 @@ export class RubroHelper {
      * @returns  <Obserbable> object updated information. undefined if the proccess has errors.
      */
     public rubroUpdate(rubroData) {
-
         this.rqManager.setPath('PLAN_CUENTAS_MONGO_SERVICE');
         return this.rqManager.put('arbol_rubro/', rubroData, rubroData.Codigo).pipe(
             map(

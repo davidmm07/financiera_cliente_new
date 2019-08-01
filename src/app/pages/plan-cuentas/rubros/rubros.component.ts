@@ -46,7 +46,6 @@ export class RubrosComponent implements OnInit {
     this.rubroSeleccionado = {
     };
     this.rubroData = {
-      Vigencia: 0,
       Nombre: '',
       Descripcion: '',
       Codigo: '',
@@ -104,8 +103,7 @@ export class RubrosComponent implements OnInit {
 
 
   validarForm(event) {
-    if (event.valid && this.rubroData.Vigencia !== 0) {
-      this.rubroData.Vigencia = typeof this.rubroData.Vigencia === 'undefined' ? undefined : this.rubroData.Vigencia;
+    if (event.valid) {
       this.rubroData.Nombre = typeof event.data.RubroHijo.Nombre === 'undefined' ? undefined : event.data.RubroHijo.Nombre;
       this.rubroData.Descripcion = typeof event.data.RubroHijo.Descripcion === 'undefined' ? undefined : event.data.RubroHijo.Descripcion ;
       this.rubroData.Codigo = typeof event.data.RubroHijo.Codigo === 'undefined' ? event.data.RubroHijo.Codigo + '' :
@@ -122,9 +120,7 @@ export class RubrosComponent implements OnInit {
       this.popManager.showErrorAlert('Datos Incompletos');
     }
   }
-  onSelect(selectedItem: any) {
-    this.rubroData.Vigencia = selectedItem;
-  }
+  onSelect(selectedItem: any) {}
 
   deleteRubro() {
     const id = this.rubroSeleccionado.Id;
