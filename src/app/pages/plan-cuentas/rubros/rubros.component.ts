@@ -22,6 +22,7 @@ export class RubrosComponent implements OnInit {
   clean = false;
   formInfoRubro: any;
   rubroData: NodoRubro;
+  editandoRubro: boolean;
 
   vigencias: any[] = [
     {vigencia: 2019},
@@ -39,6 +40,7 @@ export class RubrosComponent implements OnInit {
     private popManager: PopUpManager,
   ) {
     this.optionView = 'Rubros';
+    this.editandoRubro = false;
     this.formInfoRubro = FORM_INFO_RUBRO;
     this.construirForm();
     this.rubroSeleccionado = {
@@ -47,7 +49,7 @@ export class RubrosComponent implements OnInit {
       Vigencia: 0,
       Nombre: '',
       Descripcion: '',
-      _Id: '',
+      Codigo: '',
       Hijos: null,
       Padre: '',
       UnidadEjecutora: '',
@@ -79,6 +81,7 @@ export class RubrosComponent implements OnInit {
 
     this.info_rubro = <Rubro>data;
     this.formInfoRubro.campos[FormManager.getIndexForm(this.formInfoRubro, 'Codigo')].prefix.value = this.rubroSeleccionado.Codigo + '-';
+    console.info(this.rubroSeleccionado)
 
   }
 
@@ -105,7 +108,7 @@ export class RubrosComponent implements OnInit {
       this.rubroData.Vigencia = typeof this.rubroData.Vigencia === 'undefined' ? undefined : this.rubroData.Vigencia;
       this.rubroData.Nombre = typeof event.data.RubroHijo.Nombre === 'undefined' ? undefined : event.data.RubroHijo.Nombre;
       this.rubroData.Descripcion = typeof event.data.RubroHijo.Descripcion === 'undefined' ? undefined : event.data.RubroHijo.Descripcion ;
-      this.rubroData._Id = typeof event.data.RubroHijo.Codigo === 'undefined' ? event.data.RubroHijo.Codigo + '' :
+      this.rubroData.Codigo = typeof event.data.RubroHijo.Codigo === 'undefined' ? event.data.RubroHijo.Codigo + '' :
       String(this.rubroSeleccionado.Codigo + '-' + event.data.RubroHijo.Codigo);
       this.rubroData.Padre = typeof this.rubroSeleccionado.Codigo === 'undefined' ? undefined : String(this.rubroSeleccionado.Codigo);
             this.rbHelper.rubroRegister(this.rubroData).subscribe((res) => {
@@ -132,6 +135,29 @@ export class RubrosComponent implements OnInit {
         this.eventChange.emit(true);
       }
     });
+  }
+
+  editRubro() {
+
+    this.rbHelper.rubroUpdate(this.construirRubroSeleccionado()).subscribe((res) => {
+      if (res) {
+        this.popManager.showSuccessAlert('Se Actualizó el Rubro correctamente!');
+        this.cleanForm()
+        this.eventChange.emit(true);
+    }
+    });
+    this.editandoRubro = !this.editandoRubro;
+  }
+
+  construirRubroSeleccionado(): NodoRubro {
+
+    this.rubroData.Codigo = typeof this.rubroSeleccionado.Codigo === 'undefined' ? undefined : this.rubroSeleccionado.Codigo;
+    this.rubroData.Nombre = typeof this.rubroSeleccionado.Nombre === 'undefined' ? undefined : this.rubroSeleccionado.Nombre;
+    this.rubroData.UnidadEjecutora = typeof this.rubroSeleccionado.UnidadEjecutora === 'undefined' ? undefined : this.rubroSeleccionado.UnidadEjecutora;
+    this.rubroData.Descripcion = typeof this.rubroSeleccionado.Descripcion === 'undefined' ? undefined : this.rubroSeleccionado.Descripcion;
+    console.info(this.rubroData)
+    return this.rubroData;
+
   }
 
   cambioProductosAsignados(productosAsignados: any[]) {

@@ -127,7 +127,7 @@ export class ArbolComponent implements OnChanges {
 
   async onSelect(selectedItem: any) {
     this.rubroSeleccionado.emit(selectedItem.data);
-    console.info(selectedItem);
+    // console.info(selectedItem);
   }
 
   getShowOn(index: number) {
