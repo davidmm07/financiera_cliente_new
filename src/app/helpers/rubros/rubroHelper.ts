@@ -103,8 +103,9 @@ export class RubroHelper {
      * @returns  <Obserbable> object updated information. undefined if the proccess has errors.
      */
     public rubroUpdate(rubroData) {
+
         this.rqManager.setPath('PLAN_CUENTAS_MONGO_SERVICE');
-        return this.rqManager.put('arbol_rubro/', rubroData._Id).pipe(
+        return this.rqManager.put('arbol_rubro/', rubroData, rubroData.Codigo).pipe(
             map(
                 (res) => {
                     if (res['Type'] === 'error') {
