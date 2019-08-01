@@ -4,7 +4,6 @@ import { LocalDataSource } from 'ng2-smart-table';
 import { ProductoHelper } from '../../../helpers/productos/productoHelper';
 import { PopUpManager } from '../../../managers/popUpManager';
 import Swal from 'sweetalert2';
-import { WindowComponent } from '../window/window.component';
 import { Producto } from '../../../@core/data/models/producto';
 
 @Component({
@@ -38,8 +37,6 @@ export class TablaCrudComponent implements OnInit {
       deleteButtonContent: '<i class="nb-trash"></i>',
       confirmDelete: true,
     },
-    
-    
     mode: 'external',
     position: 'left',
     columns: {
@@ -112,13 +109,12 @@ export class TablaCrudComponent implements OnInit {
 
   }
 
-  cargarProducto(event){
-    console.log(event);
+  cargarProducto(event) {
+    console.info(event);
     this.productoData = {
-      Id : event.data._id,
-      Nombre : event.data.Nombre,
-      Descripcion: event.data.Descripcion
-
+      Id: event.data._id,
+      Nombre: event.data.Nombre,
+      Descripcion: event.data.Descripcion,
     }
   }
 
