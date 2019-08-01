@@ -117,7 +117,7 @@ export class RubrosComponent implements OnInit {
         }
       });
     } else {
-      this.popManager.showErrorAlert('Datos Incompletos');
+      this.popManager.showErrorAlert('Datos Incompletos!');
     }
   }
   onSelect(selectedItem: any) {}
