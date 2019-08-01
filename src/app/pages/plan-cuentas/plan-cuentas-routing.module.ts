@@ -6,7 +6,6 @@ import { GestionPlanCuentasComponent } from './gestion-plan-cuentas/gestion-plan
 import { RubrosComponent } from './rubros/rubros.component';
 import { ApropiacionesComponent } from './apropiaciones/apropiaciones.component';
 import { ConsultaComponent } from './consulta/consulta.component';
-import { RegistroComponent } from './registro/registro.component';
 import { FuentesComponent } from './fuentes/fuentes.component';
 import { ModificacionFuentesComponent } from './fuentes/modificacion-fuentes/modificacion-fuentes.component';
 import { GestionModificacionesComponent } from './gestion-modificaciones/gestion-modificaciones.component';
@@ -73,7 +72,6 @@ export const routedComponents = [
   ComprobacionApropiacionInicialComponent,
   FsIconAComponent,
   ConsultaComponent,
-  RegistroComponent,
   FuentesComponent,
   ModificacionFuentesComponent,
   GestionModificacionesComponent,

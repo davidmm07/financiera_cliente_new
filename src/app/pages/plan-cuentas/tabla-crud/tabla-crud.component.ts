@@ -3,6 +3,9 @@ import { SmartTableDatepickerComponent, SmartTableDatepickerRenderComponent } fr
 import { LocalDataSource } from 'ng2-smart-table';
 import { ProductoHelper } from '../../../helpers/productos/productoHelper';
 import { PopUpManager } from '../../../managers/popUpManager';
+import Swal from 'sweetalert2';
+import { WindowComponent } from '../window/window.component';
+import { Producto } from '../../../@core/data/models/producto';
 
 @Component({
   selector: 'ngx-tabla-crud',
@@ -13,8 +16,9 @@ export class TablaCrudComponent implements OnInit {
 
   uid: number;
   source: LocalDataSource = new LocalDataSource();
-
-
+  entrarCrearProd: boolean;
+  entrarEditarProd: boolean;
+  productoData: Producto;
   settings = {
     actions: {
       columnTitle: 'Acciones',
@@ -24,6 +28,7 @@ export class TablaCrudComponent implements OnInit {
       createButtonContent: '<i class="nb-checkmark"></i>',
       cancelButtonContent: '<i class="nb-close"></i>',
     },
+
     edit: {
       editButtonContent: '<i class="nb-edit"></i>',
       saveButtonContent: '<i class="nb-checkmark"></i>',
@@ -33,6 +38,8 @@ export class TablaCrudComponent implements OnInit {
       deleteButtonContent: '<i class="nb-trash"></i>',
       confirmDelete: true,
     },
+    
+    
     mode: 'external',
     position: 'left',
     columns: {
@@ -57,30 +64,11 @@ export class TablaCrudComponent implements OnInit {
     },
   };
 
-
-  // data = [
-  //   {
-  //     id: 1,
-  //     nombre: 'Producto 1 Infraestructura y Edificaciones',
-  //     descripcion: 'Bret',
-  //     fecha_creacion: '2019-07-02',
-  //   },
-  //   {
-  //     id: 2,
-  //     nombre: 'Producto 2 Educación Superior y Extensión',
-  //     descripcion: 'Antonette',
-  //     fecha_creacion: '2019-07-03',
-  //   },
-  //   {
-  //     id: 11,
-  //     nombre: 'Producto 1 Investigación e Innovación',
-  //     descripcion: 'Nicholas.Stanton',
-  //     fecha_creacion: '2019-07-04',
-  //   },
-  // ];
-
   constructor(private prHelper: ProductoHelper, private pUpManager: PopUpManager) {
+    this.entrarCrearProd = false;
+    this.entrarEditarProd = false;
     this.loadData();
+    this.productoData = <Producto>{};
   }
 
 
@@ -97,21 +85,25 @@ export class TablaCrudComponent implements OnInit {
   ngOnInit() {
   }
 
-  onCreate(event): void {
-    this.prHelper.productoRegister(event.data).subscribe(res => {
-      console.info(event.data + 'Rest' + res);
+  onCreate(): void {
+    console.info(this.productoData);
+   this.prHelper.productoRegister(this.productoData).subscribe(res => {
+      console.info(this.productoData + 'Rest' + res);
       if (res !== null) {
         console.info(res);
         this.loadData();
         this.pUpManager.showInfoToast('Producto registrado satisfactoriamente');
       }
     });
+
+    this.entrarCrearProd = false;
+
+    this.loadData();
   }
 
-  onEdit(event): void {
-    this.uid = event.data._id;
-    console.info(event.data._id)
-    this.prHelper.productoUpdate(event.data).subscribe(res => {
+  onEdit(): void {
+    console.info(this.productoData)
+    this.prHelper.productoUpdate(this.productoData).subscribe(res => {
       if (res !== null) {
         this.loadData();
         this.pUpManager.showInfoToast('Producto actualizado satisfactoriamente');
@@ -120,14 +112,36 @@ export class TablaCrudComponent implements OnInit {
 
   }
 
+  cargarProducto(event){
+    console.log(event);
+    this.productoData = {
+      Id : event.data._id,
+      Nombre : event.data.Nombre,
+      Descripcion: event.data.Descripcion
+
+    }
+  }
+
   onDelete(event): void {
-    this.pUpManager.showAlert('question', 'Eliminar', '¿Esta seguro de eliminar este producto?');
-    this.prHelper.productoDelete(event.data._id).subscribe(res => {
-      if (res !== null) {
-        this.loadData();
-        this.pUpManager.showInfoToast('Producto eliminado satisfactoriamente');
+    Swal({
+      type: 'question',
+      title: 'Eliminar',
+      text: '¿Esta seguro de eliminar este producto?',
+      confirmButtonText: 'Aceptar',
+      showCancelButton: true,
+    }).then(result => {
+      if (result.value) {
+        this.prHelper.productoDelete(event.data._id).subscribe(res => {
+          if (res !== null) {
+            this.loadData();
+            this.pUpManager.showInfoToast('Producto eliminado satisfactoriamente');
+          }
+        });
+      } else {
+        this.pUpManager.showErrorToast('El producto no se ha podido eliminar');
       }
-    });
+    })
+
   }
 
 }

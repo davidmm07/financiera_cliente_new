@@ -37,7 +37,7 @@ export class PopUpManager {
             text: text,
             confirmButtonText: this.translate.instant('GLOBAL.aceptar'),
             showCancelButton: true,
-            });
+        });
     }
 
     public showSuccessAlert(text) {

@@ -1,1 +1,53 @@
-<ng2-smart-table [settings]="settings" [source]="source" (delete)="onDelete($event)" (edit)="onEdit($event)" (createConfirm)="onCreate($event)" ></ng2-smart-table>
+<ng2-smart-table *ngIf="!entrarCrearProd && !entrarEditarProd" [settings]="settings" [source]="source" (delete)="onDelete($event)" (edit)="entrarEditarProd=true ; cargarProducto($event)"
+    (create)="entrarCrearProd=true"></ng2-smart-table>
+
+
+      <nb-card *ngIf="entrarCrearProd===true">
+          <nb-card-header>Crear Producto</nb-card-header>
+          <nb-card-body>
+                <pre>{{ productoData | json}}</pre>
+            <form>
+                <div class="form-group">
+                  <label for="prodCod" class="col-form-label">Código:</label>
+                  <input name="idProd" type="number" class="form-control" [(ngModel)]="productoData.Id" id="prodCod">
+                </div>
+                <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Nombre:</label>
+                    <input name="nombreProd" type="text" class="form-control" [(ngModel)]="productoData.Nombre" id="recipient-name">
+                  </div>
+                <div class="form-group">
+                  <label for="message-text" class="col-form-label">Descripción:</label>
+                  <textarea name="desProd" class="form-control" id="message-text" [(ngModel)]="productoData.Descripcion"></textarea>
+                </div>
+              </form>
+          </nb-card-body>
+          <nb-card-footer>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="crear=!crear">Cerrar</button>
+                <button type="button" class="btn btn-primary" (click)="onCreate()">Registrar Producto</button>
+          </nb-card-footer>
+      </nb-card>
+
+      <nb-card *ngIf="entrarEditarProd===true">
+            <nb-card-header>Editar Producto</nb-card-header>
+            <nb-card-body>
+                  <pre>{{ productoData | json}}</pre>
+              <form>
+                  <div class="form-group">
+                    <label for="prodCod" class="col-form-label">Código:</label>
+                    <input name="idProd" type="number" class="form-control" [(ngModel)]="productoData.Id" id="prodCod">
+                  </div>
+                  <div class="form-group">
+                      <label for="recipient-name" class="col-form-label">Nombre:</label>
+                      <input name="nombreProd" type="text" class="form-control" [(ngModel)]="productoData.Nombre" id="recipient-name">
+                    </div>
+                  <div class="form-group">
+                    <label for="message-text" class="col-form-label">Descripción:</label>
+                    <textarea name="desProd" class="form-control" id="message-text" [(ngModel)]="productoData.Descripcion"></textarea>
+                  </div>
+                </form>
+            </nb-card-body>
+            <nb-card-footer>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="crear=!crear">Cerrar</button>
+                  <button type="button" class="btn btn-primary" (click)="onEdit($event)">Editar Producto</button>
+            </nb-card-footer>
+        </nb-card>
