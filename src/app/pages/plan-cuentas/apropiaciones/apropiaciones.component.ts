@@ -62,8 +62,9 @@ export class ApropiacionesComponent implements OnInit {
 
   receiveMessage($event) {
     this.rubroSeleccionado = <Rubro>$event;
+    console.info(this.rubroSeleccionado)
     this.rubroSeleccionado.Id = parseInt(this.rubroSeleccionado.Id, 0);
-    this.rubroSeleccionado.Nombre = ' ';
+    this.rubroSeleccionado.Nombre = this.rubroSeleccionado.Nombre;
     this.rubroSeleccionado.UnidadEjecutora = parseInt(
       this.rubroSeleccionado.UnidadEjecutora,
       0,
@@ -107,7 +108,7 @@ export class ApropiacionesComponent implements OnInit {
     this.apropiacionData.ApropiacionInicial = typeof this.valorApropiacion === 'undefined' ? undefined : this.valorApropiacion;
     this.apropiacionData.Estado = 'preasignado'; // Estado preasignado
 
-
+    console.info(this.apropiacionData);
     if (this.vigenciaSel !== undefined) {
       this.apHelper.apropiacionRegister(this.apropiacionData).subscribe((res) => {
         if (res) {
