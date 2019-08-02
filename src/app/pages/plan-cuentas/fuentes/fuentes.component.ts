@@ -1,16 +1,16 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
-import { FORM_INFO_FUENTE } from "./form_info_fuente";
-import { TranslateService } from "@ngx-translate/core";
-import { Rubro } from "../../../@core/data/models/rubro";
-import { FuenteFinanciamiento } from "../../../@core/data/models/fuente_financiamiento";
-import { DependenciaHelper } from "../../../helpers/oikos/dependenciaHelper";
-import { NbStepperComponent } from "@nebular/theme/components/stepper/stepper.component";
-import { map } from "rxjs/operators";
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FORM_INFO_FUENTE } from './form_info_fuente';
+import { TranslateService } from '@ngx-translate/core';
+import { Rubro } from '../../../@core/data/models/rubro';
+import { FuenteFinanciamiento } from '../../../@core/data/models/fuente_financiamiento';
+import { DependenciaHelper } from '../../../helpers/oikos/dependenciaHelper';
+import { NbStepperComponent } from '@nebular/theme/components/stepper/stepper.component';
+import { map } from 'rxjs/operators';
 
 @Component({
-  selector: "ngx-fuentes",
-  templateUrl: "./fuentes.component.html",
-  styleUrls: ["./fuentes.component.scss"]
+  selector: 'ngx-fuentes',
+  templateUrl: './fuentes.component.html',
+  styleUrls: ['./fuentes.component.scss']
 })
 export class FuentesComponent implements OnInit {
   formInfoFuente: any;
@@ -23,7 +23,7 @@ export class FuentesComponent implements OnInit {
   dependenciasAsociadas: any = {};
   // dependenciaSeleccionada: any = [];
   rubrosAsociados: any = {};
-  @ViewChild("steep") steep: NbStepperComponent;
+  @ViewChild('steep') steep: NbStepperComponent;
 
   constructor(
     // private renderer: Renderer2,
@@ -31,7 +31,7 @@ export class FuentesComponent implements OnInit {
     private dependenciaHelper: DependenciaHelper
   ) {
     var myMap = {};
-    this.optionView = "Apropiaciones";
+    this.optionView = 'Apropiaciones';
     this.formInfoFuente = FORM_INFO_FUENTE;
     this.construirForm();
     this.dependenciaHelper.get().subscribe((res: any) => {
@@ -39,7 +39,7 @@ export class FuentesComponent implements OnInit {
       this.dependencias = res;
     });
     // this.dependenciaSeleccionada = {
-    //   Id: "",
+    //   Id: '',
     //   ValorDependencia: 0
     // };
   }
@@ -60,25 +60,21 @@ export class FuentesComponent implements OnInit {
     // debugger;
   }
 
-  asignarDependencia($event: any, rubro: Rubro) {
+  asignarDependencia($event: any, rubro: Rubro, dependencias: any) {
     // this.verificarAsignacionDependencia(rubro, this.dependencias[$event]);
-    console.log($event);
-    this.rubrosAsociados[rubro.Codigo]["Dependencias"].map(obj => {
-      var rObj = {};
-      rObj["Id"] = $event.Id;
-      rObj["ValorDependencia"] = $event.ValorDependencia;
-      console.log(rObj);
-      return rObj;
-    });
-    console.log(this.rubrosAsociados);
+    console.info(dependencias)
+dependencias.map(obj => {
+   this.rubrosAsociados[rubro.Codigo].Dependencias.push({Id:obj.Id, ValorDependencia:obj.ValorDependencia});
+});
+console.info(this.rubrosAsociados);
   }
 
   verificarAsignacionDependencia(rubro: Rubro, dependenciaAsignada: any) {
     this.rubrosAsignados.filter(data => {
       if (data === rubro) {
-        for (let i = 0; i < data["Dependencias"].length; i++) {
-          if (data["Dependencias"][i] === -1) {
-            data["Dependencias"][i] = dependenciaAsignada;
+        for (let i = 0; i < data['Dependencias'].length; i++) {
+          if (data['Dependencias'][i] === -1) {
+            data['Dependencias'][i] = dependenciaAsignada;
           }
         }
       }
@@ -88,7 +84,7 @@ export class FuentesComponent implements OnInit {
   agregarDependencia($event, rubro: Rubro) {
     this.rubrosAsignados.filter(data => {
       data === rubro;
-      data["Dependencias"].push(-1);
+      data['Dependencias'].push(-1);
       // console.info(event);
     });
   }
@@ -96,7 +92,7 @@ export class FuentesComponent implements OnInit {
   quitarDependencia($event, rubro: Rubro) {
     this.rubrosAsignados.filter(data => {
       data === rubro;
-      data["Dependencias"].pop(-1);
+      data['Dependencias'].pop(-1);
     });
   }
   quitarRubro(rubro: Rubro) {
@@ -115,7 +111,7 @@ export class FuentesComponent implements OnInit {
       this.rubrosAsignados.filter(data => data.Codigo === $event.Codigo)
         .length === 0
     ) {
-      $event["Dependencias"] = [];
+      $event['Dependencias'] = [];  
       // console.info($event);
       this.rubrosAsignados = [...this.rubrosAsignados, $event];
       this.rubrosAsociados[$event.Codigo] = {
@@ -133,7 +129,7 @@ export class FuentesComponent implements OnInit {
   aniadirNodo() {}
 
   construirForm() {
-    this.formInfoFuente.btn = this.translate.instant("GLOBAL.continuar");
+    this.formInfoFuente.btn = this.translate.instant('GLOBAL.continuar');
 
     for (let i = 0; i < this.formInfoFuente.campos.length; i++) {
       this.formInfoFuente.campos[i].label = this.formInfoFuente.campos[
