@@ -105,7 +105,7 @@ console.info(this.rubrosAsociados);
    this.totalPermitido = totalDep <= rubro.ApropiacionInicial;
    console.info(totalDep);
    if (!this.totalPermitido) {
-     this.popManager.showErrorAlert('Valor Excedido Apropiación'+' para el Rubro '+rubro.Codigo);
+     this.popManager.showErrorAlert('Valor Excedido Apropiación'+' para el Rubro '+rubro.Nombre);
    }
   }
 
@@ -121,11 +121,14 @@ console.info(this.rubrosAsociados);
     });
   }
 
-  quitarDependencia($event, rubro: Rubro) {
+  quitarDependencia($event, rubro: Rubro, index: any) {
+    this.rubrosAsociados[rubro.Codigo].Dependencias.splice(index, 1);;
     this.rubrosAsignados.filter(data => {
       data === rubro;
-      data['Dependencias'].pop(-1);
+      data['Dependencias'].splice(index, 1);
     });
+    console.info(this.rubrosAsociados[rubro.Codigo]);
+    console.info(this.rubrosAsignados);
   }
   quitarRubro(rubro: Rubro) {
     this.rubrosAsignados = this.rubrosAsignados.filter(p => {

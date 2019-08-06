@@ -127,10 +127,11 @@
     "edit-producto": "Editar producto"
   },
   "FUENTE_FINANCIAMIENTO": {
-    "asignar_fuente": "Asignar Fuente de Financiamiento",
+    "asignar_fuente": "Asignar Fuente",
     "add-dependencia": "Añadir dependencia",
     "remove-dependencia": "Quitar dependencia",
-    "remove-rubro": "Quitar rubro"
+    "remove-rubro": "Quitar rubro",
+    "max_value_dep": "ERROR: Se ha superado el valor de las dependencias"
   },
   "APROPIACION": {
     "comprobacion": "Comprobación de la apropiacion inicial",
