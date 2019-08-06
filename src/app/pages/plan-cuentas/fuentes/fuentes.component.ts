@@ -6,6 +6,7 @@ import { FuenteFinanciamiento } from '../../../@core/data/models/fuente_financia
 import { DependenciaHelper } from '../../../helpers/oikos/dependenciaHelper';
 import { NbStepperComponent } from '@nebular/theme/components/stepper/stepper.component';
 import { map } from 'rxjs/operators';
+import { PopUpManager } from '../../../managers/popUpManager';
 
 @Component({
   selector: 'ngx-fuentes',
@@ -21,18 +22,22 @@ export class FuentesComponent implements OnInit {
   rubrosAsignados: any = [];
   dependencias: any = [];
   dependenciasAsociadas: any = {};
+  dependenciasAsignadas: any;
+  dependenciaSeleccionada: any = [];
   entrarEditar: boolean;
-  // dependenciaSeleccionada: any = [];
+  totalPermitido: boolean;
+  entrarAddProductos: boolean;
   rubrosAsociados: any = {};
   @ViewChild('steep') steep: NbStepperComponent;
 
   constructor(
-    // private renderer: Renderer2,
     private translate: TranslateService,
-    private dependenciaHelper: DependenciaHelper
+    private dependenciaHelper: DependenciaHelper,
+    private popManager: PopUpManager,
   ) {
-    var myMap = {};
     this.entrarEditar = false;
+    this.totalPermitido = true;
+    this.entrarAddProductos = false;
     this.optionView = 'Apropiaciones';
     this.formInfoFuente = FORM_INFO_FUENTE;
     this.construirForm();
@@ -40,10 +45,10 @@ export class FuentesComponent implements OnInit {
       console.info(res);
       this.dependencias = res;
     });
-    // this.dependenciaSeleccionada = {
-    //   Id: '',
-    //   ValorDependencia: 0
-    // };
+    this.dependenciaSeleccionada[0] = {
+      Id: 0,
+      ValorDependencia: 0,
+    }
   }
 
   ngOnInit() {}
@@ -62,13 +67,52 @@ export class FuentesComponent implements OnInit {
     // debugger;
   }
 
-  asignarDependencia($event: any, rubro: Rubro, dependencias: any) {
+
+  validarEdicionDependencias(rubro: Rubro , dependencias: any, index: number) {
+    if (this.rubrosAsociados[rubro.Codigo].Dependencias[index] === undefined) {
+     return false;
+    }
+    return !this.entrarEditar && this.rubrosAsociados[rubro.Codigo].Dependencias[index].Id > 0;
+  }
+  dependenciaExists(dependencia) {
+  return dependencia.Id > 0;
+}
+
+
+  asignarDependencia($event: any, rubro: Rubro, dependencias: any, index: number) {
+    this.rubrosAsignados.filter(data => {
+      data === rubro;
+      data['Dependencias'].push({Id: 0, ValorDependencia: 0});
+    });    
     console.info(dependencias)
-   this.rubrosAsociados[rubro.Codigo].Dependencias.push({Id:dependencias.Id, ValorDependencia:dependencias.ValorDependencia});
+   this.rubrosAsociados[rubro.Codigo].Dependencias[index] = dependencias;
+   this.entrarEditar = true;
+   this.validarLimiteApropiacion(rubro);
+   this.entrarAddProductos = true; 
 console.info(this.rubrosAsociados);
-this.entrarEditar = true;
+  }
+    editarDependencia($event: any, rubro: Rubro, dependencias: any, index: number) {
+    console.info(dependencias);
+    this.rubrosAsociados[rubro.Codigo].Dependencias[index] = dependencias;
+    this.entrarEditar = false;
+    this.validarLimiteApropiacion(rubro); 
+    console.info(this.rubrosAsociados);    
   }
 
+  validarLimiteApropiacion(rubro: Rubro) {
+   let totalDep = this.rubrosAsociados[rubro.Codigo].Dependencias.reduce(
+     (total,dep) => total + (dep.ValorDependencia || 0), 0) ;
+   this.totalPermitido = totalDep <= rubro.ApropiacionInicial;
+   console.info(totalDep);
+   if (!this.totalPermitido) {
+     this.popManager.showErrorAlert('Valor Excedido Apropiación'+' para el Rubro '+rubro.Codigo);
+   }
+  }
+
+  entrandoEditar(dep) {
+    this.dependenciaSeleccionada = dep;
+    this.entrarEditar = true;
+  }
 
   agregarDependencia($event, rubro: Rubro) {
     this.rubrosAsignados.filter(data => {
@@ -99,7 +143,7 @@ this.entrarEditar = true;
       this.rubrosAsignados.filter(data => data.Codigo === $event.Codigo)
         .length === 0
     ) {
-      $event['Dependencias'] = [{Id:0,ValorDependencia:0}];  
+      $event['Dependencias'] = [{Id: 0, ValorDependencia: 0}];  
       // console.info($event);
       this.rubrosAsignados = [...this.rubrosAsignados, $event];
       this.rubrosAsociados[$event.Codigo] = {
