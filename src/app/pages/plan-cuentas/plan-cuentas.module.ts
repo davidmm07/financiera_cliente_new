@@ -8,7 +8,8 @@ import {
   NbSelectModule,
   NbAlertModule,
   NbTabsetModule,
-  NbStepperModule } from '@nebular/theme';
+  NbStepperModule,
+  NbCheckboxModule } from '@nebular/theme';
 
 import { ProductosRubroComponent } from './rubros/productos-rubro/productos-rubro.component';
 
@@ -33,6 +34,7 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
     NbTreeGridModule,
     NbSelectModule,
     NbAlertModule,
+    NbCheckboxModule,
     NbTabsetModule,
     NbStepperModule,
     Ng2SmartTableModule,

@@ -27,17 +27,20 @@ export class FuentesComponent implements OnInit {
   entrarEditar: boolean;
   totalPermitido: boolean;
   entrarAddProductos: boolean;
+  showProduct: boolean;
   rubrosAsociados: any = {};
+  productosExample: any = [];
   @ViewChild('steep') steep: NbStepperComponent;
 
   constructor(
     private translate: TranslateService,
     private dependenciaHelper: DependenciaHelper,
     private popManager: PopUpManager,
-  ) {
+    ) {
     this.entrarEditar = false;
     this.totalPermitido = true;
     this.entrarAddProductos = false;
+    this.showProduct = false;
     this.optionView = 'Apropiaciones';
     this.formInfoFuente = FORM_INFO_FUENTE;
     this.construirForm();
@@ -49,6 +52,9 @@ export class FuentesComponent implements OnInit {
       Id: 0,
       ValorDependencia: 0,
     }
+    this.productosExample = [
+    { id: 1, Nombre: 'Producto 1' },
+     { id: 2, Nombre: 'Producto 2' }];
   }
 
   ngOnInit() {}
@@ -70,13 +76,13 @@ export class FuentesComponent implements OnInit {
 
   validarEdicionDependencias(rubro: Rubro , dependencias: any, index: number) {
     if (this.rubrosAsociados[rubro.Codigo].Dependencias[index] === undefined) {
-     return false;
+      return false;
     }
     return !this.entrarEditar && this.rubrosAsociados[rubro.Codigo].Dependencias[index].Id > 0;
   }
   dependenciaExists(dependencia) {
-  return dependencia.Id > 0;
-}
+    return dependencia.Id > 0;
+  }
 
 
   asignarDependencia($event: any, rubro: Rubro, dependencias: any, index: number) {
@@ -85,13 +91,13 @@ export class FuentesComponent implements OnInit {
       data['Dependencias'].push({Id: 0, ValorDependencia: 0});
     });    
     console.info(dependencias)
-   this.rubrosAsociados[rubro.Codigo].Dependencias[index] = dependencias;
-   this.entrarEditar = true;
-   this.validarLimiteApropiacion(rubro);
-   this.entrarAddProductos = true; 
-console.info(this.rubrosAsociados);
+    this.rubrosAsociados[rubro.Codigo].Dependencias[index] = dependencias;
+    this.entrarEditar = true;
+    this.validarLimiteApropiacion(rubro);
+    this.entrarAddProductos = true; 
+    console.info(this.rubrosAsociados);
   }
-    editarDependencia($event: any, rubro: Rubro, dependencias: any, index: number) {
+  editarDependencia($event: any, rubro: Rubro, dependencias: any, index: number) {
     console.info(dependencias);
     this.rubrosAsociados[rubro.Codigo].Dependencias[index] = dependencias;
     this.entrarEditar = false;
@@ -100,13 +106,13 @@ console.info(this.rubrosAsociados);
   }
 
   validarLimiteApropiacion(rubro: Rubro) {
-   let totalDep = this.rubrosAsociados[rubro.Codigo].Dependencias.reduce(
-     (total,dep) => total + (dep.ValorDependencia || 0), 0) ;
-   this.totalPermitido = totalDep <= rubro.ApropiacionInicial;
-   console.info(totalDep);
-   if (!this.totalPermitido) {
-     this.popManager.showErrorAlert('Valor Excedido Apropiación'+' para el Rubro '+rubro.Nombre);
-   }
+    let totalDep = this.rubrosAsociados[rubro.Codigo].Dependencias.reduce(
+      (total,dep) => total + (dep.ValorDependencia || 0), 0) ;
+    this.totalPermitido = totalDep <= rubro.ApropiacionInicial;
+    console.info(totalDep);
+    if (!this.totalPermitido) {
+      this.popManager.showErrorAlert('Valor Excedido Apropiación'+' para el Rubro '+rubro.Nombre);
+    }
   }
 
   entrandoEditar(dep) {
@@ -144,35 +150,44 @@ console.info(this.rubrosAsociados);
   receiveMessage($event) {
     if (
       this.rubrosAsignados.filter(data => data.Codigo === $event.Codigo)
-        .length === 0
-    ) {
-      $event['Dependencias'] = [{Id: 0, ValorDependencia: 0}];  
-      // console.info($event);
-      this.rubrosAsignados = [...this.rubrosAsignados, $event];
-      this.rubrosAsociados[$event.Codigo] = {
-        Dependencias: [],
-        Productos: []
-      };
-      // console.info(this.rubrosAsociados);
-    }
+      .length === 0
+      ) {
+      $event['Dependencias'] = [{Id: 0, ValorDependencia: 0}];
+      // $event['Productos'] = this.productosExample;    
+    // console.info($event);
+    this.rubrosAsignados = [...this.rubrosAsignados, $event];
+    this.rubrosAsociados[$event.Codigo] = {
+      Dependencias: [],
+      Productos: []
+    };
+    // console.info(this.rubrosAsociados);
   }
+}
+showProductosRubro(rubro: Rubro) {
+ this.showProduct = true;
+}
 
-  registrar() {}
+addProduct(event, producto: any){
+ console.info(event);
+ console.info(producto);
+}
 
-  cleanForm() {}
+registrar() {}
 
-  aniadirNodo() {}
+cleanForm() {}
 
-  construirForm() {
-    this.formInfoFuente.btn = this.translate.instant('GLOBAL.continuar');
+aniadirNodo() {}
 
-    for (let i = 0; i < this.formInfoFuente.campos.length; i++) {
-      this.formInfoFuente.campos[i].label = this.formInfoFuente.campos[
-        i
-      ].label_i18n;
-      this.formInfoFuente.campos[i].placeholder = this.formInfoFuente.campos[
-        i
-      ].placeholder_i18n;
-    }
+construirForm() {
+  this.formInfoFuente.btn = this.translate.instant('GLOBAL.continuar');
+
+  for (let i = 0; i < this.formInfoFuente.campos.length; i++) {
+    this.formInfoFuente.campos[i].label = this.formInfoFuente.campos[
+    i
+    ].label_i18n;
+    this.formInfoFuente.campos[i].placeholder = this.formInfoFuente.campos[
+    i
+    ].placeholder_i18n;
   }
+}
 }
