@@ -5,13 +5,12 @@ import { Rubro } from '../../../@core/data/models/rubro';
 import { FuenteFinanciamiento } from '../../../@core/data/models/fuente_financiamiento';
 import { DependenciaHelper } from '../../../helpers/oikos/dependenciaHelper';
 import { NbStepperComponent } from '@nebular/theme/components/stepper/stepper.component';
-import { map } from 'rxjs/operators';
 import { PopUpManager } from '../../../managers/popUpManager';
 
 @Component({
   selector: 'ngx-fuentes',
   templateUrl: './fuentes.component.html',
-  styleUrls: ['./fuentes.component.scss']
+  styleUrls: ['./fuentes.component.scss'],
 })
 export class FuentesComponent implements OnInit {
   formInfoFuente: any;
@@ -89,29 +88,29 @@ export class FuentesComponent implements OnInit {
     this.rubrosAsignados.filter(data => {
       data === rubro;
       data['Dependencias'].push({Id: 0, ValorDependencia: 0});
-    });    
+    });
     console.info(dependencias)
     this.rubrosAsociados[rubro.Codigo].Dependencias[index] = dependencias;
     this.entrarEditar = true;
     this.validarLimiteApropiacion(rubro);
-    this.entrarAddProductos = true; 
+    this.entrarAddProductos = true;
     console.info(this.rubrosAsociados);
   }
   editarDependencia($event: any, rubro: Rubro, dependencias: any, index: number) {
     console.info(dependencias);
     this.rubrosAsociados[rubro.Codigo].Dependencias[index] = dependencias;
     this.entrarEditar = false;
-    this.validarLimiteApropiacion(rubro); 
-    console.info(this.rubrosAsociados);    
+    this.validarLimiteApropiacion(rubro);
+    console.info(this.rubrosAsociados);
   }
 
   validarLimiteApropiacion(rubro: Rubro) {
-    let totalDep = this.rubrosAsociados[rubro.Codigo].Dependencias.reduce(
-      (total,dep) => total + (dep.ValorDependencia || 0), 0) ;
+    const totalDep = this.rubrosAsociados[rubro.Codigo].Dependencias.reduce(
+      (total, dep) => total + (dep.ValorDependencia || 0), 0) ;
     this.totalPermitido = totalDep <= rubro.ApropiacionInicial;
     console.info(totalDep);
     if (!this.totalPermitido) {
-      this.popManager.showErrorAlert('Valor Excedido Apropiación'+' para el Rubro '+rubro.Nombre);
+      this.popManager.showErrorAlert('Valor Excedido Apropiación' + ' para el Rubro ' + rubro.Nombre);
     }
   }
 
@@ -128,7 +127,7 @@ export class FuentesComponent implements OnInit {
   }
 
   quitarDependencia($event, rubro: Rubro, index: any) {
-    this.rubrosAsociados[rubro.Codigo].Dependencias.splice(index, 1);;
+    this.rubrosAsociados[rubro.Codigo].Dependencias.splice(index, 1);
     this.rubrosAsignados.filter(data => {
       data === rubro;
       data['Dependencias'].splice(index, 1);
@@ -141,7 +140,7 @@ export class FuentesComponent implements OnInit {
       return JSON.stringify(p) !== JSON.stringify(rubro);
     });
 
-    let prop = rubro.Codigo;
+    const prop = rubro.Codigo;
     // console.info(prop);
     delete this.rubrosAsociados[prop];
     // console.info(this.rubrosAsociados);
@@ -153,12 +152,12 @@ export class FuentesComponent implements OnInit {
       .length === 0
       ) {
       $event['Dependencias'] = [{Id: 0, ValorDependencia: 0}];
-      // $event['Productos'] = this.productosExample;    
+      // $event['Productos'] = this.productosExample;
     // console.info($event);
     this.rubrosAsignados = [...this.rubrosAsignados, $event];
     this.rubrosAsociados[$event.Codigo] = {
       Dependencias: [],
-      Productos: []
+      Productos: [],
     };
     // console.info(this.rubrosAsociados);
   }
@@ -167,7 +166,7 @@ showProductosRubro(rubro: Rubro) {
  this.showProduct = true;
 }
 
-addProduct(event, producto: any){
+addProduct(event, producto: any) {
  console.info(event);
  console.info(producto);
 }

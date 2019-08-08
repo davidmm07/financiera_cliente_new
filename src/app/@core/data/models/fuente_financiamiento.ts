@@ -1,5 +1,5 @@
 export class FuenteFinanciamiento {
-    Vigencia:number;
+    Vigencia: number;
     Nombre: string;
     Descripcion: string;
     FechaCreacion: Date;
