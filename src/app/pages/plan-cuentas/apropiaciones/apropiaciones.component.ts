@@ -62,7 +62,7 @@ export class ApropiacionesComponent implements OnInit {
 
   receiveMessage($event) {
     this.rubroSeleccionado = <Rubro>$event;
-    console.info(this.rubroSeleccionado)
+    console.info(this.rubroSeleccionado.Codigo)
     this.rubroSeleccionado.Id = parseInt(this.rubroSeleccionado.Id, 0);
     this.rubroSeleccionado.Nombre = this.rubroSeleccionado.Nombre;
     this.rubroSeleccionado.UnidadEjecutora = parseInt(

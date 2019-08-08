@@ -88,7 +88,7 @@ export class ArbolComponent implements OnChanges {
 
 
   loadTreeApropiaciones() {
-    this.customColumn = '_id';
+    this.customColumn = 'Codigo';
     this.defaultColumns = [  'Nombre', 'ApropiacionInicial' ]
     this.allColumns = [this.customColumn, ...this.defaultColumns];
     this.apHelper.getFullArbol().subscribe( res => {
