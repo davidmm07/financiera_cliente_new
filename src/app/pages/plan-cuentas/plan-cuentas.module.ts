@@ -12,11 +12,10 @@ import {
   NbCheckboxModule } from '@nebular/theme';
 
 import { ProductosRubroComponent } from './rubros/productos-rubro/productos-rubro.component';
-
-
-
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import { WindowComponent } from './window/window.component';
+import { WindowFormComponent } from './window/window-form/window-form.component';
 
 
 
@@ -25,6 +24,8 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
   declarations: [
     ...routedComponents,
     ProductosRubroComponent,
+    WindowComponent,
+    WindowFormComponent,
   ],
   imports: [
     ThemeModule,

@@ -88,7 +88,7 @@ export class ArbolComponent implements OnChanges {
 
 
   loadTreeApropiaciones() {
-    this.customColumn = '_id';
+    this.customColumn = 'Codigo';
     this.defaultColumns = [  'Nombre', 'ApropiacionInicial' ]
     this.allColumns = [this.customColumn, ...this.defaultColumns];
     this.apHelper.getFullArbol().subscribe( res => {
@@ -127,8 +127,9 @@ export class ArbolComponent implements OnChanges {
 
   async onSelect(selectedItem: any) {
     this.rubroSeleccionado.emit(selectedItem.data);
-    console.info(selectedItem);
+    // console.info(selectedItem);
   }
+
   getShowOn(index: number) {
     const minWithForMultipleColumns = 400;
     const nextColumnStep = 100;

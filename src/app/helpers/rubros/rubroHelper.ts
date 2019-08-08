@@ -42,8 +42,7 @@ export class RubroHelper {
         // const unidadEjecutora = 1;
         const raiz = 3;
         // call request manager for the tree's data.
-        return this.rqManager.get(`arbol_rubro/arbol/${raiz.toString()}`);
-
+        return this.rqManager.get(`arbol_rubro/arbol/${unidadEjecutora.toString()}`);
     }
 
 
@@ -105,7 +104,7 @@ export class RubroHelper {
      */
     public rubroUpdate(rubroData) {
         this.rqManager.setPath('PLAN_CUENTAS_MONGO_SERVICE');
-        return this.rqManager.put('arbol_rubro/', rubroData._Id).pipe(
+        return this.rqManager.put('arbol_rubro/', rubroData, rubroData.Codigo).pipe(
             map(
                 (res) => {
                     if (res['Type'] === 'error') {
