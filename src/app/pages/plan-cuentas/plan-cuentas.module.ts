@@ -8,7 +8,8 @@ import {
   NbSelectModule,
   NbAlertModule,
   NbTabsetModule,
-  NbStepperModule } from '@nebular/theme';
+  NbStepperModule,
+  NbCheckboxModule } from '@nebular/theme';
 
 import { ProductosRubroComponent } from './rubros/productos-rubro/productos-rubro.component';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
@@ -34,6 +35,7 @@ import { WindowFormComponent } from './window/window-form/window-form.component'
     NbTreeGridModule,
     NbSelectModule,
     NbAlertModule,
+    NbCheckboxModule,
     NbTabsetModule,
     NbStepperModule,
     Ng2SmartTableModule,

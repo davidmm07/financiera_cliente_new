@@ -65,7 +65,7 @@ export class ArbolComponent implements OnChanges {
     if (changes.optionSelect !== undefined) {
       if (changes.optionSelect.currentValue !== undefined) {
         this.opcionSeleccionada = changes.optionSelect.currentValue;
-        console.info(this.opcionSeleccionada)
+        // console.info(this.opcionSeleccionada)
         this.loadTree();
       }
     }
@@ -93,15 +93,15 @@ export class ArbolComponent implements OnChanges {
     this.allColumns = [this.customColumn, ...this.defaultColumns];
     this.apHelper.getFullArbol().subscribe( res => {
       this.data = res;
-      console.info(this.data);
+      // console.info(this.data);
       this.dataSource2 = this.dataSourceBuilder2.create(this.data);
     },
     );
   }
 
   loadTree() {
-    console.info(this.opcionSeleccionada);
-    console.info(this.optionSelect);
+    // console.info(this.opcionSeleccionada);
+    // console.info(this.optionSelect);
     if (this.opcionSeleccionada === 'Rubros' ) {
         this.loadTreeRubros();
     } else if ( this.opcionSeleccionada === 'Apropiaciones' ) {

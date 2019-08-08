@@ -6,68 +6,116 @@
 
         <div class="col-md-12">
           <!-- info fuente -->
-              <nb-stepper #steep orientation="vertical">
-                  <nb-step label="{{'FUENTE_FINANCIAMIENTO.asignar_fuente' | translate }}">
+          <nb-stepper #steep orientation="horizontal">
+            <nb-step label="{{'FUENTE_FINANCIAMIENTO.asignar_fuente' | translate }}">
 
-                    <div>
-                            <ngx-dinamicform [normalform]="formInfoFuente" [modeloData]="info_fuente" (result)="validarForm($event)"
-                                    [clean]="clean">
-                                  </ngx-dinamicform>
+              <div>
+                <ngx-dinamicform [normalform]="formInfoFuente" [modeloData]="info_fuente" (result)="validarForm($event)"
+                [clean]="clean">
+              </ngx-dinamicform>
+            </div>
+          </nb-step>
+          <nb-step label="{{'RUBRO.asignar_rubro' | translate }}">
+
+            <div class="col-md-12 col-lg-12 col-xxxl-12">
+              <div class="row">
+                <div class="col-md-6 col-lg-6 col-xxxl-6">
+                  <ngx-arbol (rubroSeleccionado)="receiveMessage($event)" [optionSelect]="optionView"></ngx-arbol>            
+                </div>
+                <div class="col-md-6 col-lg-6 col-xxxl-6" >
+                  <nb-card accent="info" class="col-md-12" *ngIf="rubrosAsignados.length >0"  ><nb-card-body>
+
+
+                    <!-- dependencias -->
+                    <div class="col-md-12" *ngFor="let rubro of rubrosAsignados">
+                      <div>
+                        <h5>{{'GLOBAL.rubro' | translate}}: {{rubro.Codigo}} {{rubro.Nombre}}</h5>
+                      </div>
+                      <div class="row form-group">
+                        <label for="" class="col-md-4">{{'GLOBAL.dependencia' | translate}}</label>
+                        <label for="valor" class="col-md-4 offset-1">{{'GLOBAL.valor' | translate}}</label>
+                      </div>
+                      <div *ngFor="let dependenciasAsignadas of rubro.Dependencias; let index = index">
+                        <label for="" class="col-md-3">
+                          <span class=".glyphicon .glyphicon-remove"></span>
+                        </label>
+                        <div class="row">
+                          <select [(ngModel)]="dependenciasAsignadas.Id"
+                          class="form-control col-sm-4 dropdown mr-auto">
+                          <option *ngFor="let dependencia of dependencias; let value = index;" [ngValue]="dependencia.Id" >{{dependencia.Nombre}}
+                          </option>
+                        </select>
+                        <input type="number" name="'dependenciasAsignadas.ValorDependencia' + index" id="" [(ngModel)]="dependenciasAsignadas.ValorDependencia" class="form-control col-sm-3 mr-auto">
+
+                        <button *ngIf="validarEdicionDependencias(rubro , dependenciasAsignadas, index)" (click)="entrandoEditar(dependenciasAsignadas)"
+                        class="btn btn-sm btn-success col-sm-2 ml-auto">{{'GLOBAL.editar' | translate}}</button>
+                        <button *ngIf="entrarEditar" (click)="editarDependencia($event.target.value, rubro, dependenciasAsignadas, index)"
+                        class="btn btn-sm btn-success col-sm-2 ml-auto">{{'GLOBAL.guardar' | translate}}</button>                                                               
+                        <button (click)="quitarDependencia($event, rubro, index)"
+                        class="btn btn-sm btn-danger col-sm-2 ml-auto">{{'GLOBAL.eliminar' | translate}}</button>
+
+                      </div>
+                      <div class="form-group mt-2">
+                        <button *ngIf="!entrarEditar && index == (rubro.Dependencias.length)-1" (click)="asignarDependencia($event.target.value, rubro, dependenciasAsignadas, index)"
+                        class="btn btn btn-primary col-sm-12 ">{{'MODIF.agregar-dependencia' | translate}}</button>                            
+                      </div>
                     </div>
-                  </nb-step>
-                  <nb-step label="{{'RUBRO.asignar_rubro' | translate }}">
+                    <div class="form-group mt-2">
+                      <button
+                      class="btn btn-outline-danger col-md-12 mt-1" (click)="quitarRubro(rubro)">{{'FUENTE_FINANCIAMIENTO.remove-rubro' | translate}}</button>
+                    </div>                          
+                  </div>
+                </nb-card-body></nb-card>              
+              </div>
+            </div>
+          </div>
+          <nb-card>
+            <nb-card-body>
+              <nb-alert *ngIf="!totalPermitido" accent="danger">{{'FUENTE_FINANCIAMIENTO.max_value_dep' | translate}} </nb-alert>
+              <div align="right" class="form-group">
+                <button class="btn btn-outline-primary btn-md mr-auto" nbStepperPrevious 
+                >{{'GLOBAL.regresar' | translate}}</button>
+                <button *ngIf="totalPermitido && entrarAddProductos" class="btn btn-outline-success btn-md offset-1"  nbStepperNext>{{'GLOBAL.continuar' | translate}}</button>
+              </div>    
+            </nb-card-body>
+          </nb-card>
 
-                    <div class="col-md-12 col-lg-12 col-xxxl-12">
-                        <div class="row">
-                          <ngx-arbol (rubroSeleccionado)="receiveMessage($event)" [optionSelect]="optionView"></ngx-arbol>            
-                        </div>
-                        <div class="row">
-                      <!-- dependencias -->
-                      <div class="col-md-12" *ngFor="let rubro of rubrosAsignados">
-                          <div>
-                            <h5>{{'GLOBAL.rubro' | translate}}: {{rubro.Codigo}} {{rubro.Nombre}}</h5>
-                          </div>
-                          <div *ngFor="let dependenciasAsignadas of rubro.Dependencias">
-                            <div class="row form-group">
-                              <label for="" class="col-md-4">{{'GLOBAL.dependencia' | translate}}</label>
-                              <label for="valor" class="col-md-4 offset-1">{{'GLOBAL.valor' | translate}}</label>
-                              <label for="" class="col-md-4">
-                                <span class=".glyphicon .glyphicon-remove"></span>
-                              </label>
-                            </div>
-                            <div class="row">
-                              <select (change)="asignarDependencia($event.target.value, rubro)" [(ngModel)]="dependenciaSeleccionada"
-                                class="form-control col-md-4 dropdown">
-                                <option *ngFor="let dependencia of dependencias; let value = index;" [value]="value" >{{dependencia.Nombre}}
-                                </option>
-                              </select>
-                              <input type="number" name="valor" id="" class="form-control col-md-4 offset-1">
-                              <button (click)="quitarDependencia($event, rubro)"
-                              class="btn btn-sm btn-outline-danger col-md-2 offset-1">{{'FUENTE_FINANCIAMIENTO.remove-dependencia' | translate}}</button>
-              
-                            </div>
-                          </div>
-                          <div class="form-group mt-2">
-                            <button (click)="agregarDependencia($event, rubro)"
-                              class="btn btn-outline-primary col-md-12">{{'FUENTE_FINANCIAMIENTO.add-dependencia' | translate}}</button>
-                            <button
-                              class="btn btn-outline-danger col-md-12 mt-1">{{'FUENTE_FINANCIAMIENTO.remove-rubro' | translate}}</button>
-                          </div>
-                        </div>              
-                        </div>
-                      </div>
-                      <div align="right" class="form-group">
-                          <button class="btn btn-outline-primary btn-md " nbStepperPrevious 
-                              >{{'GLOBAL.regresar' | translate}}</button>
-                          <button class="btn btn-outline-success btn-md offset-1 " (click)="registrar()">{{'GLOBAL.guardar' | translate}}</button>
-                      </div>
-                  </nb-step>
-                </nb-stepper>
 
-        </div>
-        <!-- arbol -->
+        </nb-step>
+        <!-- productos-->
+        <nb-step label="{{'RUBRO.add-producto' | translate }}">
+          <div class="col-md-12" *ngFor="let rubro of rubrosAsignados">
+            <div class="row">
+            <nb-card accent="info" class="col-md-12" *ngIf="rubrosAsignados.length >0"  >
+              <nb-card-body>
+                  <h5>{{'GLOBAL.rubro' | translate}}: {{rubro.Codigo}} {{rubro.Nombre}}</h5>
+                <div *ngIf="!showProduct">
+                  <h5 class="col-md-5">¿ {{'RUBRO.add-producto' | translate}} ? </h5>
+                  <button class="col-md-2 btn btn-outline-primary btn-md offset-md-1"  
+                  >{{'GLOBAL.no' | translate}}</button>
+                  <button class="col-md-2 btn btn-outline-primary btn-md offset-md-1" (click)="showProductosRubro(rubro)">{{'GLOBAL.si' | translate}}</button>
+                </div>
+                <div class="row" *ngIf="showProduct">
+                <div *ngFor="let producto of rubro.Productos; let value = index;">
+                  <nb-checkbox (checkedChange)="addProduct($event, producto)" status="primary">{{producto.Nombre}}</nb-checkbox>
+                </div>                  
+                </div>
+              </nb-card-body>
+            </nb-card>
+          </div>
+          </div>
+          <div align="right" class="form-group">
+            <button class="btn btn-outline-primary btn-md " nbStepperPrevious 
+            >{{'GLOBAL.regresar' | translate}}</button>
+            <button *ngIf="totalPermitido && entrarAddProductos" class="btn btn-outline-success btn-md ml-auto" (click)="registrar()">{{'GLOBAL.continuar' | translate}}</button>
+          </div> 
+        </nb-step>        
+      </nb-stepper>
 
-      </div>
     </div>
+    <!-- arbol -->
+
   </div>
+</div>
+</div>
 </div>
