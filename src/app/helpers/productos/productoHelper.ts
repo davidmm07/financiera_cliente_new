@@ -13,9 +13,9 @@ export class ProductoHelper {
 
 
 
-    public getProductos() {
+    public getProductos(id?: any) {
         this.rqManager.setPath('PLAN_CUENTAS_MONGO_SERVICE');
-        return this.rqManager.get('producto').pipe(
+        return this.rqManager.get('producto/' + id).pipe(
             map(
                 (res) => {
                     if (res === 'error') {

@@ -67,6 +67,7 @@
     "dependencia": "Dependencia",
     "valor": "Valor",
     "producto": "Producto",
+    "ver_productos": "Ver Productos",
     "porcentaje": "Porcentaje %",
     "quitar_producto": "Quitar producto",
     "apropiacion-inicial": "Apropiacion inicial",
@@ -124,7 +125,8 @@
     "rubro_registrado_error": "No Se Pudo Registrar El Rubro",
     "registrar_rubro": "Registrar Rubro",
     "add-producto": "Agregar producto",
-    "edit-producto": "Editar producto"
+    "edit-producto": "Editar producto",
+    "no-producto": "No hay productos asociados para este Rubro"
   },
   "FUENTE_FINANCIAMIENTO": {
     "asignar_fuente": "Asignar Fuente",

@@ -69,45 +69,41 @@
               </div>
             </div>
           </div>
-          <nb-card>
-            <nb-card-body>
               <nb-alert *ngIf="!totalPermitido" accent="danger">{{'FUENTE_FINANCIAMIENTO.max_value_dep' | translate}} </nb-alert>
               <div align="right" class="form-group">
                 <button class="btn btn-outline-primary btn-md mr-auto" nbStepperPrevious 
                 >{{'GLOBAL.regresar' | translate}}</button>
-                <button *ngIf="totalPermitido && entrarAddProductos" class="btn btn-outline-success btn-md offset-1"  nbStepperNext>{{'GLOBAL.continuar' | translate}}</button>
+                <button *ngIf="totalPermitido && entrarAddProductos" class="btn btn-outline-success btn-md offset-sm-1"  nbStepperNext>{{'GLOBAL.continuar' | translate}}</button>
               </div>    
-            </nb-card-body>
-          </nb-card>
-
 
         </nb-step>
         <!-- productos-->
         <nb-step label="{{'RUBRO.add-producto' | translate }}">
-          <div class="col-md-12" *ngFor="let rubro of rubrosAsignados">
+          <div class="col-md-12" *ngFor="let rubro of rubrosAsignados; let index = index;">
             <div class="row">
-            <nb-card accent="info" class="col-md-12" *ngIf="rubrosAsignados.length >0"  >
-              <nb-card-body>
+              <nb-card accent="info" class="col-md-12" *ngIf="rubrosAsignados.length > 0"  >
+                <nb-card-body>
                   <h5>{{'GLOBAL.rubro' | translate}}: {{rubro.Codigo}} {{rubro.Nombre}}</h5>
-                <div *ngIf="!showProduct">
-                  <h5 class="col-md-5">¿ {{'RUBRO.add-producto' | translate}} ? </h5>
-                  <button class="col-md-2 btn btn-outline-primary btn-md offset-md-1"  
-                  >{{'GLOBAL.no' | translate}}</button>
-                  <button class="col-md-2 btn btn-outline-primary btn-md offset-md-1" (click)="showProductosRubro(rubro)">{{'GLOBAL.si' | translate}}</button>
-                </div>
-                <div class="row" *ngIf="showProduct">
-                <div *ngFor="let producto of rubro.Productos; let value = index;">
-                  <nb-checkbox (checkedChange)="addProduct($event, producto)" status="primary">{{producto.Nombre}}</nb-checkbox>
-                </div>                  
-                </div>
-              </nb-card-body>
-            </nb-card>
-          </div>
+                  <div *ngIf="!validProduct(rubro.Productos)">
+                    <h5  class="col-md-5"> {{'RUBRO.no-producto' | translate}} </h5>
+                  </div>                  
+                  <div *ngIf="validProduct(rubro.Productos) && !showProduct">
+
+                    <button class="col-md-2 btn btn-outline-primary btn-md offset-md-1" (click)="showProductosRubro(rubro, index)">{{'GLOBAL.ver_productos' | translate}}</button>
+                  </div>
+                  <div class="row" *ngIf="showProduct">
+                    <div class="col-md-12" *ngFor="let producto of rubro.Productos | keyvalue; let pos = index">
+                      <nb-checkbox (change)="addProduct($event, rubro, producto.key, pos)" status="primary">{{producto.value.Nombre}}</nb-checkbox>
+                    </div>                  
+                  </div>
+                </nb-card-body>
+              </nb-card>
+            </div>
           </div>
           <div align="right" class="form-group">
             <button class="btn btn-outline-primary btn-md " nbStepperPrevious 
             >{{'GLOBAL.regresar' | translate}}</button>
-            <button *ngIf="totalPermitido && entrarAddProductos" class="btn btn-outline-success btn-md ml-auto" (click)="registrar()">{{'GLOBAL.continuar' | translate}}</button>
+            <button *ngIf="totalPermitido && entrarAddProductos" class="btn btn-outline-success btn-md offset-sm-1" (click)="registrar()">{{'GLOBAL.continuar' | translate}}</button>
           </div> 
         </nb-step>        
       </nb-stepper>
