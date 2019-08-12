@@ -8,7 +8,6 @@ import { ProductoHelper } from '../../../helpers/productos/productoHelper';
 import { FuenteHelper } from '../../../helpers/fuentes/fuenteHelper';
 import { NbStepperComponent } from '@nebular/theme/components/stepper/stepper.component';
 import { PopUpManager } from '../../../managers/popUpManager';
-import { Observable } from "rxjs";
 
 @Component({
   selector: 'ngx-fuentes',
@@ -161,23 +160,24 @@ export class FuentesComponent implements OnInit {
   }
 }
 showProductosRubro(rubro: any, index: any) {
-  console.info(rubro.Productos);
-  console.info(index);
-  for (let [key, value] of Object.entries(rubro.Productos)) {
+  // console.info(rubro.Productos);
+  // console.info(index);
+  for (const [key, value] of Object.entries(rubro.Productos)) {
+    console.info(value);
     this.productoHelper.getProductos(key).subscribe((res: any) => {
       this.rubrosAsignados[index].Productos[key]['Nombre'] = res.Nombre;
     });
   }
  this.showProduct = true;
-  console.info(this.rubrosAsignados);
+  // console.info(this.rubrosAsignados);
 }
 
-addProduct(event, rubro:any, producto: any, pos: number) {
+addProduct(event, rubro: any, producto: any, pos: number) {
  if (event.target.checked) {
-    this.rubrosAsociados[rubro.Codigo].Productos[pos] = producto 
+    this.rubrosAsociados[rubro.Codigo].Productos[pos] = producto;
   } else {
-    this.rubrosAsociados[rubro.Codigo].Productos.splice(pos,1) 
-  }  
+    this.rubrosAsociados[rubro.Codigo].Productos.splice(pos, 1);
+  }
  console.info(event.target.checked);
  console.info(this.rubrosAsociados[rubro.Codigo]);
 }
@@ -187,7 +187,7 @@ return Object.keys(producto).length > 0;
 }
 
 registrar() {
-  console.info('rubros',this.rubrosAsociados);
+  console.info('rubros', this.rubrosAsociados);
   this.info_fuente['Rubros'] = this.rubrosAsociados;
    this.fuenteHelper.fuenteRegister(this.info_fuente).subscribe(res => {
       console.info(this.info_fuente + 'Rest' + res);
@@ -195,7 +195,7 @@ registrar() {
         console.info(res);
         this.popManager.showInfoToast('Producto registrado satisfactoriamente');
       }
-    });  
+    });
 }
 
 cleanForm() {}
