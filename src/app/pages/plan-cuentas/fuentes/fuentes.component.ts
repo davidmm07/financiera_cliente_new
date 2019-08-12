@@ -4,8 +4,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { Rubro } from '../../../@core/data/models/rubro';
 import { FuenteFinanciamiento } from '../../../@core/data/models/fuente_financiamiento';
 import { DependenciaHelper } from '../../../helpers/oikos/dependenciaHelper';
+import { ProductoHelper } from '../../../helpers/productos/productoHelper';
+import { FuenteHelper } from '../../../helpers/fuentes/fuenteHelper';
 import { NbStepperComponent } from '@nebular/theme/components/stepper/stepper.component';
 import { PopUpManager } from '../../../managers/popUpManager';
+import { Observable } from "rxjs";
 
 @Component({
   selector: 'ngx-fuentes',
@@ -34,6 +37,8 @@ export class FuentesComponent implements OnInit {
   constructor(
     private translate: TranslateService,
     private dependenciaHelper: DependenciaHelper,
+    private productoHelper: ProductoHelper,
+    private fuenteHelper: FuenteHelper,
     private popManager: PopUpManager,
     ) {
     this.entrarEditar = false;
@@ -61,15 +66,9 @@ export class FuentesComponent implements OnInit {
   validarForm(event) {
     // console.info('event', event);
     this.info_fuente = event.data.FuenteFinanciamiento;
-    // console.info('info', this.info_fuente);
+    console.info('info', this.info_fuente);
     // debugger;
     this.steep.next();
-  }
-
-  validarFormDependencias(event) {
-    // console.info('event2', event);
-    // console.info('info', this.info_fuente);
-    // debugger;
   }
 
 
@@ -148,8 +147,8 @@ export class FuentesComponent implements OnInit {
 
   receiveMessage($event) {
     if (
-      this.rubrosAsignados.filter(data => data.Codigo === $event.Codigo)
-      .length === 0
+      this.rubrosAsignados.filter(data => data.Codigo === $event.Codigo )
+      .length === 0 && $event.Hijos.length === 0
       ) {
       $event['Dependencias'] = [{Id: 0, ValorDependencia: 0}];
       // $event['Productos'] = this.productosExample;
@@ -159,23 +158,48 @@ export class FuentesComponent implements OnInit {
       Dependencias: [],
       Productos: [],
     };
-    // console.info(this.rubrosAsociados);
   }
 }
-showProductosRubro(rubro: Rubro) {
+showProductosRubro(rubro: any, index: any) {
+  console.info(rubro.Productos);
+  console.info(index);
+  for (let [key, value] of Object.entries(rubro.Productos)) {
+    this.productoHelper.getProductos(key).subscribe((res: any) => {
+      this.rubrosAsignados[index].Productos[key]['Nombre'] = res.Nombre;
+    });
+  }
  this.showProduct = true;
+  console.info(this.rubrosAsignados);
 }
 
-addProduct(event, producto: any) {
- console.info(event);
- console.info(producto);
+addProduct(event, rubro:any, producto: any, pos: number) {
+ if (event.target.checked) {
+    this.rubrosAsociados[rubro.Codigo].Productos[pos] = producto 
+  } else {
+    this.rubrosAsociados[rubro.Codigo].Productos.splice(pos,1) 
+  }  
+ console.info(event.target.checked);
+ console.info(this.rubrosAsociados[rubro.Codigo]);
 }
 
-registrar() {}
+validProduct(producto: any) {
+return Object.keys(producto).length > 0;
+}
+
+registrar() {
+  console.info('rubros',this.rubrosAsociados);
+  this.info_fuente['Rubros'] = this.rubrosAsociados;
+   this.fuenteHelper.fuenteRegister(this.info_fuente).subscribe(res => {
+      console.info(this.info_fuente + 'Rest' + res);
+      if (res !== null) {
+        console.info(res);
+        this.popManager.showInfoToast('Producto registrado satisfactoriamente');
+      }
+    });  
+}
 
 cleanForm() {}
 
-aniadirNodo() {}
 
 construirForm() {
   this.formInfoFuente.btn = this.translate.instant('GLOBAL.continuar');
