@@ -48,7 +48,6 @@ export class RubroHelper {
 
             this.rqManager.get(`arbol_rubro_apropiacion/arbol_apropiacion_valores/${unidadEjecutora.toString()}/0`).toPromise().then(res => {
                 for (const element of res) {
-                    console.info(element)
 
                     rootsObsv.push(this.getArbol(element.Codigo))
 
