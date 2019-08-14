@@ -1,5 +1,5 @@
 export class Rubro {
-    Id: number;
+    Id: string;
     Organizacion: number;
     Codigo: string;
     Descripcion: string;

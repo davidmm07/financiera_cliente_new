@@ -70,7 +70,7 @@
 
                 <!-- productos -->
 
-                <div class="row">
+                <div class="row" *ngIf="false">
                     <div class="col-md-12">
                         <ngx-productos-rubro [productosAsignados]="listaProductosAsignados" (cambioListaProductosAsignados)="cambioProductosAsignados($event)"></ngx-productos-rubro>
                         <!-- <pre>{{listaProductosAsignados | json}}</pre> -->

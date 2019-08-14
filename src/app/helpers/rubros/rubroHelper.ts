@@ -2,6 +2,7 @@ import { RequestManager } from '../../managers/requestManager';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { PopUpManager } from '../../managers/popUpManager';
+import { Observable, forkJoin } from 'rxjs';
 
 @Injectable({
     providedIn: 'root',
@@ -9,7 +10,7 @@ import { PopUpManager } from '../../managers/popUpManager';
 export class RubroHelper {
 
     constructor(private rqManager: RequestManager,
-                private pUpManager: PopUpManager ) { }
+        private pUpManager: PopUpManager) { }
 
     /**
      * Gets arbol
@@ -18,15 +19,15 @@ export class RubroHelper {
      * @returns  branch information.
      */
     public getArbol(branch?: string) {
-        this.rqManager.setPath('PLAN_CUENTAS_MID_SERVICE');
+        this.rqManager.setPath('PLAN_CUENTAS_MONGO_SERVICE');
         // this.rqManager.setPath('DUMMY_SERVICE');
         // Set the optional branch for the API request.
-        const unidadEjecutora = 1;
+        // const unidadEjecutora = 1;
         const params = {
             rama: branch,
         };
         // call request manager for the tree's data.
-        return this.rqManager.get(`rubro/ArbolRubros/${unidadEjecutora.toString()}`, params);
+        return this.rqManager.get(`arbol_rubro/arbol/${branch}`, params);
 
     }
 
@@ -35,14 +36,38 @@ export class RubroHelper {
      *  returns full rubro's tree information (all nodes and branches).
      * @returns  data with tree structure for the ndTree module.
      */
-    public getFullArbol() {
+    public getFullArbol(vigencia = '0') {
         this.rqManager.setPath('PLAN_CUENTAS_MONGO_SERVICE');
         // this.rqManager.setPath('DUMMY_SERVICE');
         // Set the optional branch for the API request.
         const unidadEjecutora = 1;
         // const raiz = 3;
         // call request manager for the tree's data.
-        return this.rqManager.get(`arbol_rubro/arbol/${unidadEjecutora.toString()}`);
+        const roots = new Observable<any>((observer) => {
+            const rootsObsv: Observable<any>[] = [];
+
+            this.rqManager.get(`arbol_rubro_apropiacion/arbol_apropiacion_valores/${unidadEjecutora.toString()}/${vigencia}`).toPromise().then(res => {
+                for (const element of res) {
+
+                    rootsObsv.push(this.getArbol(element.Codigo))
+
+                }
+                forkJoin(rootsObsv).subscribe(treeUnformated => {
+                    const tree = [];
+                    for (const branch of treeUnformated) {
+                        tree.push(branch[0])
+                    }
+                    observer.next(tree);
+                    observer.complete();
+                })
+
+            })
+
+            // observable execution
+
+        })
+
+        return roots;
     }
 
 
@@ -56,6 +81,7 @@ export class RubroHelper {
     public rubroRegister(rubroData) {
         this.rqManager.setPath('PLAN_CUENTAS_MONGO_SERVICE');
         rubroData.UnidadEjecutora = '1'; // Tomar la unidad ejecutora del token cuando este definido.
+        console.table(rubroData);
         return this.rqManager.post('arbol_rubro', rubroData).pipe(
             map(
                 (res) => {
@@ -78,7 +104,7 @@ export class RubroHelper {
      * @param id the id of the object to remove in the DB.
      * @returns  <Observable> object with api response. undefined if the proccess has errors
      */
-    public rubroDelete(id: number) {
+    public rubroDelete(id: string) {
         this.rqManager.setPath('PLAN_CUENTAS_MONGO_SERVICE');
         return this.rqManager.delete('arbol_rubro/', id).pipe(
             map(

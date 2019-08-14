@@ -20,8 +20,12 @@ export class ProductosRubroComponent implements OnInit {
 
   // comunicacion:
 
-  @Input() set productosAsignados(productosAsignados: any[]){
+  @Input() set productosAsignados(productosAsignados: any[]) {
     this.listaProductosAsignados = productosAsignados;
+  }
+
+  @Input() set rubroInfo(rubro: any[]) {
+    this.rubro = rubro;
   }
   @Output() cambioListaProductosAsignados = new EventEmitter<any[]>();
 
@@ -39,6 +43,10 @@ export class ProductosRubroComponent implements OnInit {
 
 
   ngOnInit() {
+  }
+
+  getProductByRubro() {
+
   }
 
 
@@ -94,7 +102,7 @@ export class ProductosRubroComponent implements OnInit {
     return val
   }
 
-  verificar100(producto?: any ): boolean {
+  verificar100(producto?: any): boolean {
     if (producto) {
       return (this.getPorcentajeAsignado() + producto.porcentaje <= 100)
     } else {
