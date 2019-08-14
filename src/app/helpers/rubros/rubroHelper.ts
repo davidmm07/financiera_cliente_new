@@ -36,7 +36,7 @@ export class RubroHelper {
      *  returns full rubro's tree information (all nodes and branches).
      * @returns  data with tree structure for the ndTree module.
      */
-    public getFullArbol() {
+    public getFullArbol(vigencia = '0') {
         this.rqManager.setPath('PLAN_CUENTAS_MONGO_SERVICE');
         // this.rqManager.setPath('DUMMY_SERVICE');
         // Set the optional branch for the API request.
@@ -46,7 +46,7 @@ export class RubroHelper {
         const roots = new Observable<any>((observer) => {
             const rootsObsv: Observable<any>[] = [];
 
-            this.rqManager.get(`arbol_rubro_apropiacion/arbol_apropiacion_valores/${unidadEjecutora.toString()}/0`).toPromise().then(res => {
+            this.rqManager.get(`arbol_rubro_apropiacion/arbol_apropiacion_valores/${unidadEjecutora.toString()}/${vigencia}`).toPromise().then(res => {
                 for (const element of res) {
 
                     rootsObsv.push(this.getArbol(element.Codigo))
