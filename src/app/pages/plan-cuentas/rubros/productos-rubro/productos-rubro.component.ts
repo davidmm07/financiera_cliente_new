@@ -23,6 +23,10 @@ export class ProductosRubroComponent implements OnInit {
   @Input() set productosAsignados(productosAsignados: any[]){
     this.listaProductosAsignados = productosAsignados;
   }
+
+  @Input() set rubroInfo(rubro: any[]){
+    this.rubro = rubro;
+  }
   @Output() cambioListaProductosAsignados = new EventEmitter<any[]>();
 
 
@@ -39,6 +43,10 @@ export class ProductosRubroComponent implements OnInit {
 
 
   ngOnInit() {
+  }
+
+  getProductByRubro(){
+
   }
 
 

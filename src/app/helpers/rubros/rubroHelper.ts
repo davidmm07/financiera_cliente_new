@@ -2,6 +2,8 @@ import { RequestManager } from '../../managers/requestManager';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { PopUpManager } from '../../managers/popUpManager';
+import { Observable } from 'rxjs';
+import { root } from 'rxjs/internal/util/root';
 
 @Injectable({
     providedIn: 'root',
@@ -9,7 +11,7 @@ import { PopUpManager } from '../../managers/popUpManager';
 export class RubroHelper {
 
     constructor(private rqManager: RequestManager,
-                private pUpManager: PopUpManager ) { }
+        private pUpManager: PopUpManager) { }
 
     /**
      * Gets arbol
@@ -18,15 +20,15 @@ export class RubroHelper {
      * @returns  branch information.
      */
     public getArbol(branch?: string) {
-        this.rqManager.setPath('PLAN_CUENTAS_MID_SERVICE');
+        this.rqManager.setPath('PLAN_CUENTAS_MONGO_SERVICE');
         // this.rqManager.setPath('DUMMY_SERVICE');
         // Set the optional branch for the API request.
-        const unidadEjecutora = 1;
+        // const unidadEjecutora = 1;
         const params = {
             rama: branch,
         };
         // call request manager for the tree's data.
-        return this.rqManager.get(`rubro/ArbolRubros/${unidadEjecutora.toString()}`, params);
+        return this.rqManager.get(`arbol_rubro/arbol/${branch}`, params);
 
     }
 
@@ -42,7 +44,25 @@ export class RubroHelper {
         const unidadEjecutora = 1;
         // const raiz = 3;
         // call request manager for the tree's data.
-        return this.rqManager.get(`arbol_rubro/arbol/${unidadEjecutora.toString()}`);
+        const roots = new Observable<any>((observer) => {
+            const tree = [];
+            this.rqManager.get(`arbol_rubro_apropiacion/arbol_apropiacion_valores/${unidadEjecutora.toString()}/0`).subscribe((res: any) => {
+                res.forEach(root => {
+                    this.getArbol(root.Codigo).subscribe((rootRes: any) => {
+                        tree.push(rootRes[0]);
+                        console.log(tree)
+                        observer.next(tree);
+                        observer.complete();
+
+                    });
+                });
+
+            });
+            // observable execution
+
+        })
+
+        return roots;
     }
 
 
@@ -56,6 +76,7 @@ export class RubroHelper {
     public rubroRegister(rubroData) {
         this.rqManager.setPath('PLAN_CUENTAS_MONGO_SERVICE');
         rubroData.UnidadEjecutora = '1'; // Tomar la unidad ejecutora del token cuando este definido.
+        console.table(rubroData);
         return this.rqManager.post('arbol_rubro', rubroData).pipe(
             map(
                 (res) => {

@@ -82,6 +82,7 @@ export class ArbolComponent implements OnChanges {
   loadTreeRubros() {
     this.rbHelper.getFullArbol().subscribe((res) => {
       this.data = res;
+      console.info(this.data);
       this.dataSource = this.dataSourceBuilder.create(this.data);
     });
   }
