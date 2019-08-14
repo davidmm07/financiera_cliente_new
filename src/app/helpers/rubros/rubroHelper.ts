@@ -104,7 +104,7 @@ export class RubroHelper {
      * @param id the id of the object to remove in the DB.
      * @returns  <Observable> object with api response. undefined if the proccess has errors
      */
-    public rubroDelete(id: number) {
+    public rubroDelete(id: string) {
         this.rqManager.setPath('PLAN_CUENTAS_MONGO_SERVICE');
         return this.rqManager.delete('arbol_rubro/', id).pipe(
             map(

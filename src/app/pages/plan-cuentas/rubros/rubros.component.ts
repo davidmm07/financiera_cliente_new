@@ -71,7 +71,6 @@ export class RubrosComponent implements OnInit {
 
   receiveMessage($event) {
     this.rubroSeleccionado = <Rubro>$event
-    this.rubroSeleccionado.Id = parseInt(this.rubroSeleccionado.Id, 0);
     this.rubroSeleccionado.UnidadEjecutora = parseInt(this.rubroSeleccionado.UnidadEjecutora, 0);
 
     const data = {
@@ -123,7 +122,7 @@ export class RubrosComponent implements OnInit {
   onSelect(selectedItem: any) { }
 
   deleteRubro() {
-    const id = this.rubroSeleccionado.Id;
+    const id = <string>this.rubroSeleccionado.Codigo ;
     this.rbHelper.rubroDelete(id).subscribe((res) => {
       if (res) {
         this.popManager.showSuccessAlert('Se Eliminó el Rubro correctamente!');
