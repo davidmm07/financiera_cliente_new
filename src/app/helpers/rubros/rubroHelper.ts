@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { PopUpManager } from '../../managers/popUpManager';
 import { Observable } from 'rxjs';
-import { root } from 'rxjs/internal/util/root';
 
 @Injectable({
     providedIn: 'root',
@@ -47,10 +46,9 @@ export class RubroHelper {
         const roots = new Observable<any>((observer) => {
             const tree = [];
             this.rqManager.get(`arbol_rubro_apropiacion/arbol_apropiacion_valores/${unidadEjecutora.toString()}/0`).subscribe((res: any) => {
-                res.forEach(root => {
-                    this.getArbol(root.Codigo).subscribe((rootRes: any) => {
+                res.forEach(rootObj => {
+                    this.getArbol(rootObj.Codigo).subscribe((rootRes: any) => {
                         tree.push(rootRes[0]);
-                        console.log(tree)
                         observer.next(tree);
                         observer.complete();
 
