@@ -2,7 +2,7 @@ import { RequestManager } from '../../managers/requestManager';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { PopUpManager } from '../../managers/popUpManager';
-import { Observable } from 'rxjs';
+import { Observable, forkJoin } from 'rxjs';
 
 @Injectable({
     providedIn: 'root',
@@ -44,18 +44,26 @@ export class RubroHelper {
         // const raiz = 3;
         // call request manager for the tree's data.
         const roots = new Observable<any>((observer) => {
-            const tree = [];
-            this.rqManager.get(`arbol_rubro_apropiacion/arbol_apropiacion_valores/${unidadEjecutora.toString()}/0`).subscribe((res: any) => {
-                res.forEach(rootObj => {
-                    this.getArbol(rootObj.Codigo).subscribe((rootRes: any) => {
-                        tree.push(rootRes[0]);
-                        observer.next(tree);
-                        observer.complete();
+            const rootsObsv: Observable<any>[] = [];
 
-                    });
-                });
+            this.rqManager.get(`arbol_rubro_apropiacion/arbol_apropiacion_valores/${unidadEjecutora.toString()}/0`).toPromise().then(res => {
+                for (const element of res) {
+                    console.info(element)
 
-            });
+                    rootsObsv.push(this.getArbol(element.Codigo))
+
+                }
+                forkJoin(rootsObsv).subscribe(treeUnformated => {
+                    const tree = [];
+                    for (const branch of treeUnformated) {
+                        tree.push(branch[0])
+                    }
+                    observer.next(tree);
+                    observer.complete();
+                })
+
+            })
+
             // observable execution
 
         })
